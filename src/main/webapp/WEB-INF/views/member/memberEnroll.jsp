@@ -3,312 +3,273 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
     
 <style>
-@import url("https://fonts.googleapis.com/css?family=Fira+Sans");
+@import "compass/css3";
 
-	html,body {
-	position: relative;
-	min-height: 100vh;
-	background-color: #E1E8EE;
-	/* display: flex; */
-	align-items: center;
-	justify-content: center;
-	font-family: "Fira Sans", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-} 
+/* $body-bg: #c1bdba;
+$form-bg: #13232f;
+$white: #ffffff;
 
-.form-structor {
-	background-color: #222;
-	border-radius: 15px;
-	height: 550px;
-	width: 450px;
-	position: relative;
-	overflow: hidden;
-	margin:auto;
-}
-	 .signup::after
-	 .logout::after {
-		content: '';
-		opacity: .8;
-		position: inherit;
-		top: 0;
-		right:0;
-		bottom:0;
-		left:0;
-		background-repeat: no-repeat;
-		background-position: left bottom;
-		background-size: 500px;
-		background-image: url('https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bf884ad570b50659c5fa2dc2cfb20ecf&auto=format&fit=crop&w=1000&q=100');
-	
+$main: #1ab188;
+$main-light: lighten($main,5%);
+$main-dark: darken($main,5%);
+
+$gray-light: #a0b3b0;
+$gray: #ddd;
+
+$thin: 300;
+$normal: 400;
+$bold: 600;
+$br: 4px; */
+
+*, *:before, *:after {
+  box-sizing: border-box;
 }
 
-	 
-	.signup {
-		position: absolute;
-		top: 42%;
-		left: 50%;
-		-webkit-transform: translate(-50%, -50%);
-		width: 65%;
-		z-index: 5;
-		-webkit-transition: all .3s ease;
-		
-	}
-		.signup.slide-up {
-			top: 5%;
-			-webkit-transform: translate(-50%, 0%);
-			-webkit-transition: all .3s ease;
-		}
-		
-		.signup.slide-up .form-holder,
-		.signup.slide-up .submit-btn {
-			opacity: 0;
-			visibility: hidden;
-		}
-		
-		.signup.slide-up .form-title {
-			font-size: 1em;
-			cursor: pointer;
-		}
-		
-		.signup.slide-up .form-title span {
-			margin-right: 5px;
-			opacity: 1;
-			visibility: visible;
-			-webkit-transition: all .3s ease;
-		}
-		
-		.form-title {
-			color: #fff;
-			font-size: 1.7em;
-			text-align: center;
-		}
-			span {
-				color :rgba(0,0,0,0.4);
-				opacity: 0;
-				visibility: hidden;
-				-webkit-transition: all .3s ease;
-			}
+html {
+	overflow-y: scroll; 
+}
 
-		
-		.form-holder {
-			border-radius: 15px;
-			background-color: #fff;
-			overflow: hidden;
-			margin-top: 50px;
-			opacity: 1;
-			visibility: visible;
-			-webkit-transition: all .3s ease;
-		}
-			.input {
-				border: 0;
-				outline: none;
-				box-shadow: none;
-				display: block;
-				height: 30px;
-				line-height: 30px;
-				padding: 8px 15px;
-				border-bottom: 1px solid #eee;
-				width: 100%;
-				font-size: 12px;
-			}
-				.input:last-child {
-					border-bottom: 0;
-				}
-				.input::-webkit-input-placeholder {
-					color: rgba(0,0,0,0.4);
-				}
-			
-		
-		.submit-btn {
-			background-color: rgba(0,0,0,0.4);
-			color: rgba(256,256,256,0.7);
-			border:0;
-			border-radius: 15px;
-			display: block;
-			margin: 15px auto; 
-			padding: 15px 45px;
-			width: 100%;
-			font-size: 13px;
-			font-weight: bold;
-			cursor: pointer;
-			opacity: 1;
-			visibility: visible;
-			-webkit-transition: all .3s ease;
-		}
-			.submit-btn:hover {
-				transition: all .3s ease;
-				background-color: rgba(0,0,0,0.8);
-			}
-		
-	
-	
-	.login {
-		position: absolute;
-		top: 20%;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-color: #fff;
-		z-index: 5;
-		-webkit-transition: all .3s ease;
-	}
-		.signup::before
-		.login::before {
-			content: '';
-			position: absolute;
-			left: 50%;
-			top: -20px;
-			-webkit-transform: translate(-50%, 0);
-			background-color: #fff;
-			width: 200%;
-			height: 250px;
-			border-radius: 50%;
-			z-index: 4;
-			-webkit-transition: all .3s ease;
-		}
-		
-		.center {
-			position: absolute;
-			top: calc(50% - 10%);
-			left: 50%;
-			-webkit-transform: translate(-50%, -50%);
-			width: 65%;
-			z-index: 5;
-			-webkit-transition: all .3s ease;
-		}
-			.center.form-title {
-				color: #000;
-				font-size: 1.7em;
-				text-align: center;
-			}
-				span {
-					color: rgba(0,0,0,0.4);
-					opacity: 0;
-			    visibility: hidden;
-				  -webkit-transition: all .3s ease;
-				}
-			
+body {
+  background:$body-bg;
+  font-family: 'Titillium Web', sans-serif;
+}
 
-			.form-holder {
-				border-radius: 15px;
-				background-color: #fff;
-				border: 1px solid #eee;
-				overflow: hidden;
-				margin-top: 50px;
-				opacity: 1;
-				visibility: visible;
-				-webkit-transition: all .3s ease;
-			}
+/* a {
+  text-decoration:none;
+  color:$main;
+  transition:.5s ease;
+  &:hover {
+    color:$main-dark;
+  }
+} */
 
-				.input {
-					border: 0;
-					outline: none;
-					box-shadow: none;
-					display: block;
-					height: 30px;
-					line-height: 30px;
-					padding: 8px 15px;
-					border-bottom: 1px solid #eee;
-					width: 100%;
-					font-size: 12px;
-				}
-					.input:last-child {
-						border-bottom: 0;
-					}
-					.input::-webkit-input-placeholder {
-						color: rgba(0,0,0,0.4);
-					}
-				
+.form {
+  background:rgba($form-bg,.9);
+  padding: 40px;
+  max-width:600px;
+  margin:40px auto;
+  border-radius:$br;
+  box-shadow:0 4px 10px 4px rgba($form-bg,.3);
+}
 
-			.submit-btn {
-				background-color: #6B92A4;
-				color: rgba(256,256,256,0.7);
-				border:0;
-				border-radius: 15px;
-				display: block;
-				margin: 15px auto; 
-				padding: 15px 45px;
-				width: 100%;
-				font-size: 13px;
-				font-weight: bold;
-				cursor: pointer;
-				opacity: 1;
-				visibility: visible;
-				-webkit-transition: all .3s ease;
-					}
+.tab-group {
+  list-style:none;
+  padding:0;
+  margin:0 0 40px 0;
+  
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .tab-group li a {
+    display:block;
+    text-decoration:none;
+    padding:15px;
+    background:rgba($gray-light,.25);
+    color:$gray-light;
+    font-size:20px;
+    float:left;
+    width:50%;
+    text-align:center;
+    cursor:pointer;
+    transition:.5s ease;
+    &:hover {
+      background:$main-dark;
+      color:$white;
+    }
+  }
+  .tab-group .active a {
+    background:$main;
+    color:$white;
+  }
+}
 
-				.submit-btn:hover {
-					transition: all .3s ease;
-					background-color: rgba(0,0,0,0.8);
-				}
-			
-		
-		.submit-btn.slide-up {
-			top: 90%;
-			-webkit-transition: all .3s ease;
-		}
-		
-		.submit-btn.slide-up .center {
-			top: 10%;
-			-webkit-transform: translate(-50%, 0%);
-			-webkit-transition: all .3s ease;
-		}
-		
-		.submit-btn.slide-up .form-holder,
-		.submit-btn.slide-up .submit-btn {
-			opacity: 0;
-			visibility: hidden;
-			-webkit-transition: all .3s ease;
-		}
-		
-		.submit-btn.slide-up .form-title {
-			font-size: 1em;
-			margin: 0;
-			padding: 0;
-			cursor: pointer;
-			-webkit-transition: all .3s ease;
-		}
-		
-		.submit-btn.slide-up .form-title span {
-			margin-right: 5px;
-			opacity: 1;
-			visibility: visible;
-			-webkit-transition: all .3s ease;
-		}
+.tab-content > div:last-child {
+  display:none;
+}
+
+
+label {
+  position:absolute;
+  transform:translateY(6px);
+  left:13px;
+  color:rgba($white,.5);
+  transition:all 0.25s ease;
+  -webkit-backface-visibility: hidden;
+  pointer-events: none;
+  font-size:22px;
+  .req {
+  	margin:2px;
+  	color:$main;
+  }
+}
+
+label.active {
+  transform:translateY(50px);
+  left:2px;
+  font-size:14px;
+  .req {
+    opacity:0;
+  }
+}
+
+label.highlight {
+	color:$white;
+}
+
+input, textarea {
+  font-size:22px;
+  display:block;
+  width:100%;
+  height:100%;
+  padding:5px 10px;
+  background:none;
+  background-image:none;
+  border:1px solid $gray-light;
+  color:$white;
+  border-radius:0;
+  transition:border-color .25s ease, box-shadow .25s ease;
+  &:focus {
+		outline:0;
+		border-color:$main;
+  }
+}
+
+textarea {
+  border:2px solid $gray-light;
+  resize: vertical;
+}
+
+.field-wrap {
+  position:relative;
+  margin-bottom:40px;
+}
+
+.top-row {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  > div {
+    float:left;
+    width:48%;
+    margin-right:4%;
+    &:last-child { 
+      margin:0;
+    }
+  }
+}
+
+.button {
+  border:0;
+  outline:none;
+  border-radius:0;
+  padding:15px 0;
+  font-size:2rem;
+  font-weight:$bold;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  background:$main;
+  color:$white;
+  transition:all.5s ease;
+  -webkit-appearance: none;
+  &:hover, &:focus {
+    background:$main-dark;
+  }
+}
+
+.button-block {
+  display:block;
+  width:100%;
+}
+
+.forgot {
+  margin-top:-20px;
+  text-align:right;
+}
 </style>
-
-<body>
-	
 <form name="memberEnrollFrm" method="POST" 
 		action ="<%= request.getContextPath()%>/member/memberEnroll">
-<div class="form-structor">
-	<div class="signup">
-		<h2 class="form-title" id="signup"><span>or</span>Sign up</h2>
-		<div class="form-holder">
-			<input type="text" class="input" placeholder="Id" />
-			<input type="password" class="input" placeholder="Password" />
-			<input type="password" class="input" placeholder="Password-Check" />
-			<input type="text" class="input" placeholder="Name" />
-			<input type="date" class="input" placeholder="birthday" />
-			<input type="email" class="input" placeholder="Email" />	
-			<input type="text" class="input" placeholder="phone" />
-		</div>
-		<button class="submit-btn">Sign up</button>
-	</div>
-	<div class="login slide-up">
-		<div class="center">
-			<h2 class="form-title" id="login"><span>or</span>Log in</h2>
-			<div class="form-holder">
-				<input type="email" class="input" placeholder="Email" />
-				<input type="password" class="input" placeholder="Password" />
-			</div>
-			<button class="submit-btn">Log in</button>
-		</div>
-	</div>
-</div>
+<div class="form">
+      
+      <ul class="tab-group">
+        <li class="tab active"><a href="#signup">Sign Up</a></li>
+        <li class="tab"><a href="#login">Log In</a></li>
+      </ul>
+      
+      <div class="tab-content">
+        <div id="signup">   
+          <form action="/" method="post">
+          
+          <div class="top-row">
+            <div class="field-wrap">
+              <label>
+                First Name<span class="req">*</span>
+              </label>
+              <input type="text" required autocomplete="off" />
+            </div>
+        
+            <div class="field-wrap">
+              <label>
+                Last Name<span class="req">*</span>
+              </label>
+              <input type="text"required autocomplete="off"/>
+            </div>
+          </div>
+
+          <div class="field-wrap">
+            <label>
+              Email Address<span class="req">*</span>
+            </label>
+            <input type="email"required autocomplete="off"/>
+          </div>
+          
+          <div class="field-wrap">
+            <label>
+              Set A Password<span class="req">*</span>
+            </label>
+            <input type="password"required autocomplete="off"/>
+          </div>
+          
+          <button type="submit" class="button button-block"/>Sing up</button>
+          
+          </form>
+
+        </div>
+        
+        <div id="login">   
+          
+          <form action="/" method="post">
+          
+            <div class="field-wrap">
+            <label>
+              Email Address<span class="req">*</span>
+            </label>
+            <input type="email"required autocomplete="off"/>
+          </div>
+          
+          <div class="field-wrap">
+            <label>
+              Password<span class="req">*</span>
+            </label>
+            <input type="password"required autocomplete="off"/>
+          </div>
+          
+          
+          <button class="button button-block"/>Log In</button>
+          
+          </form>
+
+        </div>
+        
+      </div><!-- tab-content -->
+      
+</div> <!-- /form -->
 
 </form>
-</body>
 <script type="text/javascript" src="<%= request.getContextPath()%>/js/memberEnroll.js"></script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
