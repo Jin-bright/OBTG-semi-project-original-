@@ -164,13 +164,13 @@ footer {
     padding: 30px;
     background-color: #f9f4d2;
 }
-.footer-wrap {
+#footer-wrap {
     font-size: 9px;
 }
-.footer_iogo {
+#footer_iogo {
     font-size: 1.3em;
 }
-.footer_info {
+#footer_info {
     display: inline-block;
     padding-top: 10px;
     cursor: pointer;
@@ -190,19 +190,28 @@ footer {
 .footer_a:hover {
     color: rgb(178, 73, 73);
 }
-.footer_sns {
+.footer_a {
+	font-weight: 900;
+}
+#footer_sns {
     display: inline-block;
     position: absolute;
     right: 50px;
     margin: 15px;
     cursor: pointer;
 }
-.footer_sns > img {
+#footer_sns > img {
     display: inline-block;
     padding-left: 7px;
     width: 35px ;
     height: 30px;
 }
-.footer_txt {
+#footer_txt {
     padding-top: 15px;
+}
+#footer_span{
+	visibility: unset;
+	opacity: 1;
+	font-weight: 900;
+	color: black;
 }

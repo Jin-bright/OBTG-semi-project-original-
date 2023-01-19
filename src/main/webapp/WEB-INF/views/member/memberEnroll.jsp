@@ -191,8 +191,6 @@ textarea {
   text-align:right;
 }
 </style>
-
-	
 <form name="memberEnrollFrm" method="POST" 
 		action ="<%= request.getContextPath()%>/member/memberEnroll">
 <div class="form">
