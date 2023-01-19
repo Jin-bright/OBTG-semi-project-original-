@@ -276,9 +276,6 @@
 			-webkit-transition: all .3s ease;
 		}
 </style>
-
-<body>
-	
 <form name="memberEnrollFrm" method="POST" 
 		action ="<%= request.getContextPath()%>/member/memberEnroll">
 <div class="form-structor">
@@ -308,7 +305,6 @@
 </div>
 
 </form>
-</body>
 <script type="text/javascript" src="<%= request.getContextPath()%>/js/memberEnroll.js"></script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
