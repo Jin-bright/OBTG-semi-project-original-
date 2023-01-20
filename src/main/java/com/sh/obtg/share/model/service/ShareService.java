@@ -1,5 +1,9 @@
 package com.sh.obtg.share.model.service;
 
-public class ShareService {
+import com.sh.obtg.share.model.dao.ShareDao;
 
+public class ShareService {
+	
+	private ShareDao shareDao = new ShareDao();
+	
 }
