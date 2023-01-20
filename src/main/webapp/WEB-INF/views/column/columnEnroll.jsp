@@ -102,7 +102,7 @@ $(document).ready(function() {
 	$('#summernote').summernote(setting);
 });
 
-/* 글자수 제어 */
+/* 글자수 제어 (해결해야하는 숙제,,,,)*/
 document.columnFrm.addEventListener("submit", (e) => {
 	const content = document.querySelector("[name=col_content]");
 	if(content.value.length >= 2000){

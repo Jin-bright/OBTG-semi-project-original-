@@ -149,13 +149,13 @@ a {
 
 }
 
-h1{
+/* #title{
 	width : 400px;
 	font-size : 70px;
-	/*margin-left : 600px; */
+	margin-left : 600px;
 	margin : auto;	
 	text-align : center;
-}
+} */
 
 /* footer */
 footer {

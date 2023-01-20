@@ -20,14 +20,14 @@
 <section id="headercolor">
 <!--   메뉴바 -->
 <br /> <br />
-<table id="tdloginSignup" >
+<table id="tdloginSignup">
  <tr>
  	<td><button id="loginSignup" value="로그인/회원가입" onclick="location.href = '<%= request.getContextPath() %>/member/memberEnroll';">LOGIN / SIGN UP</button></td>
  </tr>	
 </table>
-<h1> O B T G  </h1>
+<h1 style="width : 400px; font-size : 70px;	margin : auto; text-align : center; font-weight: bold; font-family: 'Noto Sans KR', sans-serif;"> O B T G  </h1>
 <br /> <br />
-<hr style="border: solid 1px black;">
+<hr style="border: solid 1px black; margin:0;">
 <nav class="menu">
 	<a class="menu__item" id="i-0"href="<%=request.getContextPath()%>/index.jsp"><img class="menu__icon" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAw%0D%0AL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5v%0D%0AbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0x%0D%0AIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZp%0D%0AbGw9IiNmZmZmZmYiIGlkPSJzdmdfMSIgZD0ibTIwLDQwbDAsLTEybDgsMGwwLDEybDEwLDBsMCwt%0D%0AMTZsNiwwbC0yMCwtMThsLTIwLDE4bDYsMGwwLDE2bDEwLDB6Ii8+CiA8L2c+Cjwvc3ZnPg=="/><span class="menu__text">HOME</span></a>	
 	<a class="menu__item" id="i-1" href="<%=request.getContextPath()%>/ootd/ootdList"><img class="menu__icon" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAw%0D%0AL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5v%0D%0AbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0x%0D%0AIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZp%0D%0AbGw9IiNmZmZmZmYiIGlkPSJzdmdfMSIgZD0ibTI0LDhjLTQuNDIsMCAtOCwzLjU4IC04LDhjMCw0%0D%0ALjQxIDMuNTgsOCA4LDhzOCwtMy41OSA4LC04YzAsLTQuNDIgLTMuNTgsLTggLTgsLTh6bTAsMjBj%0D%0ALTUuMzMsMCAtMTYsMi42NyAtMTYsOGwwLDRsMzIsMGwwLC00YzAsLTUuMzMgLTEwLjY3LC04IC0x%0D%0ANiwtOHoiLz4KIDwvZz4KPC9zdmc+"/><span class="menu__text">OOTD</span></a>
@@ -40,7 +40,7 @@
   <div id="active-2"></div>
   <div id="active-3"></div>
 </nav>
-<hr style="border: solid 1px black;">
+<hr style="border: solid 1px black; margin:0;">
 </section>
 
 
