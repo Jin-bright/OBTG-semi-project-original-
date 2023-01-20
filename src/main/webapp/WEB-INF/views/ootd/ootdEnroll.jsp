@@ -19,14 +19,15 @@
 	<form
 		name="ootdBoardEnrollFrm"
 		action="<%=request.getContextPath()%>/ootd/ootdEnroll" 
+		enctype ="multipart/form-data"
 		method="post">
 		<table id="tbl-board-view">
-		<thead>
+		
 		<tr >
 			<th style ="padding-top:20px; font-size : 24px">제 목</th>
-			<td style ="padding-top:20px" ><input  class="inputtext" type="text" name="ootdtitle" required></td>
+			<td style ="padding-top:20px" ><input  class="inputtext" type="text" name="ootdtitle" placeholder="제목을 입력해주세요." required></td>
 		</tr>
-		</thead>
+		
 		<tr>
 			<th>아이디</th>
 			<td>
@@ -60,15 +61,15 @@
 		<tr>
 			<th>스타일</th>
 			<td>
-				<input type="checkbox" name="style" id="S1" value=""  ><label for="S1">러블리 &nbsp;</label>		
-				<input type="checkbox" name="style" id="S2" value=""  ><label for="S2">댄디 &nbsp;</label>		
-				<input type="checkbox" name="style" id="S3" value=""  ><label for="S3">포멀 &nbsp;</label>		
-				<input type="checkbox" name="style" id="S4" value=""  ><label for="S4">스트릿 &nbsp;</label>		
-				<input type="checkbox" name="style" id="S5" value=""  ><label for="S5">걸리쉬 &nbsp;</label>		
-				<input type="checkbox" name="style" id="S6" value=""  ><label for="S6">레트로 &nbsp;</label>	
-				<input type="checkbox" name="style" id="S7" value=""  ><label for="S7">로맨틱 &nbsp;</label>	
-				<input type="checkbox" name="style" id="S8" value=""  ><label for="S8">시크&nbsp;</label>	
-				<input type="checkbox" name="style" id="S9" value=""  ><label for="S9">아메카지</label>	
+				<input type="checkbox" name="style" id="S1" value="러블리"  ><label for="S1">러블리 &nbsp;</label>		
+				<input type="checkbox" name="style" id="S2" value="댄디"  ><label for="S2">댄디 &nbsp;</label>		
+				<input type="checkbox" name="style" id="S3" value="포멀"  ><label for="S3">포멀 &nbsp;</label>		
+				<input type="checkbox" name="style" id="S4" value="스트릿"  ><label for="S4">스트릿 &nbsp;</label>		
+				<input type="checkbox" name="style" id="S5" value="걸리쉬"  ><label for="S5">걸리쉬 &nbsp;</label>		
+				<input type="checkbox" name="style" id="S6" value="레트로"  ><label for="S6">레트로 &nbsp;</label>	
+				<input type="checkbox" name="style" id="S7" value="로맨틱"  ><label for="S7">로맨틱 &nbsp;</label>	
+				<input type="checkbox" name="style" id="S8" value="시크"  ><label for="S8">시크&nbsp;</label>	
+				<input type="checkbox" name="style" id="S9" value="아메카지"  ><label for="S9">아메카지</label>	
 			</td>
 		</tr>
 		<tr>

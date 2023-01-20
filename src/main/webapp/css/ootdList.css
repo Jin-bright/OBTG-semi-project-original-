@@ -4,6 +4,14 @@
 	margin:0 auto; 	
 }
 
+.onerow{
+	border : 1px solid black;
+	margin-left : 20px;
+	margin-bottom : 20px;
+	
+}
+
+
 table#tbl-board{
 	width:800px; 
 	margin:0 auto; 

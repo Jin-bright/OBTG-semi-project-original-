@@ -8,6 +8,8 @@
 }
 
 
+
+
 section#board-container{
 	width:1000px; 
 	margin:0 auto; 
@@ -50,17 +52,18 @@ table#tbl-board-view {
 	border-collapse:collapse;  
 }
 table#tbl-board-view th {
+  	font-size: 15px;
 	width: 150px; 
-	border:1px solid; 
-	padding: 10px 0; 
+	border:1px solid black; 
+	padding: 8px 15px;
 	text-align:center; 
-	border:none;
+	
 } 
 table#tbl-board-view td {
-	border:1px solid; 
+	border:1px solid black; 
 	padding: 5px 0 5px 15px; 
 	text-align:left;
-	border:none;
+
 	
 }
 
@@ -79,7 +82,9 @@ span#fname{
 
 /* enroll table에서 에서 input 태그들 */
 .inputtext{
-	width : 600px
+	width : 600px;
+	border: none;
+    border-bottom: 2px solid grey;
 }
 
 
