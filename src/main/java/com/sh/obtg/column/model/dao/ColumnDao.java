@@ -13,15 +13,15 @@ public class ColumnDao {
 
 	private Properties prop = new Properties();
 	
-//	public ColumnDao() {
-//		String path = ColumnDao.class.getResource("/sql/column/column-query.properties").getPath();
-//		try {
-//			prop.load(new FileReader(path));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		System.out.println("Column 쿼리 로드 완료! - " + prop);
-//	}
+	public ColumnDao() {
+		String path = ColumnDao.class.getResource("/sql/column/column-query.properties").getPath();
+		try {
+			prop.load(new FileReader(path));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Column 쿼리 로드 완료! - " + prop);
+	}
 	
 	/**
 	 * 컬럼 저장
@@ -30,7 +30,7 @@ public class ColumnDao {
 	 * @return
 	 */
 	public int insertColumn(Connection conn, Column column) {
-		// insert into obtg_column values (seq_column_no.nextval, ?, ?, ?, ?, ?, default, default);
+		// insert into obtg_column values (seq_column_no.nextval, ?, ?, ?, ?, ?, default, default)
 		String sql = prop.getProperty("insertColumn");
 		int result = 0;
 		
