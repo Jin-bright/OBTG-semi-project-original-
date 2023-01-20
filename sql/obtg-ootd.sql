@@ -281,7 +281,7 @@ CREATE TABLE chatroom (
 create sequence seq_chatroom_no;
 
 
-create table column (
+create table obtg_column (
     no number,
     writer varchar2(20),
     title varchar2(50) not null,
@@ -293,5 +293,8 @@ create table column (
     constraint pk_column_no primary key(no),
     constraint fk_column_writer foreign key(writer) references member(member_id)
 );
+create sequence seq_column_no;
+
+
 
 commit;
