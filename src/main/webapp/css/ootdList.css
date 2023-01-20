@@ -1,1 +1,35 @@
 @charset "UTF-8";
+
+#ootdboardlist{
+	margin:0 auto; 	
+}
+
+table#tbl-board{
+	width:800px; 
+	margin:0 auto; 
+	border:3px solid black; 
+	border-collapse:collapse; 
+	clear:both; 
+	padding : 20px
+}
+	
+table#tbl-board th{
+	font-weight : 500;
+	width : 20%;
+	padding : 20px
+}	
+	
+table#tbl-board th, table#tbl-board td {
+	border:1px solid; 
+
+	text-align:center;
+	font-family: 'Nanum Gothic Coding', monospace;	
+} 
+
+/*글쓰기버튼*/
+input#btn-add{float:right; margin: 0 0 15px;}
+
+/*페이지바*/
+div#pagebar{margin-top:10px; text-align:center; background-color:rgba(0, 188, 212, 0.3); }
+div#pagebar span.cPage{color: #0066ff; margin-right: 5px;}
+div#pagebar a{margin-right: 5px;}
