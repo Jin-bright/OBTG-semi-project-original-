@@ -1,0 +1,33 @@
+@charset "UTF-8";
+#col_enroll {
+	margin: 100px;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+table {
+	margin: 0 auto;
+}
+th {
+    font-size: 13.5px;
+    padding: 8px 15px;
+}
+td {
+    padding: 10px;
+}
+.col  {
+    width: 445px;
+    border: none;
+    border-bottom: 2px solid grey;
+}
+.col_content {
+    border: 1px solid grey;
+
+}
+tfoot th input {
+    width: 100px;
+}
+.red {
+	color: red;
+}
