@@ -3,15 +3,15 @@ package com.sh.obtg.share.model.dto;
 import java.sql.Date;
 
 public class ShareBoard {
-	private int no;
+	private int ShareNo;
 	private String member_id;
-	private String title;
-	private String content;
-	private int readCount;
-	private Date regDate;
-	private Date buyDate;
-	private String productStatus;
-	private String category;
-	private String state;
-	private String style;
+	private String ShareTitle;
+	private String ShareContent;
+	private int ShareReadCount;
+	private Date ShareRegDate;
+	private Date ShareBuyDate;
+	private String ShareProductStatus;
+	private String ShareCategory;
+	private String ShareState;
+	private Style Style;
 }
