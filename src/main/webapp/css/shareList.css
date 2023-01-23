@@ -77,6 +77,13 @@ span#fname{
     background: #f5f5f5;
 }
 
+<<<<<<< HEAD
+.clearfix{
+    clear: both;
+}
+
+input#btn-add{float:right; margin: 0 0 15px;}
+=======
 /* enroll table에서 에서 input 태그들 */
 .inputtext{
 	width : 600px
@@ -127,3 +134,4 @@ table#tbl-comment button.btn-comment-enroll2{width:60px; height:23px; color:whit
 /* 삭제버튼관련 */
 table#tbl-comment button.btn-delete{background:red; color:white; display:none;}
 table#tbl-comment tr:hover button.btn-delete{display:inline;}
+>>>>>>> branch 'master' of https://github.com/incheol789/OBTG-semi-project.git
