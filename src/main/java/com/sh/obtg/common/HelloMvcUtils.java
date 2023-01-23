@@ -12,7 +12,14 @@
 //import javax.websocket.Session;
 //
 //import com.google.gson.Gson;
+<<<<<<< HEAD
 //import com.sh.obtg.obtg.obtg.mvc.ws.endpoint.HelloWebSocket;
+=======
+//import com.sh.mvc.ws.endpoint.HelloWebSocket;
+//
+////import com.google.gson.Gson;
+////import com.sh.obtg.obtg.obtg.mvc.ws.endpoint.HelloWebSocket;
+>>>>>>> branch 'master' of https://github.com/incheol789/OBTG-semi-project.git
 //
 //public class HelloMvcUtils {
 //

@@ -9,13 +9,17 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.sh.obtg.share.model.dao.ShareDao;
+<<<<<<< HEAD
 import com.sh.obtg.share.model.dto.ShareAttachment;
+=======
+>>>>>>> branch 'master' of https://github.com/incheol789/OBTG-semi-project.git
 import com.sh.obtg.share.model.dto.ShareBoard;
 
 public class ShareService {
 	
 	private ShareDao shareDao = new ShareDao();
 
+<<<<<<< HEAD
 	public int insertShare(ShareBoard share) {
 		Connection conn = getConnection();
 		int result = 0;
@@ -45,6 +49,10 @@ public class ShareService {
 			close(conn);
 		}
 		return result;
+=======
+	public static int insertShare(ShareBoard share) {
+		return 0;
+>>>>>>> branch 'master' of https://github.com/incheol789/OBTG-semi-project.git
 	}
 	
 }
