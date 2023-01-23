@@ -24,3 +24,5 @@
 .clearfix{
     clear: both;
 }
+
+input#btn-add{float:right; margin: 0 0 15px;}
