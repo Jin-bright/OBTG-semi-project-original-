@@ -36,6 +36,10 @@ CREATE TABLE Member (
 --    constraint fk_fashionstyle FOREIGN KEY (style) REFERENCES fashionstyle (style_no) 이 제약조건안씀(by혜진.0118)
 -- ALTER TABLE member  ADD constraint fk_fashionstyle FOREIGN KEY (style) REFERENCES fashionstyle (style);  이 제약조건으로 추가(by혜진.0118)
 
+insert into Member (member_id, style, name, password, email, phone, birthday, enroll_date, member_role, nickname, gender, introduce, original, renamed)
+values ('incheol', '
+
+
 );
 ALTER TABLE Member ADD CONSTRAINT PK_MEMBER PRIMARY KEY (
 	member_id,
@@ -298,3 +302,6 @@ create sequence seq_column_no;
 
 
 commit;
+
+
+select * from obtg_column;
