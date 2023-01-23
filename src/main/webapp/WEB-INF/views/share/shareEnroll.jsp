@@ -75,8 +75,17 @@
 			<th>첨부파일</th>
 			<td>			
 				<input type="file" name="upFile1">
+				<input type="file" name="upFile2">
 			</td>
 		</tr>
+		<tr>
+		<th>이미지 보기</th>
+		<td>
+			<div id="img-viewer-container">
+				<img id="img-viewer" width="350px">
+			</div>
+		</td>
+	</tr>
 		<tr>
 			<th  colspan="2" >
 			<div class="container">
@@ -201,5 +210,32 @@ document.ShareBoardEnrollFrm.onsubmit = (e) => {
 		return false;
 	}
 }
+
+
+
+document.querySelector("#upFile1").addEventListener('change', (e) => {
+	const f = e.target;
+	console.log(f.files);
+	console.log(f.files[0]);
+	
+	if(f.files[0]){
+		// 파일 선택한 경우
+		const fr = new FileReader();
+		fr.readAsDataURL(f.files[0]); // 비동기 - 백그라운드 작업
+		fr.onload = (e) => {
+			// 읽기 작업 완료시 호출될 load이벤트핸들러
+			document.querySelector("#img-viewer").src = e.target.result; // dataUrl
+			console.log(e.target.result); // 파일이진데이터 인코딩한 결과
+		};
+	}
+	else {
+		// 파일 선택 취소한 경우
+		document.querySelector("#img-viewer").src = "";
+	}
+	
+	
+});
+
+
 </script>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

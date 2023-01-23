@@ -14,7 +14,7 @@
 
 <section id="board-container2">
 <input type="button" value="글쓰기" id="btn-add" style="margin-right : 450px"
-	onclick="location.href='<%=request.getContextPath()%>/share/shareEnroll';"/>
+	onclick="location.href='<%=request.getContextPath()%>/share/shareEnroll"/>
 	<br />	<br />	<br />
 
         <div class="product-list">
