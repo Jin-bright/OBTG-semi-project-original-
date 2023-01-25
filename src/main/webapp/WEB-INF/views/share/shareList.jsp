@@ -12,7 +12,10 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/shareList.css" />
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-
+<section id="board-container2">
+<input type="button" value="글쓰기" id="btn-add" style="margin-right : 450px"
+	onclick="location.href='<%=request.getContextPath()%>/share/shareEnroll"/>
+	<br />	<br />	<br />
 
         <div class="product-list">
             <a href="#" class="product">
@@ -21,7 +24,7 @@
                     힘들어요...
                 </div>
                 <div class="product-price">
-                    옷 나눔 합니다...
+                    옷 나눔 합니다. 아 제발...에러 멈춰!
                 </div>
             </a>
 

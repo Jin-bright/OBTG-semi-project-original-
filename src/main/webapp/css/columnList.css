@@ -1,37 +1,51 @@
 @charset "UTF-8";
 .columns {
-position: relative;
-display: flex;
-align-items: center;
-width: 750px;
-height: 250px;
-margin: 0 auto;
-/* border-style: solid; */
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: 750px;
+	height: 250px;
+	margin: 0 auto;
+	overflow: hidden;
+	/* border-style: solid; */
 }
 .col_wrap {
-display: flex; 
-align-items:center     
+	display: flex; 
+	align-items:center     
 }
 .col_wrap a {
-display: contents;
+	display: contents;
 }
 .col_wrap > a > img{
-display: flex;
-align-items: center;
-width: 290px;
-background-color: steelblue; /* 사진 없을때 보려고 만든용도  */
+	display: flex;
+	align-items: center;
+	width: 290px;
+	background-color: steelblue; /* 사진 없을때 보려고 만든 용도  */
 }
 .col_txt {
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-width: 300px;
-margin-left: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 300px;
+	margin-left: 10px;
+}
+.col_txt > h2:hover, .col_txt > p:hover {
+	color: indianred;
 }
 .pen {
-display: inline-block;
-width: 40px;
-height: 50px;
-margin-left: 1200px;
-cursor: pointer;
+	display: inline-block;
+	width: 40px;
+	height: 50px;
+	margin: 1em 0 0 90em;
+	cursor: pointer;
+}
+#btn-more {
+	border-style: none;
+	margin: 3em;
+	width: 57em;
+	height: 2.2em;
+	background: linen;
+	color: black;
+	font-family: fangsong;
+	font-weight: 500;
 }

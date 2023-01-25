@@ -1,3 +1,4 @@
+
 package com.sh.obtg.common;
 
 import java.io.IOException;
@@ -11,8 +12,8 @@ import java.util.Map;
 import javax.websocket.RemoteEndpoint.Basic;
 import javax.websocket.Session;
 
-import com.google.gson.Gson;
-import com.sh.obtg.obtg.obtg.mvc.ws.endpoint.HelloWebSocket;
+//import com.google.gson.Gson;
+//import com.sh.obtg.obtg.obtg.mvc.ws.endpoint.HelloWebSocket;
 
 public class HelloMvcUtils {
 
@@ -130,27 +131,4 @@ public class HelloMvcUtils {
 		return str.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 	}
 
-	public static boolean isConnected(String memberId) {
-		return HelloWebSocket.clientMap.containsKey(memberId);
-	}
-
-	public static void sendNotification(String to, Map<String, Object> data) {
-		Session sess = HelloWebSocket.clientMap.get(to);
-		if(sess != null) {
-			Basic basic = sess.getBasicRemote();
-			try {
-				basic.sendText(new Gson().toJson(data));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
 }
-
-
-
-
-
-
-
