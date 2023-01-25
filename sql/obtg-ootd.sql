@@ -289,6 +289,7 @@ create table obtg_column (
     no number,
     writer varchar2(20),
     title varchar2(50) not null,
+    subtitle varchar2(50) not null,
     content varchar2(4000) not null,
     original_filename varchar2(100),
     renamed_filename varchar2(100),
@@ -298,10 +299,3 @@ create table obtg_column (
     constraint fk_column_writer foreign key(writer) references member(member_id)
 );
 create sequence seq_column_no;
-
-
-
-commit;
-
-
-select * from obtg_column;

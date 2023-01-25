@@ -10,8 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
-import com.sh.mvc.board.model.dto.Attachment;
-import com.sh.mvc.common.HelloMvcFileRenamePolicy;
+import com.sh.obtg.common.HelloMvcFileRenamePolicy;
 import com.sh.obtg.share.model.dto.ShareBoard;
 
 
@@ -54,19 +53,19 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			share.setShareContent(content);
 			
 			// 업로드한 파일처리
-			if(multiReq.getFile("upFile1") != null) {
-				Attachment attach = new Attachment();
-				attach.setOriginalFilename(multiReq.getOriginalFileName("upFile1"));
-				attach.setRenamedFilename(multiReq.getFilesystemName("upFile1"));
-				share.addAttachment(attach);
-			}
-			
-			if(multiReq.getFile("upFile2") != null) {
-				Attachment attach = new Attachment();
-				attach.setOriginalFilename(multiReq.getOriginalFileName("upFile2"));
-				attach.setRenamedFilename(multiReq.getFilesystemName("upFile2"));
-				share.addAttachment(attach);
-			}
+//			if(multiReq.getFile("upFile1") != null) {
+//				Attachment attach = new Attachment();
+//				attach.setOriginalFilename(multiReq.getOriginalFileName("upFile1"));
+//				attach.setRenamedFilename(multiReq.getFilesystemName("upFile1"));
+//				share.addAttachment(attach);
+//			}
+//			
+//			if(multiReq.getFile("upFile2") != null) {
+//				Attachment attach = new Attachment();
+//				attach.setOriginalFilename(multiReq.getOriginalFileName("upFile2"));
+//				attach.setRenamedFilename(multiReq.getFilesystemName("upFile2"));
+//				share.addAttachment(attach);
+//			}
 			
 			// 2. 업무로직 insert into board (no, title, writer, content) values (seq_board_no.nextval, ?, ?, ?)
 //			int result = ShareService.insertShare(share);

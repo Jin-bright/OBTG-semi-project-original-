@@ -2,7 +2,6 @@ package com.sh.obtg.share.model.dto;
 
 import java.sql.Date;
 
-import com.sh.mvc.board.model.dto.Attachment;
 
 public class ShareBoard {
 	private int ShareNo;
@@ -200,9 +199,9 @@ public class ShareBoard {
 
 
 
-	public void addAttachment(Attachment attach) {
-//		this.attachments.add(attach);
-	}
+//	public void addAttachment(Attachment attach) {
+//
+//	}
 
 
 

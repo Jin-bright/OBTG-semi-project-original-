@@ -2,31 +2,39 @@
 #col_enroll {
 	margin: 100px;
 }
-table, th, td {
+table {
+	border: 3px solid black;
+	margin: 0 auto;
+}
+th, td {
     border: 1px solid black;
     border-collapse: collapse;
 }
-table {
-	margin: 0 auto;
-}
 th {
+	text-align: center;
     font-size: 13.5px;
     padding: 8px 15px;
 }
-td {
-    padding: 10px;
-}
-.col  {
-    width: 445px;
+.col_txt  {
+    width: 600px;
     border: none;
     border-bottom: 2px solid grey;
+    padding-left: .5em;
 }
-.col_content {
-    border: 1px solid grey;
-
+#col_img {
+	display:table-cell;
+	border:2px dashed darkgray; 
+	width:350px; 
+	height:200px; 
 }
-tfoot th input {
-    width: 100px;
+.note-resizebar {
+	visibility: hidden;
+}
+#btn {
+	background-color: black;
+	color: white;
+	width: 90px;
+	height: 25px
 }
 .red {
 	color: red;
