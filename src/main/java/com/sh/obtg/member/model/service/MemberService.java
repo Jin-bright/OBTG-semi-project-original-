@@ -10,7 +10,6 @@ import com.sh.obtg.member.model.dto.Member;
 public class MemberService {
 	
 	private MemberDao memberDao = new MemberDao();
-
 	public Member selectOneMember(String memberId) {
 		Connection conn = getConnection();
 		System.out.println(conn);

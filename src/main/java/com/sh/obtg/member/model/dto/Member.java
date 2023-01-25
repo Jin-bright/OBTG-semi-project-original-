@@ -18,7 +18,7 @@ public class Member {
 	private String nickname;
 	private Gender gender;
 	private String introduce;
-	private String orginal;
+	private String original;
 	private String renamed;
 	public Member() {
 		super();
@@ -26,7 +26,7 @@ public class Member {
 	}
 	public Member(String memberId, String style, String name, String password, String email, String phone,
 			Date birthday, Timestamp enrollDate, MemberRole memberRole, String nickname, Gender gender,
-			String introduce, String orginal, String renamed) {
+			String introduce, String original, String renamed) {
 		super();
 		this.memberId = memberId;
 		this.style = style;
@@ -40,7 +40,7 @@ public class Member {
 		this.nickname = nickname;
 		this.gender = gender;
 		this.introduce = introduce;
-		this.orginal = orginal;
+		this.original = original;
 		this.renamed = renamed;
 	}
 	public String getMemberId() {
@@ -115,11 +115,11 @@ public class Member {
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
 	}
-	public String getOrginal() {
-		return orginal;
+	public String getOriginal() {
+		return original;
 	}
-	public void setOrginal(String orginal) {
-		this.orginal = orginal;
+	public void setOriginal(String original) {
+		this.original = original;
 	}
 	public String getRenamed() {
 		return renamed;
@@ -132,8 +132,9 @@ public class Member {
 		return "Member [memberId=" + memberId + ", style=" + style + ", name=" + name + ", password=" + password
 				+ ", email=" + email + ", phone=" + phone + ", birthday=" + birthday + ", enrollDate=" + enrollDate
 				+ ", memberRole=" + memberRole + ", nickname=" + nickname + ", gender=" + gender + ", introduce="
-				+ introduce + ", orginal=" + orginal + ", renamed=" + renamed + "]";
+				+ introduce + ", original=" + original + ", renamed=" + renamed + "]";
 	}
+	
 	
 	
 }
