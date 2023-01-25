@@ -1,3 +1,4 @@
+
 package com.sh.obtg.common;
 
 import java.io.IOException;
@@ -129,21 +130,5 @@ public class HelloMvcUtils {
 	public static String escapeHtml(String str) {
 		return str.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 	}
-
-//	public static boolean isConnected(String memberId) {
-//		return HelloWebSocket.clientMap.containsKey(memberId);
-//	}
-//
-//	public static void sendNotification(String to, Map<String, Object> data) {
-//		Session sess = HelloWebSocket.clientMap.get(to);
-//		if(sess != null) {
-//			Basic basic = sess.getBasicRemote();
-//			try {
-//				basic.sendText(new Gson().toJson(data));
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	}
 
 }
