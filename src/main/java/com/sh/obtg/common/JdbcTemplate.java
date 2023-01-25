@@ -45,14 +45,16 @@ public class JdbcTemplate {
 			e.printStackTrace();
 		}
 	}
-
-	public static Connection getConnection() {
+	
+	 public static Connection getConnection() {
 		// 2. Connection객체 생성(autoCommit false처리)
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url, user, password);
 			conn.setAutoCommit(false);
 		} catch (Exception e) {
+			System.out.println("★ conn 연결 실패ㅠㅠ  : " + conn );
+
 			e.printStackTrace();
 		}
 		return conn;

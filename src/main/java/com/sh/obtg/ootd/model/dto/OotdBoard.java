@@ -1,167 +1,86 @@
 package com.sh.obtg.ootd.model.dto;
 
-public class OotdBoard {
-	
-	private int ootdNo;
-	private String ootdWriter;
-	private Style styleNo;
-	private String OOTDTitle;
-	private String OOTDContents;
-	private int OOTDReadCount;
-	private String OOTDTop;
-	private String OOTDBottom;
-	private String OOTDShoes;
-	private String OOTDEtc;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+
+public class OotdBoard extends OotdBoardEntity {
+
+	private int attachCnt; //실제테이블엔 없지만 필요해 -- 첨부파일 수 카운트 
+	private List<OotdAttachment> ootdAttachments = new ArrayList<>();
+	
+	
 	
 	public OotdBoard() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public OotdBoard(int ootdNo, String ootdWriter, Style styleNo, String oOTDTitle, String oOTDContents,
-			int oOTDReadCount, String oOTDTop, String oOTDBottom, String oOTDShoes, String oOTDEtc) {
+
+	//기본생성자
+	public OotdBoard(int attachCnt) {
 		super();
-		this.ootdNo = ootdNo;
-		this.ootdWriter = ootdWriter;
-		this.styleNo = styleNo;
-		OOTDTitle = oOTDTitle;
-		OOTDContents = oOTDContents;
-		OOTDReadCount = oOTDReadCount;
-		OOTDTop = oOTDTop;
-		OOTDBottom = oOTDBottom;
-		OOTDShoes = oOTDShoes;
-		OOTDEtc = oOTDEtc;
+		this.attachCnt = attachCnt;
+	}
+
+	//부모 + attachcnt 넣어서생성자
+	public OotdBoard(int ootdNo, String ootdWriter, Style styleNo, String oOTDTitle, String oOTDContents,
+			int oOTDReadCount, Date oOTDRegDate, String oOTDTop, String oOTDBottom, String oOTDShoes, String oOTDEtc,
+			int attachCnt) {
+		super(ootdNo, ootdWriter, styleNo, oOTDTitle, oOTDContents, oOTDReadCount, oOTDRegDate, oOTDTop, oOTDBottom,
+				oOTDShoes, oOTDEtc);
+		this.attachCnt = attachCnt;
 	}
 	
-	
-	public int getOotdNo() {
-		return ootdNo;
+	// 부모 + list 넣어서 생성자 
+	public OotdBoard(int ootdNo, String ootdWriter, Style styleNo, String oOTDTitle, String oOTDContents,
+			int oOTDReadCount, Date oOTDRegDate, String oOTDTop, String oOTDBottom, String oOTDShoes, String oOTDEtc,
+			List<OotdAttachment> ootdAttachments) {
+		super(ootdNo, ootdWriter, styleNo, oOTDTitle, oOTDContents, oOTDReadCount, oOTDRegDate, oOTDTop, oOTDBottom,
+				oOTDShoes, oOTDEtc);
+		this.ootdAttachments = ootdAttachments;
 	}
 
-
-	public void setOotdNo(int ootdNo) {
-		this.ootdNo = ootdNo;
+	public int getAttachCnt() {
+		return attachCnt;
 	}
 
-
-	public String getOotdWriter() {
-		return ootdWriter;
+	public void setAttachCnt(int attachCnt) {
+		this.attachCnt = attachCnt;
 	}
 
-
-	public void setOotdWriter(String ootdWriter) {
-		this.ootdWriter = ootdWriter;
+	public List<OotdAttachment> getOotdAttachments() {
+		return ootdAttachments;
 	}
 
-
-	public Style getStyleNo() {
-		return styleNo;
-	}
-
-
-	public void setStyleNo(Style styleNo) {
-		this.styleNo = styleNo;
-	}
-
-
-	public String getOOTDTitle() {
-		return OOTDTitle;
-	}
-
-
-	public void setOOTDTitle(String oOTDTitle) {
-		OOTDTitle = oOTDTitle;
-	}
-
-
-	public String getOOTDContents() {
-		return OOTDContents;
-	}
-
-
-	public void setOOTDContents(String oOTDContents) {
-		OOTDContents = oOTDContents;
-	}
-
-
-	public int getOOTDReadCount() {
-		return OOTDReadCount;
-	}
-
-
-	public void setOOTDReadCount(int oOTDReadCount) {
-		OOTDReadCount = oOTDReadCount;
-	}
-
-
-	public String getOOTDTop() {
-		return OOTDTop;
-	}
-
-
-	public void setOOTDTop(String oOTDTop) {
-		OOTDTop = oOTDTop;
-	}
-
-
-	public String getOOTDBottom() {
-		return OOTDBottom;
-	}
-
-
-	public void setOOTDBottom(String oOTDBottom) {
-		OOTDBottom = oOTDBottom;
-	}
-
-
-	public String getOOTDShoes() {
-		return OOTDShoes;
-	}
-
-
-	public void setOOTDShoes(String oOTDShoes) {
-		OOTDShoes = oOTDShoes;
-	}
-
-
-	public String getOOTDEtc() {
-		return OOTDEtc;
-	}
-
-
-	public void setOOTDEtc(String oOTDEtc) {
-		OOTDEtc = oOTDEtc;
+	public void setOotdAttachments(List<OotdAttachment> ootdAttachments) {
+		this.ootdAttachments = ootdAttachments;
 	}
 
 	
 	
 	@Override
 	public String toString() {
-		return "OotdBoard [ootdNo=" + ootdNo + ", ootdWriter=" + ootdWriter + ", styleNo=" + styleNo + ", OOTDTitle="
-				+ OOTDTitle + ", OOTDContents=" + OOTDContents + ", OOTDReadCount=" + OOTDReadCount + ", OOTDTop="
-				+ OOTDTop + ", OOTDBottom=" + OOTDBottom + ", OOTDShoes=" + OOTDShoes + ", OOTDEtc=" + OOTDEtc + "]";
+		return "OotdBoard [attachCnt=" + attachCnt + ", ootdAttachments=" + ootdAttachments + ", getOotdNo()="
+				+ getOotdNo() + ", getOotdWriter()=" + getOotdWriter() + ", getStyleNo()=" + getStyleNo()
+				+ ", getOOTDTitle()=" + getOOTDTitle() + ", getOOTDContents()=" + getOOTDContents()
+				+ ", getOOTDReadCount()=" + getOOTDReadCount() + ", getOOTDRegDate()=" + getOOTDRegDate()
+				+ ", getOOTDTop()=" + getOOTDTop() + ", getOOTDBottom()=" + getOOTDBottom() + ", getOOTDShoes()="
+				+ getOOTDShoes() + ", getOOTDEtc()=" + getOOTDEtc() + ", getClass()=" + getClass() + ", hashCode()="
+				+ hashCode() + ", toString()=" + super.toString() + "]";
 	}
+
+	 
+	// 이거뭐지 ? ★★★
+	public void addAttachment(OotdAttachment attach) {
+		this.ootdAttachments.add(attach);
+	}
+
+
+	
+	
+	
+
 	
 	
 }
-
-
-/**
-CREATE TABLE OOTD_board (
-OOTD_no	number,
-OOTD_writer	varchar2(50)		NOT NULL,
-style_no	varchar2(10)		NOT NULL,
-OOTD_title	varchar2(50)		NOT NULL,
-OOTD_contents	varchar2(4000)	NOT NULL,
-OOTD_read_count	number		default 0,
-OOTD_reg_date	date		default sysdate,
-OOTD_top	varchar2(50)		NULL,
-OOTD_bottom	varchar2(50)		NULL,
-OOTD_shoes	varchar2(50)		NULL,
-OOTD_etc	varchar2(50)		NULL,
-CONSTRAINT PK_OOTD_BOARD PRIMARY KEY (OOTD_no),
-CONSTRAINT FK_OOTD_board_writer FOREIGN KEY (ootd_writer) REFERENCES Member (member_id) on delete set null,
-CONSTRAINT FK_fashionstyle_TO_OOTD_board_1 FOREIGN KEY (style_no) REFERENCES fashionstyle (style_no) on delete set null
-);
-**/
