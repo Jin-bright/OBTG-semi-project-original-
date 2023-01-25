@@ -239,3 +239,4 @@ document.querySelector("#upFile1").addEventListener('change', (e) => {
 
 </script>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+

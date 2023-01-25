@@ -152,4 +152,10 @@ import com.sh.obtg.ootd.model.dto.OotdBoardComment;
 
 	}
 
+//board 게시물 업데이트 	
+	public int updateBoard(OotdBoard ootdBoard) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
