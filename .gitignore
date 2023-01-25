@@ -3,7 +3,8 @@
 
 .classpath
 .project
-
+src/main/resources/datasource.properties
+build/
 
 ### Eclipse ###
 .metadata
