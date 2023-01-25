@@ -5,9 +5,9 @@
 button:hover{
 	cursor: pointer;
 }
-:root{
+/* :root{
 font-family: 'Noto Sans KR', sans-serif;	
-}
+} */
 *::after,
 *::before {
   margin: 0;
@@ -22,7 +22,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", 'Noto Sans KR', sans-serif;
 /*  background: #f5f5f6; */
   background : beige;
   user-select: none;

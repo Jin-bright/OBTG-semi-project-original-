@@ -116,7 +116,7 @@
 		</tr>
 		
 	</table><br />
-	<div id="contents" > <p style="float:left; margin-left : 30px">CONTENT</p><br />
+	<div id="contents" > <p style="float:left; margin-left : 30px; font-weight:bolder">CONTENT</p><br />
 		<div id="contentsbox" ><%= ootdboard.getOOTDContents() %></div>	
 		<img id="ootdlikes" src="<%=request.getContextPath()%>/uploadootds/heart.png" alt="좋아요" />
 		<%
@@ -139,7 +139,7 @@
 <!-- comment -->
  <hr style="margin-top:30px; border :none" />    
    <div class="comment-container">
-    <div id="cmttitle"> COMMENT </div>
+    <div id="cmttitle" style = "font-weight:bolder"> COMMENT </div>
 	<div class="comment-editor">
        <form action="<%=request.getContextPath()%>/ootd/ootdCommentEnroll" method="post" name="boardCommentFrm">
          <input type="hidden" name="boardNo" value="<%= ootdboard.getOotdNo() %>" />
@@ -163,8 +163,8 @@
             <%-- 댓글인 경우 tr.level1 --%>
             <tr class="level1">
                 <td>
-                    <sub class=comment-writer><%=bc.getMemberId() %></sub>
-                    <sub class=comment-date><%=bc.getCmtRegDate()%></sub>
+                    <sub class="comment-writer" style="font-weight:bolder"><b><%=bc.getMemberId() %></b></sub>
+                    <sub class="comment-date" style="font-weight:bolder" ><b><%=bc.getCmtRegDate()%></b></sub>
                     <br />
                     <%-- 댓글내용 --%>
                     <%=bc.getCmtContent()%>
@@ -188,8 +188,8 @@
             <%-- 대댓글인 경우 tr.level2 --%>
             <tr class="level2">
                 <td>
-                    <sub class=comment-writer><%=bc.getMemberId()%></sub>
-                    <sub class=comment-date><%=bc.getCmtRegDate()%></sub>
+                    <sub class=comment-writer><b><%=bc.getMemberId()%></b></sub>
+                    <sub class=comment-date><b><%=bc.getCmtRegDate()%></b></sub>
                 <br />
                     <%-- 대댓글 내용 --%>
                     <%=bc.getCmtContent()%>
