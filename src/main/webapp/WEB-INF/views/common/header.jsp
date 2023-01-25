@@ -1,12 +1,32 @@
+<%@ page import="com.sh.obtg.member.model.dto.Member" %>
+<%@ page import="com.sh.obtg.member.model.dto.MemberRole" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+	Member loginMember=(Member) session.getAttribute("loginMember");
+    String msg = (String) session.getAttribute("msg");
+    if(msg != null) session.removeAttribute("msg");
+    
+    Cookie[] cookies = request.getCookies();
+    String saveId = null;
+    if(cookies != null){
+    	for(Cookie cookie : cookies){
+    		String name = cookie.getName();
+    		String value = cookie.getValue();
+    		if("saveId".equals(name))
+    			saveId = value;
+    	}
+    }
+    
+%>
 <!doctype html>
 
 <head>
 <meta charset="UTF-8" />
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Document</title>
+<title>OBTG Semi-Project</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css" /> 

@@ -3,150 +3,137 @@ package com.sh.obtg.member.model.dto;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-/**
- * 
- * DTO 
- * VO
- * Entity
- * 
- * - member객체 하나는 db member테이블의 한 행과 매칭.
- * - member필드는 db member테이블의 컬럼과 매칭(호환가능한 자료형)
- * 
- * - 기본생성자/전체파라미터생성자
- * - getter/setter
- * - toString
- *
- */
+
 public class Member {
 	
 	private String memberId;
+	private String style;
+	private String name;
 	private String password;
-	private String memberName;
-	private MemberRole memberRole;
-	private Gender gender;
-	private Date birthday;
 	private String email;
 	private String phone;
-	private String hobby;
-	private int point;
+	private Date birthday;
 	private Timestamp enrollDate;
-	
+	private MemberRole memberRole;
+	private String nickname;
+	private Gender gender;
+	private String introduce;
+	private String original;
+	private String renamed;
 	public Member() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public Member(String memberId, String password, String memberName, MemberRole memberRole, Gender gender,
-			Date birthday, String email, String phone, String hobby, int point, Timestamp enrollDate) {
+	public Member(String memberId, String style, String name, String password, String email, String phone,
+			Date birthday, Timestamp enrollDate, MemberRole memberRole, String nickname, Gender gender,
+			String introduce, String original, String renamed) {
 		super();
 		this.memberId = memberId;
+		this.style = style;
+		this.name = name;
 		this.password = password;
-		this.memberName = memberName;
-		this.memberRole = memberRole;
-		this.gender = gender;
-		this.birthday = birthday;
 		this.email = email;
 		this.phone = phone;
-		this.hobby = hobby;
-		this.point = point;
+		this.birthday = birthday;
 		this.enrollDate = enrollDate;
+		this.memberRole = memberRole;
+		this.nickname = nickname;
+		this.gender = gender;
+		this.introduce = introduce;
+		this.original = original;
+		this.renamed = renamed;
 	}
-
 	public String getMemberId() {
 		return memberId;
 	}
-
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-
+	public String getStyle() {
+		return style;
+	}
+	public void setStyle(String style) {
+		this.style = style;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public String getMemberName() {
-		return memberName;
-	}
-
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
-	}
-
-	public MemberRole getMemberRole() {
-		return memberRole;
-	}
-
-	public void setMemberRole(MemberRole memberRole) {
-		this.memberRole = memberRole;
-	}
-
-	public Gender getGender() {
-		return gender;
-	}
-
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
-
-	public Date getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	public String getPhone() {
 		return phone;
 	}
-
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
-	public String getHobby() {
-		return hobby;
+	public Date getBirthday() {
+		return birthday;
 	}
-
-	public void setHobby(String hobby) {
-		this.hobby = hobby;
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
-
-	public int getPoint() {
-		return point;
-	}
-
-	public void setPoint(int point) {
-		this.point = point;
-	}
-
 	public Timestamp getEnrollDate() {
 		return enrollDate;
 	}
-
 	public void setEnrollDate(Timestamp enrollDate) {
 		this.enrollDate = enrollDate;
 	}
-
+	public MemberRole getMemberRole() {
+		return memberRole;
+	}
+	public void setMemberRole(MemberRole memberRole) {
+		this.memberRole = memberRole;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public Gender getGender() {
+		return gender;
+	}
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+	public String getIntroduce() {
+		return introduce;
+	}
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
+	}
+	public String getOriginal() {
+		return original;
+	}
+	public void setOriginal(String original) {
+		this.original = original;
+	}
+	public String getRenamed() {
+		return renamed;
+	}
+	public void setRenamed(String renamed) {
+		this.renamed = renamed;
+	}
 	@Override
 	public String toString() {
-		return "Member [memberId=" + memberId + ", password=" + password + ", memberName=" + memberName
-				+ ", memberRole=" + memberRole + ", gender=" + gender + ", birthday=" + birthday + ", email=" + email
-				+ ", phone=" + phone + ", hobby=" + hobby + ", point=" + point + ", enrollDate=" + enrollDate + "]";
+		return "Member [memberId=" + memberId + ", style=" + style + ", name=" + name + ", password=" + password
+				+ ", email=" + email + ", phone=" + phone + ", birthday=" + birthday + ", enrollDate=" + enrollDate
+				+ ", memberRole=" + memberRole + ", nickname=" + nickname + ", gender=" + gender + ", introduce="
+				+ introduce + ", original=" + original + ", renamed=" + renamed + "]";
 	}
-	
 	
 	
 	
