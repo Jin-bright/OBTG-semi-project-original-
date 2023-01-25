@@ -15,17 +15,17 @@ th {
     font-size: 13.5px;
     padding: 8px 15px;
 }
-td {
-    padding: 10px;
-}
-.col  {
-    width: 440px;
+.col_txt  {
+    width: 600px;
     border: none;
     border-bottom: 2px solid grey;
+    padding-left: .5em;
 }
-.col_content {
-    border: 1px solid grey;
-
+#col_img {
+	display:table-cell;
+	border:2px dashed darkgray; 
+	width:350px; 
+	height:200px; 
 }
 .note-resizebar {
 	visibility: hidden;

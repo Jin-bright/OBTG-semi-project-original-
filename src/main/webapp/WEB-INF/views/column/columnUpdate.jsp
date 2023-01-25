@@ -1,3 +1,4 @@
+<%@page import="com.sh.obtg.column.model.dto.Column"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -12,12 +13,14 @@
 <script src="<%=request.getContextPath()%>/summernote/summernote-lite.js"></script>
 <script src="<%=request.getContextPath()%>/summernote/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/summernote/summernote-lite.css">
-
-<section id="col_enroll">
-	<h2 style="text-align: center; padding: 20px; font-weight: bold">컬럼 작성폼</h2>
+<%
+	Column column = (Column)request.getAttribute("column");
+%>
+<section id="col_update">
+	<h2 style="text-align: center; padding: 20px; font-weight: bold">컬럼 수정폼</h2>
 	<form 
-		name="columnFrm"
-		action="<%= request.getContextPath() %>/column/columnEnroll" 
+		name="columnUpdateFrm"
+		action="<%= request.getContextPath() %>/column/columnUpdate?no=<%= column.getNo() %>" 
 		enctype="multipart/form-data"
 		method="post"		
 	>
@@ -25,25 +28,32 @@
 			<tbody>
 				<tr>
                     <th style="text-align: center;">제목</th>
-                    <td style="padding: .7em;"><input type="text" class="col_txt" name="col_title" placeholder="제목을 입력해주세요." required></td>
+                    <td style="padding: .7em;">
+                    	<input type="text" class="col_txt" name="col_title" value="<%= column.getTitle() %>" required>
+                    </td>
                 </tr>
 				<tr>
                     <th style="text-align: center;">소제목</th>
-                    <td style="padding: .7em;"><input type="text" class="col_txt" name="col_subtitle" placeholder="소제목을 입력해주세요." required></td>
+                    <td style="padding: .7em;">
+                    	<input type="text" class="col_txt" name="col_subtitle" value="<%= column.getSubtitle() %>" required>
+                    </td>
                 </tr>
                 <tr>
                     <th style="text-align: center;">작성자</th>
-                    <td style="padding: .7em;"><input type="text" class="col_txt" name="col_writer" value="mango" readonly></td>
+                    <td style="padding: .7em;"><input type="text" class="col_txt" name="col_writer" value="<%= column.getWriter() %>" readonly></td>
                 </tr>
                 <tr>
 	                <th style="text-align: center;">첨부파일</th>
-	                <td style="padding: .7em;"><input type="file" id="col_file" name="col_file" required accept="image/*"></td>
+	                <td style="padding: .7em;">
+	                	<span id="current_img_name"><%= column.getOriginalFilename() %></span><input type="button" value="삭제" id="delBtn" style="margin-left: 6px; background: darkgrey; color: white; padding: 1px 5px;" onclick="delImg()"/> 
+	                	<input type="file" id="col_file" name="col_file" accept="image/*" style="display: none;" value="">
+	                </td>
 	            </tr>
 	            <tr>
 					<th>미리보기</th>
 					<td style="padding: .7em 8.8em;">
 						<div id="col_img">
-							<img id="col_img_viewer" width="350px">
+							<img src="<%= request.getContextPath() %>/upload/column/<%= column.getRenamedFilename() %>" id="col_img_viewer" width="350px">
 						</div>
 					</td>
 				</tr>
@@ -51,7 +61,7 @@
 					<th style="text-align: center;">내용</th>
 	                <td  colspan="2" style="padding: .7em;">
 	           			<div class="container">
-	               			<textarea id="summernote"  class="summernote" name ="col_content" cols="70" rows="10" style="resize: none;" required></textarea>    
+	               			<textarea id="summernote"  class="summernote" name ="col_content" cols="70" rows="10" style="resize: none;" required><%= column.getContent() %></textarea>    
 	            		</div>
 	                	<p style="text-align: right;"><span id="counter">0</span>/2000</p>	
             		</td>
@@ -60,14 +70,28 @@
 	        <tfoot>
 				<td colspan="2" style="text-align: center; padding: .7em;">
 					<input type="submit" value="저장" id="btn">
-	                <input type="button" value="취소" id="btn">
+	                <input type="button" value="취소" id="btn" onclick="history.go(-1);">
 	            </td>
 			</tfoot>
 		</table>
 	</form>
 </section>
-
 <script>
+/* 현재 이미지 삭제 */
+const delImg = () => {
+	const img = document.querySelector("#col_img_viewer");
+	const imgName = document.querySelector("#current_img_name");
+	const delBtn = document.querySelector("#delBtn");
+	const addFile = document.querySelector("#col_file");
+	
+	if(confirm("정말 해당 사진을 삭제하겠습니까?")){
+		img.src = "";
+		imgName.style.display = "none";
+		delBtn.style.display = "none";
+		addFile.style.display = "unset";
+	};
+};
+
 /* 첨부파일 이미지 미리보기 */
 document.querySelector("#col_file").addEventListener('change', (e) => {
 	const img = e.target;
@@ -89,10 +113,10 @@ document.querySelector("#col_file").addEventListener('change', (e) => {
 
 
 /* 유효성검사 - 글자수제어하기 성공하면 같이 넣어 놓자,,, */
-document.columnFrm.addEventListener('submit', (e) => {
+document.columnUpdateFrm.addEventListener('submit', (e) => {
 	const title = e.target.col_title; // name 값을 입력해줘야하나보다
 	const content = $('#summernote').summernote('code');  // 이거 어케 지정하는거지..?
-	const file = e.target.col_file;
+	const img = document.querySelector("#col_img_viewer");
 	
 	// 제목을 작성하지 않은 경우 폼제출 불가
 	if(!/^.+$/.test(title.value)){
@@ -107,15 +131,13 @@ document.columnFrm.addEventListener('submit', (e) => {
 		return false;
 	}
 	
-	// 이미지를 등록하지 않은 경우 폼제출 불가
-	if(!(file.value)){
+	// 이미지를 등록하지 않은 경우 폼제출 불가 - 이것도 왜 안되는데,,,,
+	if(img.src = ""){
 		alert("이미지를 등록해주세요.");
-		file.select();
 		return false;
 	}
 	
 	if(content.value.length >= 2000){
-		e.preventDefault();
 		alert("내용에 2000글자 이내로 입력해주세요.");
 		return false;
 	}
@@ -164,32 +186,6 @@ $(document).ready(function() {
 
 	$('#summernote').summernote(setting);
 });
-
-/* 글자수 제어 (해결해야하는 숙제,,,,)*/
-/* document.columnFrm.addEventListener("submit", (e) => {
-	const content = document.querySelector("[name=col_content]");
-	if(content.value.length >= 2000){
-		e.preventDefault();
-		alert("내용에 2000글자 이내로 입력해주세요.");
-		return;
-	}
-});
- */
-/* document.querySelector(".container").addEventListener("keyup", (e) => {
-	console.log(e.currentTarget.children.value);
-	const len = e.target.children.value.length;
-	const counter = document.querySelector("#counter");
-	
-	counter.innerHTML = len;
-	if(len >= 2000){
-		counter.innerText = len;
-		counter.classList.add('red');
-	}
-	else {
-		counter.innerText = len;
-		counter.classList.remove('red');
-	} 
-}); */
 </script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
