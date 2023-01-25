@@ -17,7 +17,7 @@ import java.util.Properties;
 public class JdbcTemplate {
 	
 	private static String driverClass;
-	private static String url; // 지갑 
+	private static String url; // 접속프로토콜@url:port:sid
 	private static String user;
 	private static String password;
 	
@@ -25,7 +25,7 @@ public class JdbcTemplate {
 		// /build/classes/datasource.properties 내용 불러오기
 		// / -> /build/classes
 		final String datasourceConfigPath = JdbcTemplate.class.getResource("/datasource.properties").getPath();
-		System.out.println( "**이건성공했니 ? " + datasourceConfigPath);
+		System.out.println(datasourceConfigPath);
 		Properties prop = new Properties();
 		try {
 			prop.load(new FileReader(datasourceConfigPath));
@@ -39,16 +39,14 @@ public class JdbcTemplate {
 		
 		try {
 			// 1. driver class 등록 : 프로그램 실행시 최초 1회만 처리
-			Class.forName(driverClass);
-			System.out.println("★driver class 연결 성공  : " + driverClass );
+			Class<?> driverClassInstance = Class.forName(driverClass);
+			System.out.println(driverClassInstance);
 		} catch (ClassNotFoundException e) {
-			System.out.println("★driver class 연결 실패ㅠㅠ  : " + driverClass );
-
 			e.printStackTrace();
 		}
 	}
-
-	public static Connection getConnection() {
+	
+	 public static Connection getConnection() {
 		// 2. Connection객체 생성(autoCommit false처리)
 		Connection conn = null;
 		try {

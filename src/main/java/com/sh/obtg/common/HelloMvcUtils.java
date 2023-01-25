@@ -12,7 +12,6 @@ import javax.websocket.RemoteEndpoint.Basic;
 import javax.websocket.Session;
 
 import com.google.gson.Gson;
-import com.sh.obtg.obtg.obtg.mvc.ws.endpoint.HelloWebSocket;
 
 public class HelloMvcUtils {
 
@@ -130,6 +129,7 @@ public class HelloMvcUtils {
 		return str.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 	}
 
+	/**
 	public static boolean isConnected(String memberId) {
 		return HelloWebSocket.clientMap.containsKey(memberId);
 	}
@@ -145,6 +145,7 @@ public class HelloMvcUtils {
 			}
 		}
 	}
+	**/
 
 }
 

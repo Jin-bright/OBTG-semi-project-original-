@@ -31,19 +31,19 @@
 		<tr>
 			<th>아이디</th>
 			<td>
-				<input type="text"  class="inputtext" name="ootdwriter" value="tigerhj" readonly/>
+				<input type="text"  class="inputtext" name="ootdwriter" value="cathj" readonly required/>
 			</td>
 		</tr>
 		<tr>
 			<th>상의</th>
 			<td>
-				<input type="text" class="inputtext"  name="ootdTop" value="" />
+				<input type="text" class="inputtext"  name="ootdTop" value="" required/>
 			</td>
 		</tr>
 		<tr>
 			<th>하의</th>
 			<td>
-				<input type="text"  class="inputtext" name="ootdBottom" value="" />
+				<input type="text"  class="inputtext" name="ootdBottom" value="" required/>
 			</td>
 		</tr>
 			<tr>
@@ -61,28 +61,28 @@
 		<tr>
 			<th>스타일</th>
 			<td>
-				<input type="checkbox" name="style" id="S1" value="러블리"  ><label for="S1">러블리 &nbsp;</label>		
-				<input type="checkbox" name="style" id="S2" value="댄디"  ><label for="S2">댄디 &nbsp;</label>		
-				<input type="checkbox" name="style" id="S3" value="포멀"  ><label for="S3">포멀 &nbsp;</label>		
-				<input type="checkbox" name="style" id="S4" value="스트릿"  ><label for="S4">스트릿 &nbsp;</label>		
-				<input type="checkbox" name="style" id="S5" value="걸리쉬"  ><label for="S5">걸리쉬 &nbsp;</label>		
-				<input type="checkbox" name="style" id="S6" value="레트로"  ><label for="S6">레트로 &nbsp;</label>	
-				<input type="checkbox" name="style" id="S7" value="로맨틱"  ><label for="S7">로맨틱 &nbsp;</label>	
-				<input type="checkbox" name="style" id="S8" value="시크"  ><label for="S8">시크&nbsp;</label>	
-				<input type="checkbox" name="style" id="S9" value="아메카지"  ><label for="S9">아메카지</label>	
+				<input type="checkbox" name="style" id="S1" value="러블리" onclick='checkOnlyOne(this)'  ><label for="S1">러블리 &nbsp;</label>		
+				<input type="checkbox" name="style" id="S2" value="댄디" onclick='checkOnlyOne(this)'  ><label for="S2">댄디 &nbsp;</label>		
+				<input type="checkbox" name="style" id="S3" value="포멀" onclick='checkOnlyOne(this)'  ><label for="S3">포멀 &nbsp;</label>		
+				<input type="checkbox" name="style" id="S4" value="스트릿" onclick='checkOnlyOne(this)'  ><label for="S4">스트릿 &nbsp;</label>		
+				<input type="checkbox" name="style" id="S5" value="걸리쉬" onclick='checkOnlyOne(this)'  ><label for="S5">걸리쉬 &nbsp;</label>		
+				<input type="checkbox" name="style" id="S6" value="레트로" onclick='checkOnlyOne(this)'  ><label for="S6">레트로 &nbsp;</label>	
+				<input type="checkbox" name="style" id="S7" value="로맨틱" onclick='checkOnlyOne(this)'  ><label for="S7">로맨틱 &nbsp;</label>	
+				<input type="checkbox" name="style" id="S8" value="시크" onclick='checkOnlyOne(this)'  ><label for="S8">시크&nbsp;</label>	
+				<input type="checkbox" name="style" id="S9" value="아메카지" onclick='checkOnlyOne(this)' ><label for="S9">아메카지</label>	
 			</td>
 		</tr>
 		<tr>
 			<th>첨부파일</th>
 			<td>			
-				<input type="file" name="upFile1">
+				<input type="file" name="upFile1" accept="image/*"  required>
 			</td>
 		</tr>
 		<tr>
 			<th  colspan="2" >
-			<div class="container">
-<!-- 		  <textarea colspan="2" id="summernote"  class="summernote" name ="editordata"></textarea>-->	
- 			  <textarea colspan="2" id="summernote"  class="summernote" name ="ootdContents"></textarea>    
+			<div class="summernotecontainer">
+		  <textarea colspan="2" id="summernote"  class="summernote" name ="editordata"></textarea>
+ <!-- 			  <textarea style="font-weight:lighter" colspan="2" id="summernote"  class="summernote" name ="ootdContents" required></textarea>   -->	  
 			      
 			</div>
 			</th>
@@ -99,42 +99,23 @@
 <br />
 <br />
 <br />
+
+
 <script>
-/* \$('.summernote').summernote({
-	  // 에디터 높이 
-	  width: 800,
-	  height: 150,
-	  // 에디터 한글 설정
-	  lang: "ko-KR",
-	  // 에디터에 커서 이동 (input창의 autofocus라고 생각하시면 됩니다.)
-	  focus : true,
-	  toolbar: [
-		    // 글꼴 설정
-		    ['fontname', ['fontname']],
-		    // 글자 크기 설정
-		    ['fontsize', ['fontsize']],
-		    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
-		    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-		    // 글자색
-		    ['color', ['forecolor','color']],
-		    // 표만들기
-		    ['table', ['table']],
-		    // 글머리 기호, 번호매기기, 문단정렬
-		    ['para', ['ul', 'ol', 'paragraph']],
-		    // 줄간격
-		    ['height', ['height']],
-		    // 그림첨부, 링크만들기, 동영상첨부
-		    ['insert',['picture','link','video']],
-		    // 코드보기, 확대해서보기, 도움말
-		    ['view', ['codeview','fullscreen', 'help']]
-		  ],
-		  // 추가한 글꼴
-		fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
-		 // 추가한 폰트사이즈
-		fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
-		
-	}); */
-	
+function checkOnlyOne(element) {
+	  
+	  const checkboxes 
+	      = document.getElementsByName("style");
+	  
+	  checkboxes.forEach((cb) => {
+	    cb.checked = false;
+	  })
+	  
+	  element.checked = true;
+}
+</script>
+
+<script>	
 	$(document).ready(function() {
 
 		var toolbar = [
@@ -143,7 +124,7 @@
 			    // 글자 크기 설정
 			    ['fontsize', ['fontsize']],
 			    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
-			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+			    ['style', ['clear', 'bold', 'italic', 'underline','strikethrough']],
 			    // 글자색
 			    ['color', ['forecolor','color']],
 			    // 표만들기
@@ -153,17 +134,20 @@
 			    // 줄간격
 			    ['height', ['height']],
 			    // 그림첨부, 링크만들기, 동영상첨부
-			    ['insert',['picture','link','video']],
+			 //   ['insert',['picture','link','video']],
 			    // 코드보기, 확대해서보기, 도움말
 			    ['view', ['codeview','fullscreen', 'help']]
 			  ];
 
 		var setting = {
 	            height : 300,
+	            width : 760,
 	            minHeight : null,
 	            maxHeight : null,
 	            focus : true,
 	            lang : 'ko-KR',
+	            fontSize : 16,
+	            fontWeight : 'normal',
 	            toolbar : toolbar,
 	            callbacks : { //여기 부분이 이미지를 첨부하는 부분
 	            onImageUpload : function(files, editor,
@@ -179,13 +163,17 @@
 	        $('#summernote').summernote(setting);
 	        });
 </script>
+
+
 <script>
 /**
 * boardEnrollFrm 유효성 검사
 */
 document.ootdBoardEnrollFrm.onsubmit = (e) => {
-	const title = e.target.title;
-	const content = e.target.content;
+	const title = e.target.ootdtitle;
+	const content = e.target.ootdContents;
+	const upload = e.target.upFile1;
+	
 	console.log(title, content);
 	
 	//제목을 작성하지 않은 경우 폼제출할 수 없음.
@@ -201,6 +189,15 @@ document.ootdBoardEnrollFrm.onsubmit = (e) => {
 		content.select();
 		return false;
 	}
+	
+	if( !upload ){ // \n은 따로 추가해줘야됨 (왜냐면 .애는 개행이 포함안되서 ) 
+		alert("사진을 첨부해주세요");
+		upload.select();
+		return false;
+	}
 }
 </script>
+
+
+
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

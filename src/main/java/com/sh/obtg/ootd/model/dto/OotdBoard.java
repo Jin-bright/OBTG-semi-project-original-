@@ -31,6 +31,15 @@ public class OotdBoard extends OotdBoardEntity {
 				oOTDShoes, oOTDEtc);
 		this.attachCnt = attachCnt;
 	}
+	
+	// 부모 + list 넣어서 생성자 
+	public OotdBoard(int ootdNo, String ootdWriter, Style styleNo, String oOTDTitle, String oOTDContents,
+			int oOTDReadCount, Date oOTDRegDate, String oOTDTop, String oOTDBottom, String oOTDShoes, String oOTDEtc,
+			List<OotdAttachment> ootdAttachments) {
+		super(ootdNo, ootdWriter, styleNo, oOTDTitle, oOTDContents, oOTDReadCount, oOTDRegDate, oOTDTop, oOTDBottom,
+				oOTDShoes, oOTDEtc);
+		this.ootdAttachments = ootdAttachments;
+	}
 
 	public int getAttachCnt() {
 		return attachCnt;
@@ -66,6 +75,8 @@ public class OotdBoard extends OotdBoardEntity {
 	public void addAttachment(OotdAttachment attach) {
 		this.ootdAttachments.add(attach);
 	}
+
+
 	
 	
 	

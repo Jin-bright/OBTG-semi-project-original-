@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 import com.sh.obtg.common.OotdFileRenamePolicy;
@@ -90,7 +91,7 @@ public class OotdEnrollServlet extends HttpServlet {
 				}
 				
 				Style style = Style.valueOf(_style);
-				String ootdContents = multiReq.getParameter("ootdContents");
+				String ootdContents = multiReq.getParameter("editordata");
 				
 				System.out.println(" _style : " + _style );
 				System.out.println(" **style : " + style );
@@ -128,7 +129,7 @@ public class OotdEnrollServlet extends HttpServlet {
 			    	System.out.println( "성공 ??? " + result );
 		    	//3.리다이렉트
 //			    	response.sendRedirect(request.getContextPath()+"/ootd/boardView?no=" + board.getNo());
-			    	response.sendRedirect(request.getContextPath()+"/ootd/ootdList");
+			    	response.sendRedirect(request.getContextPath()+"/ootd/ootdWholeList");
 
 				
 				
@@ -137,8 +138,8 @@ public class OotdEnrollServlet extends HttpServlet {
 					System.out.println("오류발생");
 					
 					e.printStackTrace();
-					//request.getSession().setAttribute("msg", "게시글 등록중 오류가 발생했습니다." );
-					response.sendRedirect(request.getContextPath()+"/ootd/ootdList");
+					request.getSession().setAttribute("msg", "게시글 등록중 오류가 발생했습니다." );
+					response.sendRedirect(request.getContextPath()+"/ootd/ootdWholeList");
 				}
 			    // 리다이렉트는 : board/boardList로 가게 -  메세지는 너무 뻔한경우는 걍 쓰지마 (왜냐면 이 글은 제일 최신으로 등록되니까 바로 확인가능 )
 

@@ -54,6 +54,12 @@ public class OotdAttachment {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
+
+	@Override
+	public String toString() {
+		return "OotdAttachment [attachNo=" + attachNo + ", boardNo=" + boardNo + ", originalFilename="
+				+ originalFilename + ", renamedFilename=" + renamedFilename + ", regDate=" + regDate + "]";
+	}
 	
 	
 	
