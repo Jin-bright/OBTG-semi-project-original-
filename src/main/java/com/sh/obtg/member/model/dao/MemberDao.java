@@ -30,7 +30,7 @@ public class MemberDao {
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			pstmt.setString(1, memberId);
 			try(ResultSet rset = pstmt.executeQuery()){
-				while(rset.next()) {
+				if(rset.next()) {
 					member = handleMemberResultSet(rset);
 				}
 			}
@@ -52,9 +52,10 @@ public class MemberDao {
 		member.setEnrollDate(rset.getTimestamp("enroll_date"));
 		member.setMemberRole(MemberRole.valueOf(rset.getString("member_role")));
 		member.setNickname(rset.getString("nickname"));
-		member.setGender(rset.getString("gender")!=null?
-						Gender.valueOf(rset.getString("gender")):
-							null);
+		
+		System.out.println("[" + rset.getString("gender") + "]");
+		member.setGender(rset.getString("gender") != null ? 
+				Gender.valueOf(rset.getString("gender")) : null);
 		member.setIntroduce(rset.getString("introduce"));
 		member.setOriginal(rset.getString("original"));
 		member.setRenamed(rset.getString("renamed"));		

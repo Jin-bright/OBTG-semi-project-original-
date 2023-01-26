@@ -26,7 +26,6 @@ public class MemberLoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
 		
 		String memberId = request.getParameter("memberId");
 		String password = HelloMvcUtils.getEncryptedPassword(request.getParameter("password"), memberId);
@@ -64,7 +63,7 @@ public class MemberLoginServlet extends HttpServlet {
 		}
 		String referer = request.getHeader("Referer");
 		System.out.println("referer = " + referer);
-		response.sendRedirect(referer);
+		response.sendRedirect(request.getContextPath() + "/");
 		}
 		
 	}
