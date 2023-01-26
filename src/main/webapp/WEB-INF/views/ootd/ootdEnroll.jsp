@@ -171,7 +171,7 @@ function checkOnlyOne(element) {
 */
 document.ootdBoardEnrollFrm.onsubmit = (e) => {
 	const title = e.target.ootdtitle;
-	const content = e.target.ootdContents;
+	const content = e.target.editordata;
 	const upload = e.target.upFile1;
 	
 	console.log(title, content);

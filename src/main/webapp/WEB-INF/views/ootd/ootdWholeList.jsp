@@ -43,6 +43,19 @@
 <table id="tblBoard">
   <tr> 
   <% for(int i=0; i<ootdAttachments.size(); i++){ %>
+<%--   	<% if(i%5==0){%>
+  		<tr>
+  	<%} %>
+  	<td class="maketd" style= "height : 300px; width:190px; padding:10px">
+     <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdAttachments.get(i).getBoardNo() %>">
+       <img  style="display : inline-block; height : 300px; width:190px" src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>"/></a><br/>
+		<p class="non">NO <span style="color : black; font-weight : light"><%=ootdAttachments.get(i).getBoardNo()%></span></p>
+		<p class="non">N  <span style=" color : black; font-weight : light"><%=ootdAttachments.get(i).getRegDate()%></span></p>
+     </td>
+     <% if(i%5==4){%>
+  		</tr>
+  	 <% } %> --%>
+  
 	<% if(i<5) { %>
      <td class="maketd" style= "height : 300px; width:190px">
      <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdAttachments.get(i).getBoardNo() %>">
@@ -95,7 +108,7 @@
 		<p class="non">N  <span style=" color : black; font-weight : light"><%=ootdAttachments.get(i).getRegDate()%></span></p>
     </td>
     </tr>
-	<% } %>
+	<% } %> 
 <% } %>
 
 </table>
@@ -109,9 +122,9 @@
 const atag = document.querySelectorAll(".atags");
 const div  = document.querySelectorAll("td");
 
-/**
+
 // Q.태그 하나하나에 어떻게 하지 ?
-$('a').on('mouseenter', function(){
+/* $('a').on('mouseenter', function(){
 	$(div).css("background-color","gray");
 })
 
@@ -122,8 +135,8 @@ atag.forEach( (a, index) => {
 		})
 		
 	});		
-})
-**/
+}) */
+
 </script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

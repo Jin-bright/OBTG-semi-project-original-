@@ -40,28 +40,29 @@
 <section id="headercolor">
 <!--   메뉴바 -->
 <br /> <br />
- <% if(loginMember == null) { %>
 <table id="tdloginSignup">
+<% if(loginMember == null) { %>
  <tr>
  	<td><button id="loginSignup" value="로그인/회원가입" onclick="location.href = '<%= request.getContextPath() %>/member/memberEnroll';">LOGIN / SIGN UP</button></td>
  </tr>	
 </table>
-  <%} else { %>
- <table id="tdlogin">
- <tr>
- 	<td>
- 		<%= loginMember.getNickname() %>님
- 		<span id="notification"></span>
- 	</td>
- </tr>
- <tr>
- 	 <%-- <td>
- 		<input type="button" value="내정보보기" onclick="location.href = '<%= request.getContextPath() %>/member/memberView';"/>
- 		<input type="button" value="로그아웃" onclick="location.href = '<%= rquest.getContextPath() %>/member/logout';"/>
- 	</td> --%>
- </tr>
- 	
- </table>
+<% } else { %>
+				<table id="login" style="margin-left:80%;">
+					<tr>
+						<td>
+							<%= loginMember.getNickname() %>님
+							<span id="notification"></span>
+						</td>
+					</tr>
+					<tr>
+						<%-- <td>
+							<input type="button" value="내정보보기" onclick="location.href = '<%= request.getContextPath() %>/member/memberView';"/>
+							<input type="button" value="로그아웃" onclick="location.href = '<%= request.getContextPath() %>/member/logout';"/>
+						</td> --%>
+					</tr>
+				</table>
+			
+			<% } %>
 <h1 style="width : 400px; font-size : 70px;	margin : auto; text-align : center; font-weight: bold; font-family: 'Noto Sans KR', sans-serif;"> O B T G  </h1>
 <br /> <br />
 <hr style="border: solid 1px black; margin:0;">
