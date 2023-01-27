@@ -32,7 +32,7 @@
             <label>
               ID<span class="req"></span>
             </label>
-            <input type="text" name="memberId" id="memberId" required/>
+            <input type="text" name="memberId" id="memberId" required  value="<%=saveId !=null ? saveId : ""%>" />
           </div>
           <div class="field-wrap">
             <label>
@@ -56,7 +56,7 @@
               <label class="top">
                 ID<span class="req">*</span>
               </label>              
-              <input type="text"  name="memberId" id="_memberId" required autocomplete="off" required/>
+              <input type="text"  name="memberId" id="_memberId" required autocomplete="off" required />
               <input type="button" value="ID 중복검사" onclick = "checkIdDuplicate();" style="margin-top: 5px; background-color: lightpink; border: 0px; cursor: pointer;"/>
 			  <input type = "hidden" id = "idValid" name="idValid" value= "0"/>
 			  

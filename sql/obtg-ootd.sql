@@ -309,7 +309,7 @@ create sequence seq_column_no;
 
 --0126 트리거 생성 by진 (ootd) 보류 !!! 게시글 삭제에 오류남  
 -- ootd
-create or replace trigger trig_table_ootd_find -- 괄호 안씀 
+--create or replace trigger trig_table_ootd_find -- 괄호 안씀 
   after 
 	insert or update or delete on OOTD_board   --   이 테이블에 변화가 생기면  begin절에 쓴대로 trigger 가 작동되는거임 
 	for each row 
@@ -325,7 +325,7 @@ end if;
 end;
 
 -- 0126 트리거 생성 by진 (share) ---- 보류 !!! 게시글 삭제에 오류남 
-create or replace trigger trig_table_share_find -- 괄호 안씀 
+--create or replace trigger trig_table_share_find -- 괄호 안씀 
   after 
 	insert or update or delete on share_board   --   이 테이블에 변화가 생기면  begin절에 쓴대로 trigger 가 작동되는거임 
 	for each row 

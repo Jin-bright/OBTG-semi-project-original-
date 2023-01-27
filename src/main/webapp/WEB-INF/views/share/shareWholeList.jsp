@@ -1,3 +1,4 @@
+<%@page import="org.apache.catalina.authenticator.NonLoginAuthenticator"%>
 <%@page import="com.sh.obtg.share.model.dto.ShareBoard"%>
 <%@page import="com.sh.obtg.share.model.dto.ShareBoardEntity"%>
 <%@page import="com.sh.obtg.share.model.dto.ShareAttachment"%>
@@ -25,11 +26,10 @@
    </div>
 </div>
 
-
-
+<% if(loginMember != null){ %>
 <input type="button" value="글쓰기" id="btnAdd" 
 	onclick="location.href='<%=request.getContextPath()%>/share/shareEnroll';"/> <%-- get&post다있는데/ 로그인한 상태에서만 노출 되게 수정해야됨 --%> 
-
+<% } %>
 
 <table id="tblBoard" >
   <% for(int i=0; i<shareAttachments.size(); i++){
@@ -38,13 +38,13 @@
 	<%} %>
   	<td class="maketd" >
      <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/share/shareView?no=<%=shareAttachments.get(i).getBoardNo() %>">
-       <img id="eachimg"  style="display : inline-block; height : 200px; width:190px; margin-left:-170px" src="<%=request.getContextPath()%>/uploadshares/share/<%=shareAttachments.get(i).getRenamedFilename()%>"/></a><br/>
+       <img id="eachimg"  style="display : inline-block; height : 200px; width:190px; margin-left:-140px" src="<%=request.getContextPath()%>/uploadshares/share/<%=shareAttachments.get(i).getRenamedFilename()%>"/></a><br/>
 		<p class="non">NO <span style="color : black; font-weight : light"><%=shareAttachments.get(i).getBoardNo()%></span></p>
 		<p class="non">N  <span style=" color : black; font-weight : light"><%=shareAttachments.get(i).getRegDate()%></span></p>
 	</td>
 	<td class ="detailtd" >
 		<img class="carrots"src="<%=request.getContextPath()%>/uploadshares/carrot.png" alt="carrot" style=" width:16px; height:16px" />
-		<p id="deal"><%=shareboards.get(i).getShareState()%></p>			
+		<p  id="buttonglow"><%=shareboards.get(i).getShareState()%></p>			
 		<div id="detaildiv">
 		<span class="datailtitle"  ><b>제목 </b></span>    <span class="boarddetails"><%= shareboards.get(i).getShareTitle()%></span><br/><br/>
 		<span class="datailtitle" ><b>카테고리 </b></span>  <span class="boarddetails"><%= shareboards.get(i).getShareCategory()%></span><br/><br/>

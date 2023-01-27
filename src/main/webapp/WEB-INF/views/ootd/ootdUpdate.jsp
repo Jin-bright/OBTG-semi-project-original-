@@ -40,7 +40,7 @@
 		<tr>
 			<th>아이디</th>
 			<td>
-				<input type="text"  class="inputtext" name="ootdwriter" value="cathj" readonly />
+				<input type="text"  class="inputtext" name="ootdwriter" value="<%=ootdboard.getOotdWriter() %>" readonly />
 			</td>
 		</tr>
 		<tr>
@@ -90,23 +90,23 @@
 				for( int i =0; i< ootdAttachments.size(); i++){
 					OotdAttachment attach = ootdAttachments.get(i);
 		%>
-		 <img src="<%=request.getContextPath()%>/image/file.png" width="16px" />
+	<%--	 <img src="<%=request.getContextPath()%>/image/file.png" width="16px" />
 		 <%=attach.getOriginalFilename()%>
 		 <input type="checkbox" name="delFile" id="delFile<%=i%>" value="<%= attach.getAttachNo()%>" />
-		 <label for="delFile<%=i%>"> 삭제 </label>
+		 <label for="delFile<%=i%>"> 삭제 </label>  --%> 
 			<br />	
-		<%							
-				}
-			}
-		%>
 			<input type="file" name="upFile1" id="upFile1">   <!-- 첨부파일의 경우 input 의 value 값은 맘대로 지정할수없다 (해도안됨) -->
 		</td>
 		</tr>
 		<tr>
-			<th>미리보기</th>
+			<th>미리보기</th><!--  혜진수정0128 - 기존파일 삭제체크박스 아예 삭제하고 attachment update쿼리로 변경  --> 
 			<td style="padding: 10px">
-				<img id="col_img_viewer"  style = "width : 200px; height : 250px;" >
+				<img id="col_img_viewer"  src="<%=request.getContextPath()%>/uploadootds/ootd/<%=attach.getRenamedFilename()%>" style = "width : 200px; height : 250px;" >
 			</td>
+					<%							
+				}
+			}
+		%>
 		</tr>
 		<tr>
 			<th  colspan="2" >

@@ -102,15 +102,32 @@ table tr{
 	margin-bottom: 30px;
 }
 
+/**
+#eachimg:hover {
+    transform: scale(1.1);
+  }
+**/
+  
+.maketd:hover  {
+    transform: scale(1.1);
+    background-color: #ffd688;
+    transition : 0.5s;
+    text-decoration : white;
+    border-radius: 10px 10px 10px 10px;
+  }  
+
 #detaildiv{
 	border:1px solid orange;
 	height :240px; 
 	width: 220px;
 	padding:10px;
 	margin-bottom: 30px;
-	margin-top : -30px
+	margin-top : -30px;
+	vertical-align:middle;	
+  	padding : 40px 10px 0 10px;
 	
 }
+
 
 .carrots{
 	display : inline-block;
@@ -120,17 +137,52 @@ table tr{
 	
 }
 
-#deal{
+/*  거래중 표시  */
+#buttonglow{
 	width : 60px;
 	height : 28px;
 	font-weight : 800;
 	text-align : center;
-	border : 1px solid #c0c0c0;
-	background-color : #f6f6f6;
+	vertical-align: middle;
 	position : relative; 
 	top :  -32px;
 	left : 160px;
+	background-color: #000;
+    color: #ffe100;
+    animation: glowing 5000ms infinite;
+    border-radius:  10px 10px 10px 10px;
 }
+
+#buttonglow:hover{
+	background-color: #ff8000;
+    color: #ffffff;
+}
+
+
+@keyframes glowing {
+  0% { box-shadow: 0 0 -10px #c4a300; }
+  40% { box-shadow: 0 0 20px #c4a300; }
+  60% { box-shadow: 0 0 20px #c4a300; }
+  100% { box-shadow: 0 0 -10px #c4a300; }
+}
+
+/* #deal{
+	background-color : black;
+ 	font-family: Audiowide;
+  	animation: neon5 1s ease-in-out infinite alternate;
+}	
+
+@keyframes neon5 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff9900,
+      0 0 70px #ff9900, 0 0 80px #ff9900, 0 0 100px #ff9900, 0 0 150px #ff9900;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff9900,
+      0 0 35px #ff9900, 0 0 40px #ff9900, 0 0 50px #ff9900, 0 0 75px #ff9900;
+  }
+}
+ */
 
 
 
@@ -218,7 +270,7 @@ div#pagebar a{
 }
 
 p.non{
-	align : left;
+	text-align : left;
 	text-align:center;
 	font-family: 'Nanum Gothic Coding', monospace;	
 	color : orange;
