@@ -132,31 +132,31 @@
 	<legend class="checkbox-group-legend">Choose your Style *</legend>
 	<tr id="check-box" required>
 		<td>
-			<input type="checkbox" name="style" id="S1" value="lovely"/>lovely		
+			<input type="checkbox" name="style" id="S1" value="러블리"<%= styleList != null && styleList.contains("러블리") ? "checked" : "" %>><label for="S1">lovely</label>	
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S2" value="Dandy" />Dandy	
+			<input type="checkbox" name="style" id="S2" value="댄디"<%= styleList != null && styleList.contains("댄디") ? "checked" : "" %>><label for="S2">Dandy</label>
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S3" value="Formal" />Formal
+			<input type="checkbox" name="style" id="S3" value="포멀"<%= styleList != null && styleList.contains("포멀") ? "checked" : "" %>><label for="S3">Formal</label>
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S4" value="Street" />Street	
+			<input type="checkbox" name="style" id="S4" value="스트리트"<%= styleList != null && styleList.contains("스트리트") ? "checked" : "" %>><label for="S4">Street</label>
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S5" value="Girlish" />Girlish
+			<input type="checkbox" name="style" id="S5" value="걸리쉬"<%= styleList != null && styleList.contains("걸리쉬") ? "checked" : "" %>><label for="S5">Girlish</label>
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S6" value="Retro" />Retro
+			<input type="checkbox" name="style" id="S6" value="레트로"<%= styleList != null && styleList.contains("레트로") ? "checked" : "" %>><label for="S6">Retro</label>
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S7" value="Romantic" />Romantic
+			<input type="checkbox" name="style" id="S7" value="로맨틱"<%= styleList != null && styleList.contains("로맨틱") ? "checked" : "" %>><label for="S7">Romantic</label>
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S8" value="Chic" />Chic	
+			<input type="checkbox" name="style" id="S8" value="시크"<%= styleList != null && styleList.contains("시크") ? "checked" : "" %>><label for="S8">Chic</label>
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S9" value="Amekaji" />Amekaji		
+			<input type="checkbox" name="style" id="S9" value="아메카지"<%= styleList != null && styleList.contains("아메카지") ? "checked" : "" %>><label for="S9">Amekaji</label>
 		</td>
 	</tr>
 </fieldset>
