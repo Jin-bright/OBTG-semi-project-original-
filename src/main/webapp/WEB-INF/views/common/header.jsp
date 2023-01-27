@@ -47,7 +47,8 @@
  </tr>	
 </table>
 <% } else { %>
-				<table id="login" style="margin-left:80%;">
+
+				 <table id="login" style="margin-left:80%; text-align:right;">
 					<tr>
 						<td>
 							<%= loginMember.getNickname() %>님
@@ -55,12 +56,17 @@
 						</td>
 					</tr>
 					<tr>
-						<%-- <td>
-							<input type="button" value="내정보보기" onclick="location.href = '<%= request.getContextPath() %>/member/memberView';"/>
-							<input type="button" value="로그아웃" onclick="location.href = '<%= request.getContextPath() %>/member/logout';"/>
-						</td> --%>
+						<td>
+						 <a href=""></a>
+							<%-- <img src="<%=request.getContextPath() %>/image/default.png" alt="defultimg" width="30px" hight="30px" cursor= "pointer" onclick="location.href = '<%= request.getContextPath() %>/member/memberView';"/> --%>					
+						</td>
 					</tr>
-				</table>
+					<tr>
+						 <td>
+							<input type="button" value="Logout" style="border: 0px; padding: 5px; background-color: lightpink; cursor: pointer;"onclick="location.href = '<%= request.getContextPath() %>/member/logout';"/>
+						</td>
+					</tr>
+				</table> 
 			
 			<% } %>
 <h1 style="width : 400px; font-size : 70px;	margin : auto; text-align : center; font-weight: bold; font-family: 'Noto Sans KR', sans-serif;"> O B T G  </h1>

@@ -61,5 +61,6 @@ public class MemberDao {
 		member.setRenamed(rset.getString("renamed"));		
 		return member;
 	}
+	
 
 }
