@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-
 import com.sh.obtg.ootd.model.dto.OotdAttachment;
 import com.sh.obtg.ootd.model.dto.OotdBoard;
 import com.sh.obtg.ootd.model.dto.OotdBoardComment;
@@ -97,7 +96,7 @@ public class OotdBoardDao {
 		return result;
 	}
 
-// dql 사진목록 출력하기 
+// dql 사진목록 출력하기  - cnt 
 // 쿼리 : 	
 	public List<OotdAttachment> selectOotdList(Connection conn,  Map<String, Integer> param) {
 		String sql = prop.getProperty("selectOotdList");
@@ -127,6 +126,10 @@ public class OotdBoardDao {
 		
 		return ootdAttachments;
 	}
+	
+	
+	
+	
 	
 // 전체페이지수조회 dql - select count(*) from OOTD_attachment  
 	public int getTotalCount(Connection conn) {
@@ -246,7 +249,7 @@ public class OotdBoardDao {
 			}
 			
 		} catch (Exception e) {
-			throw new OotdBoardException("게시글 한건-첨부파일 조회 오류!", e);
+			throw new OotdBoardException("게시글 한건-(첨부파일테이블) 조회 오류!", e);
 		}
 		
 		return ootdAttachments;
@@ -313,6 +316,7 @@ public class OotdBoardDao {
 
 	}
 
+	//댓글 삭제
 	public int boardCommentDelete(Connection conn, int no) {
 		String sql = prop.getProperty("boardCommentDelete");
 		int result = 0;
@@ -324,6 +328,81 @@ public class OotdBoardDao {
 		} catch (SQLException e) {
 			throw new OotdBoardException("댓글 삭제 오류!", e);
 		}
+		return result;
+	}
+
+//게시물업데이트 
+// updateBoard = update OOTD_board set style_no=?, OOTD_title=?, OOTD_contents=?, OOTD_top=?, OOTD_bottom=?, OOTD_shoes=?, OOTD_etc=? where OOTD_no = ?
+	public int updateBoard(Connection conn, OotdBoard ootdBoard) {
+		String sql = prop.getProperty("updateBoard");
+		int result = 0;
+
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, ootdBoard.getStyleNo().toString());
+			pstmt.setString(2, ootdBoard.getOOTDTitle());
+			pstmt.setString(3, ootdBoard.getOOTDContents());
+			pstmt.setString(4, ootdBoard.getOOTDTop());
+			pstmt.setString(5, ootdBoard.getOOTDBottom());
+			pstmt.setString(6, ootdBoard.getOOTDShoes());
+			pstmt.setString(7, ootdBoard.getOOTDEtc());
+			pstmt.setInt(8, ootdBoard.getOotdNo());
+			
+			result = pstmt.executeUpdate();
+		}catch (SQLException e) {
+			throw new OotdBoardException("게시물 수정 오류!", e);
+		}
+		return result;
+	}
+
+	//첨부파일 한개 선택 
+	public OotdAttachment selectOneAttachment(Connection conn, int attachNo) {
+		String sql = prop.getProperty("selectOneAttachment");
+		OotdAttachment attach = null;
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, attachNo);
+			try(ResultSet rset = pstmt.executeQuery()){
+				if(rset.next()) {
+					attach = handleAttachmentResultSet(rset);
+				}
+			}
+			
+		} catch (SQLException e) {
+			throw new OotdBoardException("첨부파일 한건 조회 오류", e);
+		}
+		
+		return attach;
+	}
+
+	// 게시글  내 첨부파일 삭제 
+	public int deleteAttachment(Connection conn, int attachNo) {
+		String sql = prop.getProperty("deleteAttachment");
+		int result = 0;
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			// 미완성 쿼리 값대입
+			pstmt.setInt(1, attachNo);
+			// 실행
+			result = pstmt.executeUpdate();
+		} catch(Exception e) {
+			throw new OotdBoardException("첨부파일 삭제 오류!", e);
+		}
+		
+		return result;
+	}
+
+	// 게시글 삭제 + 첨부파일 삭제 
+	public int deleteBoard(Connection conn, int no) {
+		String sql = prop.getProperty("deleteBoard");
+		int result = 0 ;
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){ 
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new OotdBoardException("게시글 삭제 오류(게시글or첨부파일 중 어딘가,,)!", e);
+		}
+		
 		return result;
 	}
 }

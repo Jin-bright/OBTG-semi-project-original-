@@ -334,8 +334,6 @@ button.onclick = (e) => {
 //삭제
 document.querySelectorAll(".btn-delete").forEach((button) => {
 	button.onclick = (e) => {
-		console.log( e.target );
-		console.log( "뭘까 ^ ^" );
 		if(confirm("해당 댓글을 삭제하시겠습니까?")){
 			const frm = document.boardCommentDelFrm;
 			frm.no.value = e.target.value;
