@@ -1,57 +1,66 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-
     pageEncoding="UTF-8"%>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
-
-<head>
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<title>게시판 글쓰기 페이지</title>
-
-</head>
-
-<body>
-
-<form method="post" action="contentWriteProcess.jsp">
-
-<div class="container">
-
-  <h2>게시판 글쓰기</h2>          
-
-  <table class="table table-hover">
-
-    <tbody>
-
-      <tr>
-
-      	<td><input type="text" class="form-control" placeholder="글 제목" name="contentTitle" maxlength="40"></td>
-
-      </tr>
-
-      <tr>
-
-      	<td><textarea type="text" class="form-control" placeholder="글 내용을 작성하세요" name="contentDetail" maxlength="1024" style="height: 400px;"></textarea></td>
-
-      </tr>
-
-    </tbody>
-
-  </table>
-
-  <input type="submit" class="btn btn-primary pull-right" value="글쓰기">
-
-</div>
-
-</form>
-
-</body>
-
-</html>
+<%@ include file="/WEB-INF/views/common/header.jsp" %>    
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board2.css" />
+<section id="board-container">
+	<h2>게시판 작성</h2>
+	<form
+		name="boardEnrollFrm"
+		action="<%=request.getContextPath() %>/faq/faqEnroll" 
+		enctype="multipart/form-data"
+		method="post">
+		<table id="tbl-board-view">
+		<tr>
+			<th>제 목</th>
+			<td><input type="text" name="title" required></td>
+		</tr>
+		<tr>
+			<th>작성자</th>
+			<td>
+				<input type="text" name="writer" value="<%= loginMember.getMemberId() %>" readonly/>
+			</td>
+		</tr>
+		<tr>
+			<th>첨부파일</th>
+			<td>			
+				<input type="file" name="upFile1">
+				<input type="file" name="upFile2">
+			</td>
+		</tr>
+		<tr>
+			<th>내 용</th>
+			<td><textarea rows="5" cols="40" name="content"></textarea></td>
+		</tr>
+		<tr>
+			<th colspan="2">
+				<input type="submit" value="등록하기">
+			</th>
+		</tr>
+	</table>
+	</form>
+</section>
+<script>
+/**
+* boardEnrollFrm 유효성 검사
+*/
+document.boardEnrollFrm.onsubmit = (e) => {
+	const title = e.target.title;
+	const content = e.target.content;
+	console.log(title, content);
+	
+	//제목을 작성하지 않은 경우 폼제출할 수 없음.
+	if(!/^.+$/.test(title.value)){
+		alert("제목을 작성해주세요.");
+		title.select();
+		return false;
+	}
+					   
+	//내용을 작성하지 않은 경우 폼제출할 수 없음.
+	if(!/^(.|\n)+$/.test(content.value)){
+		alert("내용을 작성해주세요.");
+		content.select();
+		return false;
+	}
+}
+</script>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
