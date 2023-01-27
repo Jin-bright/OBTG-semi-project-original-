@@ -25,22 +25,20 @@ CREATE TABLE Member (
 	enroll_date	date		default sysdate,
 	member_role	char(1)		default 'U' not null,
 	nickname	varchar2(50)		NULL,
-	gender	char(5)		NULL,
+	gender	char(5)	,
 	introduce	varchar2(500)		NULL,
 	original	varchar2(100),
 	renamed	varchar2(100),
     constraint pk_member_id primary key(member_id),
     constraint ck_member_role check(member_role in ('U', 'A')),
     constraint ck_member_gender check(gender in ('M', 'F')),
-    constraint uq_member_email unique(email),
+    constraint uq_member_email unique(email)
 --    constraint fk_fashionstyle FOREIGN KEY (style) REFERENCES fashionstyle (style_no) 이 제약조건안씀(by혜진.0118)
 -- ALTER TABLE member  ADD constraint fk_fashionstyle FOREIGN KEY (style) REFERENCES fashionstyle (style);  이 제약조건으로 추가(by혜진.0118)
-
-insert into Member (member_id, style, name, password, email, phone, birthday, enroll_date, member_role, nickname, gender, introduce, original, renamed)
-values ('incheol', '
-
-
 );
+
+
+
 ALTER TABLE Member ADD CONSTRAINT PK_MEMBER PRIMARY KEY (
 	member_id,
 	style
