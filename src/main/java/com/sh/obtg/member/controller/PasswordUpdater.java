@@ -52,8 +52,7 @@ import com.sh.obtg.member.model.dto.Member;
 					pstmt.setString(2, member.getMemberId());
 					pstmt.executeUpdate();
 					System.out.printf("%s 비밀번호 업데이트 성공!%n", member.getMemberId());
-				}
-				
+				}				
 				commit(conn);
 				
 			} catch (SQLException e) {
@@ -63,10 +62,5 @@ import com.sh.obtg.member.model.dto.Member;
 			
 			close(conn);
 			System.out.println("[비밀번호 일괄갱신이 끝났습니다.]");
-			
-			
 		}
-		
-		
-
 	}

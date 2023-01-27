@@ -2,22 +2,9 @@
 <%@ page import="com.sh.obtg.member.model.dto.MemberRole" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
-	Member loginMember =(Member) session.getAttribute("loginMember");
-    String msg = (String) session.getAttribute("msg");
-    if(msg != null) session.removeAttribute("msg");
-    
-    Cookie[] cookies = request.getCookies();
-    String saveId = null;
-    if(cookies != null){
-    	for(Cookie cookie : cookies){
-    		String name = cookie.getName();
-    		String value = cookie.getValue();
-    		if("saveId".equals(name))
-    			saveId = value;
-    	}
-    }
-    
+
+<%
+	Member loginMember=(Member) session.getAttribute("loginMember");    
 %>
 <!doctype html>
 
@@ -62,14 +49,9 @@
 				 <table id="login" style="margin-left:80%; text-align:right;">
 					<tr>
 						<td>
+							<a href="<%= request.getContextPath() %>/member/memberView;"><img id="defaultimg" src="<%=request.getContextPath()%>/image/default.png" alt="defaultimg" style="width:30px; height:30px; cursor: pointer;"/></a>
 							<%= loginMember.getNickname() %>님
 							<span id="notification"></span>
-						</td>
-					</tr>
-					<tr>
-						<td>
-						 <a href=""></a>
-							<%-- <img src="<%=request.getContextPath() %>/image/default.png" alt="defultimg" width="30px" hight="30px" cursor= "pointer" onclick="location.href = '<%= request.getContextPath() %>/member/memberView';"/> --%>					
 						</td>
 					</tr>
 					<tr>

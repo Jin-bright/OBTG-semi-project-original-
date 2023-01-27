@@ -66,6 +66,24 @@ public class MemberDao {
 		return member;
 	}
 	
+
+	public int updatePassword(Connection conn, Member member) {
+		int result = 0;
+		String sql = prop.getProperty("updatePassword");
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql);){
+			pstmt.setString(1, member.getPassword());
+			pstmt.setString(2, member.getMemberId());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new MemberException("비밀번호 수정 오류!", e);
+		}
+		return result;
+	}
+	
+
 	public int updateMemberRole(Connection conn, String memberId, String memberRole) {
 		String sql = prop.getProperty("updateMemberRole");
 		int result = 0;
@@ -162,4 +180,5 @@ public class MemberDao {
 		}
 		return result;
 	}
+	
 }
