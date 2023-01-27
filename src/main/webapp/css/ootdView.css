@@ -132,7 +132,8 @@
 
 
 
-#ootdlikes{
+.heart{
+	margin: 30px 6px 0 0;
 	width : 30px;
 	display : inline;
 	position : absolute;
