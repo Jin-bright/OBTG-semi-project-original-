@@ -405,5 +405,6 @@ create table faq(
 create sequence seq_faq;
 
 
-drop table faq;
-drop sequence seq_faq;
+--drop table faq;
+--drop sequence seq_faq;
+

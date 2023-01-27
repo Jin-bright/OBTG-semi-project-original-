@@ -23,7 +23,14 @@
 <body>
     <div id="wrap">
     	<h2>게시글 리스트</h2>
-    	
+    	<% if(faqList.isEmpty()){ %>	
+			<tr>
+				<td colspan="6">조회된 게시물이 없습니다.</td>
+			</tr>
+		<% 
+		   } else { 
+			 for(faq faq : faqList){
+		%>
 
     	<table>
     		<tr>
@@ -37,11 +44,11 @@
     			<th>조회수</th>
     		</tr>
 				<tr>
-					<td><%= faq.g %></td>
-					<td>${posting.title }</td>
-					<td>${posting.name }</td>
-					<td>${posting.writeDate }</td>
-					<td>${posting.readCount }</td>
+					<td><%= faq.getNo() %></td>
+					<td><%= faq.getTitle() %></td>
+					<td><%= faq.getWriter() %></td>
+					<td><%= faq.getRegDate() %></td>
+					<td><%= faq.getReadCount()%></td>
 				</tr>
     	</table>
     </div>
