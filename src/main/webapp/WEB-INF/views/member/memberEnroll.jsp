@@ -1,18 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/memberEnroll.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/memberEnroll.css"/>
 
 <% if(loginMember != null){ %>
 <script src = "<%=request.getContextPath()%>/js/ws.js"></script>
 <% } %>
+	 <%--
 <script>
 window.addEventListener('load',()=>{
 	<%if(msg != null){%>
 	alert("<%= msg %>");
 	<%} %>
 	
-	 <%-- <%if(loginMember == null) {%>
+ <%if(loginMember == null) {%>
 		document.loginFrm.addEventListener('submit', (e)=> {
 			const memberId = document.querySelector("#memberId");
 			const password = document.querySelector("#password");
@@ -30,10 +31,11 @@ window.addEventListener('load',()=>{
 				return;
 			}
 		});
-		<%}%>  --%>
-		
+		<%}%>		
 });
 </script>
+  --%>
+
 <div class="form">
       <ul class="tab-group">
         <li class="tab active"><a id="atag" href="#signup">Sign Up</a></li>
@@ -63,16 +65,15 @@ window.addEventListener('load',()=>{
         <!-- login form 끝 -->
       
         <div id="signup">   
-          <form name="memberEnrollFrm" method="POST" action ="<%= request.getContextPath()%>/member/memberEnroll"">
+          <form name="memberEnrollFrm" method="POST" action ="<%= request.getContextPath()%>/member/memberEnroll">
           <div class="top-row">
             <div class="field-wrap">
               <label class="top">
                 ID<span class="req">*</span>
               </label>              
-              <input type="text"  name="memberId" id="memberId" required autocomplete="off" required/>
-              <input type="button" value="ID 중복검사" onclick = "checkIdDuplicate();" style="margin-top: 5px; background-color: lightpink; border: 0px; cursor: pointer;"/>
-			  <input type = "hidden" id = "idValid" name="idValid" value= "0"/>
-			  
+              <input type="text"  name="memberId" id="memberId"  value = ""  required/>
+              <input type="button" value="ID 중복검사" onclick = "checkIdDuplicate();" style="margin-top: 5px; background-color: lightpink; border: 0px; cursor: pointer;" >
+			  <input type ="hidden" id = "idValid" name="idValid" value= "0"/>
             </div>
             </div>
             <div class="field-wrap">
@@ -186,24 +187,32 @@ window.addEventListener('load',()=>{
       </div><!-- tab-content -->
       
 </div> <!-- /form -->
+
+
+
+<form action="<%= request.getContextPath() %>/member/checkIdDuplicate" name = "checkIdDuplicateFrm">
+	<input type="hidden" name="memberId" />
+</form>
 <script>
 /**
  * 중복검사이후 다시 아이디를 수정한 경우.
  */
-document.querySelecor("#memberId").onfocus = (e) => {
+document.querySelector("#memberId").onfocus = (e) => {
 	document.querySelector("#idValid").value = "0";
 };
 const checkIdDuplicate = () => {
 	const memberId = document.querySelector("#memberId");
 	// 아이디 - 영문자/숫자 4글자이상
-	if(!/^[A-Za-z0-9]{4,}$/.test(memberId.value)){
+	
+/* 	if(!/^[A-Za-z0-9]{4,}$/.test(memberId.value)){
 		alert("아이디는 영문자/숫자 4글자이상이어야 합니다.");
 		memberId.select();
 		return;
-	};
+	};  */
+	
 	// 폼의 액션 주소를 사용하기 때문에 open의 url은 비워둔다.
 	const title = "checkIdDuplicatePopup"
-	open("", title,"width=300px, heigth=200px, left=100px, top=100px");
+	open("", title,"width=100px, heigth=100px, left=50px, top=50px");
 	
 	const frm = document.checkIdDuplicateFrm
 	frm.target = title // 폼을 팝업에 제출
@@ -221,11 +230,13 @@ document.memberEnrollFrm.onsubmit = (e) => {
 	const email = document.querySelector("#email");
 	const phone = document.querySelector("#phone");
 	// 아이디 - 영문자/숫자 4글자이상
+	<!--
 	if(!/^[A-Za-z0-9]{4,}$/.test(memberId.value)){
 		alert("아이디는 영문자/숫자 4글자이상이어야 합니다.");
 		memberId.select();
 		return false;
 	}
+	-->
 	// 아이디 중복검사 통과여부
 	if(idValid.value !== '1'){
 		alery("아이디 중복검사 해주세요");
