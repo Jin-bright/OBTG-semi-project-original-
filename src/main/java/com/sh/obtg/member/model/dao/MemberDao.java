@@ -6,6 +6,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import com.sh.obtg.member.model.dto.Gender;
@@ -63,6 +66,7 @@ public class MemberDao {
 		return member;
 	}
 	
+
 	public int updatePassword(Connection conn, Member member) {
 		int result = 0;
 		String sql = prop.getProperty("updatePassword");
@@ -80,4 +84,101 @@ public class MemberDao {
 	}
 	
 
+	public int updateMemberRole(Connection conn, String memberId, String memberRole) {
+		String sql = prop.getProperty("updateMemberRole");
+		int result = 0;
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, memberRole);
+			pstmt.setString(2, memberId);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new MemberException("관리자 회원권한수정 오류",e);
+		}
+		
+		return result;
+	}
+	public List<Member> searchMember(Connection conn, Map<String, String> param) {
+		List<Member> members = new ArrayList<>();
+		String searchType = param.get("searchType"); // member_id | member_name | gender
+		String searchKeyword = param.get("searchKeyword");
+		String sql = prop.getProperty("searchMember"); // select * from member where # like ?
+		sql = sql.replace("#", searchType);
+		System.out.println(sql);
+		
+		// 1. PreaparedStatement 객체 생성 & 미완성쿼리 값대입
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, "%" + searchKeyword + "%"); 
+			// 2. 실행 & ResultSet 반환
+			try(ResultSet rset = pstmt.executeQuery()){				
+				// 3. ResultSet -> List<Member>
+				while(rset.next())
+					members.add(handleMemberResultSet(rset));
+			}
+		} catch (SQLException e) {
+			throw new MemberException("관리자 회원검색 오류", e);
+		}
+		
+		return members;
+	}
+	public List<Member> selectAllMember(Connection conn, Map<String, Object> param) {
+		String sql = prop.getProperty("selectAllMember"); // select * from (select row_number() over(order by enroll_date desc) rnum, m.* from member m) where rnum between ? and ?
+		List<Member> members = new ArrayList<>();
+		int page = (int) param.get("page");
+		int limit = (int) param.get("limit");
+		int start = (page - 1) * limit + 1; 
+		int end = page * limit;
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql);){
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			
+			try(ResultSet rset = pstmt.executeQuery();){
+				
+				while(rset.next()) {
+					Member member = handleMemberResultSet(rset);
+					members.add(member);
+				}
+			}
+			
+			
+		} catch (SQLException e) {
+			throw new MemberException("관리자 회원목록조회 오류!", e);
+		}
+				
+		return members;
+	}
+	public int selectTotalCount(Connection conn) {
+		String sql = prop.getProperty("selectTotalCount"); // select count(*) from member
+		int totalCount = 0;
+		
+		try(
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rset = pstmt.executeQuery();	
+		){
+			while(rset.next())
+				totalCount = rset.getInt(1); // 컬럼인덱스
+	
+		} catch (SQLException e) {
+			throw new MemberException("전체 사용자수 조회 오류", e);
+		}	
+		
+		return totalCount;
+	}	
+	public int deleteMemberAD(Connection conn, String memberId) {
+		String sql = prop.getProperty("deleteMemberAD");
+		int result = 0;
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, memberId);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MemberException("회원 추방에 실패했습니다.", e);
+		}
+		return result;
+	}
+	
 }

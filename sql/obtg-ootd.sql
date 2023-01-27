@@ -389,3 +389,21 @@ create sequence seq_share_find_no;
 ALTER TABLE SHARE_find ADD  constraint FK_SHARE_board_TO_SHARE_find FOREIGN KEY (share_no) REFERENCES SHARE_board (SHARE_no) on delete cascade 
 
 
+
+--FAQ
+create table faq(
+    no number,
+    writer varchar2(50),
+    member_id    varchar2(50),
+    title varchar2(200),
+    read_count number default 0,
+    reg_date date default sysdate,
+    content varchar2(4000),
+    constraint pk_faq_no primary key(no)
+);
+
+create sequence seq_faq;
+
+
+drop table faq;
+drop sequence seq_faq;
