@@ -91,6 +91,7 @@
 			<th colspan="2">
 				<!--<input  class ="inputbuttons" type="submit" value="CANCEL"  style="margin-left : 100px"> -->
 				<input  class ="inputbuttons"  type="submit" value="SUBMIT">
+				<input class ="inputbuttons"  type="button" value="CANCEL" onclick="history.go(-1);"/>
 			</th>
 		</tr>
 	</table>

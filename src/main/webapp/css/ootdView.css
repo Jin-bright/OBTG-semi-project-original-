@@ -317,5 +317,17 @@ table#tbl-comment button.btn-comment-enroll2{
 }
 
 /* 삭제버튼관련 */
-table#tbl-comment button.btn-delete{background:red; color:white; display:none;}
+table#tbl-comment button.btn-delete{
+	background:black; 
+	color:white; 
+	display:none;
+}
+
+table#tbl-comment button.btn-delete:hover{
+	background:red; 
+	color:black; 
+	display:none;
+}
+
+
 table#tbl-comment tr:hover button.btn-delete{display:inline;}

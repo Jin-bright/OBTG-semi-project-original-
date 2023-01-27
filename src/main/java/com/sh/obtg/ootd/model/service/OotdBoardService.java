@@ -1,5 +1,6 @@
 package com.sh.obtg.ootd.model.service;
 
+
 import static com.sh.obtg.common.JdbcTemplate.*;
 
 import java.sql.Connection;
@@ -153,9 +154,80 @@ import com.sh.obtg.ootd.model.dto.OotdBoardComment;
 	}
 
 //board 게시물 업데이트 	
+	//쿼리 : 	 update OOTD_board_comment  set title = ?, content = ?  where no = ? 
 	public int updateBoard(OotdBoard ootdBoard) {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			// 1. board 수정
+			result = ootdBoardDao.updateBoard(conn, ootdBoard);
+
+			// 2. attachment에 등록
+			List<OotdAttachment> attachments = ootdBoard.getOotdAttachments();
+			System.out.println("**attachments 정보 : "  + attachments );
+			if(!attachments.isEmpty()) {
+				for(OotdAttachment attach : attachments) {
+				result = ootdBoardDao.insertAttachment(conn, attach);
+				}
+			}
+
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		} finally {
+			
+			close(conn);			
+		}
+		return result;
+	}
+
+//첨부파일 1개 선택 
+	public OotdAttachment selectOneAttachment(int attachNo) {
+		Connection conn = getConnection();
+		OotdAttachment attach = ootdBoardDao.selectOneAttachment(conn, attachNo);
+		close(conn);
+		return attach;
+	}
+
+// 게시글 내 첨부파일 삭제 	
+	public int deleteAttachment(int attachNo) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			// dao요청
+			result = ootdBoardDao.deleteAttachment(conn, attachNo);
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		} finally {
+			close(conn);
+		}
+		return result;
+	}
+
+//board no로 attachment 첨부파일 게시글 한개 삭제 
+	public List<OotdAttachment> selectAttachmentByBoardNo(int boardno) {
+		Connection conn = getConnection();
+		List<OotdAttachment> attachment = ootdBoardDao.selectAttachmentByBoardNo(conn, boardno);
+
+		return attachment;
+	}
+
+//oard no로 attachment 첨부파일 게시글 한개 삭제 (2) -- 게시글 삭제 + fk삭제조건으로 att테이블 내용도 같이 날라감 
+	public int deleteBoard(int no) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {	
+			result = ootdBoardDao.deleteBoard(conn,no);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+			throw e;
+		}
+		
+		return result;
 	}
 
 }

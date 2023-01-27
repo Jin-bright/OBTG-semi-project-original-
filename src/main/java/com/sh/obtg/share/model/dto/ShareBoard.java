@@ -1,211 +1,77 @@
 package com.sh.obtg.share.model.dto;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
-
-public class ShareBoard {
-	private int ShareNo;
-	private String member_id;
-	private String ShareTitle;
-	private String ShareContent;
-	private int ShareReadCount;
-	private Date ShareRegDate;
-	private Date ShareBuyDate;
-	private String ShareProductStatus;
-	private String ShareCategory;
-	private String ShareState;
-	private Style Style;
+public class ShareBoard extends ShareBoardEntity {
 	
+	private int attachCnt;  //실제테이블엔 없지만 필요해 -- 첨부파일 수 카운트  
+	private List<ShareAttachment> shareAttachments = new ArrayList<>();
 
+	//기본 
 	public ShareBoard() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
-	
-	
-	
-	public ShareBoard(int shareNo, String member_id, String shareTitle, String shareContent, int shareReadCount,
+
+	// attachcont + 부모 
+	public ShareBoard(int shareNo, String memberId, String shareTitle, String shareContent, int shareReadCount,
 			Date shareRegDate, Date shareBuyDate, String shareProductStatus, String shareCategory, String shareState,
-			com.sh.obtg.share.model.dto.Style style) {
-		super();
-		ShareNo = shareNo;
-		this.member_id = member_id;
-		ShareTitle = shareTitle;
-		ShareContent = shareContent;
-		ShareReadCount = shareReadCount;
-		ShareRegDate = shareRegDate;
-		ShareBuyDate = shareBuyDate;
-		ShareProductStatus = shareProductStatus;
-		ShareCategory = shareCategory;
-		ShareState = shareState;
-		Style = style;
+			Style styleNo, int attachCnt) {
+		super(shareNo, memberId, shareTitle, shareContent, shareReadCount, shareRegDate, shareBuyDate,
+				shareProductStatus, shareCategory, shareState, styleNo);
+		this.attachCnt = attachCnt;
 	}
 
-
-
-
-
-
-	public int getShareNo() {
-		return ShareNo;
+	
+	
+	public ShareBoard(int shareNo, String memberId, String shareTitle, String shareContent, int shareReadCount,
+			Date shareRegDate, Date shareBuyDate, String shareProductStatus, String shareCategory, String shareState,
+			Style styleNo, List<ShareAttachment> shareAttachments) {
+		super(shareNo, memberId, shareTitle, shareContent, shareReadCount, shareRegDate, shareBuyDate,
+				shareProductStatus, shareCategory, shareState, styleNo);
+		this.shareAttachments = shareAttachments;
 	}
 
-
-	public void setShareNo(int shareNo) {
-		ShareNo = shareNo;
+	
+	
+	//get set 
+	public int getAttachCnt() {
+		return attachCnt;
 	}
 
-	public String getMember_id() {
-		return member_id;
+	public void setAttachCnt(int attachCnt) {
+		this.attachCnt = attachCnt;
 	}
 
-
-
-
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
+	public List<ShareAttachment> getShareAttachments() {
+		return shareAttachments;
 	}
 
-
-
-
-	public String getShareTitle() {
-		return ShareTitle;
+	public void setShareAttachments(List<ShareAttachment> shareAttachments) {
+		this.shareAttachments = shareAttachments;
 	}
 
-
-
-
-	public void setShareTitle(String shareTitle) {
-		ShareTitle = shareTitle;
+	@Override
+	public String toString() {
+		return "ShareBoard [attachCnt=" + attachCnt + ", shareAttachments=" + shareAttachments + ", getShareNo()="
+				+ getShareNo() + ", getMemberId()=" + getMemberId() + ", getShareTitle()=" + getShareTitle()
+				+ ", getShareContent()=" + getShareContent() + ", getShareReadCount()=" + getShareReadCount()
+				+ ", getShareRegDate()=" + getShareRegDate() + ", getShareBuyDate()=" + getShareBuyDate()
+				+ ", getShareProductStatus()=" + getShareProductStatus() + ", getShareCategory()=" + getShareCategory()
+				+ ", getShareState()=" + getShareState() + ", getStyleNo()=" + getStyleNo() + ", toString()="
+				+ super.toString() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
 	}
 
-
-
-
-	public String getShareContent() {
-		return ShareContent;
+	
+	//
+	public void addAttachment(ShareAttachment attach) {
+		this.shareAttachments.add(attach);
 	}
-
-
-
-
-	public void setShareContent(String shareContent) {
-		ShareContent = shareContent;
-	}
-
-
-
-
-	public int getShareReadCount() {
-		return ShareReadCount;
-	}
-
-
-
-
-	public void setShareReadCount(int shareReadCount) {
-		ShareReadCount = shareReadCount;
-	}
-
-
-
-
-	public Date getShareRegDate() {
-		return ShareRegDate;
-	}
-
-
-
-
-	public void setShareRegDate(Date shareRegDate) {
-		ShareRegDate = shareRegDate;
-	}
-
-
-
-
-	public Date getShareBuyDate() {
-		return ShareBuyDate;
-	}
-
-
-
-
-	public void setShareBuyDate(Date shareBuyDate) {
-		ShareBuyDate = shareBuyDate;
-	}
-
-
-
-
-	public String getShareProductStatus() {
-		return ShareProductStatus;
-	}
-
-
-
-
-	public void setShareProductStatus(String shareProductStatus) {
-		ShareProductStatus = shareProductStatus;
-	}
-
-
-
-
-	public String getShareCategory() {
-		return ShareCategory;
-	}
-
-
-
-
-	public void setShareCategory(String shareCategory) {
-		ShareCategory = shareCategory;
-	}
-
-
-
-
-	public String getShareState() {
-		return ShareState;
-	}
-
-
-
-
-	public void setShareState(String shareState) {
-		ShareState = shareState;
-	}
-
-
-
-
-	public Style getStyle() {
-		return Style;
-	}
-
-
-
-
-	public void setStyle(Style style) {
-		Style = style;
-	}
-
-
-
-
-
-
-//	public void addAttachment(Attachment attach) {
-//
-//	}
-
-
-
-
+	
+	
+	
 }
 
 
