@@ -30,7 +30,13 @@ public class MemberEnrollServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		doGet(request, response);
+		HttpSession session = request.getSession(true);
+		
+		try {
+			String memberId = request.getParameter("memberId");
+			String style = request.getParameter("style");
+			String name = request
+		}
 	}
 
 }
