@@ -148,5 +148,18 @@ public class MemberDao {
 		}	
 		
 		return totalCount;
+	}	
+	public int deleteMemberAD(Connection conn, String memberId) {
+		String sql = prop.getProperty("deleteMemberAD");
+		int result = 0;
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, memberId);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new MemberException("회원 추방에 실패했습니다.", e);
+		}
+		return result;
 	}
 }

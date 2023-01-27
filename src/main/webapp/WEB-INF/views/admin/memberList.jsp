@@ -104,6 +104,7 @@ window.addEventListener('load', () => {
 				<th>이메일</th>
 				<th>전화번호</th>
 				<th>회원권한</th>
+				<th>회원추방</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -130,6 +131,7 @@ window.addEventListener('load', () => {
 							<option value="<%= MemberRole.A %>" <%= member.getMemberRole() == MemberRole.A ? "selected" : "" %>>관리자</option>
 						</select>
 					</td>
+					<td><input type="button" data-member-id="<%= member.getEmail() %>" class="delMember" value="강제추방" /></td>
 					
 				</tr>
 		<%
@@ -146,6 +148,12 @@ window.addEventListener('load', () => {
 <form action="<%= request.getContextPath() %> /admin/updateMemberRole" name="memberRoleUpdateFrm" method="POST">
 	<input type="hidden" name="memberId" />
 	<input type="hidden" name="memberRole" />
+</form>
+<form 
+	action="<%= request.getContextPath() %>/admin/memberDelete"
+	name="admMemberDelFrm"
+	method="POST">
+	<input type="hidden" name="memberId"/>
 </form>
 <script>
 document.querySelectorAll(".member-role").forEach((select) => {
@@ -170,6 +178,15 @@ document.querySelectorAll(".member-role").forEach((select) => {
 		
 		
 	});
+});
+
+$(".delMember").click(function(){
+	var memberId = $(this).data("memberId");
+	if(confirm(memberId+"를 정말 추방시키겠습니까?")){
+		var $frm = $(document.admMemberDelFrm);
+		$frm.find("[name=memberId]").val(memberId);
+		$(document.admMemberDelFrm).submit();
+	}
 });
 
 </script>

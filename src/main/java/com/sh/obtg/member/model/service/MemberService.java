@@ -58,5 +58,18 @@ public class MemberService {
 		close(conn);
 		return totalCount;
 	}
+	public int deleteMemberAD(String memberId) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = memberDao.deleteMemberAD(conn, memberId);
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+		} finally {
+			close(conn);
+		}
+		return result;
+	}
 
 }
