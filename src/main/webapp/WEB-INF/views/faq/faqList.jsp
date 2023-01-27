@@ -5,7 +5,7 @@
 
 <!-- 리스트 객체 -->
 <%
-	List<faq> faq = (List<faq>) request.getAttribute("faqList");
+	List<faq> faqList = (List<faq>) request.getAttribute("faqList");
 %>
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/faq.css" />
@@ -37,7 +37,7 @@
     			<th>조회수</th>
     		</tr>
 				<tr>
-					<td><% faq. %></td>
+					<td><%= faq.g %></td>
 					<td>${posting.title }</td>
 					<td>${posting.name }</td>
 					<td>${posting.writeDate }</td>
