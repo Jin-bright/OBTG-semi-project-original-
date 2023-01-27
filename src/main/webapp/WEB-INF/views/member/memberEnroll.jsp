@@ -3,38 +3,9 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/memberEnroll.css">
 
-<% if(loginMember != null){ %>
 <script src = "<%=request.getContextPath()%>/js/ws.js"></script>
-<% } %>
-<script>
-window.addEventListener('load',()=>{
-	<%if(msg != null){%>
-	alert("<%= msg %>");
-	<%} %>
-	
-	 <%-- <%if(loginMember == null) {%>
-		document.loginFrm.addEventListener('submit', (e)=> {
-			const memberId = document.querySelector("#memberId");
-			const password = document.querySelector("#password");
-			
-			if(!/^\w{4,}$/.test(memberId.value)){
-				alert("유효한 아이디를 입력하세요.");
-				memberId.select();
-				e.preventDefault();
-				return;				
-			}
-			if(!/^\w{4,}$/.test(password.value)){
-				alert("유효한 비밀번호를 입력하세요");
-				password.select();
-				e.preventDefault();
-				return;
-			}
-		});
-		<%}%>  --%>
-		
-});
-</script>
 <div class="form">
+
       <ul class="tab-group">
         <li class="tab active"><a id="atag" href="#signup">Sign Up</a></li>
         <li class="tab"><a id="atag" href="#login">Log In</a></li>
@@ -54,10 +25,11 @@ window.addEventListener('load',()=>{
             </label>
             <input type="password" name="password" id="password" required />
           </div>
-          <div>
-          <input type="checkbox" name="saveId" id="saveId" <%= saveId != null ? "checked" : "" %>/>
+          <div class="field-wrap">
+          <input type="checkbox" name="saveId" id="saveId" <%= saveId != null ? "checked" : "" %> style="display:inline-block; width:30px;"/>
+		  <label style="font-size:15px">ID 저장</label>
           </div>
-          <button class="button button-block" onclick="location.href ='<%=request.getContextPath()%>/';"/>Log In</button>
+          <button class="button button-block"/>LogIn</button>
           </form>
         </div>
         <!-- login form 끝 -->
@@ -69,7 +41,7 @@ window.addEventListener('load',()=>{
               <label class="top">
                 ID<span class="req">*</span>
               </label>              
-              <input type="text"  name="memberId" id="memberId" required autocomplete="off" required/>
+              <input type="text"  name="memberId" id="_memberId" required autocomplete="off" required/>
               <input type="button" value="ID 중복검사" onclick = "checkIdDuplicate();" style="margin-top: 5px; background-color: lightpink; border: 0px; cursor: pointer;"/>
 			  <input type = "hidden" id = "idValid" name="idValid" value= "0"/>
 			  
@@ -92,14 +64,14 @@ window.addEventListener('load',()=>{
             <label>
               Name<span class="req">*</span>
             </label>
-            <input type="text" name="name" id="name"  autocomplete="off"/>
+            <input type="text" name="name" id="name" autocomplete="off"/>
           </div>
           
           <div class="field-wrap">
             <label>
               Nick Name<span class="req">*</span>
             </label>
-            <input type="text" name="nickname" id="nickname"  autocomplete="off"/>
+            <input type="text" name="nickname" id="nickname" autocomplete="off"/>
           </div>
           
            <div class="field-wrap">
@@ -186,35 +158,38 @@ window.addEventListener('load',()=>{
       </div><!-- tab-content -->
       
 </div> <!-- /form -->
+<form action="<%= request.getContextPath() %>/member/checkIdDuplicate" name = "checkIdDuplicateFrm">
+    <input type="hidden" name="memberId" />
+</form>
 <script>
 /**
  * 중복검사이후 다시 아이디를 수정한 경우.
  */
-document.querySelecor("#memberId").onfocus = (e) => {
+document.querySelector("#_memberId").onfocus = (e) => {
 	document.querySelector("#idValid").value = "0";
 };
 const checkIdDuplicate = () => {
-	const memberId = document.querySelector("#memberId");
+	const memberId = document.querySelector("#_memberId");
 	// 아이디 - 영문자/숫자 4글자이상
-	if(!/^[A-Za-z0-9]{4,}$/.test(memberId.value)){
-		alert("아이디는 영문자/숫자 4글자이상이어야 합니다.");
+	 if(!/^[A-Za-z0-9]{4,}$/.test(memberId.value)){
+		alert("아이디는 영문자/숫자 4글자이상이어야합니다.");
 		memberId.select();
 		return;
-	};
+	}; 
 	// 폼의 액션 주소를 사용하기 때문에 open의 url은 비워둔다.
-	const title = "checkIdDuplicatePopup"
-	open("", title,"width=300px, heigth=200px, left=100px, top=100px");
+	const title = "checkIdDuplicatePopup";
+	open("", title,"width=200px, heigth=200px, left=100px, top=100px");
 	
 	const frm = document.checkIdDuplicateFrm
-	frm.target = title // 폼을 팝업에 제출
+	frm.target = title; // 폼을 팝업에 제출
 	frm.memberId.value = memberId.value;
 	frm.submit();
 };
 
 document.memberEnrollFrm.onsubmit = (e) => {
-	const memberId = document.querySelector("#memberId");
+	const memberId = document.querySelector("#_memberId");
 	const idValid = document.querySelector("#idValid");
-	const password = document.querySelector("#password");
+	const password = document.querySelector("#_password");
 	const passwordCheck = document.querySelector("#passwordCheck");
 	const memberName = document.querySelector("#name");
 	const birthday = document.querySelector("#birthday");
@@ -222,14 +197,15 @@ document.memberEnrollFrm.onsubmit = (e) => {
 	const phone = document.querySelector("#phone");
 	// 아이디 - 영문자/숫자 4글자이상
 	if(!/^[A-Za-z0-9]{4,}$/.test(memberId.value)){
-		alert("아이디는 영문자/숫자 4글자이상이어야 합니다.");
+		alert("아이디는 영문자/숫자 4글자이상이어야합니다.");
 		memberId.select();
 		return false;
 	}
-	// 아이디 중복검사 통과여부
+	
+	// 아이디중복검사 통과여부
 	if(idValid.value !== '1'){
-		alery("아이디 중복검사 해주세요");
-		memberId.nextElementSibling.focus();// 중복검사 버튼
+		alert("아이디 중복검사 해주세요.");
+		memberId.nextElementSibling.focus(); // 중복검사 버튼
 		return false;
 	}
 	
