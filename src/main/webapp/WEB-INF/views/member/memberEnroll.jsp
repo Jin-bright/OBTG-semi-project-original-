@@ -1,19 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/memberEnroll.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/memberEnroll.css"/>
 
 <% if(loginMember != null){ %>
 <script src = "<%=request.getContextPath()%>/js/ws.js"></script>
 <% } %>
-</script>
+	 <%--
 <script>
 window.addEventListener('load',()=>{
 	<%if(msg != null){%>
 	alert("<%= msg %>");
 	<%} %>
 	
-	<%if(loginMember == null) {%>
+ <%if(loginMember == null) {%>
 		document.loginFrm.addEventListener('submit', (e)=> {
 			const memberId = document.querySelector("#memberId");
 			const password = document.querySelector("#password");
@@ -31,10 +31,11 @@ window.addEventListener('load',()=>{
 				return;
 			}
 		});
-		<%}%>
-		
+		<%}%>		
 });
 </script>
+  --%>
+
 <div class="form">
       <ul class="tab-group">
         <li class="tab active"><a id="atag" href="#signup">Sign Up</a></li>
@@ -47,41 +48,39 @@ window.addEventListener('load',()=>{
             <label>
               ID<span class="req"></span>
             </label>
-            <input type="text"required autocomplete="off"/>
+            <input type="text" name="memberId" id="memberId" required/>
           </div>
           <div class="field-wrap">
             <label>
               Password<span class="req"></span>
             </label>
-            <input type="password"required autocomplete="off"/>
+            <input type="password" name="password" id="password" required />
           </div>
           <div>
           <input type="checkbox" name="saveId" id="saveId" <%= saveId != null ? "checked" : "" %>/>
           </div>
-          <button class="button button-block"/>Log In</button>
+          <button class="button button-block" onclick="location.href ='<%=request.getContextPath()%>/';"/>Log In</button>
           </form>
         </div>
         <!-- login form 끝 -->
       
         <div id="signup">   
-          <form name="memberEnrollFrm" method="POST" action ="<%= request.getContextPath()%>/member/memberEnroll"">
+          <form name="memberEnrollFrm" method="POST" action ="<%= request.getContextPath()%>/member/memberEnroll">
           <div class="top-row">
             <div class="field-wrap">
               <label class="top">
                 ID<span class="req">*</span>
-              </label>
-              
-              <input type="text"  name="memberId" id="memberId" autocomplete="off""/>
-              <input type="button" value="ID 중복검사" onclick = "checkIdDuplicate();" style="margin-top: 5px; background-color: lightpink; border: 0px; cursor: pointer;"/>
-			  <input type = "hidden" id = "idValid" name="idValid" value= "0"/>
-			  
+              </label>              
+              <input type="text"  name="memberId" id="memberId"  value = ""  required/>
+              <input type="button" value="ID 중복검사" onclick = "checkIdDuplicate();" style="margin-top: 5px; background-color: lightpink; border: 0px; cursor: pointer;" >
+			  <input type ="hidden" id = "idValid" name="idValid" value= "0"/>
             </div>
             </div>
             <div class="field-wrap">
               <label>
                 Password<span class="req">*</span>
               </label>
-              <input type="password" name="password" id="password" autocomplete="off"/>
+              <input type="password" name="password" id="password" required autocomplete="off"/>
             </div>
           <div class="field-wrap">
             <label>
@@ -94,9 +93,26 @@ window.addEventListener('load',()=>{
             <label>
               Name<span class="req">*</span>
             </label>
-            <input type="text" name="name" id="name" autocomplete="off"/>
+            <input type="text" name="name" id="name"  autocomplete="off"/>
           </div>
           
+          <div class="field-wrap">
+            <label>
+              Nick Name<span class="req">*</span>
+            </label>
+            <input type="text" name="nickname" id="nickname"  autocomplete="off"/>
+          </div>
+          
+           <div class="field-wrap">
+            <label>
+              Gender<span class="req">*</span>
+            </label>
+					<input type="radio" name="gender" id="gender0" value="M">
+					<label for="gender0">남</label>
+					<input type="radio" name="gender" id="gender1" value="F" checked>
+					<label for="gender1">여</label>
+			</div>	
+			
           <div class="field-wrap">
             <label>
              Birthday <span class="req"></span>
@@ -108,7 +124,7 @@ window.addEventListener('load',()=>{
             <label>
               Email<span class="req">*</span>
             </label>
-            <input type="email" name="email" id="email" autocomplete="off"/>
+            <input type="email" name="email" id="email" required autocomplete="off"/>
           </div>
           
           <div class="field-wrap">
@@ -118,128 +134,139 @@ window.addEventListener('load',()=>{
             <input type="text" name="phone" id="phone" autocomplete="off"/>
           </div>
           
+          <div class="field-wrap">
+            <label>
+              Introduce<span class="req">*</span>
+            </label>
+            <input type="text" name="introduce" id="introduce" autocomplete="off"/>
+          </div>
+          
+          <div class="field-wrap">
+            <label>
+              Profile-file<span class="req"></span>
+            </label>
+            <input type="file" name="upFile" id="upFile" required accept="image/*" />
+          </div>
           
           <fieldset class="checkbox-group">
 	<legend class="checkbox-group-legend">Choose your Style</legend>
-	<%-- <div class="cb">
-		<label class="checkbox-wrapper">
-			<input type="checkbox" class="checkbox-input" />
-			<span class="checkbox-tile">
-				<span class="checkbox-icon">
-				<img src="<%=request.getContextPath()%>/image/love.png" alt="" class="love" width="50%" height="50%">
-				</span>
-				<span class="checkbox-label">Lovely</span>
-			</span>
-		</label>
-	</div> --%>
-	<div class="cb">
-			<span class="checkbox-input">
-			<input type="checkbox" class="checkbox-tile" checked />
-					<img src="<%=request.getContextPath()%>/image/dandy.png" alt="" class="love" width="50%" height="50%">
-				<span class="checkbox-label">Dandy</span>		
-				</span>
-			</span>
-			</div>
-	<%-- <div class="cb">
-		<label class="checkbox-wrapper">
-			<input type="checkbox" class="checkbox-input" checked />
-			<span class="checkbox-tile">
-				<span class="checkbox-icon">
-					<img src="<%=request.getContextPath()%>/image/dandy.png" alt="" class="love" width="50%" height="50%">
-				</span>
-				<span class="checkbox-label">Dandy</span>
-			</span>
-		</label>
-	</div>
-	<div class="cb">
-		<label class="checkbox-wrapper">
-			<input type="checkbox" class="checkbox-input" />
-			<span class="checkbox-tile">
-				<span class="checkbox-icon">
-					<img src="<%=request.getContextPath()%>/image/formal.png" alt="" class="love" width="50%" height="50%">
-				</span>
-				<span class="checkbox-label">Formal</span>
-			</span>
-		</label>
-	</div>
-	<div class="cb">
-		<label class="checkbox-wrapper">
-			<input type="checkbox" class="checkbox-input" />
-			<span class="checkbox-tile">
-				<span class="checkbox-icon">
-					<img src="<%=request.getContextPath()%>/image/street.png" alt="" class="love" width="50%" height="50%">
-				</span>
-				<span class="checkbox-label">Street</span>
-			</span>
-		</label>
-	</div>
-	<div class="cb">
-		<label class="checkbox-wrapper">
-			<input type="checkbox" class="checkbox-input" />
-			<span class="checkbox-tile">
-				<span class="checkbox-icon">
-					<img src="<%=request.getContextPath()%>/image/girl.png" alt="" class="love" width="50%" height="50%">
-				</span>
-				<span class="checkbox-label">Girlish</span>
-			</span>
-		</label>
-	</div>
-	<div class="cb">
-		<label class="checkbox-wrapper">
-			<input type="checkbox" class="checkbox-input" />
-			<span class="checkbox-tile">
-				<span class="checkbox-icon">
-					<img src="<%=request.getContextPath()%>/image/retro.png" alt="" class="love" width="50%" height="50%">
-				</span>
-				<span class="checkbox-label">Retro</span>
-			</span>
-		</label>
-	</div>
-	<div class="cb">
-		<label class="checkbox-wrapper">
-			<input type="checkbox" class="checkbox-input" />
-			<span class="checkbox-tile">
-				<span class="checkbox-icon">
-					<img src="<%=request.getContextPath()%>/image/romantic.png" alt="" class="love" width="50%" height="50%">
-				</span>
-				<span class="checkbox-label">Romantic</span>
-			</span>
-		</label>
-	</div>
-	<div class="cb">
-		<label class="checkbox-wrapper">
-			<input type="checkbox" class="checkbox-input" checked/>
-			<span class="checkbox-tile">
-				<span class="checkbox-icon">
-					<img src="<%=request.getContextPath()%>/image/chic.png" alt="" class="love" width="50%" height="50%">
-				</span>
-				<span class="checkbox-label">Chic</span>
-			</span>
-		</label>
-	</div>
-	<div class="cb">
-		<label class="checkbox-wrapper">
-			<input type="checkbox" class="checkbox-input" checked/>
-			<span class="checkbox-tile">
-				<span class="checkbox-icon">
-					<img src="<%=request.getContextPath()%>/image/amekaji.png" alt="" class="love" width="50%" height="50%">
-				</span>
-				<span class="checkbox-label">Amekaji</span>
-			</span>
-		</label>
-	</div> --%>
+	<tr id="check-box">
+		<td>
+			<input type="checkbox" name="Lovely" id="lovely"/>lovely		
+		</td>
+		<td>
+			<input type="checkbox" name="Dandy" id="Dandy" /> Dandy	
+		</td>
+		<td>
+			<input type="checkbox" name="Formal" id="Formal" />	Formal
+		</td>
+		<td>
+			<input type="checkbox" name="Street" id="Street" />	Street	
+		</td>
+		<td>
+			<input type="checkbox" name="Girlish" id="Girlish" /> Girlish
+		</td>
+		<td>
+			<input type="checkbox" name="Retro" id="Retro" /> Retro
+		</td>
+		<td>
+			<input type="checkbox" name="Romantic" id="Romantic" />	Romantic
+		</td>
+		<td>
+			<input type="checkbox" name="Chic" id="Chic" />	Chic	
+		</td>
+		<td>
+			<input type="checkbox" name="Amekaji" id="Amekaji" /> Amekaji		
+		</td>
+	</tr>
 </fieldset>
           <button type="submit" class="button button-block"/>Sing up</button>          
           </form>
         </div>
         
-        
-        
       </div><!-- tab-content -->
       
 </div> <!-- /form -->
 
+
+
+<form action="<%= request.getContextPath() %>/member/checkIdDuplicate" name = "checkIdDuplicateFrm">
+	<input type="hidden" name="memberId" />
 </form>
+<script>
+/**
+ * 중복검사이후 다시 아이디를 수정한 경우.
+ */
+document.querySelector("#memberId").onfocus = (e) => {
+	document.querySelector("#idValid").value = "0";
+};
+const checkIdDuplicate = () => {
+	const memberId = document.querySelector("#memberId");
+	// 아이디 - 영문자/숫자 4글자이상
+	
+/* 	if(!/^[A-Za-z0-9]{4,}$/.test(memberId.value)){
+		alert("아이디는 영문자/숫자 4글자이상이어야 합니다.");
+		memberId.select();
+		return;
+	};  */
+	
+	// 폼의 액션 주소를 사용하기 때문에 open의 url은 비워둔다.
+	const title = "checkIdDuplicatePopup"
+	open("", title,"width=100px, heigth=100px, left=50px, top=50px");
+	
+	const frm = document.checkIdDuplicateFrm
+	frm.target = title // 폼을 팝업에 제출
+	frm.memberId.value = memberId.value;
+	frm.submit();
+};
+
+document.memberEnrollFrm.onsubmit = (e) => {
+	const memberId = document.querySelector("#memberId");
+	const idValid = document.querySelector("#idValid");
+	const password = document.querySelector("#password");
+	const passwordCheck = document.querySelector("#passwordCheck");
+	const memberName = document.querySelector("#name");
+	const birthday = document.querySelector("#birthday");
+	const email = document.querySelector("#email");
+	const phone = document.querySelector("#phone");
+	// 아이디 - 영문자/숫자 4글자이상
+	<!--
+	if(!/^[A-Za-z0-9]{4,}$/.test(memberId.value)){
+		alert("아이디는 영문자/숫자 4글자이상이어야 합니다.");
+		memberId.select();
+		return false;
+	}
+	-->
+	// 아이디 중복검사 통과여부
+	if(idValid.value !== '1'){
+		alery("아이디 중복검사 해주세요");
+		memberId.nextElementSibling.focus();// 중복검사 버튼
+		return false;
+	}
+	
+	// 비밀번호 - 영문자/숫자/특수문자 !@#$% 4글자이상
+	if(!/^[A-Za-z0-9!@#$%]{4,}$/.test(password.value)){
+		alert("비밀번호는는 영문자/숫자/특수문자(!@#$%) 4글자이상이어야 합니다.");
+		password.select();
+		return false;
+	}
+	
+	// 비밀번호/비밀번호확인 동일
+	if(password.value !== passwordCheck.value){
+		alert("두 비밀번호가 일치하지 않습니다.");
+		password.select();
+		return false;
+	}
+	
+	// 이름 - 한글 2글자이상
+	if(!/^[가-힣]{2,}$/.test(memberName.value)){
+		alert("이름은 한글 2글자 이상이어야 합니다.");
+		memberName.select();
+		return false;
+	}
+};
+</script>
+
 <script type="text/javascript" src="<%= request.getContextPath()%>/js/memberEnroll.js"></script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

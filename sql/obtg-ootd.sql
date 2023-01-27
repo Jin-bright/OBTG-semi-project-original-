@@ -126,6 +126,8 @@ CREATE TABLE SHARE_board (
 ALTER TABLE SHARE_board ADD constraint uq_share_member_id unique(member_id);
 
 create sequence seq_SHARE_board_no;
+-- unique 제약조건 해제 0126 ( 사유: 중복된 id로 글 못씀 ) 
+-- uq 제약조건 해제완료   ALTER TABLE SHARE_board  DROP CONSTRAINT uq_share_member_id;
 
 
 
@@ -271,8 +273,6 @@ create sequence seq_chat_log_no;
 
 
 
-
-
 CREATE TABLE chatroom (
 	chatroom_id	number		NOT NULL,
     board_id    varchar2(50) NOT NULL,
@@ -283,6 +283,8 @@ CREATE TABLE chatroom (
 );
 
 create sequence seq_chatroom_no;
+
+-- share table 제약조건 해제 0126 ->  ALTER TABLE chatroom drop CONSTRAINT  FK_SHARE_board_TO_chatroom_1;
 
 
 create table obtg_column (
@@ -299,3 +301,93 @@ create table obtg_column (
     constraint fk_column_writer foreign key(writer) references member(member_id)
 );
 create sequence seq_column_no;
+
+
+
+
+
+
+
+
+--0126 트리거 생성 by진 (ootd) 보류 !!! 게시글 삭제에 오류남  
+-- ootd
+create or replace trigger trig_table_ootd_find -- 괄호 안씀 
+  after 
+	insert or update or delete on OOTD_board   --   이 테이블에 변화가 생기면  begin절에 쓴대로 trigger 가 작동되는거임 
+	for each row 
+begin
+	if inserting then   insert into ootd_find  (no, style_no, OOTD_no )
+	   values ( seq_ootd_find_no.nextval, :new.style_no, :new.OOTD_no );
+	elsif updating then insert into ootd_find (no, style_no, OOTD_no)
+			values ( seq_ootd_find_no.nextval, :new.style_no, :old.OOTD_no );
+	elsif deleting  then insert into ootd_find(no, style_no,OOTD_no)
+        values ( seq_ootd_find_no.nextval, :old.style_no, :old.OOTD_no );      
+end if; 
+
+end;
+
+-- 0126 트리거 생성 by진 (share) ---- 보류 !!! 게시글 삭제에 오류남 
+create or replace trigger trig_table_share_find -- 괄호 안씀 
+  after 
+	insert or update or delete on share_board   --   이 테이블에 변화가 생기면  begin절에 쓴대로 trigger 가 작동되는거임 
+	for each row 
+begin
+	if inserting then   insert into share_find  (no, style_no, share_no )
+	   values ( seq_share_find_no.nextval, :new.style, :new.SHARE_no );
+	elsif updating then insert into share_find (no, style_no, share_no)
+			values ( seq_share_find_no.nextval, :new.style, :old.SHARE_no );
+	elsif deleting  then insert into share_find(no, style_no,share_no)
+        values ( seq_share_find_no.nextval, :old.style, :old.SHARE_no );      
+end if; 
+
+end;
+
+-- 댓글 테이블 수정(제약조건변경 by jin)
+CREATE TABLE OOTD_board_comment (
+	cmt_no	number,
+	board_no	number,
+	member_id	varchar2(50)		NOT NULL,
+	cmt_level	number		default 1,
+	cmt_content	varchar2(2000)		NULL,
+	cmt_reg_date	Date		default sysdate,
+	comment_ref	number,
+    CONSTRAINT PK_OOTD_BOARD_COMMENT PRIMARY KEY (cmt_no),
+    CONSTRAINT FK_OOTD_board_comment_no FOREIGN KEY (board_no) REFERENCES OOTD_board (OOTD_no) on delete CASCADE,
+    CONSTRAINT FK_Member_board_comment_id FOREIGN KEY (member_id) REFERENCES Member (member_id) on delete set null,
+    CONSTRAINT FK_OOTD_BORAD_comment_ref foreign key(comment_ref) references OOTD_board_comment(cmt_no) on delete CASCADE
+);
+
+
+-- ootd find 테이블 /시퀀스  새로만듦 / 제약조건변경(on delte cascade )  (by jin ) 
+CREATE TABLE ootd_find (
+	no	number,
+	style_no	varchar2(10)		NOT NULL,
+	OOTD_no	number		NOT NULL,
+    CONSTRAINT PK_OOTD_FIND PRIMARY KEY (no),
+    CONSTRAINT FK_fashionstyle_TO_ootd_find_1 FOREIGN KEY (style_no)REFERENCES fashionstyle (style_no),
+--    CONSTRAINT FK_OOTD_board_TO_ootd_find_1 FOREIGN KEY (OOTD_no)REFERENCES OOTD_board (OOTD_no) 
+    constraint FK_OOTD_board_TO_ootd_find_1 FOREIGN KEY (OOTD_no)REFERENCES OOTD_board (OOTD_no) on delete CASCADE
+);
+create sequence seq_ootd_find_no3;
+
+
+
+
+
+
+
+-- SHARE_find 테이블 /시퀀스  새로만듦 / 제약조건변경(on delte cascade )  (by jin ) 
+CREATE TABLE SHARE_find (
+	no	number,
+	style_no	varchar2(10)		NOT NULL,
+	share_no	number		NOT NULL,
+    CONSTRAINT PK_SHARE_FIND PRIMARY KEY (no),
+    CONSTRAINT FK_fashionstyle_TO_SHARE_find_1 FOREIGN KEY (style_no) REFERENCES fashionstyle (style_no),
+    constraint FK_SHARE_board_TO_SHARE_find FOREIGN KEY (share_no) REFERENCES SHARE_board (SHARE_no) on delete cascade 
+);
+
+create sequence seq_share_find_no;
+-- 제약 조건 추가하기 (부모레코드 지우면 자식도 지운다 )  0126 jin  
+ALTER TABLE SHARE_find ADD  constraint FK_SHARE_board_TO_SHARE_find FOREIGN KEY (share_no) REFERENCES SHARE_board (SHARE_no) on delete cascade 
+
+

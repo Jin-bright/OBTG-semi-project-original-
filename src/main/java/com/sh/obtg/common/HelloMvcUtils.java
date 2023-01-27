@@ -116,7 +116,7 @@ public class HelloMvcUtils {
 	}
 
 	public static String convertLineFeedToBr(String str) {
-		return str.replaceAll("\\n", "<br/>");
+		return str.replaceAll("\n", "<br/>");
 	}
 
 	/**

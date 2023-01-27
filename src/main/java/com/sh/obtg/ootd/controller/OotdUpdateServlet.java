@@ -2,6 +2,8 @@ package com.sh.obtg.ootd.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Enumeration;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,11 +34,11 @@ public class OotdUpdateServlet extends HttpServlet {
 		
 		
 		//2. 업무로직 
-		OotdBoard board = ootdBoardService.selectOneBoard(no);		
-		System.out.println( "board = "  + board );
+		OotdBoard ootdboard = ootdBoardService.selectOneBoard(no);		
+		System.out.println( "board = "  + ootdboard );
 		
 		
-		request.setAttribute("board", board);
+		request.setAttribute("ootdboard", ootdboard);
 		request.getRequestDispatcher("/WEB-INF/views/ootd/ootdUpdate.jsp")
 		.forward(request, response);
 	}
@@ -53,7 +55,7 @@ public class OotdUpdateServlet extends HttpServlet {
 		// -- (HttpServletRequest arg0, String arg1, int arg2, String arg3, FileRenamePolicy arg4) throws IOException 
 		// 1. HttpServletRequest자리 / 2. String saveDirectory(실제저장할파일경로)/ 3.업로드할수있는파일최대크기 (꼭정해야됨) 일반파일은 10mb정도/ 4.인코딩(utf-8) / 5.파일이름정책객체? - 중복파일이 있는경우 어떻게할거냐  
 
-		
+		try {
 			String saveDirectory = getServletContext().getRealPath("/uploadootds/ootd"); //application 객체 반환  //  / <-- webroot를 가리킨다
 			System.out.println("saveDirectory : " + saveDirectory  );
 			
@@ -79,10 +81,31 @@ public class OotdUpdateServlet extends HttpServlet {
 			String ootdShoes = multiReq.getParameter("ootdShoes");
 			String ootdEtc = multiReq.getParameter("ootdEtc");
 			String _style = multiReq.getParameter("style");
+			
+			if( _style.equals("러블리")) {
+				_style = "S1";
+			}else if( _style.equals("댄디")) {
+				_style = "S2";
+			}else if( _style.equals("포멀")) {
+				_style = "S3";
+			}else if( _style.equals("스트릿")) {
+				_style = "S4";
+			}else if( _style.equals("걸리쉬")) {
+				_style = "S5";
+			}else if( _style.equals("레트로")) {
+				_style = "S6";
+			}else if( _style.equals("로맨틱")) {
+				_style = "S7";
+			}else if( _style.equals("시크")) {
+				_style = "S8";
+			}else if( _style.equals("아메카지")) {
+				_style = "S9";
+			}
+			
 			Style style = Style.valueOf(_style);
 
 			String[] delFiles = multiReq.getParameterValues("delFile");
-
+			System.out.println( delFiles  );
 		
 			String ootdContents = multiReq.getParameter("editordata");
 			
@@ -91,6 +114,7 @@ public class OotdUpdateServlet extends HttpServlet {
 			
 			
 			OotdBoard ootdBoard = new OotdBoard();
+			ootdBoard.setOotdNo(no);
 			ootdBoard.setOotdWriter(ootdwriter);
 			ootdBoard.setStyleNo(style);
 			ootdBoard.setOOTDTitle(ootdtitle);
@@ -102,13 +126,19 @@ public class OotdUpdateServlet extends HttpServlet {
 
 			System.out.println( "**ootdBoard " + ootdBoard);
 			
-			//업로드한 파일처리 
-			if( multiReq.getFile("upFile1") !=null ) {
-				OotdAttachment ootdAttach = new OotdAttachment();
-				ootdAttach.setOriginalFilename(multiReq.getOriginalFileName("upFile1"));
-				ootdAttach.setRenamedFilename( multiReq.getFilesystemName("upFile1")); 		// 2. 파일명 변경 (original -> renamed )?
-				ootdBoard.addAttachment(ootdAttach);	
+			Enumeration<String> filenames = multiReq.getFileNames(); // upFile1, upFile2, ...
+			while(filenames.hasMoreElements()) {
+				String filename = filenames.nextElement(); 
+				if(multiReq.getFile(filename) != null) { // 전송된 파일이 있는가?
+					OotdAttachment attach = new OotdAttachment();
+					attach.setBoardNo(no); // fk 값대입
+					attach.setOriginalFilename(multiReq.getOriginalFileName(filename));
+					attach.setRenamedFilename(multiReq.getFilesystemName(filename));
+					ootdBoard.addAttachment(attach);
+				}
 			}
+			
+			System.out.println( ootdBoard );
 						
 				
 
@@ -135,17 +165,17 @@ public class OotdUpdateServlet extends HttpServlet {
 	    			}
 	    			//2)attachment 행삭제
 	    			result = ootdBoardService.deleteAttachment(attachNo); //delete from attachment where no = ? 
-	    			
+	    			System.out.println("delete 첨부파일? " + result );
 	    		}
 	    	}
 			
-		
-			System.out.println("오류발생");
-			
-			request.getSession().setAttribute("msg", "게시글 수정 중 오류가 발생했습니다." );
+	    	// 3. 리다이렉트
 			response.sendRedirect(request.getContextPath()+"/ootd/ootdView?no=" + ootdBoard.getOotdNo() );
-		
-	    // 리다이렉트는 : board/boardList로 가게 -  메세지는 너무 뻔한경우는 걍 쓰지마 (왜냐면 이 글은 제일 최신으로 등록되니까 바로 확인가능 )
+		}catch (Exception e) {
+			e.printStackTrace();
+			request.getSession().setAttribute("msg", "게시글 등록중 오류가 발생했습니다.");
+			response.sendRedirect(request.getContextPath() + "/ootd/ootdWholeList");
+		}
 
 	}
 

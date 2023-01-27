@@ -31,10 +31,10 @@
 		enctype ="multipart/form-data"
 		method="post">
 		<table id="tbl-board-view">
-		
+		<input type="hidden" name="no"  value="<%=ootdboard.getOotdNo()%>"/>		
 		<tr >
 			<th style ="padding-top:20px; font-size : 24px">제 목</th>
-			<td style ="padding-top:20px" ><input  class="inputtext" type="text" name="ootdtitle" placeholder="제목을 입력해주세요." required></td>
+			<td style ="padding-top:20px" ><input  class="inputtext" type="text" name="ootdtitle"  value="<%=ootdboard.getOOTDTitle() %>" placeholder="제목을 입력해주세요." required></td>
 		</tr>
 		
 		<tr>
@@ -46,25 +46,25 @@
 		<tr>
 			<th>상의</th>
 			<td>
-				<input type="text" class="inputtext"  name="ootdTop" value="" required/>
+				<input type="text" class="inputtext"  name="ootdTop" value="<%=ootdboard.getOOTDTop() %>" required/>
 			</td>
 		</tr>
 		<tr>
 			<th>하의</th>
 			<td>
-				<input type="text"  class="inputtext" name="ootdBottom" value="" required/>
+				<input type="text"  class="inputtext" name="ootdBottom" value="<%=ootdboard.getOOTDBottom()%>" required/>
 			</td>
 		</tr>
 			<tr>
 			<th>신발</th>
 			<td>
-				<input type="text" class="inputtext" name="ootdShoes" value="" />
+				<input type="text" class="inputtext" name="ootdShoes" value="<%=ootdboard.getOOTDShoes() %>" />
 			</td>
 		</tr>
 			<tr>
 			<th>기타</th>
 			<td>
-				<input type="text" class="inputtext" name="ootdEtc" value="" />
+				<input type="text" class="inputtext" name="ootdEtc" value="<%=ootdboard.getOOTDEtc()%> " />
 			</td>
 		</tr>
 		<tr>
@@ -83,7 +83,7 @@
 		</tr>
 		<tr>
 			<th>첨부파일</th>
-			<td >
+			<td id="filetd">
 		<%
 		List<OotdAttachment> ootdAttachments = ootdboard.getOotdAttachments();
 			if(!ootdAttachments.isEmpty()){
@@ -99,21 +99,19 @@
 				}
 			}
 		%>
-			<input type="file" name="upFile1">   <!-- 첨부파일의 경우 input 의 value 값은 맘대로 지정할수없다 (해도안됨) -->
+			<input type="file" name="upFile1" id="upFile1">   <!-- 첨부파일의 경우 input 의 value 값은 맘대로 지정할수없다 (해도안됨) -->
 		</td>
 		</tr>
 		<tr>
 			<th>미리보기</th>
 			<td style="padding: 10px">
-				<div id="col_img">
-					<img id="col_img_viewer" style = "width : 200px; height : 250px;" >
-				</div>
+				<img id="col_img_viewer"  style = "width : 200px; height : 250px;" >
 			</td>
 		</tr>
 		<tr>
 			<th  colspan="2" >
 			<div class="summernotecontainer">
-		  <textarea colspan="2" id="summernote"  class="summernote" name ="editordata"></textarea>
+		  <textarea colspan="2" id="summernote"  class="summernote" name ="editordata"  value="<%=ootdboard.getOOTDContents()%>" > </textarea>
  <!-- 			  <textarea style="font-weight:lighter" colspan="2" id="summernote"  class="summernote" name ="ootdContents" required></textarea>   -->	  
 			      
 			</div>
@@ -123,6 +121,7 @@
 			<th colspan="2">
 				<!--<input  class ="inputbuttons" type="submit" value="CANCEL"  style="margin-left : 100px"> -->
 				<input  class ="inputbuttons"  type="submit" value="SUBMIT">
+				<input class ="inputbuttons"  type="button" value="CANCEL" onclick="history.go(-1);"/>
 			</th>
 		</tr>
 	</table>
@@ -149,15 +148,14 @@ function checkOnlyOne(element) {
 
 <script>
 /* 첨부파일 이미지 미리보기 */
-document.querySelector("#updatefile").addEventListener('change', (e) => {
+document.querySelector("#upFile1").addEventListener('change', (e) => {
 	const img = e.target;
 	
 	if(img.files[0]){
 		// 파일 선택한 경우
 		const fr = new FileReader(); // html5 api
-		fr.readAsDataURL(img.files[0]); // 비동기처리 - 언제끝날지 몰라 백그라운드에서 작업함
+		fr.readAsDataURL(img.files[0]); // 
 		fr.onload = (e) => {
-			// 읽기 작업 완료시 호출될 load이벤트핸들러
 			document.querySelector("#col_img_viewer").src = e.target.result; // result속성은 dataUrl임
 		};
 	}
