@@ -144,7 +144,7 @@
        <form action="<%=request.getContextPath()%>/ootd/ootdCommentEnroll" method="post" name="boardCommentFrm">
          <input type="hidden" name="boardNo" value="<%= ootdboard.getOotdNo() %>" />
     <%-- <input type="hidden" name="writer" value="<%= loginMember != null ? (loginMember.getMemberId()) : ""%>" />  --%> 
-         <input type="hidden" name="writer" value="tigerhj" />
+         <input type="hidden" name="writer" value="<%=ootdboard.getOotdWriter()%>" />
          <input type="hidden" name="commentLevel" value="1" />
          <input type="hidden" name="commentRef" value="0" />    
          <textarea id="cmtcontent" name="content" cols="60" rows="3"></textarea>
@@ -307,7 +307,7 @@ button.onclick = (e) => {
 			<form
 				action="<%=request.getContextPath()%>/ootd/ootdCommentEnroll" method="post" name="boardCommentFrm">
                 <input type="hidden" name="boardNo" value="<%= ootdboard.getOotdNo() %>" />
-                <input type="hidden" name="writer" value="doghj" />
+                <input type="hidden" name="writer" value="cathj" />
 <%--            <input type="hidden" name="writer" value="<%= loginMember != null ? loginMember.getMemberId() : "" %>" /> --%>
                 <input type="hidden" name="commentLevel" value="2" />
                 <input type="hidden" name="commentRef" value="\${e.target.value}" />    

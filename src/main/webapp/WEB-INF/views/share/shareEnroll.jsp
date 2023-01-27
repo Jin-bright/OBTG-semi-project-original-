@@ -14,6 +14,11 @@
 <script src="<%=request.getContextPath()%>/summernote/summernote-lite.js"></script>
 <script src="<%=request.getContextPath()%>/summernote/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/summernote/summernote-lite.css">
+<%-- <%
+	Member loginMember=(Member) session.getAttribute("loginMember");
+    String msg = (String) session.getAttribute("msg");  
+%>
+ --%>
 <br />
 
 <section id="board-container">
@@ -36,7 +41,7 @@
 		<tr>
 			<th>아이디</th>
 			<td>
-				<input type="text"  class="inputtext" name="memberId" value="doghj" readonly required/>
+				<input type="text"  class="inputtext" name="memberId" value="<%=loginMember.getMemberId() %>" readonly required/>
 			</td>
 		</tr>
 		<tr>

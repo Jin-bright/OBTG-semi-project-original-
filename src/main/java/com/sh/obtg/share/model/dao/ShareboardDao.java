@@ -196,4 +196,77 @@ public class ShareboardDao {
 			return shareboards;
 		}
 
+//게시글 한개 조회  dql  - select * from share_board where share_no = ? 
+		public ShareBoard selectOneBoard(Connection conn, int no) {
+			String sql = prop.getProperty("selectOneBoard");
+			ShareBoard shareBoard = null;
+			try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+				pstmt.setInt(1, no);
+				
+				try(ResultSet rset = pstmt.executeQuery()){
+					while(rset.next()) {
+						shareBoard = new ShareBoard();
+						
+						shareBoard.setShareNo(no);
+						shareBoard.setMemberId(rset.getString("member_id"));
+						shareBoard.setShareTitle(rset.getString("SAHRE_TITLE"));
+						shareBoard.setShareContent( rset.getString("SAHRE_CONTENT"));
+						shareBoard.setShareReadCount(rset.getInt("SAHRE_READ_COUNT"));
+						shareBoard.setShareRegDate(rset.getDate("SAHRE_REG_DATE"));
+						shareBoard.setShareBuyDate(rset.getDate("SHARE_BUY_DATE"));
+						shareBoard.setShareProductStatus(rset.getString("SHARE_PRODUCT_STATUS"));
+						shareBoard.setShareCategory(rset.getString("SHARE_CATEGORY"));
+						shareBoard.setShareState(rset.getString("SHARE_STATE"));
+						shareBoard.setStyleNo( Style.valueOf( rset.getString("style")));
+						
+					}
+				}
+				
+			} catch (Exception e) {
+				throw new ShareBoardException(" share 게시글 한건 조회 오류!", e);
+			}
+			
+			return shareBoard;
+		}
+//boardno로 첨부파일 테이블 조회 
+		public List<ShareAttachment> selectAttachmentByBoardNo(Connection conn, int no) {
+			String sql = prop.getProperty("selectAttachmentByBoardNo"); // select * from ootd_Attachment where board_no = ?
+			List<ShareAttachment> shareAttachments = new ArrayList<>();
+			try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+				pstmt.setInt(1, no);
+				
+				try(ResultSet rset = pstmt.executeQuery()){
+					while(rset.next()) {
+						ShareAttachment shareAttachment = new ShareAttachment();
+						
+						shareAttachment.setAttachNo( rset.getInt("attach_no"));
+						shareAttachment.setBoardNo( rset.getInt("board_no"));
+						shareAttachment.setOriginalFilename(rset.getString("original_filename"));
+						shareAttachment.setRenamedFilename(rset.getString("renamed_filename"));
+						shareAttachment.setRegDate( rset.getDate("reg_date"));
+						
+						shareAttachments.add(shareAttachment);			
+					}
+				}
+				
+			} catch (Exception e) {
+				throw new ShareBoardException("share 게시글 한건-(첨부파일테이블) 조회 오류!", e);
+			}
+			
+			return shareAttachments;
+		}
+
+//update readcount 
+		public int updateReadCount(Connection conn, int no) {
+			String sql = prop.getProperty("updateReadCount");
+			int result = 0;
+			
+			try( PreparedStatement pstmt = conn.prepareStatement(sql) ){
+				pstmt.setInt(1, no);
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				throw new ShareBoardException("조회수 증가 오류!", e);
+			}
+			return result;
+		}
 }

@@ -72,5 +72,34 @@ public class ShareService {
 		
 		return shareboards;
 	}
+
+
+//게시글 한개 조회  dql  - select * from share_board where share_no = ? 
+	public ShareBoard selectOneBoard(int no, boolean hasRead) {
+		Connection conn = getConnection();
+
+		//조회수 증가시키기 
+		if(!hasRead) updateReadCount(no, conn);
+
+		ShareBoard shareBoard  = shareBoardDao.selectOneBoard(conn, no);
+		List<ShareAttachment> shareAttachments = shareBoardDao.selectAttachmentByBoardNo(conn, no);
+		shareBoard.setShareAttachments(shareAttachments);
+		
+		close(conn);
+		
+		return shareBoard; //게시글 한개 
+	}
+	
+	//updateReadCount
+	private void updateReadCount(int no, Connection conn) {
+		try {	
+			int result = shareBoardDao.updateReadCount(conn, no);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+			throw e;
+		}
+		
+	}
 	
 }
