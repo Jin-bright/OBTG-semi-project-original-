@@ -111,7 +111,6 @@ document.querySelector("#col_file").addEventListener('change', (e) => {
 	}
 });
 
-
 /* 유효성검사 - 글자수제어하기 성공하면 같이 넣어 놓자,,, */
 document.columnUpdateFrm.addEventListener('submit', (e) => {
 	const title = e.target.col_title; // name 값을 입력해줘야하나보다

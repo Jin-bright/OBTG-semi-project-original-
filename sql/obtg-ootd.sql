@@ -25,22 +25,20 @@ CREATE TABLE Member (
 	enroll_date	date		default sysdate,
 	member_role	char(1)		default 'U' not null,
 	nickname	varchar2(50)		NULL,
-	gender	char(5)		NULL,
+	gender	char(5)	,
 	introduce	varchar2(500)		NULL,
 	original	varchar2(100),
 	renamed	varchar2(100),
     constraint pk_member_id primary key(member_id),
     constraint ck_member_role check(member_role in ('U', 'A')),
     constraint ck_member_gender check(gender in ('M', 'F')),
-    constraint uq_member_email unique(email),
+    constraint uq_member_email unique(email)
 --    constraint fk_fashionstyle FOREIGN KEY (style) REFERENCES fashionstyle (style_no) 이 제약조건안씀(by혜진.0118)
 -- ALTER TABLE member  ADD constraint fk_fashionstyle FOREIGN KEY (style) REFERENCES fashionstyle (style);  이 제약조건으로 추가(by혜진.0118)
-
-insert into Member (member_id, style, name, password, email, phone, birthday, enroll_date, member_role, nickname, gender, introduce, original, renamed)
-values ('incheol', '
-
-
 );
+
+
+
 ALTER TABLE Member ADD CONSTRAINT PK_MEMBER PRIMARY KEY (
 	member_id,
 	style
@@ -391,3 +389,21 @@ create sequence seq_share_find_no;
 ALTER TABLE SHARE_find ADD  constraint FK_SHARE_board_TO_SHARE_find FOREIGN KEY (share_no) REFERENCES SHARE_board (SHARE_no) on delete cascade 
 
 
+
+--FAQ
+create table faq(
+    no number,
+    writer varchar2(50),
+    member_id    varchar2(50),
+    title varchar2(200),
+    read_count number default 0,
+    reg_date date default sysdate,
+    content varchar2(4000),
+    constraint pk_faq_no primary key(no)
+);
+
+create sequence seq_faq;
+
+
+drop table faq;
+drop sequence seq_faq;

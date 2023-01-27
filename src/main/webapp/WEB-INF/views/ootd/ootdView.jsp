@@ -19,7 +19,7 @@
  OotdBoard ootdboard = (OotdBoard) request.getAttribute("ootdboard");
  List<OotdAttachment> ootdAttachments = (List<OotdAttachment>)request.getAttribute("ootdAttachments");
  List<OotdBoardComment> comments  = (List<OotdBoardComment>)request.getAttribute("comments");
- 
+ int likeCnt = (int)request.getAttribute("likeCnt");
 %>
 
 <section id="board-container" >
@@ -118,7 +118,11 @@
 	</table><br />
 	<div id="contents" > <p style="float:left; margin-left : 30px; font-weight:bolder">CONTENT</p><br />
 		<div id="contentsbox" ><%= ootdboard.getOOTDContents() %></div>	
-		<img id="ootdlikes" src="<%=request.getContextPath()%>/uploadootds/heart.png" alt="좋아요" />
+		<% if(likeCnt == 0) { %>
+		<img src="<%= request.getContextPath() %>/image/heart.png" class="heart" alt="좋아요"/>
+		<% } else { %>
+		<img src="<%= request.getContextPath() %>/image/heart _over.png" class="heart" alt="좋아요" />
+		<% } %>
 		<%
 			//boolean canEdit = loginMember != null && 
 			//					(loginMember.getMemberRole() == MemberRole.A ||
@@ -361,8 +365,28 @@ const updateBoard = () => {
 	location.href = "<%=request.getContextPath()%>/ootd/ootdUpdate?no=<%=ootdboard.getOotdNo()%>";
 }
 </script>
-<%-- <% } %> --%>
+<%--  <% } %> --%>
 
+
+<script>
+/* 좋아요 */
+document.querySelector(".heart").addEventListener("click", (e) => {
+	<% if(loginMember == null){ %>
+		// loginAlert();
+	<% } else { %>
+		$.ajax({
+			url: "<%= request.getContextPath() %>/ootd/OotdLike?no=<%= ootdboard.getOotdNo() %>",
+			method: "post",
+			dataType: "json",
+			success(data){
+				if(data=== 1) e.target.src="<%= request.getContextPath() %>/image/heart _over.png"
+				else e.target.src="<%= request.getContextPath() %>/image/heart.png"
+			},
+		error: console.log
+		});
+	<% } %>
+});
 </script>
+
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
