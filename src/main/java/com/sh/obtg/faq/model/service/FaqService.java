@@ -11,6 +11,7 @@ import java.util.Map;
 
 import com.sh.obtg.faq.model.dao.FaqDao;
 import com.sh.obtg.faq.model.dto.faq;
+import com.sh.obtg.faq.model.dto.faqComment;
 
 public class FaqService {
 	
@@ -95,5 +96,33 @@ public class FaqService {
 		int totalCount = faqDao.selectTotalCount(conn);
 		close(conn);
 		return totalCount;
+	}
+	
+	public int insertFaqComment(faqComment bc) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = faqDao.insertFaqComment(conn, bc);
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		} finally {
+			close(conn);
+		}
+		return result;
+	}
+
+	public int deleteFaqComment(int no) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = faqDao.deleteFaqComment(conn, no);
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		}
+		return result;
 	}
 }

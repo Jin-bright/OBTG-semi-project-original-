@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import com.sh.obtg.faq.model.dto.faq;
+import com.sh.obtg.faq.model.dto.faqComment;
 import com.sh.obtg.faq.model.exception.FaqException;
 
 public class FaqDao {
@@ -84,7 +85,6 @@ public class FaqDao {
 		faq.setMember_id(rset.getString("member_id"));
 		faq.setTitle(rset.getString("title"));
 		faq.setContent(rset.getString("content"));
-		faq.setReadCount(rset.getInt("read_count"));
 		faq.setRegDate(rset.getDate("reg_date"));
 		return faq;
 	}
@@ -154,6 +154,36 @@ public class FaqDao {
 		throw new FaqException("전체 게시글수 조회 오류!", e);
 	}
 		return totalCount;
+	}
+	
+	
+	
+	public int insertFaqComment(Connection conn, faqComment bc) {
+		String sql = prop.getProperty("insertFaqComment"); // insert into board_comment values(seq_board_comment_no.nextval, ?, ?, ?, ?, ?, default)
+		int result = 0;
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, bc.getCommentLevel());
+			pstmt.setString(2, bc.getWriter());
+			pstmt.setString(3, bc.getContent());
+			pstmt.setInt(4, bc.getFaqNo());
+			pstmt.setObject(5, bc.getCommentRef() == 0 ? null : bc.getCommentRef()); // 0
+			
+			result = pstmt.executeUpdate();
+		} catch(Exception e) {
+			throw new FaqException("첨부파일 삭제 오류!", e);
+		}
+		return result;
+	}
+
+	public int deleteFaqComment(Connection conn, int no) {
+		String sql = prop.getProperty("deleteFaqComment");
+		int result = 0;
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new FaqException("댓글 삭제 오류", e);
+		}
+		return result;
 	}
 
 	
