@@ -20,6 +20,8 @@ public class Member {
 	private String introduce;
 	private String original;
 	private String renamed;
+	
+	
 	public Member() {
 		super();
 		// TODO Auto-generated constructor stub

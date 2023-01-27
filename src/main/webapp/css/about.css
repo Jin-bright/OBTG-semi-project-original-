@@ -1,0 +1,218 @@
+      h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {}
+        a,
+        a:hover,
+        a:focus,
+        a:active {
+            text-decoration: none;
+            outline: none;
+        }
+        
+        a,
+        a:active,
+        a:focus {
+            color: #333;
+            text-decoration: none;
+            transition-timing-function: ease-in-out;
+            -ms-transition-timing-function: ease-in-out;
+            -moz-transition-timing-function: ease-in-out;
+            -webkit-transition-timing-function: ease-in-out;
+            -o-transition-timing-function: ease-in-out;
+            transition-duration: .2s;
+            -ms-transition-duration: .2s;
+            -moz-transition-duration: .2s;
+            -webkit-transition-duration: .2s;
+            -o-transition-duration: .2s;
+        }
+        
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        img {
+    max-width: 100%;
+    height: auto;
+}
+span, a, a:hover {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+}
+
+/*==========================
+      history area
+===========================*/
+
+.section-title,
+.column-title {
+  font-size: 36px;
+  font-weight: 300;
+  color: #101010;
+  margin-bottom: 70px;
+}
+
+.section-title span,
+.column-title span {
+  font-weight: 700;
+}
+
+.title-small {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.column-title {
+  margin-bottom: 30px;
+}
+
+.column-title-large {
+  font-size: 48px;
+  margin-bottom: 50px;
+}
+
+.ts-title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.title-light {
+  font-weight: 300;
+}
+
+.title-small-regular {
+  font-weight: 400;
+}
+
+.black-color {
+  color: #101010 !important;
+}
+
+.title-white {
+  color: #fff;
+}
+
+.title-bg-small {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+    margin-bottom: 15px;
+    color: #fff;
+    background: #101010;
+    display: inline-block;
+    padding: 3px 18px;
+    text-transform: uppercase;
+}
+.primary-bg {
+  background: #e80000;
+}
+.history-area {
+  background: #f7f9fb;
+      padding: 100px 0;
+    position: relative;
+    min-height: 100vh;
+}
+
+#history-slid .history-content {
+  background: #fff;
+  padding: 35px;
+  padding-left: 14px;
+}
+
+#history-slid .carousel-inner {
+  margin-bottom: 45px;
+}
+
+#history-slid .carousel-item {
+  background: #fff;
+}
+
+
+#history-slid .carousel-indicators {
+  position: relative;
+  left: 0%;
+  z-index: 5;
+  width: 100%;
+  padding-left: 0;
+  margin-left: 0%;
+  text-align: center;
+  list-style: none;
+}
+
+#history-slid .carousel-indicators:before {
+  content: "";
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  left: 0;
+  top: 15px;
+  background-color: #ddd;
+  z-index: -1;
+}
+
+#history-slid .carousel-indicators li {
+  display: inline-block;
+  width: 70px;
+  height: 35px;
+  line-height: 35px;
+  margin: 0 35px;
+  text-indent: 0px;
+  cursor: pointer;
+  color: #101010;
+  border: 0px solid #fff;
+  border-radius: 0px;
+  margin-top: 40px;
+  font-weight: 700;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}
+
+#history-slid .carousel-indicators li:before {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  content: "";
+  border-radius: 50%;
+  background: #101010;
+  margin-left: -7px;
+}
+
+#history-slid .carousel-indicators li.active {
+  line-height: 35px;
+  -webkit-box-shadow: 0px 20px 30px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 20px 30px 0px rgba(0, 0, 0, 0.15);
+  color: #e80000;
+  background: #fff;
+}
+
+#history-slid .carousel-indicators li.active::before {
+  background: #e80000;
+}
+
+#history-slid .carousel-indicators li.active:after {
+  position: absolute;
+  top: -34px;
+  left: 44%;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  content: "";
+  border-radius: 50%;
+  margin-left: -7px;
+  border: 1px solid #e80000;
+}
+
+#history-slid .carousel-item-next,
+#history-slid .carousel-item-prev,
+#history-slid .carousel-item.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
