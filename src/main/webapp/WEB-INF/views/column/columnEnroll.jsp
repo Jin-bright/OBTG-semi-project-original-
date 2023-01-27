@@ -91,8 +91,24 @@ document.querySelector("#col_file").addEventListener('change', (e) => {
 /* 유효성검사 - 글자수제어하기 성공하면 같이 넣어 놓자,,, */
 document.columnFrm.addEventListener('submit', (e) => {
 	const title = e.target.col_title; // name 값을 입력해줘야하나보다
-	const content = $('#summernote').summernote('code');  // 이거 어케 지정하는거지..?
+	const content = e.target.editordata;  // 이거 어케 지정하는거지..?
 	const file = e.target.col_file;
+	
+	/* 글자수 제어 */
+	content.addEventListener('keyup', (e) => {
+		const len = e.target.children.value.length;
+		const counter = document.querySelector("#counter");
+		
+		counter.innerHTML = len;
+		if(len >= 2000){
+			counter.innerText = len;
+			counter.classList.add('red');
+		}
+		else {
+			counter.innerText = len;
+			counter.classList.remove('red');
+		} 
+	});
 	
 	// 제목을 작성하지 않은 경우 폼제출 불가
 	if(!/^.+$/.test(title.value)){
@@ -166,16 +182,16 @@ $(document).ready(function() {
 });
 
 /* 글자수 제어 (해결해야하는 숙제,,,,)*/
-/* document.columnFrm.addEventListener("submit", (e) => {
-	const content = document.querySelector("[name=col_content]");
+document.columnFrm.addEventListener("submit", (e) => {
+	const content = e.target.editordata;
 	if(content.value.length >= 2000){
 		e.preventDefault();
 		alert("내용에 2000글자 이내로 입력해주세요.");
 		return;
 	}
 });
- */
-/* document.querySelector(".container").addEventListener("keyup", (e) => {
+
+/* document.querySelector(".note-editable").editordata.addEventListener("keyup", (e) => {
 	console.log(e.currentTarget.children.value);
 	const len = e.target.children.value.length;
 	const counter = document.querySelector("#counter");

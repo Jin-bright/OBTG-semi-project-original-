@@ -1,7 +1,9 @@
 package com.sh.obtg.ootd.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +11,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sh.obtg.common.HelloMvcUtils;
+import com.sh.obtg.member.model.dto.Member;
 import com.sh.obtg.ootd.model.dto.OotdBoard;
 import com.sh.obtg.ootd.model.dto.OotdBoardComment;
 import com.sh.obtg.ootd.model.service.OotdBoardService;
@@ -77,11 +81,21 @@ public class OotdViewServlet extends HttpServlet {
 		List<OotdBoardComment> comments = ootdBoardService.selectBoardCommentList(no); //이거 보드넘버
 		System.out.println( " **댓글 comments = " + comments  );
 			
+		// 좋아요 조회
+		HttpSession session = request.getSession();
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		
+		Map<String, Object> param = new HashMap<>();
+		param.put("memberId", loginMember != null ? loginMember.getMemberId() : "null");
+		param.put("boardNo", no);
+		int count = ootdBoardService.selectOotdLike(param);
+		System.out.println("boardLike = " + count);
 				
 		
 		// 3. view단 위임
 		request.setAttribute("ootdboard", ootdboard);
 		request.setAttribute("comments", comments);
+		request.setAttribute("likeCnt", count);
 		request.getRequestDispatcher("/WEB-INF/views/ootd/ootdView.jsp")
 		.forward(request, response);
 	}
