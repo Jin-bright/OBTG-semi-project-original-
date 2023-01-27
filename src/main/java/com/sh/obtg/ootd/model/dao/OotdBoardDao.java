@@ -405,6 +405,69 @@ public class OotdBoardDao {
 		
 		return result;
 	}
+
+	// 해당 ootd 게시글 좋아요 조회
+	public int selectOotdLike(Connection conn, Map<String, Object> param) {
+		// select count(*) from OOTD_Likes where board_no = ? and member_id = ?
+		String sql = prop.getProperty("selectOotdLike");
+		int count = 0;
+		int boardNo = (int)param.get("boardNo");
+		String memberId = (String)param.get("memberId");
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, boardNo);
+			pstmt.setString(2, memberId);
+			
+			try (ResultSet rset = pstmt.executeQuery()) {
+				while(rset.next()) {
+					count = rset.getInt(1);
+				}
+			}
+			
+		} catch (SQLException e) {
+			throw new OotdBoardException("👻좋아요 조회 오류👻", e); 
+		}
+		
+		return count;
+	}
+
+	// 좋아요 입력(추가)
+	public int insertOotdLike(Connection conn, Map<String, Object> param) {
+		// insert into OOTD_Likes values (seq_ootd_likes_no.nextval, ?, ?)
+		String sql = prop.getProperty("insertOotdLike");
+		int result = 0;
+		int boardNo = (int)param.get("boardNo");
+		String memberId = (String)param.get("memberId");
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, boardNo);
+			pstmt.setString(2, memberId);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new OotdBoardException("👻좋아요 입력 오류👻", e); 
+		}
+		
+		return result;
+	}
+
+	public int deleteOotdLike(Connection conn, int no) {
+		// delete OOTD_Likes where board_no = ?
+		int result = 0;
+		String sql = prop.getProperty("deleteOotdLike");
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, no);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new OotdBoardException("👻좋아요 삭제 오류👻", e); 
+		}
+		
+		return result;
+	}
 }
 
 	

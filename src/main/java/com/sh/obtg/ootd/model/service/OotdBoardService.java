@@ -1,6 +1,5 @@
 package com.sh.obtg.ootd.model.service;
 
-
 import static com.sh.obtg.common.JdbcTemplate.*;
 
 import java.sql.Connection;
@@ -227,6 +226,42 @@ import com.sh.obtg.ootd.model.dto.OotdBoardComment;
 			throw e;
 		}
 		
+		return result;
+	}
+
+	// 좋아요 조회
+	public int selectOotdLike(Map<String, Object> param) {
+		Connection conn = getConnection();
+		int count = ootdBoardDao.selectOotdLike(conn, param);
+		close(conn);
+		return count;
+	}
+
+	// 좋아요 추가
+	public int insertOotdLike(Map<String, Object> param) {
+		Connection conn = getConnection(); 
+		int result = 0;
+		try {
+			result = ootdBoardDao.insertOotdLike(conn, param);
+			commit(conn);
+		} catch(Exception e) {
+			rollback(conn);
+			throw e;
+		}
+		return result;
+	}
+
+	// 좋아요 삭제
+	public int deleteOotdLike(int no) {
+		Connection conn = getConnection(); 
+		int result = 0;
+		try {
+			result = ootdBoardDao.deleteOotdLike(conn, no);
+			commit(conn);
+		} catch(Exception e) {
+			rollback(conn);
+			throw e;
+		}
 		return result;
 	}
 
