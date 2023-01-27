@@ -23,7 +23,7 @@ public class MemberService {
 		Connection conn = getConnection();
 		int result = 0;
 		try {
-			/* result = memberDao.updatePassword(conn, member); */
+			result = memberDao.updatePassword(conn, member);
 			commit(conn);
 		}catch(Exception e) {
 			rollback(conn);

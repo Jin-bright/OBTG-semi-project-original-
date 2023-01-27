@@ -51,14 +51,9 @@
 				 <table id="login" style="margin-left:80%; text-align:right;">
 					<tr>
 						<td>
+							<a href="<%= request.getContextPath() %>/member/memberView;"><img id="defaultimg" src="<%=request.getContextPath()%>/image/default.png" alt="defaultimg" style="width:30px; cursor: pointer;"/></a>
 							<%= loginMember.getNickname() %>님
 							<span id="notification"></span>
-						</td>
-					</tr>
-					<tr>
-						<td>
-						 <a href=""></a>
-							<%-- <img src="<%=request.getContextPath() %>/image/default.png" alt="defultimg" width="30px" hight="30px" cursor= "pointer" onclick="location.href = '<%= request.getContextPath() %>/member/memberView';"/> --%>					
 						</td>
 					</tr>
 					<tr>

@@ -11,6 +11,7 @@ import java.util.Properties;
 import com.sh.obtg.member.model.dto.Gender;
 import com.sh.obtg.member.model.dto.Member;
 import com.sh.obtg.member.model.dto.MemberRole;
+import com.sh.obtg.member.model.exception.MemberException;
 
 public class MemberDao {
 	private Properties prop = new Properties();
@@ -60,6 +61,22 @@ public class MemberDao {
 		member.setOriginal(rset.getString("original"));
 		member.setRenamed(rset.getString("renamed"));		
 		return member;
+	}
+	
+	public int updatePassword(Connection conn, Member member) {
+		int result = 0;
+		String sql = prop.getProperty("updatePassword");
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql);){
+			pstmt.setString(1, member.getPassword());
+			pstmt.setString(2, member.getMemberId());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new MemberException("비밀번호 수정 오류!", e);
+		}
+		return result;
 	}
 	
 
