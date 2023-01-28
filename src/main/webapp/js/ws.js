@@ -6,19 +6,27 @@ ws.addEventListener('open', (e) => {
 });
 ws.addEventListener('message', (e) => {
 	console.log('message : ', e);
+	const bell = document.querySelector(".bell");
+	const reportWrap = document.querySelector("#report_wrap");
 	
 	const {message, messageType, datetime, sender, receiver} = JSON.parse(e.data);
 	console.log(message, messageType, datetime, sender, receiver);
 	
 	switch(messageType){
 		case "NOTIFICATION" : 
-			const i = document.createElement("i");
-			i.classList.add('fa-solid', 'fa-bell', 'bell');
-			i.addEventListener('click', () => {
-				alert(message);
-				i.remove();
+			bell.classList.add('bell-twinkle');
+			bell.addEventListener('click', () => {
+				reportWrap.insertAdjacentHTML('beforeend', `<div class="report">${message}</div>`);
+				
+				const r = document.querySelectorAll(".report");
+				r.forEach((a) => {
+					a.addEventListener('click', () => {
+					a.remove();
+					})
+				});
+				//alert(message);
+				bell.classList.remove('bell');
 			});
-			notification.append(i);
 			break;
 	}
 	

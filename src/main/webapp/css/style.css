@@ -215,3 +215,19 @@ footer {
 	font-weight: 900;
 	color: black;
 }
+
+/* 알림 */
+.bell {
+	transform: translate(5px, 5px);
+}
+.bell-twinkle {
+   animation: twinkle 2s infinite;
+}
+@keyframes twinkle {
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

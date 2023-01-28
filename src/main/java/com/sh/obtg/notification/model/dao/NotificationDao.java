@@ -1,0 +1,73 @@
+package com.sh.obtg.notification.model.dao;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
+import com.sh.obtg.notification.model.dto.Checked;
+import com.sh.obtg.notification.model.dto.Notification;
+import com.sh.obtg.notification.model.exception.NotificationException;
+
+public class NotificationDao {
+
+	private Properties prop = new Properties();
+		
+		public NotificationDao() {
+			String path = NotificationDao.class.getResource("/sql/notification/notification-query.properties").getPath();
+			try {
+				prop.load(new FileReader(path));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			System.out.println("notification 쿼리 로드 완료! - " + prop);
+		}
+	
+		public Notification handleNotiResultSet(ResultSet rset) throws SQLException {
+			Notification noti = new Notification();
+			noti.setNo(rset.getInt("no"));
+			noti.setReceiver(rset.getString("receiver"));
+			noti.setMessage(rset.getString("message"));
+			noti.setDatetime(rset.getDate("datetime"));
+			noti.setChecked(rset.getString("checked") != null ? 
+					Checked.valueOf(rset.getString("checked")) :
+						null);
+			return noti;
+		}
+		
+		
+		/**
+		 * 알림 내역 조회
+		 * @param conn
+		 * @param receiver
+		 * @return
+		 */
+		public List<Notification> selectNotiList(Connection conn, String receiver) {
+			// select * from noti where receiver = ? and checked = 'X' 
+			String sql = prop.getProperty("selectNotiList");
+			List<Notification> notiList = new ArrayList<>();
+			
+			try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+				pstmt.setString(1, receiver);
+				
+				try (ResultSet rset = pstmt.executeQuery()) {
+					while(rset.next()) {
+						Notification noti = new Notification();
+						noti = handleNotiResultSet(rset);
+						notiList.add(noti);
+					}
+				}
+				
+			} catch (SQLException e) {
+				throw new NotificationException("👻알림 내역 조회 오류👻", e);
+			}
+			
+			return notiList;
+		}
+
+}

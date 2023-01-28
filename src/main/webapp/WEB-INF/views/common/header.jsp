@@ -24,7 +24,9 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/index.css" />
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.1.js"></script>
-
+<% if(loginMember != null){ %>
+<script src="<%= request.getContextPath() %>/js/ws.js"></script>
+<% } %>
 </head>
 <body>
 <section id="headercolor">
@@ -54,7 +56,8 @@
 						<td>
 							<a href="<%= request.getContextPath() %>/member/memberView;"><img id="defaultimg" src="<%=request.getContextPath()%>/image/default.png" alt="defaultimg" style="width:30px; height:30px; cursor: pointer;"/></a>
 							<%= loginMember.getNickname() %>님
-							<span id="notification"></span>
+							<i style="position: absolute;"><img src="<%= request.getContextPath() %>/image/notification.png" alt="알림" class="bell" /></i>
+							<div id="report_wrap"></div>
 						</td>
 					</tr>
 					<tr>

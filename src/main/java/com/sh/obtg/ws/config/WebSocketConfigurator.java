@@ -1,5 +1,6 @@
 package com.sh.obtg.ws.config;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -9,9 +10,12 @@ import javax.websocket.server.ServerEndpointConfig;
 import javax.websocket.server.ServerEndpointConfig.Configurator;
 
 import com.sh.obtg.member.model.dto.Member;
+import com.sh.obtg.notification.model.dto.Notification;
+import com.sh.obtg.notification.model.service.NotificationService;
 
 public class WebSocketConfigurator extends Configurator {
-
+	private NotificationService notificationService = new NotificationService();
+	
 	@Override
 	public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
 		
@@ -20,8 +24,8 @@ public class WebSocketConfigurator extends Configurator {
 		String memberId = loginMember.getMemberId();
 		
 		// 알림 메시지가 있는 경우
-//		List<Notification> notiList = notificationService.selectNotiList(loginMember.getMemberId()); 
-//		System.out.println("noti = " + notiList);
+		List<Notification> notiList = notificationService.selectNotiList(loginMember.getMemberId()); 
+		System.out.println("notiList = " + notiList);
 //		Notification noti = null;
 		
 		// 설정맵에 저장 
@@ -29,9 +33,9 @@ public class WebSocketConfigurator extends Configurator {
 		Map<String, Object> userProp = sec.getUserProperties();
 		userProp.put("memberId", memberId);
 		
-//		if((!notiList.isEmpty()) && notiList != null) {
-//			userProp.put("noti", notiList);
-//		}
+		if((!notiList.isEmpty()) && notiList != null) {
+			userProp.put("notiList", notiList);
+		}
 	}
 	
 }
