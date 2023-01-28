@@ -29,17 +29,33 @@ public class MemberEnrollServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
+		  try { 
+			  
+		  String memberId = request.getParameter("memberId"); 
+		  String style = request.getParameter("style"); 
+		  String name = request.getParameter("name");
+		  String password = request.getParameter("password");
+		  String email = request.getParameter("password");
+		  String phone = request.getParameter("password");
+		  String _birthday = request.getParameter("password");
+		  String nickname = request.getParameter("password");
+		  String _gender = request.getParameter("password");
+		  /*String password = request.getParameter("password");
+		  String password = request.getParameter("password");*/
+				  
+		  }catch(Exception e) {
+				// 회원가입실패 메세지
+				session.setAttribute("msg", "회원가입 실패했습니다.");
 
-		/*
-		 * try { 
-		 * String memberId = request.getParameter("memberId"); 
-		 * String style = request.getParameter("style"); 
-		 * String name = request }
-		 */
-	}
+				// 예외로깅
+				e.printStackTrace();
+			}
+			
+			// 4. 리다이렉트 - /mvc/
+			response.sendRedirect(request.getContextPath() + "/");
+			
+		}
 
 }

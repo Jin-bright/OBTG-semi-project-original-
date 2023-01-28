@@ -28,7 +28,7 @@
             <label>
               ID<span class="req"></span>
             </label>
-            <input type="text" name="memberId" id="memberId" required  value="<%=saveId !=null ? saveId : ""%>" />
+            <td><input type="text" name="memberId" id="memberId" value="<%= saveId != null ? saveId : "" %>" required></td>
           </div>
           <div class="field-wrap">
             <label>
