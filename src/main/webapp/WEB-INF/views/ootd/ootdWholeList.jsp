@@ -1,8 +1,9 @@
 <%@page import="com.sh.obtg.ootd.model.dto.OotdBoard"%>
 <%@page import="com.sh.obtg.ootd.model.dto.OotdAttachment"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="/WEB-INF/views/common/header.jsp" %>
+
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/ootdWholeList.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
@@ -11,6 +12,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> --%>
 
 <%
+
+String searchType = request.getParameter("searchType");
+String searchKeyword = request.getParameter("searchKeyword");
+List<OotdBoard> findootdBoardsById = (List<OotdBoard> )request.getAttribute("findootdBoardsById");
 //String msg = (String)session.getAttribute("msg");
 //int totalPage = (int)request.getAttribute("totalPage");
 
@@ -24,9 +29,101 @@
 <section id="board-container">
 <h2 id = "ootdboardlist" > Outfit Of The Day </h2>
 <h3 id="ootdboardlist2"> 오늘 입은 옷을 공유해보세요! </h3>
-<br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br />
 <%----  검색상자  --%>
-<div class="wrap">
+<style>
+ div#search-container {
+ 	width: 180px; 
+ 	margin: 0 0 10px 0; 
+ 	padding:3px; 
+ 	background-color: white;
+	float : left;
+	margin-top : -60px;
+	margin-left : 70px;
+	font-family: 'Nanum Gothic Coding', monospace;		
+	font-size : 15px;
+ }
+ div#search-memberId {
+ 	display: <%= searchType == null || "ootd_writer".equals(searchType) ? " inline-block" : "none" %>; 
+ }
+ div#search-style{
+ 	display: <%= "style_no".equals(searchType) ? "inline-block" :  "none" %> ; 
+ }
+ </style>
+ <script>
+
+ 
+ window.addEventListener('load', () => {
+	 document.querySelector("#searchType").addEventListener('change', (e) => {
+		 console.log( e.target.value ); //여기 나오는 값이 : member_id, 스타일 
+		 
+		  document.querySelectorAll(".search-type").forEach( (div) => {
+			 div.style.display = "none"; // 일단 다 감춰놓기 (모두숨김 )
+		 }); 
+		 
+		 //현재 선택된 값에 상응하는 div만 노출시키기 
+		 let id;
+		 
+		 switch(e.target.value){
+		 case "ootd_writer" : 
+			 id = "search-memberId";
+			 break;
+			 
+		 case "style_no" : 
+			 id = "search-style";
+			 break;
+		 
+		 default :
+			 id = "search-memberId";
+			 break;
+		 }
+		 
+		
+		 document.querySelector("#" + id ).style.display = "inline-block";
+		
+	 })
+ })
+
+ </script>
+
+ <div id="search-container">
+  		<img style="width:16px; height:16px; margin :0" src="<%=request.getContextPath()%>/uploadootds/o.png" alt="" />
+        <label for="searchType">검색타입 :</label> 
+        <select id="searchType">
+            <option value="ootd_writer" <%= "ootd_writer".equals(searchType) ? "selected" : "" %>> 아이디</option>        
+            <option value="style_no" <%= "style_no".equals(searchType) ? "selected" : ""%>> 스타일</option>
+        </select>
+        
+        <div id="search-memberId" class="search-type">
+            <form action="<%=request.getContextPath()%>/ootd/ootdFindbyIdAj">
+            <div class="wrap">
+			   <div class="search">
+                <input type="hidden" name="searchType" value="ootd_writer"/>
+                <input type="text" name="searchKeyword"  size="25" placeholder=" 검색할 아이디를 입력하세요. ex)cathj " id="idfindinput" style=" border: 3px solid black; width : 500px
+                ; border-radius: 5px 0 0 5px;" value = "<%= "ootd_writer".equals(searchType) ? searchKeyword : "" %>"/>
+                <button type="submit" class="searchButton"><i class="fa fa-search"></i></button><!-- //검색버튼  -->
+                </div>
+             </div>   
+            </form>    
+        </div>
+        
+        <div id="search-style" class="search-type">
+            <form action="<%=request.getContextPath()%>/ootd/ootdFinderbyStyleAj">
+             <div class="wrap">
+			   <div class="search">
+                <input type="hidden" name="searchType" value="style_no" />
+                <input type="text" name="searchKeyword" size="25" placeholder=" 스타일을 검색해보세요  ex)스트릿  " id="stylefindinput"  style=" border: 3px solid black; width : 500px;
+                border-radius: 5px 0 0 5px;" value="<%= "style_no".equals(searchType) ? searchKeyword : ""%>"/>
+               	<button type="submit" class="searchButton"><i class="fa fa-search"></i></button><!-- //검색버튼  -->
+              	<input type="hidden" id="btn-more" name="page" > 
+               </div>
+             </div>   
+            </form>    
+        </div>
+</div>
+        
+        
+<%---- <!-- <div class="wrap">
    <div class="search">
       <input type="text" class="searchTerm" placeholder="스타일을 검색해보세요  ex)스트릿  ">
       <button type="submit" class="searchButton">
@@ -34,7 +131,7 @@
      </button>
    </div>
 </div>
-
+ -->  --%>
 
 <% if(loginMember != null){ %>
 <input type="button" value="글쓰기" id="btnAdd" 
@@ -43,19 +140,7 @@
 <table id="tblBoard">
   <tr> 
   <% for(int i=0; i<ootdAttachments.size(); i++){ %>
-<%--   	<% if(i%5==0){%>
-  		<tr>
-  	<%} %>
-  	<td class="maketd" style= "height : 300px; width:190px; padding:10px">
-     <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdAttachments.get(i).getBoardNo() %>">
-       <img  style="display : inline-block; height : 300px; width:190px" src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>"/></a><br/>
-		<p class="non">NO <span style="color : black; font-weight : light"><%=ootdAttachments.get(i).getBoardNo()%></span></p>
-		<p class="non">N  <span style=" color : black; font-weight : light"><%=ootdAttachments.get(i).getRegDate()%></span></p>
-     </td>
-     <% if(i%5==4){%>
-  		</tr>
-  	 <% } %> --%>
-  
+
 	<% if(i<5) { %>
      <td class="maketd" style= "height : 300px; width:190px">
      <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdAttachments.get(i).getBoardNo() %>">
@@ -112,8 +197,9 @@
 <% } %>
 
 </table>
-
+<br /><br /><br /><br />
 </section>
+
 
 <div id='pagebar' style = "background-color: orange" > <%=request.getAttribute("pagebar")%>
 </div>
@@ -138,5 +224,14 @@ atag.forEach( (a, index) => {
 }) */
 
 </script>
+
+
+
+
+
+
+
+
+
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

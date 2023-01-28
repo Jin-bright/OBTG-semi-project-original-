@@ -1,5 +1,6 @@
 package com.sh.obtg.ootd.model.service;
 
+
 import static com.sh.obtg.common.JdbcTemplate.*;
 
 import java.sql.Connection;
@@ -10,6 +11,7 @@ import com.sh.obtg.ootd.model.dao.OotdBoardDao;
 import com.sh.obtg.ootd.model.dto.OotdAttachment;
 import com.sh.obtg.ootd.model.dto.OotdBoard;
 import com.sh.obtg.ootd.model.dto.OotdBoardComment;
+import com.sh.obtg.ootd.model.dto.OotdBoardandAttachment;
 
  public class OotdBoardService {
 	private OotdBoardDao ootdBoardDao = new OotdBoardDao();
@@ -265,5 +267,32 @@ import com.sh.obtg.ootd.model.dto.OotdBoardComment;
 		}
 		return result;
 	}
+
+	
+/**	// id로 게시글 리스트 찾기 (only글)
+	public List<OotdBoard> SearchOotdBymemberId(Map<String, String> param) {
+		Connection conn = getConnection();
+		List<OotdBoard> findootdBoardsById = ootdBoardDao.SearchOotdBymemberId(conn, param);
+		close(conn);
+		return findootdBoardsById;
+	}
+	**/
+	
+	public List<OotdBoardandAttachment> SearchOotdBymemberId(Map<String, String> param){
+		Connection conn = getConnection();
+		List<OotdBoardandAttachment> ootdboardAndAttachments = ootdBoardDao.SearchOotdBymemberId(conn, param); 
+		close(conn);
+		return ootdboardAndAttachments;
+	}
+
+
+// 페이지  + 조인쿼리같이 처리해본다 
+public List<OotdBoardandAttachment> SearchOotdBymemberStyle( Map<String, String> paramss) {
+	Connection conn = getConnection();
+	List<OotdBoardandAttachment> ootdboardAndAttachmentsbyStyle  =  ootdBoardDao.SearchOotdBymemberStyle( conn, paramss );
+	
+	close(conn);
+	return ootdboardAndAttachmentsbyStyle;
+}
 
 }
