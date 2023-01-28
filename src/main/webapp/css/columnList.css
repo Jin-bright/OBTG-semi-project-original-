@@ -1,4 +1,7 @@
 @charset "UTF-8";
+#col_container {
+	margin-top: 65px;
+}
 .columns {
 	position: relative;
 	display: flex;
@@ -16,11 +19,14 @@
 .col_wrap a {
 	display: contents;
 }
-.col_wrap > a > img{
+.col_wrap > a > img {
 	display: flex;
 	align-items: center;
 	width: 290px;
 	background-color: steelblue; /* 사진 없을때 보려고 만든 용도  */
+}
+.col_wrap > a > img:hover {
+	box-shadow: 5px 3px 5px lightgrey;	
 }
 .col_txt {
 	display: flex;
@@ -48,4 +54,7 @@
 	color: black;
 	font-family: fangsong;
 	font-weight: 500;
+}
+#btn-more:hover {
+	background: #fa807266;
 }

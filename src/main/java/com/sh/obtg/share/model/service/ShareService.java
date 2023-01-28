@@ -72,5 +72,129 @@ public class ShareService {
 		
 		return shareboards;
 	}
+
+
+//게시글 한개 조회  dql  - select * from share_board where share_no = ? 
+	public ShareBoard selectOneBoard(int no, boolean hasRead) {
+		Connection conn = getConnection();
+
+		//조회수 증가시키기 
+		if(!hasRead) updateReadCount(no, conn);
+
+		ShareBoard shareBoard  = shareBoardDao.selectOneBoard(conn, no);
+		List<ShareAttachment> shareAttachments = shareBoardDao.selectAttachmentByBoardNo(conn, no);
+		shareBoard.setShareAttachments(shareAttachments);
+		
+		close(conn);
+		
+		return shareBoard; //게시글 한개 
+	}
+	
+	//updateReadCount
+	private void updateReadCount(int no, Connection conn) {
+		try {	
+			int result = shareBoardDao.updateReadCount(conn, no);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+			throw e;
+		}
+		
+	}
+
+
+	// update용 게시물 하나 조회 
+	public ShareBoard selectOneBoard(int no) {
+		return selectOneBoard(no, true); //조회수 증가안되게 하고 하나 게시물 가져옴
+	}
+
+
+	//게시글 update - dml 트랜잭션 처리 필요 
+	public int updateBoard(ShareBoard shareBoard) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			// 1. board 수정
+			result = shareBoardDao.updateBoard(conn, shareBoard);
+			
+			// 2.attachment에 등록 (== 수정업데이트 ) 
+			List<ShareAttachment> attachments = shareBoard.getShareAttachments(); //하나 받아와서 
+			System.out.println("**attachments 정보 : "  + attachments );
+			if(!attachments.isEmpty()) {
+				for(ShareAttachment attach : attachments) {
+					result = shareBoardDao.updateAttachment(conn, attach); // attachment update 
+				}
+			}
+
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		} finally {
+			close(conn);			
+		}
+		return result;
+	}
+
+//첨부파일 share no로 조회 
+	public List<ShareAttachment> selectAttachmentByBoardNo(int no) {
+		Connection conn = getConnection();
+		List<ShareAttachment> attachment  = shareBoardDao.selectAttachmentByBoardNo(conn, no);
+		
+		return attachment;
+	}
+
+// 게시글 지우기 
+	public int deleteBoard(int no) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {	
+			result = shareBoardDao.deleteBoard(conn, no);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+			throw e;
+		}
+		
+		return result;
+	}
+
+	// 좋아요 조회
+	public int selectShareLike(Map<String, Object> param) {
+		Connection conn = getConnection();
+		int likeCnt = shareBoardDao.selectShareLike(conn, param);
+		close(conn);
+		return likeCnt;
+	}
+
+	// 좋아요 입력(추가)
+	public int insertShareLike(Map<String, Object> param) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = shareBoardDao.insertShareLike(conn, param);
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		}
+		
+		return result;
+	}
+
+	// 좋아요 삭제
+	public int deleteShareLike(int no) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = shareBoardDao.deleteShareLike(conn, no);
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		}
+		
+		return result;
+	}
 	
 }

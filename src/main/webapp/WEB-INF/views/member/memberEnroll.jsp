@@ -1,22 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
-    String msg = (String) session.getAttribute("msg");
-    if(msg != null) session.removeAttribute("msg");
-    
-    Cookie[] cookies = request.getCookies();
-    String saveId = null;
-    if(cookies != null){
-    	for(Cookie cookie : cookies){
-    		String name = cookie.getName();
-    		String value = cookie.getValue();
-    		if("saveId".equals(name))
-    			saveId = value;
-    	}
-    }
-    
-%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%
+	Cookie[] cookies = request.getCookies();
+	String saveId = null;
+	if(cookies != null){
+		for(Cookie cookie : cookies){
+		String name = cookie.getName();
+		String value = cookie.getValue();
+			if("saveId".equals(name))
+				saveId = value;
+		}
+	} 
+%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/memberEnroll.css">
 <script src = "<%=request.getContextPath()%>/js/ws.js"></script>
 <div class="form">
@@ -56,7 +52,7 @@
               <label class="top">
                 ID<span class="req">*</span>
               </label>              
-              <input type="text"  name="memberId" id="_memberId" required autocomplete="off" required/>
+              <input type="text"  name="memberId" id="_memberId" required autocomplete="off" required />
               <input type="button" value="ID 중복검사" onclick = "checkIdDuplicate();" style="margin-top: 5px; background-color: lightpink; border: 0px; cursor: pointer;"/>
 			  <input type = "hidden" id = "idValid" name="idValid" value= "0"/>
 			  

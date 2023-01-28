@@ -57,11 +57,8 @@ public class OotdUpdateServlet extends HttpServlet {
 
 		try {
 			String saveDirectory = getServletContext().getRealPath("/uploadootds/ootd"); //application 객체 반환  //  / <-- webroot를 가리킨다
-			System.out.println("saveDirectory : " + saveDirectory  );
-			
 			int maxPostSize = 10*1024*1024;  //바이트단위로 줘야됨 (1kb = 1024byte  1mb - 1024*1kb ? )  
-			String encoding = "utf-8";
-			
+			String encoding = "utf-8";			
 			FileRenamePolicy policy = new OotdFileRenamePolicy(); //년월일_시분초밀리초_난수.tx  이렇게 만들거임 
 			//중복파일이 있는 경우, abc1.txt, abc2.txt 이런씩으로 네이밍을 다르게해줌 
 			// 이자리에 우리꺼를 써야된다 ? (파일명 변경하려면 )
@@ -104,14 +101,11 @@ public class OotdUpdateServlet extends HttpServlet {
 			
 			Style style = Style.valueOf(_style);
 
-			String[] delFiles = multiReq.getParameterValues("delFile");
-			System.out.println( delFiles  );
-		
+
 			String ootdContents = multiReq.getParameter("editordata");
 			
 			System.out.println(" _style : " + _style );
 			System.out.println(" **style : " + style );
-			
 			
 			OotdBoard ootdBoard = new OotdBoard();
 			ootdBoard.setOotdNo(no);
@@ -126,21 +120,31 @@ public class OotdUpdateServlet extends HttpServlet {
 
 			System.out.println( "**ootdBoard " + ootdBoard);
 			
-			Enumeration<String> filenames = multiReq.getFileNames(); // upFile1, upFile2, ...
-			while(filenames.hasMoreElements()) {
-				String filename = filenames.nextElement(); 
-				if(multiReq.getFile(filename) != null) { // 전송된 파일이 있는가?
-					OotdAttachment attach = new OotdAttachment();
-					attach.setBoardNo(no); // fk 값대입
-					attach.setOriginalFilename(multiReq.getOriginalFileName(filename));
-					attach.setRenamedFilename(multiReq.getFilesystemName(filename));
-					ootdBoard.addAttachment(attach);
-				}
-			}
 			
-			System.out.println( ootdBoard );
+
+			
+			
+			// 사진부분 ---- 0128 수정함 / 파일 새로 지우고 이런거안하고 그냥 update attachment 한다 
+			 //String[] delFiles = multiReq.getParameterValues("delFile");
+			 //System.out.println( "** del 파일이름//체크박스를 선택하면 1이다 : " + delFiles[0]  );
+
+			Enumeration<String> filenames = multiReq.getFileNames(); // upFile1, upFile2, ...
+				while(filenames.hasMoreElements()) {
+					String filename = filenames.nextElement(); 
+					
+					
+					if( multiReq.getFile(filename) != null ) { // 전송된 파일이 있는가?
+						OotdAttachment attach = new OotdAttachment();
+					
+						attach.setBoardNo(no); // fk 값대입
+						attach.setOriginalFilename(multiReq.getOriginalFileName(filename));
+						attach.setRenamedFilename(multiReq.getFilesystemName(filename));
 						
-				
+						ootdBoard.addAttachment(attach);
+					}
+				} 
+			
+			System.out.println( ootdBoard );	
 
 				
 		//  이거 내가한거  	int result = boardService.insertBoardContent(title, memberId, content);
@@ -152,7 +156,7 @@ public class OotdUpdateServlet extends HttpServlet {
 	    	System.out.println( "성공 ??? " + result );
 	    	
 	    	
-	    	if(delFiles != null) {
+	  /**  	if(delFiles != null) {
 	    		for(String temp : delFiles) {
 	    			int attachNo = Integer.parseInt( temp );
 	    			OotdAttachment attach = ootdBoardService.selectOneAttachment(attachNo); //저장된 파일 이름 찾아와야된다 (board하위) 이넘버는 no인가  ?
@@ -168,7 +172,7 @@ public class OotdUpdateServlet extends HttpServlet {
 	    			System.out.println("delete 첨부파일? " + result );
 	    		}
 	    	}
-			
+		**/	
 	    	// 3. 리다이렉트
 			response.sendRedirect(request.getContextPath()+"/ootd/ootdView?no=" + ootdBoard.getOotdNo() );
 		}catch (Exception e) {

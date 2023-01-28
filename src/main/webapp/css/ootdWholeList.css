@@ -43,6 +43,14 @@
 }
 /*Resize the wrap to see the search bar change!*/
 
+.maketd:hover  {
+    transform: scale(1.1);
+    background-color: #ffd688;
+    transition : 0.5s;
+    text-decoration : white;
+    border-radius: 10px 10px 10px 10px;
+  }
+
 #ootdboardlist{
 	margin:0 auto; 	
 	margin-left : 160px;

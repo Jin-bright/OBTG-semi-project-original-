@@ -31,7 +31,7 @@
 		<tr>
 			<th>아이디</th>
 			<td>
-				<input type="text"  class="inputtext" name="ootdwriter" value="cathj" readonly required/>
+				<input type="text"  class="inputtext" name="ootdwriter" value="<%=loginMember.getMemberId() %>" readonly required/>
 			</td>
 		</tr>
 		<tr>

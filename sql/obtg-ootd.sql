@@ -309,7 +309,7 @@ create sequence seq_column_no;
 
 --0126 트리거 생성 by진 (ootd) 보류 !!! 게시글 삭제에 오류남  
 -- ootd
-create or replace trigger trig_table_ootd_find -- 괄호 안씀 
+--create or replace trigger trig_table_ootd_find -- 괄호 안씀 
   after 
 	insert or update or delete on OOTD_board   --   이 테이블에 변화가 생기면  begin절에 쓴대로 trigger 가 작동되는거임 
 	for each row 
@@ -325,7 +325,7 @@ end if;
 end;
 
 -- 0126 트리거 생성 by진 (share) ---- 보류 !!! 게시글 삭제에 오류남 
-create or replace trigger trig_table_share_find -- 괄호 안씀 
+--create or replace trigger trig_table_share_find -- 괄호 안씀 
   after 
 	insert or update or delete on share_board   --   이 테이블에 변화가 생기면  begin절에 쓴대로 trigger 가 작동되는거임 
 	for each row 
@@ -394,16 +394,38 @@ ALTER TABLE SHARE_find ADD  constraint FK_SHARE_board_TO_SHARE_find FOREIGN KEY 
 create table faq(
     no number,
     writer varchar2(50),
-    member_id    varchar2(50),
     title varchar2(200),
-    read_count number default 0,
     reg_date date default sysdate,
     content varchar2(4000),
-    constraint pk_faq_no primary key(no)
+    constraint pk_faq_no primary key(no),
+    constraint FK_faq_writer FOREIGN KEY (writer) REFERENCES Member (member_id) on delete set null
 );
 
-create sequence seq_faq;
+create sequence seq_faq_no;
+
+create table faq_comment(
+    no number,  --pk
+    comment_level number default 1, --댓글1 /대댓글2 라고 나타냄  // 기능 구현 x
+    writer varchar2(20),  -- fk 
+    content varchar2(2000),
+    faq_no number,  --특정게시글  fk
+    comment_ref number, --댓글인경우 null / 대댓글인경우? 부모댓글의 no컬럼값 / fk // 기능 구현 x
+    reg_date date default sysdate,
+    
+    constraint pk_faq_comment_no primary key(no),
+    constraint fk_faq_comment_writer FOREIGN key(writer) REFERENCES member(member_id) on delete set null,
+    constraint fk_faq_comment_faq_no FOREIGN key(faq_no) REFERENCES faq(no) on delete CASCADE,
+    constraint fk_faq_comment_ref FOREIGN key(comment_ref) REFERENCES faq_comment(no) on delete CASCADE
+);
+
+create sequence seq_faq_comment_no;
 
 
-drop table faq;
-drop sequence seq_faq;
+
+
+select * from member;
+
+insert into member values('admin', '시크', 'z인철짱z', 1234, 'j789@naver.com', 01099176917, '00/01/01', '23/01/27', 'A', '인철존잘', 'M', '방갑습니다', null, null);
+
+--drop table faq;
+--drop sequence seq_faq;
