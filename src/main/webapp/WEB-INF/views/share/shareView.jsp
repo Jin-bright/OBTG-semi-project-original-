@@ -126,6 +126,11 @@
 		%>
 	</div>
 	<br /><br /><br /><br /><br />
+<!-- 게시글 삭제하기 히든폼 ( 관리자 & 작성자에게만 노출 ) -->	
+<form action="<%=request.getContextPath()%>/share/shareDelete" name = "boardDeleteFrm" method="post">
+	<input type="hidden" name="no" value="<%= shareBoard.getShareNo() %>" />
+</form>
+
 	
 <script>
 // 게시글 수정 / 삭제 
