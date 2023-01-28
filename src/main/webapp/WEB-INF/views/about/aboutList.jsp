@@ -3,9 +3,8 @@
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
- 
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/about.css"/>  
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/about.css" />
 
 
 <section class="history-area">

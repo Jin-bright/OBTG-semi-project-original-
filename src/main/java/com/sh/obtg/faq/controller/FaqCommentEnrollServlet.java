@@ -20,7 +20,7 @@ public class FaqCommentEnrollServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 사용자 입력값처리 
-		int FaqNo = Integer.parseInt(request.getParameter("FaqNo"));
+		int FaqNo = Integer.parseInt(request.getParameter("no"));
 		String writer = request.getParameter("writer");
 		String content = request.getParameter("content");
 		int commentLevel = Integer.parseInt(request.getParameter("commentLevel"));
