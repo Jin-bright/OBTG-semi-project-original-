@@ -56,7 +56,7 @@
 						<td>
 							<a href="<%= request.getContextPath() %>/member/memberView;"><img id="defaultimg" src="<%=request.getContextPath()%>/image/default.png" alt="defaultimg" style="width:30px; height:30px; cursor: pointer;"/></a>
 							<%= loginMember.getNickname() %>님
-							<i style="position: absolute;"><img src="<%= request.getContextPath() %>/image/notification.png" alt="알림" class="bell" /></i>
+							<i style="position: absolute;"><img src="<%= request.getContextPath() %>/image/notification.png" alt="알림" class="bell bell-hiden" /></i>
 							<div id="report_wrap"></div>
 						</td>
 					</tr>

@@ -220,6 +220,9 @@ footer {
 .bell {
 	transform: translate(5px, 5px);
 }
+.bell-hiden {
+	visibility: hidden;
+}
 .bell-twinkle {
    animation: twinkle 2s infinite;
 }
@@ -230,4 +233,15 @@ footer {
     100% {
         opacity: 1;
     }
+}
+#report_wrap {
+	position: absolute;
+	transform: translate(180px, 30px);
+	z-index: 999;
+}
+.report {
+	text-align: center;
+	border: 1px solid RGB(17, 135, 254);
+	border-radius: 1em;
+	background: white;
 }

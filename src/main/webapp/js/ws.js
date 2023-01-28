@@ -14,6 +14,7 @@ ws.addEventListener('message', (e) => {
 	
 	switch(messageType){
 		case "NOTIFICATION" : 
+			bell.classList.remove('bell-hiden');
 			bell.classList.add('bell-twinkle');
 			bell.addEventListener('click', () => {
 				reportWrap.insertAdjacentHTML('beforeend', `<div class="report">${message}</div>`);
@@ -25,7 +26,8 @@ ws.addEventListener('message', (e) => {
 					})
 				});
 				//alert(message);
-				bell.classList.remove('bell');
+				bell.classList.remove('bell-twinkle');
+				bell.classList.add('bell-hiden');
 			});
 			break;
 	}
