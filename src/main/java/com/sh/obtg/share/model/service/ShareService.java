@@ -101,5 +101,39 @@ public class ShareService {
 		}
 		
 	}
+
+
+	// update용 게시물 하나 조회 
+	public ShareBoard selectOneBoard(int no) {
+		return selectOneBoard(no, true); //조회수 증가안되게 하고 하나 게시물 가져옴
+	}
+
+
+	//게시글 update - dml 트랜잭션 처리 필요 
+	public int updateBoard(ShareBoard shareBoard) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			// 1. board 수정
+			result = shareBoardDao.updateBoard(conn, shareBoard);
+			
+			// 2.attachment에 등록 (== 수정업데이트 ) 
+			List<ShareAttachment> attachments = shareBoard.getShareAttachments(); //하나 받아와서 
+			System.out.println("**attachments 정보 : "  + attachments );
+			if(!attachments.isEmpty()) {
+				for(ShareAttachment attach : attachments) {
+					result = shareBoardDao.updateAttachment(conn, attach); // attachment update 
+				}
+			}
+
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		} finally {
+			close(conn);			
+		}
+		return result;
+	}
 	
 }

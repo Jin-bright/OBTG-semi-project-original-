@@ -73,7 +73,7 @@
 		</tr>
 		<tr>
 			<th>상품상태</th>
-			<td><%= shareBoard.getShareState()  %></td>
+			<td><%= shareBoard.getShareProductStatus()  %></td>
 		</tr>
 
 		<tr>
@@ -119,13 +119,27 @@
 			//if(canEdit){
 		%>
 			<%-- 작성자와 관리자만 마지막행 수정/삭제버튼이 보일수 있게 할 것 --%>
-				<button class ="ootdmodidel" type="submit" onclick="updateBoard()"> 수정하기 </button>
-				<button class ="ootdmodidel"  type="submit"  onclick="deleteBoard()"> 삭제하기 </button>
+				<button class ="sharemodidel" type="submit" onclick="updateBoard()"> 수정하기 </button>
+				<button class ="sharemodidel"  type="submit"  onclick="deleteBoard()"> 삭제하기 </button>
 		<% 
 //			}
 		%>
 	</div>
 	<br /><br /><br /><br /><br />
+	
+<script>
+// 게시글 수정 / 삭제 
+const deleteBoard = () => { 
+	if(confirm("정말 게시글을 삭제하시겠습니까? ")){
+	  document.boardDeleteFrm.submit();	
+	}	
+};
+
+const updateBoard = () => { 
+	location.href = "<%=request.getContextPath()%>/share/shareUpdate?no=<%=shareBoard.getShareNo()%>";
+}
+</script>	
+	
 <script>
 // 프로필 & 
 jQuery(document).ready(function (e) {

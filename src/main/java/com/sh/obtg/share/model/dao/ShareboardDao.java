@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+
 import com.sh.obtg.share.model.dto.ShareAttachment;
 import com.sh.obtg.share.model.dto.ShareBoard;
 import com.sh.obtg.share.model.dto.Style;
@@ -269,4 +270,48 @@ public class ShareboardDao {
 			}
 			return result;
 		}
+
+//게시글 업데이트 - update 
+//updateBoard = update share_board set sahre_title=?, sahre_content=?, share_buy_date=?, share_product_status=?, share_category=?, share_state = ?, style = ? where share_no = ?
+		public int updateBoard(Connection conn, ShareBoard shareBoard) {
+			String sql = prop.getProperty("updateBoardp");
+			int result = 0;
+			
+			try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+				pstmt.setString(1, shareBoard.getShareTitle() );
+				pstmt.setString(2, shareBoard.getShareContent());
+				pstmt.setDate(3, shareBoard.getShareBuyDate());
+				pstmt.setString(4, shareBoard.getShareProductStatus());
+				pstmt.setString(5, shareBoard.getShareCategory());
+				pstmt.setString(6, shareBoard.getShareState() );
+				pstmt.setString(7, shareBoard.getStyleNo().toString() );
+				pstmt.setInt(8, shareBoard.getShareNo());
+				
+				result = pstmt.executeUpdate();
+			}catch (SQLException e) {
+				throw new ShareBoardException("게시물(글) 수정 오류!", e);
+			}
+			return result;
+			
+		}
+
+//updateAttachment = update share_attachment set original_filename = ? , renamed_filename = ? where board_no = ?
+		public int updateAttachment(Connection conn, ShareAttachment attach) {
+			String sql = prop.getProperty("updateAttachment");
+			int result = 0;
+
+			try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+				pstmt.setString(1, attach.getOriginalFilename());
+				pstmt.setString(2,attach.getRenamedFilename());
+				pstmt.setInt(3,attach.getBoardNo());
+			
+				result = pstmt.executeUpdate();
+			}catch (SQLException e) {
+				throw new ShareBoardException("게시물( 첨부파일 ) 수정 오류!", e);
+			}
+			return result;
+		}
+		
+		
+		
 }

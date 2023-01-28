@@ -1,5 +1,6 @@
 package com.sh.obtg.share.model.dto;
 
+import java.sql.Connection;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +70,7 @@ public class ShareBoard extends ShareBoardEntity {
 	public void addAttachment(ShareAttachment attach) {
 		this.shareAttachments.add(attach);
 	}
+
 	
 	
 	

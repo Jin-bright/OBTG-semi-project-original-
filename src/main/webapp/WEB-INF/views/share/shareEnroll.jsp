@@ -51,11 +51,6 @@
 			    <option name="ShareCategory"  value="하의" > 하의 </option>
 			    <option name="ShareCategory" value="악세서리" > 악세서리 및 기타 </option>
 			</select></td>
-			<!-- <td>
-				<input type="checkbox" name="ShareCategory" id="C1" value="상의" onclick='checkOnlyOneTwoThree(this)' ><label for="S1">상의 &nbsp;</label>		
-				<input type="checkbox" name="ShareCategory" id="C2" value="하의" onclick='checkOnlyOneTwoThree(this)' ><label for="S2">하의 &nbsp;</label>		
-				<input type="checkbox" name="ShareCategory" id="C3" value="악세서리" onclick='checkOnlyOneTwoThree(this)' ><label for="S3">악세서리 및 기타 &nbsp;</label>		
-			</td> -->
 		</tr>
 		<tr>
 			<th>구매시기</th>
@@ -102,9 +97,7 @@
 		<tr>
 			<th  colspan="2" >
 			<div class="summernotecontainer">
-		  <textarea colspan="2" id="summernote"  class="summernote" name ="editordata"></textarea>
- <!-- 			  <textarea style="font-weight:lighter" colspan="2" id="summernote"  class="summernote" name ="ootdContents" required></textarea>   -->	  
-			      
+			  <textarea colspan="2" id="summernote"  class="summernote" name ="editordata"></textarea>
 			</div>
 			</th>
 		</tr>

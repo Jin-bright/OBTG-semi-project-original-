@@ -145,8 +145,8 @@
 	width : 30px;
 	display : inline;
 	position : absolute;
-	left : 1390px;
-	top : 1070px; 
+	left : 440px;
+	top : 900px; 
 }
 
 #tblboardview {
@@ -187,22 +187,6 @@ table#tbl-board-view input[type=file] {margin: 3px 0;}
 	font-style : italic;
 	font-weight : bold;
 	
-	
-}
-
-/*수정삭제버튼*/
-.ootdmodidel{
-	float : right;
-	margin-top : 10px;
-	margin-left : 1px; 
-	display : block;
-	position :relative;
-	top : 200px;
-	left : -166px;
-	height:26px;
-	width : 67px;
-	background-color : black;
-	color : white; 	
 	
 }
 
@@ -272,3 +256,21 @@ div.comment-container button#btn-comment-enroll1 {
 	color : #000040;
 	padding : 10px;
 }
+
+/** 수정 삭제 **/
+/*수정삭제버튼*/
+.sharemodidel{
+	float : right;
+	margin-top : 10px;
+	margin-left : 1px; 
+	display : block;
+	position :relative;
+	top : -35px;
+	left : 120px;
+	height:26px;
+	width : 67px;
+	background-color : black;
+	color : white; 	
+}
+
+
