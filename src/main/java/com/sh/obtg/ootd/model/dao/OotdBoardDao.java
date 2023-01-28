@@ -468,6 +468,24 @@ public class OotdBoardDao {
 		
 		return result;
 	}
+
+// attachment바로 업데이트 시키기 도전 
+//	updateAttachment = update ootd_attachment set original_filename = ? , renamed_filename = ? where board_no = ?
+	public int updateAttachment(Connection conn, OotdAttachment attach) {
+		String sql = prop.getProperty("updateAttachment");
+		int result = 0;
+
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, attach.getOriginalFilename());
+			pstmt.setString(2,attach.getRenamedFilename());
+			pstmt.setInt(3,attach.getBoardNo());
+		
+			result = pstmt.executeUpdate();
+		}catch (SQLException e) {
+			throw new OotdBoardException("첨부파일 테이블 수정(update) 오류!", e);
+		}
+		return result;
+	}
 }
 
 	

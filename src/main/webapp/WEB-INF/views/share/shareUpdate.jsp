@@ -1,12 +1,12 @@
-<%@page import="com.sh.obtg.ootd.model.dto.OotdBoard"%>
-<%@page import="com.sh.obtg.ootd.model.dto.OotdAttachment"%>
+<%@page import="com.sh.obtg.share.model.dto.ShareAttachment"%>
+<%@page import="com.sh.obtg.share.model.dto.ShareBoard"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <!-- 글꼴  -->
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Noto+Sans+KR:wght@900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/ootdEnroll.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/shareEnroll.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> 
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
@@ -17,57 +17,54 @@
 <script src="<%=request.getContextPath()%>/summernote/summernote-lite.js"></script>
 <script src="<%=request.getContextPath()%>/summernote/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/summernote/summernote-lite.css">
-
 <%
-// 리스트 가져오는거 필요함 
-// List<OotdAttachment> ootdAttachments = (List<OotdAttachment>)request.getAttribute("ootdAttachments");
-	 OotdBoard ootdboard = (OotdBoard) request.getAttribute("ootdboard");
+//자바영역
+	ShareBoard shareBoard = (ShareBoard)request.getAttribute("shareBoard");
+
 %>
-<br />
+
+
 <section id="board-container">
-	<h2 id="ootdwrite" style="font-weight : 700">OOTD 게시글 작성</h2>
-	<form
-		name="ootdBoardEnrollFrm"
-		action="<%=request.getContextPath()%>/ootd/ootdUpdate" 
-		enctype ="multipart/form-data"
-		method="post">
+	<h2 id="sharewrite"> SHARE 게시글 작성</h2>
+	<form name="shareBoardEnrollFrm" action="<%=request.getContextPath()%>/share/shareUpdate" enctype ="multipart/form-data" method="post">
 		<table id="tbl-board-view">
-		<input type="hidden" name="no"  value="<%=ootdboard.getOotdNo()%>"/>		
 		<tr >
 			<th style ="padding-top:20px; font-size : 24px">제 목</th>
-			<td style ="padding-top:20px" ><input  class="inputtext" type="text" name="ootdtitle"  value="<%=ootdboard.getOOTDTitle() %>" placeholder="제목을 입력해주세요." required></td>
+			<td style ="padding-top:20px" >
+				<input type="hidden"  name ="no" value="<%= shareBoard.getShareNo()%>" />
+				<input style="width : 550px" class="inputtext" type="text" name="ShareTitle"  value="<%= shareBoard.getShareTitle()%>" placeholder="제목을 입력해주세요." required>
+				<input class="satustext" type="text" name="ShareState" value="<%= shareBoard.getShareState()%>" readonly />	
+			</td>
 		</tr>
 		
 		<tr>
 			<th>아이디</th>
 			<td>
-				<input type="text"  class="inputtext" name="ootdwriter" value="<%=ootdboard.getOotdWriter() %>" readonly />
+				<input type="text"  class="inputtext" name="memberId" value="<%= shareBoard.getMemberId()%>"  readonly required/>
 			</td>
 		</tr>
 		<tr>
-			<th>상의</th>
+			<th>카테고리</th>
+			<td><select name="ShareCategory"  required>
+			    <option name="ShareCategory"  value="상의" > 상의 </option>
+			    <option name="ShareCategory"  value="하의" > 하의 </option>
+			    <option name="ShareCategory" value="악세서리" > 악세서리 및 기타 </option>
+			</select></td>
+		</tr>
+		<tr>
+			<th>구매시기</th>
 			<td>
-				<input type="text" class="inputtext"  name="ootdTop" value="<%=ootdboard.getOOTDTop() %>" required/>
+				<input type="date"  class="inputdate" name="ShareBuyDate" value="<%=shareBoard.getShareBuyDate()%>" required/>
+				<span style="font-size : 12px; color : red;">&nbsp;&nbsp; ※ 대략적인 날짜를 기재하셔도 좋습니다 😊 </span>
 			</td>
 		</tr>
 		<tr>
-			<th>하의</th>
+			<th>상품상태</th>
 			<td>
-				<input type="text"  class="inputtext" name="ootdBottom" value="<%=ootdboard.getOOTDBottom()%>" required/>
+				<input type="checkbox" name="ShareProductStatus" id="P1" value="상" onclick='checkOnlyOneTwo(this)' ><label for="P1"> 상 &nbsp;</label>		
+				<input type="checkbox" name="ShareProductStatus" id="P2" value="중" onclick='checkOnlyOneTwo(this)' ><label for="P2"> 중 &nbsp;</label>		
+				<input type="checkbox" name="ShareProductStatus" id="P3" value="하" onclick='checkOnlyOneTwo(this)' ><label for="P3"> 하 &nbsp;</label>
 			</td>
-		</tr>
-			<tr>
-			<th>신발</th>
-			<td>
-				<input type="text" class="inputtext" name="ootdShoes" value="<%=ootdboard.getOOTDShoes() %>" />
-			</td>
-		</tr>
-			<tr>
-			<th>기타</th>
-			<td>
-				<input type="text" class="inputtext" name="ootdEtc" value="<%=ootdboard.getOOTDEtc()%> " />
-			</td>
-		</tr>
 		<tr>
 			<th>스타일</th>
 			<td>
@@ -85,43 +82,36 @@
 		<tr>
 			<th>첨부파일</th>
 			<td id="filetd">
-		<%
-		List<OotdAttachment> ootdAttachments = ootdboard.getOotdAttachments();
-			if(!ootdAttachments.isEmpty()){
-				for( int i =0; i< ootdAttachments.size(); i++){
-					OotdAttachment attach = ootdAttachments.get(i);
-		%>
-	<%--	 <img src="<%=request.getContextPath()%>/image/file.png" width="16px" />
-		 <%=attach.getOriginalFilename()%>
-		 <input type="checkbox" name="delFile" id="delFile<%=i%>" value="<%= attach.getAttachNo()%>" />
-		 <label for="delFile<%=i%>"> 삭제 </label>  --%> 
-			<br />	
+			<%
+				List<ShareAttachment> shareAttachments = shareBoard.getShareAttachments();
+					if(!shareAttachments.isEmpty()){
+						for( int i =0; i< shareAttachments.size(); i++){
+							ShareAttachment attach = shareAttachments.get(i);
+			%>
 			<input type="file" name="upFile1" id="upFile1">   <!-- 첨부파일의 경우 input 의 value 값은 맘대로 지정할수없다 (해도안됨) -->
-		</td>
+			</td>
 		</tr>
 		<tr>
-			<th>미리보기</th><!--  혜진수정0128 - 기존파일 삭제체크박스 아예 삭제하고 attachment update쿼리로 변경  --> 
+			<th>미리보기</th>
 			<td style="padding: 10px">
-				<img id="col_img_viewer"  src="<%=request.getContextPath()%>/uploadootds/ootd/<%=attach.getRenamedFilename()%>" style = "width : 200px; height : 250px;" >
-			</td>
+ 				<img id="col_img_viewer"  src="<%=request.getContextPath()%>/uploadshares/share/<%=attach.getRenamedFilename()%>" style = "width : 200px; height : 250px;" > 
+			</td> 
 					<%							
 				}
 			}
 		%>
 		</tr>
+		
 		<tr>
 			<th  colspan="2" >
 			<div class="summernotecontainer">
-		  <textarea colspan="2" id="summernote"  class="summernote" name ="editordata"  value="<%=ootdboard.getOOTDContents()%>" > </textarea>
- <!-- 			  <textarea style="font-weight:lighter" colspan="2" id="summernote"  class="summernote" name ="ootdContents" required></textarea>   -->	  
-			      
+			  <textarea colspan="2" id="summernote"  class="summernote" name ="editordata"></textarea>  
 			</div>
 			</th>
 		</tr>
 		<tr>
 			<th colspan="2">
-				<!--<input  class ="inputbuttons" type="submit" value="CANCEL"  style="margin-left : 100px"> -->
-				<input  class ="inputbuttons"  type="submit" value="SUBMIT">
+				<input style="margin-left : 120px"  class ="inputbuttons"  type="submit" value="SUBMIT">
 				<input class ="inputbuttons"  type="button" value="CANCEL" onclick="history.go(-1);"/>
 			</th>
 		</tr>
@@ -134,30 +124,17 @@
 
 
 <script>
-function checkOnlyOne(element) {
-	  
-	  const checkboxes 
-	      = document.getElementsByName("style");
-	  
-	  checkboxes.forEach((cb) => {
-	    cb.checked = false;
-	  })
-	  
-	  element.checked = true;
-}
-</script>
-
-<script>
 /* 첨부파일 이미지 미리보기 */
 document.querySelector("#upFile1").addEventListener('change', (e) => {
 	const img = e.target;
 	
 	if(img.files[0]){
 		// 파일 선택한 경우
-		const fr = new FileReader(); // html5 api
-		fr.readAsDataURL(img.files[0]); // 
+		const fr = new FileReader(); 
+		fr.readAsDataURL(img.files[0]); 
 		fr.onload = (e) => {
-			document.querySelector("#col_img_viewer").src = e.target.result; // result속성은 dataUrl임
+			// 읽기 작업 완료시 호출될 load이벤트핸들러
+			document.querySelector("#col_img_viewer").src = e.target.result; 
 		};
 	}
 	else {
@@ -165,6 +142,34 @@ document.querySelector("#upFile1").addEventListener('change', (e) => {
 		document.querySelector("#col_img_viewer").src = "";
 	}
 });
+</script>
+
+<script>
+// 체크박스들 하나만 선택되게 하기 
+function checkOnlyOne(element) {
+	  
+	  const checkstyleboxes = document.getElementsByName("style");
+	  
+	  checkstyleboxes.forEach((cb) => {
+	    cb.checked = false;
+	  })
+	  
+	  element.checked = true;
+}
+
+
+function checkOnlyOneTwo(element) {
+	  
+	  const checkboxes 
+	      = document.getElementsByName("ShareProductStatus");
+	  
+	  checkboxes.forEach((cb) => {
+	    cb.checked = false;
+	  })
+	  
+	  element.checked = true;
+}
+
 </script>
 
 <script>	
@@ -219,10 +224,10 @@ document.querySelector("#upFile1").addEventListener('change', (e) => {
 
 <script>
 /**
-* boardEnrollFrm 유효성 검사
+* shareBoardEnrollFrm 유효성 검사
 */
-document.ootdBoardEnrollFrm.onsubmit = (e) => {
-	const title = e.target.ootdtitle;
+document.shareBoardEnrollFrm.onsubmit = (e) => {
+	const title = e.target.ShareTitle;
 	const content = e.target.editordata;
 	const upload = e.target.upFile1;
 	
