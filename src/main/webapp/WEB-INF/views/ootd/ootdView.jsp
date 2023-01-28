@@ -95,7 +95,7 @@
 			<tr>
 			<th>스타일</th>
 			<% if ( ootdboard.getStyleNo().toString().equals("S1")) { %>
-			<td class="styleinfo"> #로맨틱</td>
+			<td class="styleinfo"> #러블리</td>
 			<% } else if( ootdboard.getStyleNo().toString().equals("S2")) {%>
 			<td class="styleinfo"> #댄디</td>
 			<% } else if( ootdboard.getStyleNo().toString().equals("S3")) {%>
