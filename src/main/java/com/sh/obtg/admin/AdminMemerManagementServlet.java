@@ -1,3 +1,4 @@
+package com.sh.obtg.admin;
 //package com.sh.obtg.admin.controller;
 //
 //import java.io.IOException;

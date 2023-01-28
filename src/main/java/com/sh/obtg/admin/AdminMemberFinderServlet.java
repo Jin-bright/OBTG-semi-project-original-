@@ -1,4 +1,4 @@
-package com.sh.obtg.admin.controller;
+package com.sh.obtg.admin;
 
 import java.io.IOException;
 import java.util.HashMap;
