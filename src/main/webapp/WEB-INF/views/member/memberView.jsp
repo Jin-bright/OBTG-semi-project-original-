@@ -160,9 +160,9 @@
 		</td>
 	</tr>
 </fieldset>
-          <button type="submit" class="button button-modify"/>수정</button>          
-          <button type="submit" class="button button-remove"/>비밀번호 변경</button>          
-          <button type="submit" class="button button-delete" onclick="deleteMember();"/>탈퇴</button>          
+          <input type="submit" value="정보수정"/>          
+          <input type="button" value="비밀번호변경"/>         
+          <input type="button" onclick="deleteMember();" value="탈퇴"/>         
           </form>
         </div>
         </div>
