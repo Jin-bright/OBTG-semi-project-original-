@@ -180,5 +180,55 @@ public class MemberDao {
 		}
 		return result;
 	}
+	public int updateMember(Connection conn, Member member) {
+		String sql = prop.getProperty("updateMember");
+		int result = 0;
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, member.getStyle());
+			pstmt.setString(2, member.getName());
+			pstmt.setString(3, member.getEmail());
+			pstmt.setString(4, member.getPhone());
+			pstmt.setDate(5, member.getBirthday());
+			pstmt.setString(6, member.getNickname());
+			pstmt.setString(7, member.getGender().name());
+			pstmt.setString(8, member.getIntroduce());
+			pstmt.setString(9, member.getOriginal());
+			pstmt.setString(10, member.getRenamed());
+			pstmt.setString(11, member.getMemberId());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new MemberException("회원정보 수정 오류", e);
+		}
+		return result;
+	}
+	public int insertMember(Connection conn, Member member) {
+		String sql = prop.getProperty("insertMember");
+		int result = 0;
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, member.getMemberId());
+			pstmt.setString(2, member.getStyle());
+			pstmt.setString(3, member.getName());
+			pstmt.setString(4, member.getPassword());
+			pstmt.setString(5, member.getEmail());
+			pstmt.setString(6, member.getPhone());
+			pstmt.setDate(7, member.getBirthday());
+			pstmt.setString(8, member.getNickname());
+			pstmt.setString(9, member.getGender().name());
+			pstmt.setString(10, member.getIntroduce());
+			pstmt.setString(11, member.getOriginal());
+			pstmt.setString(12, member.getRenamed());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new MemberException("회원가입오류", e);
+		}
+		
+		return result;
+	}
 	
 }

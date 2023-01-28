@@ -6,8 +6,12 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/columnList.css" />
   
-	<!-- 이부분은 나중에 관리자만 보일수 있도록 처리하자! -->
+	<% 
+		if(loginMember != null 
+			&& loginMember.getMemberRole() == MemberRole.A){ 
+	%>
 	<img src="<%= request.getContextPath() %>/image/quill-pen.png" alt="" class="pen" />
+	<% } %>
 	<section id="col_container">
 	</section>
     <div id='btn-more-container' style="text-align:center; margin-bottom: 1em;">
@@ -92,10 +96,16 @@ const getPage = (page) => {
 		}
 	});
 };
+</script>
 
+<% 
+	if(loginMember != null 
+		&& loginMember.getMemberRole() == MemberRole.A){ 
+%>
+<script>
 document.querySelector(".pen").addEventListener("click", (e) => {
 	location = "<%= request.getContextPath() %>/column/columnEnroll";
 });
 </script>
-
+<% } %>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

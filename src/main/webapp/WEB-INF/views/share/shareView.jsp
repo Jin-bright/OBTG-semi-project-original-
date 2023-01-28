@@ -13,6 +13,8 @@
 // ★★★★★★★★ 이걸로 난중에닉네임빼기
     Member membmer = (Member) request.getAttribute("membmer");
 //	Member loginMember = (Member) session.getAttribute("loginMember"); //object -> member  			
+	
+	int likeCnt = (int)request.getAttribute("likeCnt");
 %>
 
 <section id="board-container" >
@@ -111,7 +113,11 @@
 	</table><br />
 	<div id="contents" > <p style="float:left; margin-left : 30px; font-weight:bolder">CONTENT</p><br />
 		<div id="contentsbox" ><%= shareBoard.getShareContent() %></div>	
-		<img id="ootdlikes" src="<%=request.getContextPath()%>/uploadootds/heart.png" alt="좋아요" />
+		<% if(loginMember == null || likeCnt == 0) { %>
+		<img src="<%= request.getContextPath() %>/image/heart.png" class="shareLike" alt="좋아요"/>
+		<% } else { %>
+		<img src="<%= request.getContextPath() %>/image/heart _over.png" class="shareLike" alt="좋아요" />
+		<% } %>
 		<%
 			//boolean canEdit = loginMember != null && 
 			//					(loginMember.getMemberRole() == MemberRole.A ||
@@ -143,6 +149,11 @@ const deleteBoard = () => {
 const updateBoard = () => { 
 	location.href = "<%=request.getContextPath()%>/share/shareUpdate?no=<%=shareBoard.getShareNo()%>";
 }
+
+const loginAlert = () => {
+	alert("로그인 후 이용할 수 있습니다.");
+	document.querySelector("#loginSignup").focus();
+};
 </script>	
 	
 <script>
@@ -171,5 +182,25 @@ jQuery(document).ready(function (e) {
         if (!n.parents().hasClass("button-dropdown")) e(".button-dropdown .dropdown-toggle").removeClass("active");
     })
 });
-</script>	
+</script>
+
+<script>
+/* 좋아요 */
+document.querySelector(".shareLike").addEventListener("click", (e) => {
+	<% if(loginMember == null){ %>
+		 loginAlert();
+	<% } else { %>
+		$.ajax({
+			url: "<%= request.getContextPath() %>/share/shareLike?no=<%= shareBoard.getShareNo() %>",
+			method: "post",
+			dataType: "json",
+			success(data){
+				if(data === 1) e.target.src="<%= request.getContextPath() %>/image/heart _over.png"
+				else e.target.src="<%= request.getContextPath() %>/image/heart.png"
+			},
+			error: console.log
+			});
+	<% } %>
+});
+</script>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

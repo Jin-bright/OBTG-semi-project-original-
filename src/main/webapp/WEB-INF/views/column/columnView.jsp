@@ -8,26 +8,30 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/columnView.css" />
     <section id="col_container">
     	<div id="col_etc">
-	    	<span style="font-family: none; float: left;"><%= column.getRegDate() %></span>
-	    	<span style="font-family: none; float: right;">조회수 <%= column.getReadCount() %></span>
+	    	<span style="float: left;"><%= column.getRegDate() %></span>
+	    	<span style="float: right;">조회수 <%= column.getReadCount() %></span>
 	    	<hr/>    	
     	</div>
         <h2><%= column.getTitle() %></h2>
         <h3><%= column.getSubtitle() %></h3>
         <img src="<%= request.getContextPath() %>/upload/column/<%= column.getRenamedFilename() %>" alt="" style="width: 500px;">
         <p><%= column.getContent() %></p>
-        <span style=" font-family: none;">editor.<%= column.getWriter() %></span>
+        <span id="editor">editor.<%= column.getWriter() %></span>
     </section>
+<% 
+	if(loginMember != null 
+		&& loginMember.getMemberRole() == MemberRole.A){
+%>
     <div id="edit_wrap">
     	<input type="button" value="modify" onclick="updateColumn()"/>
     	<input type="button" value="delete" onclick="deleteColumn()"/>
     </div>
-   <form 
-   	action="<%= request.getContextPath() %>/column/columnDelete"
-   	method="post"
-   	name="columnDeleteFrm">
-    	<input type="hidden" name="no" value="<%= column.getNo() %>"/>
-    </form>
+<form 
+	action="<%= request.getContextPath() %>/column/columnDelete"
+	method="post"
+	name="columnDeleteFrm">
+	<input type="hidden" name="no" value="<%= column.getNo() %>"/>
+</form>
 <script>
 /* 컬럼 수정폼 요청 */
 const updateColumn = () => {
@@ -41,4 +45,5 @@ const deleteColumn = () => {
 	}
 };
 </script>
+<% } %>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
