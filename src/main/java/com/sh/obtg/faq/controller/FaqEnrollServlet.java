@@ -50,7 +50,7 @@ public class FaqEnrollServlet extends HttpServlet {
 		
 		
 		// view단 처리
-//		response.sendRedirect(request.getContextPath() + "/faq/faqView?=no" + f.getNo());
+
 		response.sendRedirect(request.getContextPath() + "/faq/faqList");
 		
 	} catch (Exception e) {

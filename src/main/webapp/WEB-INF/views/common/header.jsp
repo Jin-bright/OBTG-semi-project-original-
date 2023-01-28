@@ -6,6 +6,7 @@
 <%
 	Member loginMember=(Member) session.getAttribute("loginMember");
 	String msg = (String)session.getAttribute("msg");
+	System.out.println(msg);
 	if(msg != null) session.removeAttribute("msg");
 %>
 <!doctype html>
@@ -22,8 +23,8 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/index.css" />
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.1.js"></script>
-</head>
 
+</head>
 <body>
 <header>
 <!--   메뉴바 -->
@@ -90,10 +91,12 @@
 
 <script>
 window.addEventListener('load', () => {
-	<%if(msg != null){ %>
+	<% if(msg != null){ %>
 		alert("<%= msg %>");
+
 	<%} %>
-});
+
+
 
 const item = document.querySelectorAll(".menu__item");
 

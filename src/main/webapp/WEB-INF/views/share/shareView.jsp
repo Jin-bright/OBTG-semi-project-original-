@@ -119,17 +119,23 @@
 		<img src="<%= request.getContextPath() %>/image/heart _over.png" class="shareLike" alt="좋아요" />
 		<% } %>
 		<%
-			//boolean canEdit = loginMember != null && 
-			//					(loginMember.getMemberRole() == MemberRole.A ||
-			//						loginMember.getMemberId().equals(board.getWriter()));
-			//if(canEdit){
+			boolean canEdit = loginMember != null && 
+								(loginMember.getMemberRole() == MemberRole.A ||
+									loginMember.getMemberId().equals(shareBoard.getMemberId()));
+			if(canEdit){
 		%>
 			<%-- 작성자와 관리자만 마지막행 수정/삭제버튼이 보일수 있게 할 것 --%>
+			
 				<button class ="sharemodidel" type="submit" onclick="updateBoard()"> 수정하기 </button>
 				<button class ="sharemodidel"  type="submit"  onclick="deleteBoard()"> 삭제하기 </button>
+
 		<% 
-//			}
+			} else {
 		%>
+				<img src="<%= request.getContextPath() %>/image/siren.png" alt="" id="siren" onclick="reportFrm()"/>
+			
+		
+		<% } %>
 	</div>
 	<br /><br /><br /><br /><br />
 <!-- 게시글 삭제하기 히든폼 ( 관리자 & 작성자에게만 노출 ) -->	
@@ -137,6 +143,63 @@
 	<input type="hidden" name="no" value="<%= shareBoard.getShareNo() %>" />
 </form>
 
+<!-- 신고하기 폼(누르면 나타나용) -->
+<% if(loginMember != null){ %>
+<form 
+	class="report_container"
+	name="reportEnrollFrm"
+	method="post"
+	action="<%= request.getContextPath() %>/report/reportEnroll">
+	<span class="close-button" onclick="closeFrm()">&times;</span>
+    <h2 style="text-align: center; margin: 5px;" >신고하기</h2>
+    <hr />
+    <table id="report_wrap">
+        <thead>
+            <tr>
+                <th><label for="">신고자</label></th>
+                <td><input type="text" value="<%= loginMember.getMemberId() %>" name="reportedMemberId" readonly="readonly"/></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><label for="">게시글 번호</label></th>
+                <td><input type="text" value="999<%= shareBoard.getShareNo() %>" name="boardNo" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td colspan="2"><hr style="width: 95%;" /></td>
+            </tr>
+        </tbody>
+    </table>
+    <span style="margin-left: 1em; font-weight: bold;">사유선택</span>
+    <table id="reason_wrap">
+        <tbody>
+            <tr>
+                <th><input type="checkbox" name="reason" value="R1" onclick="checkOnlyOne(this)"></th>
+                <td>스팸홍보/도배글입니다.</td>
+            </tr>
+            <tr>
+                <th><input type="checkbox" name="reason" value="R2" onclick="checkOnlyOne(this)"></th>
+                <td>불법정보를 포함하고있습니다.</td>
+            </tr>
+            <tr>
+                <th><input type="checkbox" name="reason" value="R3" onclick="checkOnlyOne(this)"></th>
+                <td>욕설/생명경시/혐오/차별적 표현입니다.</td>
+            </tr>
+            <tr>
+                <th><input type="checkbox" name="reason" value="R4" onclick="checkOnlyOne(this)"></th>
+                <td>개인정보 노출 게시물입니다.</td>
+            </tr>
+            <tr>
+                <th><input type="checkbox" name="reason" value="R5" onclick="checkOnlyOne(this)"></th>
+                <td>불쾌한 표현이 있습니다.</td>
+            </tr>
+        </tbody>
+    </table> <!-- end reason_wrap -->
+    <div style="text-align: center;">
+        <input type="button" value="신고하기" onclick="reportEnroll()">
+    </div>
+</form>
+<% } %>
 	
 <script>
 // 게시글 수정 / 삭제 
@@ -202,5 +265,37 @@ document.querySelector(".shareLike").addEventListener("click", (e) => {
 			});
 	<% } %>
 });
+
+/* 신고 */
+const reportFrm = () => {
+	const frm = document.querySelector(".report_container");
+	<% if(loginMember != null){ %>
+	frm.classList.toggle("showPopup");
+	<% } else { %>
+	loginAlert();
+	<% } %>
+}
+
+const closeFrm = () => {
+	const frm = document.querySelector(".report_container");
+	frm.classList.toggle("showPopup");
+}
+
+const checkOnlyOne = (e) => {
+    const checkbox = document.getElementsByName("reason");
+
+    checkbox.forEach((cb) => {
+        cb.checked = false;
+    })
+
+    e.checked = true;
+} 
+
+const reportEnroll = () => {
+	if(confirm("정말 신고하시겠습니까? ")){
+		document.reportEnrollFrm.submit();
+		alert("신고가 접수되었습니다.")
+	}	
+}
 </script>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
