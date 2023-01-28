@@ -70,4 +70,27 @@ public class NotificationDao {
 			return notiList;
 		}
 
+		/**
+		 * 알림 읽음 처리
+		 * @param conn
+		 * @param memberId
+		 * @return
+		 */
+		public int updateNoti(Connection conn, String memberId) {
+			// update noti set checked = 'O' where receiver = ?
+			String sql = prop.getProperty("updateNoti");
+			int result = 0;
+			
+			try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+				pstmt.setString(1, memberId);
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				throw new NotificationException("👻알림 읽음 처리 오류👻", e);
+			}
+			
+			return result;
+		}
+
 }

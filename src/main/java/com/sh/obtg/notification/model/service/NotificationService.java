@@ -22,4 +22,23 @@ public class NotificationService {
 		close(conn);
 		return notiList;
 	}
+
+	/**
+	 * 알림 읽음 처리
+	 * @param memberId
+	 * @return
+	 */
+	public int updateNoti(String memberId) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = notificationDao.updateNoti(conn, memberId);
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		}
+		
+		return result;
+	}
 }

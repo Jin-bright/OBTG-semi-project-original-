@@ -19,15 +19,16 @@ ws.addEventListener('message', (e) => {
 			bell.addEventListener('click', () => {
 				reportWrap.insertAdjacentHTML('beforeend', `<div class="report">${message}</div>`);
 				
-				const r = document.querySelectorAll(".report");
-				r.forEach((a) => {
-					a.addEventListener('click', () => {
-					a.remove();
-					})
+				const report = document.querySelectorAll(".report");
+				report.forEach((r) => {
+					r.addEventListener('click', () => {
+						r.remove();
+						document.notiUpdateFrm.submit();
+					});
 				});
-				//alert(message);
 				bell.classList.remove('bell-twinkle');
 				bell.classList.add('bell-hiden');
+				
 			});
 			break;
 	}

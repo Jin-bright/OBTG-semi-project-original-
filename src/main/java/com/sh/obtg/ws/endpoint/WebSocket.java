@@ -39,7 +39,7 @@ public class WebSocket {
 		Map<String, Object> sessionUserProp = session.getUserProperties();
 		sessionUserProp.put("memberId", memberId);
 		
-		if((!notiList.isEmpty()) && notiList != null) {
+		if(!(notiList.isEmpty()) && notiList != null) {
 			sessionUserProp.put("notiList", notiList);
 			getNotiList(notiList, session);
 		}
