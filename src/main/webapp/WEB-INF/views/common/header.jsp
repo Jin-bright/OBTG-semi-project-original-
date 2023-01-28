@@ -107,7 +107,6 @@ window.addEventListener('load', () => {
 	<%} %>
 });
 
-
 const item = document.querySelectorAll(".menu__item");
 
 /* */
