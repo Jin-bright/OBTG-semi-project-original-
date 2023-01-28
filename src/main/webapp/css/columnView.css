@@ -21,14 +21,19 @@
 font-size: 35px;
 }
 #col_container h3 {
+	color: darkgrey;
 	margin-bottom: .8em;
 }
 #col_container p {
 	margin-top: 2em;
 }
-#col_container > span {
+#editor {
 	display: block; 
 	margin-top: .3em;
+}
+#editor:hover {
+	color: indianred;
+	cursor: pointer;
 }
 #edit_wrap {
 	margin: 0 auto;

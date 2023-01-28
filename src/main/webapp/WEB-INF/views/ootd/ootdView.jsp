@@ -367,19 +367,18 @@ const updateBoard = () => {
 </script>
 <%--  <% } %> --%>
 
-
 <script>
 /* 좋아요 */
 document.querySelector(".heart").addEventListener("click", (e) => {
 	<% if(loginMember == null){ %>
-		// loginAlert();
+		alert("로그인 후 이용할 수 있습니다.")
 	<% } else { %>
 		$.ajax({
 			url: "<%= request.getContextPath() %>/ootd/OotdLike?no=<%= ootdboard.getOotdNo() %>",
 			method: "post",
 			dataType: "json",
 			success(data){
-				if(data=== 1) e.target.src="<%= request.getContextPath() %>/image/heart _over.png"
+				if(data === 1) e.target.src="<%= request.getContextPath() %>/image/heart _over.png"
 				else e.target.src="<%= request.getContextPath() %>/image/heart.png"
 			},
 		error: console.log

@@ -98,7 +98,7 @@ const getPage = (page) => {
 		complete(){
 		//	document.querySelector(".cpage").innerHTML = page;
 			//마지막 페이지인 경우 더보기 버튼 비활성화 처리 ★
-		//	if( page === <%=totalPage%>){  
+		<%-- 	if( page === <%=totalPage%>){   --%>
 		//		const button = document.querySelector("#pagebar");
 		//		button.disabled = true; // 리턴값이 boolean 값 
 		//		button.style.cursor = "not-allowed";

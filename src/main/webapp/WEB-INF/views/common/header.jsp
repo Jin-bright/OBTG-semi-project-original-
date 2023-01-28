@@ -4,7 +4,9 @@
     pageEncoding="UTF-8"%>
 
 <%
-	Member loginMember=(Member) session.getAttribute("loginMember");    
+	Member loginMember=(Member) session.getAttribute("loginMember");
+	String msg = (String)session.getAttribute("msg");
+	if(msg != null) session.removeAttribute("msg");
 %>
 <!doctype html>
 

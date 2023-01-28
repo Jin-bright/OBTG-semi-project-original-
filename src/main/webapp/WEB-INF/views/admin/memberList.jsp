@@ -2,8 +2,8 @@
 <%@ page import="com.sh.obtg.member.model.dto.Member" %>
 <%@ page import="com.sh.obtg.member.model.dto.MemberRole" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+    pageEncoding="UTF-8"
+%>
 <%
 	List<Member> members = (List<Member>) request.getAttribute("members");
 	
