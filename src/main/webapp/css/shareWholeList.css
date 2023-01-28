@@ -39,14 +39,14 @@
   height : 20px;
   position: absolute;
   top: 460px;
-  left: 54%;
+  left: 50%;
   transform: translate(-50%, -50%);
 }
 /*Resize the wrap to see the search bar change!*/
 
 #shareboardlist{
 	margin:0 auto; 	
-	margin-left : 160px;
+/* 	margin-left : 160px; */
 	font-weight : 900;
 	font-family: 'Nanum Gothic Coding', monospace;		
 	text-align:center;
@@ -55,7 +55,7 @@
 }
 
 #shareboardlist2{
-	margin-left : 160px;
+/* 	margin-left : 160px; */
 	font-size : 16px;
 	font-weight : 100;
 	font-family: 'Nanum Gothic Coding', monospace;		
@@ -71,10 +71,10 @@ table#tblBoard{
 	border-collapse: separate;
 	table-layout:fixed; 
 	border : none;
-	width:1300px;  
-	height : 1500px;
+	/* width:1300px;  
+	height : 1500px; */
 	padding : 0px;
-	margin-left : 300px;
+	margin-left : 260px;
 	
 }
 

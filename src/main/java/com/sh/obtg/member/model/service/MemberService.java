@@ -1,9 +1,6 @@
 package com.sh.obtg.member.model.service;
 
-import static com.sh.obtg.common.JdbcTemplate.close;
-import static com.sh.obtg.common.JdbcTemplate.commit;
-import static com.sh.obtg.common.JdbcTemplate.getConnection;
-import static com.sh.obtg.common.JdbcTemplate.rollback;
+import static com.sh.obtg.common.JdbcTemplate.*;
 
 import java.sql.Connection;
 import java.util.List;
@@ -95,6 +92,19 @@ public class MemberService {
 		} catch(Exception e) {
 			rollback(conn);
 			throw e;
+		}finally {
+			close(conn);
+		}
+		return result;
+	}
+	public int insertMember(Member member) {
+		int result = 0;
+		Connection conn = getConnection();
+		try {
+			result = memberDao.insertMember(conn, member);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
 		}finally {
 			close(conn);
 		}
