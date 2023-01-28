@@ -25,12 +25,11 @@
 %>
  <script>
 window.addEventListener('load', () => {	
-	alert("말이많다");
 	<% if( msgnull != null) {%> 
 		alert("<%=msgnull%>"); 
 	// alert( 사이에 ""이거 없으면  )이렇게쓰면 alert( 아이디가 존재하지 않거나 비밀번호가 틀립니다) <-- 이뜻임 
 	<% } %>		
-}
+});
 </script>
 <style>
  div#search-container {

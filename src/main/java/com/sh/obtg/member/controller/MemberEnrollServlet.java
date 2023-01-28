@@ -38,6 +38,9 @@ public class MemberEnrollServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
+//		HttpSession session = request.getSession();
+		String msg = "";
+		
 		  try { 
 			  
 		  String memberId = request.getParameter("memberId"); 

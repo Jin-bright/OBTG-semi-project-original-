@@ -92,7 +92,7 @@ window.addEventListener('load', () => {
 	<%if(msg != null){ %>
 		alert("<%= msg %>");
 	<%} %>
-)};
+});
 
 const item = document.querySelectorAll(".menu__item");
 

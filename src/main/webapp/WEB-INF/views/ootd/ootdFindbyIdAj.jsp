@@ -13,7 +13,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> --%>
 
 <%
-	String msg  = (String)request.getAttribute("msg");
+	String msgnull  = (String)request.getAttribute("msgnull");
 	String searchType = request.getParameter("searchType");
 	String searchKeyword = request.getParameter("searchKeyword");
 	List<OotdBoardandAttachment> ootdboardAndAttachments = (List<OotdBoardandAttachment>)request.getAttribute("ootdboardAndAttachments");
@@ -22,6 +22,14 @@
 // List<OotdAttachment> ootdAttachments = (List<OotdAttachment>)request.getAttribute("ootdAttachments");
 // OotdBoard ootdboard = (OotdBoard) request.getAttribute("ootdboard");
 %>
+ <script>
+window.addEventListener('load', () => {	
+	<% if( msgnull != null) {%> 
+		alert("<%=msgnull%>"); 
+	// alert( 사이에 ""이거 없으면  )이렇게쓰면 alert( 아이디가 존재하지 않거나 비밀번호가 틀립니다) <-- 이뜻임 
+	<% } %>		
+});
+</script>
 
 <br /><br /><br />
 <section id="board-container">
