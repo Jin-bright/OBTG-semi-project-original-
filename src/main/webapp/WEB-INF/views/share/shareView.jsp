@@ -163,7 +163,7 @@
         <tbody>
             <tr>
                 <th><label for="">게시글 번호</label></th>
-                <td><input type="text" value="222<%= shareBoard.getShareNo() %>" name="boardNo" readonly="readonly"/></td>
+                <td><input type="text" value="999<%= shareBoard.getShareNo() %>" name="boardNo" readonly="readonly"/></td>
             </tr>
             <tr>
                 <td colspan="2"><hr style="width: 95%;" /></td>
@@ -196,7 +196,7 @@
         </tbody>
     </table> <!-- end reason_wrap -->
     <div style="text-align: center;">
-        <input type="submit" value="신고하기">
+        <input type="button" value="신고하기" onclick="reportEnroll()">
     </div>
 </form>
 <% } %>
@@ -291,5 +291,11 @@ const checkOnlyOne = (e) => {
     e.checked = true;
 } 
 
+const reportEnroll = () => {
+	if(confirm("정말 신고하시겠습니까? ")){
+		document.reportEnrollFrm.submit();
+		alert("신고가 접수되었습니다.")
+	}	
+}
 </script>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
