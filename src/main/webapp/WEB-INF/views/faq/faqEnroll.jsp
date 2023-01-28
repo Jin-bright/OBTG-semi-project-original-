@@ -7,7 +7,6 @@
 	<form
 		name="boardEnrollFrm"
 		action="<%=request.getContextPath() %>/faq/faqEnroll" 
-		enctype="multipart/form-data"
 		method="post">
 		<table id="tbl-board-view">
 		<tr>
@@ -20,13 +19,13 @@
 				<input type="text" name="writer" value="<%= loginMember.getMemberId() %>" readonly/>
 			</td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<th>첨부파일</th>
 			<td>			
 				<input type="file" name="upFile1">
 				<input type="file" name="upFile2">
 			</td>
-		</tr>
+		</tr> -->
 		<tr>
 			<th>내 용</th>
 			<td><textarea rows="5" cols="40" name="content"></textarea></td>
