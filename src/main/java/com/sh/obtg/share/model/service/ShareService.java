@@ -135,5 +135,28 @@ public class ShareService {
 		}
 		return result;
 	}
+
+//첨부파일 share no로 조회 
+	public List<ShareAttachment> selectAttachmentByBoardNo(int no) {
+		Connection conn = getConnection();
+		List<ShareAttachment> attachment  = shareBoardDao.selectAttachmentByBoardNo(conn, no);
+		
+		return attachment;
+	}
+
+// 게시글 지우기 
+	public int deleteBoard(int no) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {	
+			result = shareBoardDao.deleteBoard(conn, no);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+			throw e;
+		}
+		
+		return result;
+	}
 	
 }

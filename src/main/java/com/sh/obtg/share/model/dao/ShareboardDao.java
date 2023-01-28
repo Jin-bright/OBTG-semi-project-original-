@@ -311,6 +311,21 @@ public class ShareboardDao {
 			}
 			return result;
 		}
+
+		public int deleteBoard(Connection conn, int no) {
+			String sql = prop.getProperty("deleteBoard");
+			int result = 0 ;
+			
+			try(PreparedStatement pstmt = conn.prepareStatement(sql)){ 
+				pstmt.setInt(1, no);
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				throw new ShareBoardException("게시물( only ) 삭제 오류!", e);
+			}
+			
+			return result;
+		}
 		
 		
 		
