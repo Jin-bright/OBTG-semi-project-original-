@@ -38,11 +38,7 @@
     max-width: 100%;
     height: auto;
 }
-span, a, a:hover {
-    display: inline-block;
-    text-decoration: none;
-    color: inherit;
-}
+
 
 /*==========================
       history area

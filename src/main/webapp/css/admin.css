@@ -1,6 +1,6 @@
 ﻿@CHARSET "UTF-8";
 /*관리자 페이지 : 회원관리 */
-section#memberList-container {text-align:center;}
+section#memberList-container {text-align:center; padding-left: 200px;}
 section#memberList-container table#tbl-member {width:100%; border:1px solid gray; border-collapse:collapse;}
 table#tbl-member th, table#tbl-member td {border:1px solid gray; padding:10px; }
 
@@ -19,4 +19,29 @@ section#memberList-container div#pagebar a:hover {text-decoration: underline;}
 
 td {
 	text-align: center;
+}
+
+
+#tbl-admin {
+	width: 100%;
+	margin: 0 auto;
+	border: 0;
+	border-collapse: collapse;
+	margin-bottom: 24px;
+}
+
+#tbl-admin th {
+	border: 0;
+	padding: 12px 4px;
+}
+
+#tbl-admin tr {
+	border: 0;
+	
+	border-bottom: 1px solid #ECEEF1;
+}
+
+
+#tbl-admin td {
+	padding: 12px 4px;
 }
