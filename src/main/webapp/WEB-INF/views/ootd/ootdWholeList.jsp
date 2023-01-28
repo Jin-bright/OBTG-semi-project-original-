@@ -36,10 +36,10 @@
 </div>
 
 
-
+<% if(loginMember != null){ %>
 <input type="button" value="글쓰기" id="btnAdd" 
 	onclick="location.href='<%=request.getContextPath()%>/ootd/ootdEnroll';"/> <%-- get&post다있는데/ 로그인한 상태에서만 노출 되게 수정해야됨 --%> 
-
+<% } %>
 <table id="tblBoard">
   <tr> 
   <% for(int i=0; i<ootdAttachments.size(); i++){ %>
@@ -59,7 +59,7 @@
 	<% if(i<5) { %>
      <td class="maketd" style= "height : 300px; width:190px">
      <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdAttachments.get(i).getBoardNo() %>">
-       <img  style="display : inline-block;" src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>"/></a><br/>
+       <img  id="eachimg" style="display : inline-block;" src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>"/></a><br/>
 		<p class="non">NO <span style="color : black; font-weight : light"><%=ootdAttachments.get(i).getBoardNo()%></span></p>
 		<p class="non">N  <span style=" color : black; font-weight : light"><%=ootdAttachments.get(i).getRegDate()%></span></p>
      </td>

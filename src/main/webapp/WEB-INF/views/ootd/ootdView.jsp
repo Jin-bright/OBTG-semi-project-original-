@@ -123,17 +123,18 @@
 		<% } else { %>
 		<img src="<%= request.getContextPath() %>/image/heart _over.png" class="heart" alt="좋아요" />
 		<% } %>
+		
 		<%
-			//boolean canEdit = loginMember != null && 
-			//					(loginMember.getMemberRole() == MemberRole.A ||
-			//						loginMember.getMemberId().equals(board.getWriter()));
-			//if(canEdit){
+			boolean canEdit = loginMember != null && 
+								(loginMember.getMemberRole() == MemberRole.A ||
+									loginMember.getMemberId().equals(ootdboard.getOotdWriter()));
+			if(canEdit){
 		%>
 			<%-- 작성자와 관리자만 마지막행 수정/삭제버튼이 보일수 있게 할 것 --%>
 				<button class ="ootdmodidel" type="submit" onclick="updateBoard()"> 수정하기 </button>
 				<button class ="ootdmodidel"  type="submit"  onclick="deleteBoard()"> 삭제하기 </button>
 		<% 
-//			}
+			}
 		%>
 	</div>
 <!-- content modi del 좋아요  -->
@@ -143,12 +144,11 @@
 <!-- comment -->
  <hr style="margin-top:30px; border :none" />    
    <div class="comment-container">
-    <div id="cmttitle" style = "font-weight:bolder"> COMMENT </div>
+    <div id="cmttitle" style = "font-weight:bolder; color:white"> COMMENT </div>
 	<div class="comment-editor">
-       <form action="<%=request.getContextPath()%>/ootd/ootdCommentEnroll" method="post" name="boardCommentFrm">
+       <form action="<%=request.getContextPath()%>/ootd/ootdCommentEnroll" method="post" name="boardCommentFrm">  <!-- 댓글등록폼 -->
          <input type="hidden" name="boardNo" value="<%= ootdboard.getOotdNo() %>" />
-    <%-- <input type="hidden" name="writer" value="<%= loginMember != null ? (loginMember.getMemberId()) : ""%>" />  --%> 
-         <input type="hidden" name="writer" value="tigerhj" />
+    	 <input type="hidden" name="writer" value="<%= loginMember != null ? (loginMember.getMemberId()) : ""%>" /> 
          <input type="hidden" name="commentLevel" value="1" />
          <input type="hidden" name="commentRef" value="0" />    
          <textarea id="cmtcontent" name="content" cols="60" rows="3"></textarea>
@@ -175,15 +175,10 @@
                 </td>
                 <td>
                     <button class="btn-reply" value="<%= bc.getCmtNo()%>" >답글</button>
-                   <%--  <% if( loginMember != null && 
-	               // 		 ( ( loginMember.getMemberId()).equals( bc.getWriter()) || (loginMember.getMemberRole() == MemberRole.A ))) {%>
-<%--             	<form action="<%=request.getContextPath()%>/board/boardCommentDelete" method="post" name="boardCommentDeleteFrm" >
-						<input type="hidden" name="no" value="<%= bc.getNo()%>" />
-						<input type="hidden" name="boardNo" value="<%=bc.getBoardNo()%>" />
-	                </form> 
-	                    <button class="btn-delete"> 삭제 </button>  <%-- 숙제 0105 삭제 얘는 관리자 혹은 본인한테만 보여야됨 /다시현재페이지로리다이렉 --%>					
-                    <button class="btn-delete" value="<%= bc.getCmtNo() %>" >삭제</button>
-				<%-- <% } %>  --%>	
+                    <% if( loginMember != null && 
+	                		 ( ( loginMember.getMemberId()).equals( bc.getMemberId()) || (loginMember.getMemberRole() == MemberRole.A ))) {%>
+                 	<button class="btn-delete" value="<%= bc.getCmtNo() %>" >삭제</button>
+					<% } %>  	
                 </td>
             </tr>
             <%
@@ -199,22 +194,17 @@
                     <%=bc.getCmtContent()%>
                 </td>
                 <td> 
-	       <%--         <% if( loginMember != null && 
-	            //    		 ( ( loginMember.getMemberId()).equals( bc.getWriter()) || (loginMember.getMemberRole() == MemberRole.A ))) {%>
-<%-- 이코드가 중복이니까     <form action="<%=request.getContextPath()%>/board/boardCommentDelete" method="post" name="boardCommentDeleteFrm" >
-						<input type="hidden" name="no" value="<%= bc.getNo()%>" />
-						<input type="hidden" name="boardNo" value="<%=bc.getBoardNo()%>" />
-						</form> 
-						<button class="btn-delete"> 삭제 </button> --%>
+	                <% if( loginMember != null && 
+	                		 ( ( loginMember.getMemberId()).equals( bc.getMemberId()) || (loginMember.getMemberRole() == MemberRole.A ))) {%>
 						<button class="btn-delete"  value="<%= bc.getCmtNo()%>"> 삭제</button>
-			<%--	<% } %>   --%>	
+				<	<% } %>   	
 				</td>
             </tr>
             <%
           			}
             	}
             %>
-            		
+  		
         </table>
         <%
         	}
@@ -259,13 +249,12 @@ document.body.addEventListener('submit', (e) => {
 	console.log( "타켓" + e.target.value );
 	if(e.target.name === 'boardCommentFrm'){
 
-	<%--
 		<% if(loginMember == null ){%>
 			loginAlert();
 			e.preventDefault();
 			return; // 조기리턴
 		<% } %>
-			--%>
+			
 		//유효성검사 
 		const content = e.target.content;
 		if(!/^(.|\n)+$/.test(content.value)){
@@ -279,7 +268,7 @@ document.body.addEventListener('submit', (e) => {
 
 
 //textarea에대한 핸들링 
-<%--
+
 document.boardCommentFrm.content.addEventListener('focus', (e) => {
 	<% if(loginMember == null ){%>
 		loginAlert();		
@@ -288,22 +277,22 @@ document.boardCommentFrm.content.addEventListener('focus', (e) => {
 
 const loginAlert = () => {
 	alert("로그인 후 이용할 수 있습니다.");
-	document.querySelector("#memberId").focus();
+	document.querySelector("#loginSignup").focus();
 };
---%>
-
 </script>
+
+
 
 <script>
 //대댓글
 document.querySelectorAll(".btn-reply").forEach((button) => {
 button.onclick = (e) => {
 	console.log(e.target.value);
-<%--
+
 	<% if(loginMember == null){ %>
 		loginAlert();
 	<% } else { %>
---%>
+
 	
 	const tr = `
 	<tr>
@@ -311,8 +300,7 @@ button.onclick = (e) => {
 			<form
 				action="<%=request.getContextPath()%>/ootd/ootdCommentEnroll" method="post" name="boardCommentFrm">
                 <input type="hidden" name="boardNo" value="<%= ootdboard.getOotdNo() %>" />
-                <input type="hidden" name="writer" value="doghj" />
-<%--            <input type="hidden" name="writer" value="<%= loginMember != null ? loginMember.getMemberId() : "" %>" /> --%>
+	            <input type="hidden" name="writer" value="<%= loginMember != null ? loginMember.getMemberId() : "" %>" /> 
                 <input type="hidden" name="commentLevel" value="2" />
                 <input type="hidden" name="commentRef" value="\${e.target.value}" />    
 				<textarea id="cmtcmtcontent"  name="content" cols="58" rows="1"></textarea>
@@ -331,7 +319,7 @@ button.onclick = (e) => {
 	
 	button.onclick = null; // 이벤트핸들러 제거
 
-<%-- <% } %>  ---%>
+ 	<% } %>  
 	};
 });
 
@@ -371,7 +359,7 @@ const updateBoard = () => {
 /* 좋아요 */
 document.querySelector(".heart").addEventListener("click", (e) => {
 	<% if(loginMember == null){ %>
-		alert("로그인 후 이용할 수 있습니다.")
+		 loginAlert();
 	<% } else { %>
 		$.ajax({
 			url: "<%= request.getContextPath() %>/ootd/OotdLike?no=<%= ootdboard.getOotdNo() %>",

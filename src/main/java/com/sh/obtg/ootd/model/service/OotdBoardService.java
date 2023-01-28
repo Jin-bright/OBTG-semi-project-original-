@@ -153,7 +153,7 @@ import com.sh.obtg.ootd.model.dto.OotdBoardComment;
 	}
 
 //board 게시물 업데이트 	
-	//쿼리 : 	 update OOTD_board_comment  set title = ?, content = ?  where no = ? 
+//쿼리 : 	 update OOTD_board_comment  set title = ?, content = ?  where no = ? 
 	public int updateBoard(OotdBoard ootdBoard) {
 		Connection conn = getConnection();
 		int result = 0;
@@ -166,7 +166,8 @@ import com.sh.obtg.ootd.model.dto.OotdBoardComment;
 			System.out.println("**attachments 정보 : "  + attachments );
 			if(!attachments.isEmpty()) {
 				for(OotdAttachment attach : attachments) {
-				result = ootdBoardDao.insertAttachment(conn, attach);
+//				result = ootdBoardDao.insertAttachment(conn, attach);
+				result = ootdBoardDao.updateAttachment(conn, attach);		
 				}
 			}
 
