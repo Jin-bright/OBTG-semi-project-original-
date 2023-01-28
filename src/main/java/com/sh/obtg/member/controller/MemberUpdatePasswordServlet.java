@@ -49,7 +49,7 @@ public class MemberUpdatePasswordServlet extends HttpServlet {
 				loginMember.setPassword(newPassword);
 				int result = memberService.updatePassword(loginMember);
 				msg = "비밀번호를 성공적으로 변경했습니다.";
-				location += "membr/memberView";
+				location += "/membr/memberView";
 			}else {
 				msg = "비밀번호가 일치하지 않습니다.";
 				location+="/member/updatePassword";
