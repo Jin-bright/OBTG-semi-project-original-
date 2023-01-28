@@ -1,4 +1,4 @@
-package com.sh.obtg.share;
+package com.sh.obtg.share.controller;
 
 import java.io.IOException;
 import java.sql.Date;
