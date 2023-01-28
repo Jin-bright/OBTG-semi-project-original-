@@ -1,13 +1,18 @@
 package com.sh.obtg.share.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.sh.obtg.member.model.dto.Member;
 import com.sh.obtg.share.model.dto.ShareBoard;
 import com.sh.obtg.share.model.service.ShareService;
 
@@ -61,16 +66,26 @@ public class ShareViewServlet extends HttpServlet {
 	// selectAttachmentByBoardNo = select * from attachment where board_no = ?
 //		 	select * from  OOTD_attachment	where board_no = ?
 			
-			ShareBoard shareBoard = shareService.selectOneBoard(no, hasRead); //no는 게시판 번호 (share_no) 
-			System.out.println("shareBoard = " + shareBoard);
-			
-			//개행문자 처리 - textarea에서 필요하다 
+		ShareBoard shareBoard = shareService.selectOneBoard(no, hasRead); //no는 게시판 번호 (share_no) 
+		System.out.println("shareBoard = " + shareBoard);
+		
+		//개행문자 처리 - textarea에서 필요하다 
 //				ootdboard.setOOTDContents( 	
 //						HelloMvcUtils.convertLineFeedToBr(
 //								HelloMvcUtils.escapeHtml( ootdboard.getOOTDContents()))
 //				); 
+		
+		// 좋아요 조회
+		HttpSession session = request.getSession();
+		Member loginMember = (Member)session.getAttribute("loginMember");	
+		Map<String, Object> param = new HashMap<>();
+		param.put("memberId", loginMember != null ? loginMember.getMemberId() : "null");
+		param.put("boardNo", no);
+		int count = shareService.selectShareLike(param);
+		System.out.println("shareLike = " + count);
 				
 		request.setAttribute("shareBoard", shareBoard);
+		request.setAttribute("likeCnt", count);
 		request.getRequestDispatcher("/WEB-INF/views/share/shareView.jsp")
 		.forward(request, response);
 	}

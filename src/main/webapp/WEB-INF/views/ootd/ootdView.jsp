@@ -119,9 +119,9 @@
 	<div id="contents" > <p style="float:left; margin-left : 30px; font-weight:bolder">CONTENT</p><br />
 		<div id="contentsbox" ><%= ootdboard.getOOTDContents() %></div>	
 		<% if(likeCnt == 0) { %>
-		<img src="<%= request.getContextPath() %>/image/heart.png" class="heart" alt="좋아요"/>
+		<img src="<%= request.getContextPath() %>/image/heart.png" class="shareLike" alt="좋아요"/>
 		<% } else { %>
-		<img src="<%= request.getContextPath() %>/image/heart _over.png" class="heart" alt="좋아요" />
+		<img src="<%= request.getContextPath() %>/image/heart _over.png" class="shareLike" alt="좋아요" />
 		<% } %>
 		
 		<%

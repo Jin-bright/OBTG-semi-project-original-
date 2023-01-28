@@ -83,8 +83,7 @@ public class OotdViewServlet extends HttpServlet {
 			
 		// 좋아요 조회
 		HttpSession session = request.getSession();
-		Member loginMember = (Member)session.getAttribute("loginMember");
-		
+		Member loginMember = (Member)session.getAttribute("loginMember");	
 		Map<String, Object> param = new HashMap<>();
 		param.put("memberId", loginMember != null ? loginMember.getMemberId() : "null");
 		param.put("boardNo", no);

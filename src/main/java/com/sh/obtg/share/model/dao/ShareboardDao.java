@@ -326,7 +326,69 @@ public class ShareboardDao {
 			
 			return result;
 		}
-		
-		
+
+		// 좋아요 조회
+		public int selectShareLike(Connection conn, Map<String, Object> param) {
+			// select count(*) from SHARE_Likes where board_no = ? and member_id = ?
+			String sql = prop.getProperty("selectShareLike");
+			int likeCnt = 0;
+			int boardNo = (int)param.get("boardNo");
+			String memberId = (String)param.get("memberId");
+			
+			try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+				pstmt.setInt(1, boardNo);
+				pstmt.setString(2, memberId);
+				
+				try (ResultSet rset = pstmt.executeQuery()) {
+					while(rset.next()) {
+						likeCnt = rset.getInt(1);
+					}
+				}
+				
+			} catch (SQLException e) {
+				throw new ShareBoardException("👻좋아요 조회 오류👻", e);
+			}
+			
+			return likeCnt;
+		}
+
+		// 좋아요 입력(추가)
+		public int insertShareLike(Connection conn, Map<String, Object> param) {
+			// insert into SHARE_Likes values (seq_ootd_likes_no.nextval, ?, ?)
+			String sql = prop.getProperty("insertShareLike");
+			int result = 0;
+			int boardNo = (int)param.get("boardNo");
+			String memberId = (String)param.get("memberId");
+			
+			try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+				pstmt.setInt(1, boardNo);
+				pstmt.setString(2, memberId);
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				throw new ShareBoardException("👻좋아요 입력 오류👻", e);
+			}
+			
+			return result;
+		}
+
+		// 좋아요 삭제
+		public int deleteShareLike(Connection conn, int no) {
+			// delete SHARE_Likes where board_no = ?
+			String sql = prop.getProperty("deleteShareLike");
+			int result = 0;
+			
+			try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+				pstmt.setInt(1, no);
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				throw new ShareBoardException("👻좋아요 삭제 오류👻", e);
+			}
+			
+			return result;
+		}	
 		
 }

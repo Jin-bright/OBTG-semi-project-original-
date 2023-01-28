@@ -158,5 +158,43 @@ public class ShareService {
 		
 		return result;
 	}
+
+	// 좋아요 조회
+	public int selectShareLike(Map<String, Object> param) {
+		Connection conn = getConnection();
+		int likeCnt = shareBoardDao.selectShareLike(conn, param);
+		close(conn);
+		return likeCnt;
+	}
+
+	// 좋아요 입력(추가)
+	public int insertShareLike(Map<String, Object> param) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = shareBoardDao.insertShareLike(conn, param);
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		}
+		
+		return result;
+	}
+
+	// 좋아요 삭제
+	public int deleteShareLike(int no) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = shareBoardDao.deleteShareLike(conn, no);
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		}
+		
+		return result;
+	}
 	
 }
