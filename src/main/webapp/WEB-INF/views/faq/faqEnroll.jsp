@@ -3,13 +3,12 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>    
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board2.css" />
 <section id="board-container">
-	<h2>게시판 작성</h2>
+	<h2>FAQ 작성</h2>
 	<form
 		name="boardEnrollFrm"
 		action="<%=request.getContextPath() %>/faq/faqEnroll" 
-		enctype="multipart/form-data"
 		method="post">
-		<table id="tbl-board-view">
+		<table id="tbl-board">
 		<tr>
 			<th>제 목</th>
 			<td><input type="text" name="title" required></td>
@@ -17,23 +16,23 @@
 		<tr>
 			<th>작성자</th>
 			<td>
-				<input type="text" name="writer" value="<%= loginMember.getMemberId() %>" readonly/>
+				<input type="text" name="writer" readonly/>
 			</td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<th>첨부파일</th>
 			<td>			
 				<input type="file" name="upFile1">
 				<input type="file" name="upFile2">
 			</td>
-		</tr>
+		</tr> -->
 		<tr>
 			<th>내 용</th>
 			<td><textarea rows="5" cols="40" name="content"></textarea></td>
 		</tr>
 		<tr>
 			<th colspan="2">
-				<input type="submit" value="등록하기">
+				<input type="submit" value="등록하기" class="submit-button">
 			</th>
 		</tr>
 	</table>

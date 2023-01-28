@@ -20,7 +20,7 @@ public class FaqCommentDeleteServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int faqNo = Integer.parseInt(request.getParameter("faqNo"));
+		int faqNo = Integer.parseInt(request.getParameter("no"));
 		
 		try {
 			// 1. 파라미터값 가져오기

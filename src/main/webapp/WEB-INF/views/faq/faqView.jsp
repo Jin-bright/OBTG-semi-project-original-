@@ -153,7 +153,7 @@
 	name="faqCommentDelFrm"
 	method="POST">
 	<input type="hidden" name="no" />
-	<input type="hidden" name="boardNo" value="<%= faq.getNo() %>"/>
+	<input type="hidden" name="no" value="<%= faq.getNo() %>"/>
 </form>
 
    <script>
