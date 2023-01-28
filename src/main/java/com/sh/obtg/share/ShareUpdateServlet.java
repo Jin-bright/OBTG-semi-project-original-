@@ -59,7 +59,7 @@ public class ShareUpdateServlet extends HttpServlet {
 		MultipartRequest multiReq = new MultipartRequest(request, saveDirectory, maxPostSize, encoding, policy);
 		
 		int no = Integer.parseInt(multiReq.getParameter("no")); //hidden으로 가져오는거맞음 ^^ 
-		System.out.println("**update 서블릿에서 :게시글번호 : " + no);
+	//	System.out.println("**update 서블릿에서 :게시글번호 : " + no);
 		
 		//1.사용자입력값 
 		String shareTitle = multiReq.getParameter("ShareTitle");
@@ -82,7 +82,7 @@ public class ShareUpdateServlet extends HttpServlet {
 		String _shareBuyDate = multiReq.getParameter("ShareBuyDate");
 		Date shareBuyDate = !"".equals(_shareBuyDate) ?  ( Date.valueOf(_shareBuyDate)) : null;
 
-		System.out.println("**update 서블릿에서 : " + shareBuyDate);
+	//	System.out.println("**update 서블릿에서 : " + shareBuyDate);
 
 		String _style = multiReq.getParameter("style");
 		if( _style.equals("러블리")) {
@@ -137,13 +137,13 @@ public class ShareUpdateServlet extends HttpServlet {
 				shareBoard.addAttachment(attach);
 			}
 		}//end while 
-			System.out.println( "**update 서블렛 attach : " + shareBoard );
-			System.out.println( "**update 서블렛 attach : " + shareBoard );
+	//		System.out.println( "**update 서블렛 attach : " + shareBoard );
+	//		System.out.println( "**update 서블렛 attach : " + shareBoard );
 			
 			//2. 업무로직 
-			System.out.println( "ddddd" +  shareBoard );
+
 			int result = shareService.updateBoard(shareBoard);
-			System.out.println("** update 서블렛 성공 : " +  result);
+		
 			
 			//3.리다이렉트
 			response.sendRedirect(request.getContextPath()+"/share/shareView?no=" + shareBoard.getShareNo() );
