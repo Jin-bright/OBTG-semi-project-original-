@@ -52,7 +52,7 @@
               <label>
                 Password<span class="req">*</span>
               </label>
-              <input type="password" name="password" id="password" required/>
+              <input type="password" name="password" id="password"/>
             </div>
           <div class="field-wrap">
             <label>
