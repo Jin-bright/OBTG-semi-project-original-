@@ -11,9 +11,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-
+import com.sh.obtg.ootd.model.dto.OotdBoardandAttachment;
 import com.sh.obtg.share.model.dto.ShareAttachment;
 import com.sh.obtg.share.model.dto.ShareBoard;
+import com.sh.obtg.share.model.dto.ShareBoardAndAttachment;
 import com.sh.obtg.share.model.dto.Style;
 import com.sh.obtg.share.model.exception.ShareBoardException;
 
@@ -389,6 +390,58 @@ public class ShareboardDao {
 			}
 			
 			return result;
+		}//
+
+		
+		
+		
+		
+		//find - memberId / 
+//select  share_no, member_id, sahre_title, sahre_content, sahre_reg_date, share_product_status, share_category, share_state, style, attach_no,  original_filename, renamed_filename
+//from share_board join share_attachment
+//on share_board.share_no = share_attachment.board_no
+//where share_board.member_Id = '%cathj%';
+		
+		public List<ShareBoardAndAttachment> searchShareBykeyWord(Connection conn, Map<String, String> param) {
+			String sql = prop.getProperty("searchShareBykeyWord");
+			
+			String searchType = param.get("searchType"); // member_id | member_name | gender
+			String searchKeyword = param.get("searchKeyword"); // #
+			
+			List<ShareBoardAndAttachment> shareBoardAndAttachments = new ArrayList<>();
+			sql = sql.replace("#", searchType);
+			
+			try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+				pstmt.setString(1, "%"+searchKeyword+"%");
+				
+				try(ResultSet rset = pstmt.executeQuery() ){
+					while(rset.next()) {
+						
+						ShareBoardAndAttachment shareBoardAndAttachment = new ShareBoardAndAttachment();
+						
+						shareBoardAndAttachment.setShareNo(rset.getInt("share_no"));
+						shareBoardAndAttachment.setMemberId(rset.getString("member_id"));
+						shareBoardAndAttachment.setShareTitle(rset.getString("sahre_title"));
+						shareBoardAndAttachment.setShareContent(rset.getString("sahre_content"));
+						shareBoardAndAttachment.setShareRegDate(rset.getDate("sahre_reg_date"));
+						shareBoardAndAttachment.setShareProductStatus(rset.getString("share_product_status"));
+						shareBoardAndAttachment.setShareCategory(rset.getString("share_category"));
+						shareBoardAndAttachment.setShareState(rset.getString("share_state"));
+						shareBoardAndAttachment.setStyleNo( Style.valueOf( rset.getString("style")));
+						
+						shareBoardAndAttachment.setAttachNo( rset.getInt("attach_no"));
+						shareBoardAndAttachment.setOriginalFilename( rset.getString("original_filename"));
+						shareBoardAndAttachment.setRenamedFilename( rset.getString("renamed_filename"));
+						
+						shareBoardAndAttachments.add(shareBoardAndAttachment);
+						
+					}
+				}	
+			}catch (SQLException e) {
+				throw new ShareBoardException("id로 게시글찾기 실패^^", e);
+			}
+				
+			return shareBoardAndAttachments;
 		}	
 		
 }

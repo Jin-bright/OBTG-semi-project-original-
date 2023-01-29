@@ -25,7 +25,7 @@
 function open_pop(<%=ootdboard.getOotdWriter()%> ){
     const frmPop= document.frmPopup;
     const url = '<%=request.getContextPath()%>/profile/profileView';
-    window.open('','popupView','width=500, height=500');   
+    window.open('','popupView','width=600, height=600');   
      
     frmPop.action = url; 
     frmPop.target = 'popupView'; //window,open()의 두번째 인수와 같아야 하며 필수다.   
