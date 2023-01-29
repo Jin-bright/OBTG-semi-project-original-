@@ -6,6 +6,7 @@
 <%
 	Member loginMember=(Member) session.getAttribute("loginMember");
 	String msg = (String)session.getAttribute("msg");
+	System.out.println(msg);
 	if(msg != null) session.removeAttribute("msg");
 %>
 <!doctype html>
@@ -16,17 +17,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>OBTG Semi-Project</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css" /> 
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/index.css" />
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.1.js"></script>
-</head>
 
+</head>
 <body>
-<section id="headercolor">
+<header>
 <!--   메뉴바 -->
 <br /> <br />
 <table id="tdloginSignup">
@@ -64,7 +64,9 @@
 				</table> 
 			
 			<% } %>
-<h1 style="width : 400px; font-size : 70px;	margin : auto; text-align : center; font-weight: bold; font-family: 'Noto Sans KR', sans-serif;"> O B T G  </h1>
+			<a href="<%=request.getContextPath()%>">
+				<h1 class="main-title">O B T G</h1>
+			</a>
 <br /> <br />
 <hr style="border: solid 1px black; margin:0;">
 <nav class="menu">
@@ -82,25 +84,22 @@
   <div id="active-3"></div>
 </nav>
 <hr style="border: solid 1px black; margin:0;">
-</section>
+</header>
 
 
 
 
 <script>
 window.addEventListener('load', () => {
-	<%if(msg != null){ %>
+	<% if(msg != null){ %>
 		alert("<%= msg %>");
+
 	<%} %>
+
 });
 
 const item = document.querySelectorAll(".menu__item");
 
-let mainFunc = (event) =>{
-    for (var i = 0; i < item.length; i++) {
-        item[i].addEventListener("click", getItem);
-    }
-}
 /* */
 window.addEventListener("load", mainFunc);
 
@@ -114,32 +113,6 @@ const active3 = document.querySelector("#active-3");
 
 let colors = ["black"];
 
-let getItem = (event) => {
-    getIcon();
-    let indexItem = event.currentTarget.id;
-    indexItem = indexItem.split("i-").join("");
-
-    active.style.left = `\${(indexItem * 210) + 80}px`;
-    active.style.background = colors[indexItem];
-
-    /*
-    active2.style.left = `\${(indexItem * 100) + 140}px`;
-    active2.style.background = colors[indexItem];
-    active2.classList.add("is-item-animated");
-
-    active3.style.left = `\${(indexItem * 120) + 140}px`;
-    active3.style.background = colors[indexItem];
-    active3.classList.add("is-item-animated");
-	*/
-
-    event.currentTarget.children[0].classList.add("is-icon-visible");
-    event.currentTarget.children[1].classList.add("is-text-visible");
-
-    setTimeout(() => {
-        active.classList.remove("is-item-animated");
-    }, 300);
-
-};
 
 
 let getIcon = (event) =>{

@@ -22,7 +22,7 @@ public class FaqViewServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 사용자 입력값
-		int FaqNo = Integer.parseInt(request.getParameter("no"));
+		int faqNo = Integer.parseInt(request.getParameter("no"));
 		
 		// 쿠키 처리
 		String faqCookieVal = "";
@@ -35,7 +35,7 @@ public class FaqViewServlet extends HttpServlet {
 				
 				if("faq".equals(name)) {
 					faqCookieVal = value;
-					if(value.contains("[" + FaqNo + "]" )) {
+					if(value.contains("[" + faqNo + "]" )) {
 						hasRead = true;
 					}
 				}
@@ -45,14 +45,14 @@ public class FaqViewServlet extends HttpServlet {
 		// 응답쿠키
 		// 현재 게시글 쿠키 추가
 		if(!hasRead) {
-			Cookie cookie = new Cookie("faq", faqCookieVal + "[" + FaqNo + "]");
+			Cookie cookie = new Cookie("faq", faqCookieVal + "[" + faqNo + "]");
 			cookie.setMaxAge(365 * 24 * 60 * 60); // 365일
 			cookie.setPath(request.getContextPath() + "/faq/faqView");
 			response.addCookie(cookie);
 		}
 		
 		// 서비스단
-		faq faq = faqService.selectOneFaq(FaqNo, hasRead);
+		faq faq = faqService.selectOneFaq(faqNo, hasRead);
 		
 		request.setAttribute("faq", faq);
 		request.getRequestDispatcher("WEB-INF/views/faq/faqView.jsp")

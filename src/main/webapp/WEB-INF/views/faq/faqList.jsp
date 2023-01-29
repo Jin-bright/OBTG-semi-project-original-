@@ -8,11 +8,12 @@
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board2.css" />
 <section id="board-container">
-	<h2>게시판 </h2>
+	<h2>FAQ</h2>
 	
 	<%-- <% if(loginMember != null){ %> --%>
-	<input type="button" value="글쓰기" id="btn-add"
-		onclick="location.href = '<%= request.getContextPath() %>/faq/faqEnroll';" />
+	<a href="<%= request.getContextPath() %>/faq/faqEnroll">
+	<button id="btn-add">글쓰기</button>
+	</a>
 	<%-- <% } %> --%>
 	<table id="tbl-board">
 		<thead>

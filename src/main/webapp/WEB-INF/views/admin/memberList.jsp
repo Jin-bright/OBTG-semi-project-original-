@@ -29,10 +29,7 @@ window.addEventListener('load', () => {
 	document.querySelector("#searchType").addEventListener('change', (e) => {
 		console.log(e.target.value); // member_id, name, gender
 		
-		// 모두 숨김
-		document.querySelectorAll(".search-type").forEach((div) => {
-			div.style.display = "none";
-		});
+	
 		
 		// 현재선택된 값에 상응하는 div만 노출
 		let id; 
@@ -93,7 +90,7 @@ window.addEventListener('load', () => {
     <br><br><br>
 	
 	
-	<table id="tbl-member">
+	<table id="tbl-admin">
 		<thead>
 			<tr>
 				<th>아이디</th>

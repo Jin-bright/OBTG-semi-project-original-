@@ -38,9 +38,6 @@ public class MemberEnrollServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
-//		HttpSession session = request.getSession();
-		String msg = "";
-		
 		  try { 
 			  
 		  String memberId = request.getParameter("memberId"); 
@@ -71,6 +68,7 @@ public class MemberEnrollServlet extends HttpServlet {
 			if(result > 0) {
 				// 회원가입성공 메세지
 				session.setAttribute("msg", "회원가입을 축하드립니다.");
+
 			}
 		}catch(Exception e) {
 			// 회원가입실패 메세지

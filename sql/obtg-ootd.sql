@@ -196,13 +196,24 @@ CREATE TABLE Report (
     CONSTRAINT PK_REPORT PRIMARY KEY (report_no),
     CONSTRAINT FK_Member_TO_Report_1 FOREIGN KEY (reported_userId) REFERENCES Member (member_id),
     CONSTRAINT FK_OOTD_board_TO_Report_1 FOREIGN KEY (board_no) REFERENCES OOTD_board (OOTD_no),
-    CONSTRAINT CK_report_reason check (report_reason in ('1', '2', '3', '4', '5' )),
+    CONSTRAINT CK_report_reason check (report_reason in ('R1', 'R2', 'R3', 'R4', 'R5' )),
     CONSTRAINT CK_report_status check (report_status in ('o', 'x'))
 );
 
 create sequence seq_report_no;
 
 
+-- 새로 추가한 알림 테이블
+create table noti (
+    no number,
+    receiver varchar2(20),
+    message varchar2(500),
+    datetime date default sysdate,
+    checked char(1) default 'X',
+    constraint pk_noti_no primary key(no),
+    constraint fk_noti_recevier foreign key (receiver) references member (member_id),
+    constraint ck_noti_checked check (checked in ('O', 'X'))
+);
 
 
 
@@ -429,3 +440,8 @@ insert into member values('admin', '시크', 'z인철짱z', 1234, 'j789@naver.co
 
 --drop table faq;
 --drop sequence seq_faq;
+
+
+
+-- 제약조건 해제 / 대신 inline에 빡세게걸기 (by jin / id부분  ootd board comment share / 0129 ) 
+

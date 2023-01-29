@@ -76,7 +76,7 @@ function open_pop(<%=ootdboard.getOotdWriter()%> ){
 	<table id="tblboardview">
 		<tr>
 			<th>아이디</th>
-			<td><%= ootdboard.getOotdWriter() %></td>
+			<td><%= ootdboard.getOotdWriter()%></td>
 		</tr>
 		<tr>
 			<th>제 목</th>
@@ -137,9 +137,9 @@ function open_pop(<%=ootdboard.getOotdWriter()%> ){
 	<div id="contents" > <p style="float:left; margin-left : 30px; font-weight:bolder">CONTENT</p><br />
 		<div id="contentsbox" ><%= ootdboard.getOOTDContents() %></div>	
 		<% if(likeCnt == 0) { %>
-		<img src="<%= request.getContextPath() %>/image/heart.png" class="shareLike" alt="좋아요"/>
+		<img src="<%= request.getContextPath() %>/image/heart.png" class="heart" alt="좋아요"/>
 		<% } else { %>
-		<img src="<%= request.getContextPath() %>/image/heart _over.png" class="shareLike" alt="좋아요" />
+		<img src="<%= request.getContextPath() %>/image/heart _over.png" class="heart" alt="좋아요" />
 		<% } %>
 		
 		<%

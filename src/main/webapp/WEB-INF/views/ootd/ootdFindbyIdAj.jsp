@@ -76,6 +76,24 @@ td{
 #photo-wrapper{
 	height : 200px
 }
+
+#goback{
+	margin-top : -60px;
+	margin-left : 800px;
+	background-color : black;
+	width : 110px;
+	height : 30px;
+	color : white;
+}
+
+#goback:hover{
+
+	background-color : white;
+	height : 30px;
+	color : black;
+	transition-duration : 0.5s;
+	font-weight: bolder
+}
  
  </style>
  
@@ -87,8 +105,9 @@ td{
 	<hr />	<br /><br /><br />
 	
 	<div id='btn-more-container'>
-<%-- 		<button id="btn-more" value="" > 더보기( <span id="page"></span> / <span id="totalPage"><%=totalPage%></span> ) </button>
- --%>	</div>
+		<button id ="goback" onclick="history.go(-1)" > 목록으로 가기 </button>
+	</div>
+	<br /><br /><br /><br /><br />
 </section>
 
 
@@ -134,9 +153,9 @@ td{
 	if(i%2==0){%>
 	<tr>
 <% } %>
-	<td class="maketd" style= "height : 300px; width:190px">
+	<td class="maketd" style= "height : 300px; width:190px;">
 	  <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdboardAndAttachments.get(i).getOotdNo()%>">
-	  <img src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdboardAndAttachments.get(i).getRenamedFilename()%>" /></a>
+	  <img style="margin-left:7px" src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdboardAndAttachments.get(i).getRenamedFilename()%>" /></a>
 	  <p class="non">NO <span style="color : black; font-weight : light"><%=ootdboardAndAttachments.get(i).getOotdNo()%></span></p>
 	  <p class="non">N  <span style=" color : black; font-weight : light"><%=ootdboardAndAttachments.get(i).getOOTDRegDate()%></span></p>
 	</td>
@@ -146,6 +165,7 @@ td{
 <% }
 } %>
 </table>
+<br /><br /><br /><br /><br />
 </section>
 
 
