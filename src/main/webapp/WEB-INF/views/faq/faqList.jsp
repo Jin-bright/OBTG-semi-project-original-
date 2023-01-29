@@ -8,7 +8,7 @@
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board2.css" />
 <section id="board-container">
-	<h2>FAQ</h2>
+	<h2>INFO</h2>
 	
 	<%-- <% if(loginMember != null){ %> --%>
 	<a href="<%= request.getContextPath() %>/faq/faqEnroll">
@@ -38,7 +38,7 @@
 			<tr>
 				<td><%= faq.getNo() %></td>
 				<td>
-					<a href="<%= request.getContextPath() %>/board/boardView?no=<%= faq.getNo() %>"><%= faq.getTitle() %></a>
+					<a href="<%= request.getContextPath() %>/faq/faqView?no=<%= faq.getNo() %>"><%= faq.getTitle() %></a>
 				</td>
 				<td><%= faq.getWriter() %></td>
 				<td><%= faq.getRegDate() %></td>

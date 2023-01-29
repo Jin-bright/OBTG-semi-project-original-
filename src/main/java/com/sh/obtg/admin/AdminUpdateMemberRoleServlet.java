@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.sh.obtg.member.model.service.MemberService;
 
-@WebServlet("/amdin/updateMemberRole")
+@WebServlet("/admin/updateMemberRole")
 public class AdminUpdateMemberRoleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MemberService memberService = new MemberService();
