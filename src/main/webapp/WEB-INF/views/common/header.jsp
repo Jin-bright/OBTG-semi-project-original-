@@ -88,17 +88,6 @@
 </nav>
 <hr style="border: solid 1px black; margin:0;">
 </header>
-<!-- 알림 읽기 처리를 위한 히든폼 -->
-<% if(loginMember != null){ %>
-<form 
-	action="<%= request.getContextPath() %>/notification/notificationUpdate" 
-	name="notiUpdateFrm" 
-	method="post">
-	<input type="hidden" name="notiMemberId" value="<%= loginMember.getMemberId() %>" />
-</form>
-<% } %>
-
-
 <script>
 window.addEventListener('load', () => {
 	<% if(msg != null){ %>

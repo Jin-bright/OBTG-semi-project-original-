@@ -29,18 +29,15 @@ public class NotificationUpdate extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			System.out.println("읽음 처리하러 왔니?");
-			String memberId = request.getParameter("notiMemberId");
+			String memberId = request.getParameter("receiver");
 			System.out.println("[알림]" + memberId);
 			
 			int result = notificationService.updateNoti(memberId);
-			System.out.println(result > 0 ? "알림 업뎃 성공" : "알림 업뎃 실패");
+			//System.out.println(result > 0 ? "알림 업뎃 성공" : "알림 업뎃 실패");
 		
+			
 			response.setContentType("application/json; charset=utf-8");
-			
-			Map<String, Object> map = new HashMap<>();
-			map.put("result", "알림 업뎃 성공");
-			
-			new Gson().toJson(map, response.getWriter());
+			new Gson().toJson(result, response.getWriter());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
