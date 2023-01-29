@@ -23,11 +23,26 @@ ws.addEventListener('message', (e) => {
 				report.forEach((r) => {
 					r.addEventListener('click', () => {
 						r.remove();
+						$.ajax({
+							url : "/OBTG/notification/notificationUpdate",
+							dataType : "json",
+							method : "POST",
+							data : {receiver},
+							success(data){
+								if(data > 0){
+									const bell = document.querySelector(".bell");
+									bell.classList.remove('bell-twinkle');
+									bell.classList.add('bell-hiden');
+									// alert("읽음 처리 완료")
+								}
+								else
+									alert("읽음 처리 오류");
+							},
+							error : console.log
+						});	
 					});
 				});
-				
 			});
-			document.notiUpdateFrm.submit();
 			break;
 	}
 });
@@ -36,25 +51,4 @@ ws.addEventListener('error', (e) => {
 });
 ws.addEventListener('close', (e) => {
 	console.log('close : ', e);
-});
-
-document.notiUpdateFrm.addEventListener("submit", (e) => {
-	e.preventDefault(); // 폼제출 방지
-	
-	const frmData = new FormData(e.target);
-	console.log(frmData);
-	
-	$.ajax({
-		url : "<%= request.getContextPath() %>/notification/notificationUpdate",
-		dataType : "json",
-		method : "POST",
-		data : frmData,
-		success(data){
-			console.log(data);
-			const bell = document.querySelector(".bell");
-			bell.classList.remove('bell-twinkle');
-			bell.classList.add('bell-hiden');
-		},
-		error : console.log
-	});	
 });
