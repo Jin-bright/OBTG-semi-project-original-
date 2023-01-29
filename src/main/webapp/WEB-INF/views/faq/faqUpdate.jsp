@@ -12,8 +12,7 @@
 <h2>게시판 수정</h2>
 <form 
 	name="boardUpdateFrm" 
-	action="<%=request.getContextPath() %>/faq/faqUpdate"
-	enctype="multipart/form-data" 
+	action="<%=request.getContextPath() %>/faq/faqUpdate" 
 	method="post">
 	<table id="tbl-board-view">
 		<tr>
@@ -25,28 +24,6 @@
 			<td>
 				<input type="text" name="writer" value="<%= faq.getWriter() %>" readonly/>
 			</td>
-		</tr>
-		<tr>
-		<%-- 	<th>첨부파일</th>
-			<td>
-				<%
-					List<Attachment> attachments = board.getAttachments();
-					if(!attachments.isEmpty()) {
-						for(int i = 0; i < attachments.size(); i++){
-							Attachment attach = attachments.get(i);
-				%>
-					<img src="<%= request.getContextPath() %>/images/file.png" width="16px" />
-					<%= attach.getOriginalFilename() %>
-					<input type="checkbox" name="delFile" id="delFile<%= i %>" value="<%= attach.getNo() %>" />
-					<label for="delFile<%= i %>">삭제</label>
-					<br />	
-				<%							
-						}
-					}
-				%> --%>
-			<!-- 	<input type="file" name="upFile1">
-				<input type="file" name="upFile2">
-			</td> -->
 		</tr>
 		<tr>
 			<th>내 용</th>

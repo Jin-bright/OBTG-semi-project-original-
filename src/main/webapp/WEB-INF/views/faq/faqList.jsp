@@ -38,7 +38,7 @@
 			<tr>
 				<td><%= faq.getNo() %></td>
 				<td>
-					<a href="<%= request.getContextPath() %>/board/boardView?no=<%= faq.getNo() %>"><%= faq.getTitle() %></a>
+					<a href="<%= request.getContextPath() %>/faq/faqView?no=<%= faq.getNo() %>"><%= faq.getTitle() %></a>
 				</td>
 				<td><%= faq.getWriter() %></td>
 				<td><%= faq.getRegDate() %></td>

@@ -18,6 +18,8 @@ public class FaqEnrollServlet extends HttpServlet {
 
 	// 작성폼 요청
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		String writer = request.getParameter("writer");
+//		request.setAttribute("writer", writer);
 		request.getRequestDispatcher("/WEB-INF/views/faq/faqEnroll.jsp")
 		.forward(request, response);
 	}

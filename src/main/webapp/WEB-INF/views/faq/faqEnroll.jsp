@@ -3,9 +3,12 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>    
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board2.css" />
 <section id="board-container">
+
+
+
 	<h2>FAQ 작성</h2>
 	<form
-		name="boardEnrollFrm"
+		name="faqEnrollFrm"
 		action="<%=request.getContextPath() %>/faq/faqEnroll" 
 		method="post">
 		<table id="tbl-board">
@@ -19,13 +22,6 @@
 				<input type="text" name="writer" readonly/>
 			</td>
 		</tr>
-		<!-- <tr>
-			<th>첨부파일</th>
-			<td>			
-				<input type="file" name="upFile1">
-				<input type="file" name="upFile2">
-			</td>
-		</tr> -->
 		<tr>
 			<th>내 용</th>
 			<td><textarea rows="5" cols="40" name="content"></textarea></td>
@@ -40,9 +36,9 @@
 </section>
 <script>
 /**
-* boardEnrollFrm 유효성 검사
+* faqEnrollFrm 유효성 검사
 */
-document.boardEnrollFrm.onsubmit = (e) => {
+document.faqEnrollFrm.onsubmit = (e) => {
 	const title = e.target.title;
 	const content = e.target.content;
 	console.log(title, content);
