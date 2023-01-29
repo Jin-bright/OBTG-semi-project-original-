@@ -114,12 +114,12 @@
             <input type="text" name="introduce" id="introduce" value="<%= loginMember.getIntroduce() %>"/>
           </div>
           
-          <div class="field-wrap">
+         <%--  <div class="field-wrap">
             <label>
               Profile-file<span class="req"></span>
             </label>
             <input type="file" name="upFile" id="upFile" value="<%= loginMember.getOriginal() %>"/>
-          </div>
+          </div> --%>
         <%
 	String style = loginMember.getStyle(); // nullable
 	List<String> styleList = null;
@@ -160,9 +160,9 @@
 		</td>
 	</tr>
 </fieldset>
-          <input type="submit" value="정보수정"/>          
-          <input type="button" value="비밀번호변경"/>         
-          <input type="button" onclick="deleteMember();" value="탈퇴"/>         
+          <input id ="mmve" type="submit" value="정보수정"/>          
+          <input id ="mmve" type="button" onclick="updatePassword();" value="비밀번호변경"/>         
+          <input id ="mmve" type="button" onclick="deleteMember();" value="탈퇴"/>         
           </form>
         </div>
         </div>

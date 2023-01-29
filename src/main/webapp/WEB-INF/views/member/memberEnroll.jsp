@@ -124,10 +124,9 @@
           </div>
           
           <div class="field-wrap">
-            <label>
-              Profile-file<span class="req"></span>
-            </label>
-            <input type="file" name="upFile" id="upFile" accept="image/*" />
+            <label for="celeb-enroll-profile">Profile</label>
+            <input type="file" name="profile" id="celeb-enroll-profile" />
+            <button type="submit">등록</button>
           </div>
           
           <fieldset class="checkbox-group">
@@ -242,29 +241,33 @@ document.memberEnrollFrm.onsubmit = (e) => {
 	}
 };
 
-// 사진 추가
-document.querySelector("#upFile").addEventListener('change', (e) => {
-	const f = e.target;
-	console.log(f.files);
-	console.log(f.files[0]);
+document.celebEnrollFrm.addEventListener("submit", (e) => {
+	e.preventDefault(); // 폼제출 방지
 	
-	if(f.files[0]){
-		// 파일 선택한 경우
-		const fr = new FileReader();
-		fr.readAsDataURL(f.files[0]); // 비동기 - 백그라운드 작업
-		fr.onload = (e) => {
-			// 읽기 작업 완료시 호출될 load이벤트핸들러
-			document.querySelector("#img-viewer").src = e.target.result; // dataUrl
-			
-			console.log(e.target.result); // 파일이진데이터 인코딩한 결과
-		};
-	}
-	else {
-		// 파일 선택 취소한 경우
-		document.querySelector("#img-viewer").src = "";
-	}
+	// FormData객체 생성
+	const frmData = new FormData(e.target);
 	
+	// 등록 POST 
+	$.ajax({
+		url : "<%= request.getContextPath() %>/json/celeb/enroll",
+		method : "POST",
+		data : frmData,
+		dataType : "json",
+		contentType : false,
+		processData : false,
+		success(data){
+			console.log(data);
+			alert(data.result);
+		},
+		error : console.log,
+		complete(){
+			e.target.reset();
+		}
+		
+	});
+		
 });
+
 </script>
 
 <script type="text/javascript" src="<%= request.getContextPath()%>/js/memberEnroll.js"></script>
