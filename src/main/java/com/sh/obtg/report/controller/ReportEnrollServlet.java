@@ -70,13 +70,13 @@ public class ReportEnrollServlet extends HttpServlet {
 			int board = Integer.parseInt(n.substring(0, 1));
 			System.out.println("어느 게시판일까?(8 - ootd, 9 - share) " + board);
 			
+			// 게시판에 따라 리다이렉트
 			if(board == 8) {
 				response.sendRedirect(request.getContextPath() + "/ootd/ootdView?no=" + no);				
 			}
 			else if(board == 9) {
 				response.sendRedirect(request.getContextPath() + "/share/shareView?no=" + no);
 			}
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

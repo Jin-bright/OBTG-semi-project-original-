@@ -97,15 +97,15 @@ td{
 <%----  검색상자  --%>
 
  
-<br /><br /><br /> 
+<!-- <br /><br /><br />  -->
  <section id="photo-wrapper">
 	<h2> 검색결과 </h2> <br/>
-	<h4> 스타일 &nbsp; <span style="color : orange; font-size:18px"><%=searchKeyword%>&nbsp; </span> (으)로 검색한 결과입니다 😊 </h4><br/><br/><br/>
+	<h4> 스타일 &nbsp; <span style="color : orange; font-size:18px"><%=searchKeyword%>&nbsp; </span> (으)로 검색한 결과입니다 😊 </h4> <br/><!-- <br/><br/> --> 
 	<h5 style="float:left"> ※ 스타일 종류  "러블리, 댄디, 포멀, 스트릿, 걸리쉬, 레트로, 로맨틱, 시크, 아메카지"  </h5>
 	<br />
 	<h5 style="float:left"> ※ 유사한 단어로 검색 시 가장 비슷한 스타일로 노출됩니다.</h5>
-	<br /><br /><br />
-	<hr />	<br /><br /><br />
+	<br /><br /><!-- <br /> -->
+	<hr /> <br /><br /><br />
 	
 	<div id='btn-more-container'>
 		<button id ="goback" onclick="history.go(-1)" > 목록으로 가기 </button>

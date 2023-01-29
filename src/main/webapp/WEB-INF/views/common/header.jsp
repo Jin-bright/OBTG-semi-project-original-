@@ -23,7 +23,9 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/index.css" />
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.1.js"></script>
-
+<% if(loginMember != null){ %>
+<script src="<%= request.getContextPath() %>/js/ws.js"></script>
+<% } %>
 </head>
 <body>
 <header>
@@ -53,7 +55,8 @@
 						<td>
 							<a href="<%= request.getContextPath() %>/member/memberView;"><img id="defaultimg" src="<%=request.getContextPath()%>/image/default.png" alt="defaultimg" style="width:30px; height:30px; cursor: pointer;"/></a>
 							<%= loginMember.getNickname() %>님
-							<span id="notification"></span>
+							<i style="position: absolute;"><img src="<%= request.getContextPath() %>/image/notification.png" alt="알림" class="bell bell-hiden" /></i>
+							<div id="report_wrap"></div>
 						</td>
 					</tr>
 					<tr>
@@ -64,8 +67,8 @@
 				</table> 
 			
 			<% } %>
-			<a href="<%=request.getContextPath()%>">
-				<h1 class="main-title">O B T G</h1>
+			<a href="<%=request.getContextPath()%>" >
+				<h1  class="main-title"  style="margin : 0 auto ">O B T G</h1>
 			</a>
 <br /> <br />
 <hr style="border: solid 1px black; margin:0;">
@@ -85,23 +88,28 @@
 </nav>
 <hr style="border: solid 1px black; margin:0;">
 </header>
-
-
+<!-- 알림 읽기 처리를 위한 히든폼 -->
+<% if(loginMember != null){ %>
+<form 
+	action="<%= request.getContextPath() %>/notification/notificationUpdate" 
+	name="notiUpdateFrm" 
+	method="post">
+	<input type="hidden" name="notiMemberId" value="<%= loginMember.getMemberId() %>" />
+</form>
+<% } %>
 
 
 <script>
 window.addEventListener('load', () => {
 	<% if(msg != null){ %>
 		alert("<%= msg %>");
-
 	<%} %>
-
 });
 
 const item = document.querySelectorAll(".menu__item");
 
 /* */
-window.addEventListener("load", mainFunc);
+// window.addEventListener("load", mainFunc);
 
 
 const icon = document.querySelectorAll(".menu__icon");
@@ -124,6 +132,6 @@ let getIcon = (event) =>{
     }
 }
 
-</script>
 
-</html>
+
+</script>

@@ -47,8 +47,8 @@
               </label>
               <input type="text" name="memberId" id="memberId" value="<%= loginMember.getMemberId() %>" readonly/>		  
             </div>
-            </div>
-            <div class="field-wrap">
+             </div>
+            <!--<div class="field-wrap">
               <label>
                 Password<span class="req">*</span>
               </label>
@@ -60,7 +60,7 @@
             </label>
             <input type="password" id="passwordCheck"/>
             <button class="button password-change" onclick="updatePassword();">비밀번호 변경</button>
-          </div>
+          </div> -->
           
           <div class="field-wrap">
             <label>
@@ -160,8 +160,9 @@
 		</td>
 	</tr>
 </fieldset>
-          <button type="submit" class="button button-modify"/>수정</button>          
-          <button type="submit" class="button button-delete" onclick="deleteMember();"/>탈퇴</button>          
+          <input type="submit" value="정보수정"/>          
+          <input type="button" value="비밀번호변경"/>         
+          <input type="button" onclick="deleteMember();" value="탈퇴"/>         
           </form>
         </div>
         </div>
@@ -174,9 +175,9 @@
 		}
 	};
 	
-	const updatePassword = () => {
+<%-- 	const updatePassword = () => {
 		location.href = "<%= request.getContextPath()%>/member/updatePassword";
-	};
+	}; --%>
 	
 	document.memberUpdateFrm.onsubmit = (e) => {
 		const memberName = document.querySelector("#memberName");
