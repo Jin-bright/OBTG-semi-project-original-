@@ -3,219 +3,43 @@
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
-
+ 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/about.css" />
 
 
-<section class="history-area">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12 text-center">
-              <p class="title-bg-small wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="300ms">About us</p>
-              <h3 class="section-title wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="400ms">Our
-                <span>History</span></h3>
+<section class="about-section">
+    	<div class="container">
+        	<div class="row clearfix">
+            	
+                <!--Content Column-->
+                <div class="content-column col-md-6 col-sm-12 col-xs-12">
+                	<div class="inner-column">
+                    	<div class="sec-title">
+                    		<div class="title">About Us</div>
+                        	<h2>We Are The 배고파요 In <br> The Interiores</h2>
+                        </div>
+                        <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</div>
+                        <div class="email">Request Quote: <span class="theme_color">freequote@gmail.com</span></div>
+<!--                         <a href="about.html" class="theme-btn btn-style-three">Read More</a> -->
+                    </div>
+                </div>
+                
+                <!--Image Column-->
+                <div class="image-column col-md-6 col-sm-12 col-xs-12">
+                	<div class="inner-column " data-wow-delay="0ms" data-wow-duration="1500ms">
+                    	<div class="image">
+                        	<img src="https://i.ibb.co/vQbkKj7/about.jpg" alt="">
+                            <div class="overlay-box">
+                            	<div class="year-box"><span class="number">5</span>Years <br> Experience <br> Working</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
-            <!-- end col -->
-          </div>
-          <!-- end row -->
-          <div class="row">
-            <div class="col-lg-12">
-              <div id="history-slid" class="carousel slide" data-ride="carousel" data-interval="false">
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner">
-                  <div class="carousel-item row">
-                    <div class="col-lg-6 col-md-12 pl-0">
-                      <div class="history-img">
-                        <img class="img-fluid" src="https://i.ibb.co/CKNmhMX/blog1.jpg" alt="" />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 pr-0">
-                      <div class="history-content">
-                        <p class="title-bg-small primary-bg wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="500ms">
-                          Lorem ipsum</p>
-                        <h2 class="column-title wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="700ms">Lorem ipsum dolor <span>sit amet</span></h2>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua
-                        </p>
-                        <p>
-                          Benefit of the socie where we operate. A success website obusly needs great design to be one of
-                          the top 10 IT companies in India but the web design is not enough.
-                        </p>
-                      </div>
-                    </div>
-                  </div><!-- End off item-->
-                  <div class="carousel-item row">
-                    <div class="col-lg-6 col-md-12 pl-0">
-                      <div class="history-img">
-                        <img class="img-fluid" src="https://i.ibb.co/m5yGbdR/blog2.jpg" alt="" />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 pr-0">
-                      <div class="history-content">
-                        <p class="title-bg-small primary-bg wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="500ms">
-                          Lorem ipsum</p>
-                        <h2 class="column-title wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="700ms">Lorem ipsum dolor <span>sit amet</span></h2>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua
-                        </p>
-                        <p>
-                          Benefit of the socie where we operate. A success website obusly needs great design to be one of
-                          the top 10 IT companies in India but the web design is not enough.
-                        </p>
-                      </div>
-                    </div>
-                  </div><!-- End off item-->
-                  <div class="carousel-item row">
-                    <div class="col-lg-6 col-md-12 pl-0">
-                      <div class="history-img">
-                        <img class="img-fluid" src="https://i.ibb.co/YXV3zmh/blog3.jpg" alt="" />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 pr-0">
-                      <div class="history-content">
-                        <p class="title-bg-small primary-bg wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="500ms">
-                          Lorem ipsum</p>
-                        <h2 class="column-title wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="700ms">Lorem ipsum dolor <span>sit amet</span></h2>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua
-                        </p>
-                        <p>
-                          Benefit of the socie where we operate. A success website obusly needs great design to be one of
-                          the top 10 IT companies in India but the web design is not enough.
-                        </p>
-                      </div>
-                    </div>
-                  </div><!-- End off item-->
-                  <div class="carousel-item row active">
-                    <div class="col-lg-6 col-md-12 pl-0">
-                      <div class="history-img">
-                        <img class="img-fluid" src="https://i.ibb.co/CKNmhMX/blog1.jpg" alt="" />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 pr-0">
-                      <div class="history-content">
-                        <p class="title-bg-small primary-bg wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="500ms">
-                          Lorem ipsum</p>
-                        <h2 class="column-title wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="700ms">Lorem ipsum dolor <span>sit amet</span></h2>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua
-                        </p>
-                        <p>
-                          Benefit of the socie where we operate. A success website obusly needs great design to be one of
-                          the top 10 IT companies in India but the web design is not enough.
-                        </p>
-                      </div>
-                    </div>
-                  </div><!-- End off item-->
-                  <div class="carousel-item row">
-                    <div class="col-lg-6 col-md-12 pl-0">
-                      <div class="history-img">
-                        <img class="img-fluid" src="https://i.ibb.co/m5yGbdR/blog2.jpg" alt="" />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 pr-0">
-                      <div class="history-content">
-                        <p class="title-bg-small primary-bg wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="500ms">
-                          Lorem ipsum</p>
-                        <h2 class="column-title wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="700ms">Lorem ipsum dolor <span>sit amet</span></h2>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua
-                        </p>
-                        <p>
-                          Benefit of the socie where we operate. A success website obusly needs great design to be one of
-                          the top 10 IT companies in India but the web design is not enough.
-                        </p>
-                      </div>
-                    </div>
-                  </div><!-- End off item-->
-                  <div class="carousel-item row">
-                    <div class="col-lg-6 col-md-12 pl-0">
-                      <div class="history-img">
-                        <img class="img-fluid" src="https://i.ibb.co/YXV3zmh/blog3.jpg" alt="" />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 pr-0">
-                      <div class="history-content">
-                        <p class="title-bg-small primary-bg wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="500ms">
-                          Lorem ipsum</p>
-                        <h2 class="column-title wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="700ms">Lorem ipsum dolor <span>sit amet</span></h2>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua
-                        </p>
-                        <p>
-                          Benefit of the socie where we operate. A success website obusly needs great design to be one of
-                          the top 10 IT companies in India but the web design is not enough.
-                        </p>
-                      </div>
-                    </div>
-                  </div><!-- End off item-->
-                  <div class="carousel-item row">
-                    <div class="col-lg-6 col-md-12 pl-0">
-                      <div class="history-img">
-                        <img class="img-fluid" src="https://i.ibb.co/CKNmhMX/blog1.jpg" alt="" />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 pr-0">
-                      <div class="history-content">
-                        <p class="title-bg-small primary-bg wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="500ms">
-                          Lorem ipsum</p>
-                        <h2 class="column-title wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="700ms">Lorem ipsum dolor <span>sit amet</span></h2>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua
-                        </p>
-                        <p>
-                          Benefit of the socie where we operate. A success website obusly needs great design to be one of
-                          the top 10 IT companies in India but the web design is not enough.
-                        </p>
-                      </div>
-                    </div>
-                  </div><!-- End off item-->
-                  <div class="carousel-item row">
-                    <div class="col-lg-6 col-md-12 pl-0">
-                      <div class="history-img">
-                        <img class="img-fluid" src="https://i.ibb.co/m5yGbdR/blog2.jpg" alt="" />
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 pr-0">
-                      <div class="history-content">
-                        <p class="title-bg-small primary-bg wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="500ms">
-                          Lorem ipsum</p>
-                        <h2 class="column-title wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="700ms">Lorem ipsum dolor <span>sit amet</span></h2>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua
-                        </p>
-                        <p>
-                          Benefit of the socie where we operate. A success website obusly needs great design to be one of
-                          the top 10 IT companies in India but the web design is not enough.
-                        </p>
-                      </div>
-                    </div>
-                  </div><!-- End off item-->
-                </div><!-- End off carusel inner -->
-                <!-- Indicators -->
-                <ol class="carousel-indicators text-center">
-                  <li data-target="#history-slid" data-slide-to="0">2000</li>
-                  <li data-target="#history-slid" data-slide-to="1">2005</li>
-                  <li data-target="#history-slid" data-slide-to="2">2010</li>
-                  <li data-target="#history-slid" data-slide-to="3" class="active">2015</li>
-                  <li data-target="#history-slid" data-slide-to="4">2020</li>
-                  <li data-target="#history-slid" data-slide-to="5">2025</li>
-                  <li data-target="#history-slid" data-slide-to="6">2030</li>
-                  <li data-target="#history-slid" data-slide-to="7">2035</li>
-                </ol>
-              </div>
-            </div>
-          </div>
         </div>
-      </section>
+    </section>
       
       
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

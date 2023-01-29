@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/adminView.css"/> 
   </head>
   <body class="admin">
+  
+    <a href="<%= request.getContextPath() %>">
+      home
+    <i class="fa fa-home"><a href="<%= request.getContextPath() %>">
+      home</a></i>
+      </a>
 
     <header class="admin__statusbar flex--center">
       <span class="home"><a> </a><i class="fa fa-home"></i>Home</span>
@@ -20,12 +26,6 @@
       <ul>
         <li>
           <i class="fa fa-file-text-o"></i>회원관리
-        </li>
-        <li>
-          <i class="fa fa-pencil-square-o"></i>게시글 목록 조회
-        </li>
-        <li>
-          <i class="fa fa-times-circle-o"></i> 문의 내역
         </li>
         <li>
           <i class="fa fa-plus-square-o"></i> 신고 내역

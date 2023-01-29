@@ -19,10 +19,10 @@
 </style>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin.css" />
 <style>
-div#search-container  {width: 100%; margin:0 0 10px 0; padding:3px; background-color: rgba(0, 188, 212, 0.3);}
-div#search-memberId	  {display: <%= searchType == null || "member_id".equals(searchType) ? "inline-block" : "none" %>;}
-div#search-memberName {display: <%= "name".equals(searchType) ? "inline-block" : "none" %>;}
-div#search-gender     {display: <%= "gender".equals(searchType) ? "inline-block" : "none" %>;}
+div#search-container  { width: 100%; margin:0 0 10px 0; padding:3px; }
+div#search-memberId	  { display: <%= searchType == null || "member_id".equals(searchType) ? "inline-block" : "none" %>; }
+div#search-memberName { display: <%= "name".equals(searchType) ? "inline-block" : "none" %>; }
+div#search-gender     { display: <%= "gender".equals(searchType) ? "inline-block" : "none" %>; }
 </style>
 <script>
 window.addEventListener('load', () => {
@@ -146,12 +146,7 @@ window.addEventListener('load', () => {
 	<input type="hidden" name="memberId" />
 	<input type="hidden" name="memberRole" />
 </form>
-<form 
-	action="<%= request.getContextPath() %>/admin/memberDelete"
-	name="admMemberDelFrm"
-	method="POST">
-	<input type="hidden" name="memberId"/>
-</form>
+
 <script>
 document.querySelectorAll(".member-role").forEach((select) => {
 	select.addEventListener('change', (e) => {
@@ -160,7 +155,7 @@ document.querySelectorAll(".member-role").forEach((select) => {
 		const memberId = e.target.dataset.memberId;
 		const memberRole = e.target.value;
 		
-		// js template string문법 jsp에서 사용시 주의사항 : \${}이스케이핑 처리해야 한다.
+		
 		if(confirm(`[\${memberId}]회원의 권한을 \${memberRole}로 변경하시겠습니까?`)){			
 			const frm = document.memberRoleUpdateFrm;
 			frm.memberId.value = memberId;
@@ -168,7 +163,7 @@ document.querySelectorAll(".member-role").forEach((select) => {
 			frm.submit();
 		}
 		else {
-			// e.target(select)하위의 selected 속성이 있는 option태그
+			
 			e.target.querySelector("option[selected]").selected = true;
 		}
 		
@@ -177,13 +172,16 @@ document.querySelectorAll(".member-role").forEach((select) => {
 	});
 });
 
+
+
+/* 블랙리스트 추가 
 $(".delMember").click(function(){
-	var memberId = $(this).data("memberId");
+	const memberId = $(this).data("memberId");
 	if(confirm(memberId+"를 정말 추방시키겠습니까?")){
-		var $frm = $(document.admMemberDelFrm);
+		const $frm = $(document.admMemberDelFrm);
 		$frm.find("[name=memberId]").val(memberId);
 		$(document.admMemberDelFrm).submit();
 	}
-});
+}); */
 
 </script>

@@ -28,23 +28,6 @@
 			<th>조회수</th>
 			<td><%= faq.getReadCount() %></td>
 		</tr>
-<%-- 		<% 
-			if(!faq.getAttachments().isEmpty()) {
-				for(Attachment attach : board.getAttachments()){
-		%>
-		<tr>
-			<th>첨부파일</th>
-			<td>
-				첨부파일이 있을경우만, 이미지와 함께 original파일명 표시
-				<img alt="첨부파일" src="<%=request.getContextPath() %>/images/file.png" width=16px>
-				<a href="<%= request.getContextPath() %>/board/fileDownload?no=<%= attach.getNo() %>"><%= attach.getOriginalFilename() %></a>
-			</td>
-		</tr>
-		
-		<% 
-				}
-			} 
-		%> --%>
 		<tr>
 			<th>내 용</th>
 			<td><%= faq.getContent()%></td>
@@ -72,7 +55,7 @@
 	<div class="comment-container">
         <div class="comment-editor">
             <form
-			action="<%=request.getContextPath()%>/board/boardCommentEnroll" method="post" name="boardCommentFrm">
+			action="<%=request.getContextPath()%>/faq/faqCommentEnroll" method="post" name="faqCommentFrm">
                 <input type="hidden" name="boardNo" value="<%= faq.getNo() %>" />
                 <input type="hidden" name="writer" value="<%= loginMember != null ? loginMember.getMemberId() : "" %>" />
                 <input type="hidden" name="commentLevel" value="1" />

@@ -30,13 +30,13 @@ public class AdminFilter implements Filter {
 //		Member loginMember = ((Member) session.getAttribute("loginMember"));
 		// System.out.println("[관리자 권한 페이지 요청 @AdminFilter]");
 
-	//	if (loginMember == null || loginMember.getMemberRole() != MemberRole.A) {
+//		if (loginMember == null || loginMember.getMemberRole() != MemberRole.A) {
 			session.setAttribute("msg", "관리자만 사용가능합니다.");
 			httpRes.sendRedirect(httpReq.getContextPath() + "/");
 			return;
 		}
 		// pass the request along the filter chain
 //		chain.doFilter(request, response);
-//	}
+	}
 
-}
+//}
