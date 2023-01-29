@@ -36,8 +36,14 @@ public class NotificationUpdate extends HttpServlet {
 			//System.out.println(result > 0 ? "알림 업뎃 성공" : "알림 업뎃 실패");
 		
 			
+
+			Map<String, Object> map = new HashMap<>();
+			map.put("result", "알림 업뎃 성공");
+			
+			
 			response.setContentType("application/json; charset=utf-8");
 			new Gson().toJson(result, response.getWriter());
+
 			
 		} catch (Exception e) {
 			e.printStackTrace();

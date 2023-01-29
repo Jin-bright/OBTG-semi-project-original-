@@ -25,14 +25,14 @@
 %>
  <script>
 window.addEventListener('load', () => {	
-	alert("말이많다");
 	<% if( msgnull != null) {%> 
 		alert("<%=msgnull%>"); 
 	// alert( 사이에 ""이거 없으면  )이렇게쓰면 alert( 아이디가 존재하지 않거나 비밀번호가 틀립니다) <-- 이뜻임 
 	<% } %>		
-}
+});
 </script>
 <style>
+
  div#search-container {
  	width: 180px; 
  	margin: 0 0 10px 0; 
@@ -44,12 +44,8 @@ window.addEventListener('load', () => {
 	font-family: 'Nanum Gothic Coding', monospace;		
 	font-size : 15px;
  }
- div#search-memberId {
- 	display: <%= searchType == null || "ootd_writer".equals(searchType) ? " inline-block /* " : "none" %> 
- }
- div#search-memberName{
- 	display:  <%-- <%= "member_name".equals(searchType) ? "inline-block" :  "--%>none /* "  %>  */; 
- }
+ 
+
  
  #searchTable{
  	margin : 0 auto;
@@ -60,8 +56,8 @@ window.addEventListener('load', () => {
 
 	table-layout:fixed; 
 	border : none;
-	width:800px;  
-	/* height : 1500px; */
+	/* width:800px;  
+	height : 1500px; */
 	padding : 0px;
 	margin-left : 90px;	
  }
@@ -73,7 +69,25 @@ td{
 #photo-wrapper{
   height : 200px;
 }
- </style>
+
+#goback{
+	margin-top : -60px;
+	margin-left : 800px;
+	background-color : black;
+	width : 110px;
+	height : 30px;
+	color : white;
+}
+
+#goback:hover{
+
+	background-color : white;
+	height : 30px;
+	color : black;
+	transition-duration : 0.5s;
+	font-weight: bolder
+}
+</style>
  
 <br /><br /><br />
 <section id="board-container">
@@ -94,10 +108,14 @@ td{
 	<hr /> <br /><br /><br />
 	
 	<div id='btn-more-container'>
-<%-- 		<button id="btn-more" value="" > 더보기( <span id="page"></span> / <span id="totalPage"><%=totalPage%></span> ) </button>
- --%>	</div>
+		<button id ="goback" onclick="history.go(-1)" > 목록으로 가기 </button>
+	</div>
 </section>
-
+<br />
+<br />
+<br />
+<br />
+<br />
 
 
  
@@ -109,18 +127,17 @@ td{
 <% } %>
  --%>
 
-<table id="searchTable">
+<table id="searchTable" >
 <% for(int i=0; i< ootdboardAndAttachmentsbyStyle.size(); i++){ 
 	if(i%2==0){%>
 	<tr>
 <% } %>
 	<td class="maketd" >
 	  <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdboardAndAttachmentsbyStyle.get(i).getOotdNo()%>">
-	  <img src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdboardAndAttachmentsbyStyle.get(i).getRenamedFilename()%>" /></a>
+	  <img style="margin-left :7px" src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdboardAndAttachmentsbyStyle.get(i).getRenamedFilename()%>" /></a>
 	  <p class="non">NO <span style="color : black; font-weight : light"><%=ootdboardAndAttachmentsbyStyle.get(i).getOotdNo()%></span></p>
 	  <p class="non">N  <span style=" color : black; font-weight : light"><%=ootdboardAndAttachmentsbyStyle.get(i).getOOTDRegDate()%></span></p>
-  	  <p class="non">STYLE NO <span style=" color : black; font-weight : light"><%=ootdboardAndAttachmentsbyStyle.get(i).getStyleNo()%></span></p>	  
-	</td>
+<%--   	  <p class="non">STYLE NO <span style=" color : black; font-weight : light"><%=ootdboardAndAttachmentsbyStyle.get(i).getStyleNo()%></span></p> --%>	</td>
 	<td style="width:200px"> </td>
 <%  if(i%2==1){%>
 	</tr>
@@ -128,6 +145,8 @@ td{
 } %>
 
 </table>
+<br /><br /><br /><br />
+
 </section>
 
 

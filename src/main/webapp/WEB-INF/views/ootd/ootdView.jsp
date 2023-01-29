@@ -21,6 +21,23 @@
  List<OotdBoardComment> comments  = (List<OotdBoardComment>)request.getAttribute("comments");
  int likeCnt = (int)request.getAttribute("likeCnt");
 %>
+<script >
+function open_pop(<%=ootdboard.getOotdWriter()%> ){
+    const frmPop= document.frmPopup;
+    const url = '<%=request.getContextPath()%>/profile/profileView';
+    window.open('','popupView','width=500, height=500');   
+     
+    frmPop.action = url; 
+    frmPop.target = 'popupView'; //window,open()의 두번째 인수와 같아야 하며 필수다.   
+    frmPop.memberID.value = <%=ootdboard.getOotdWriter()%>;
+    frmPop.submit();    
+     
+}
+</script>
+<form name="frmPopup">
+	<input type="hidden" name="memberID" >
+</form>
+
 
 <section id="board-container" >
 <br /><br /><br /><br /><br /><br /><br />
@@ -31,7 +48,8 @@
 	    <img id="profileimg" src="<%=request.getContextPath()%>/uploadootds/ootd/profile.png" alt="profileimg" /> </a>
 	    
 	    <ul class="dropdown-menu">
-	      <li><a href="#">프로필보기</a></li>
+<%--	  <li><a onclick = "window.open('<%=request.getContextPath() %>/profile/profileView', '', 'width=530, height=500, location=no, status=no, scrollbars=yes');">프로필보기</a></li>  --%>
+ 			<li><a onclick="open_pop('<%=ootdboard.getOotdWriter()%>');">프로필보기</a></li>
 	      <li><a href="#">채팅걸기</a></li>
 	    </ul>
    </li>
@@ -58,7 +76,7 @@
 	<table id="tblboardview">
 		<tr>
 			<th>아이디</th>
-			<td><%= ootdboard.getOotdWriter() %></td>
+			<td><%= ootdboard.getOotdWriter()%></td>
 		</tr>
 		<tr>
 			<th>제 목</th>

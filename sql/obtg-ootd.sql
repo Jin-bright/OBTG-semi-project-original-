@@ -443,3 +443,8 @@ insert into member values('admin', '시크', 'z인철짱z', 1234, 'j789@naver.co
 
 --drop table faq;
 --drop sequence seq_faq;
+
+
+
+-- 제약조건 해제 / 대신 inline에 빡세게걸기 (by jin / id부분  ootd board comment share / 0129 ) 
+

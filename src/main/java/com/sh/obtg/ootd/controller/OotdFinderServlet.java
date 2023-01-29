@@ -54,6 +54,13 @@ public class OotdFinderServlet extends HttpServlet {
 		List<OotdBoardandAttachment> ootdboardAndAttachments = ootdBoardService.SearchOotdBymemberId( param );
 		System.out.println( "결과 왜안나와 ? " + ootdboardAndAttachments  );
 		
+		String msgnull = "검색결과가 없습니다 😣";
+		
+		if(  ootdboardAndAttachments.isEmpty()) {
+			System.out.println("검색결과없음");
+			request.setAttribute("msgnull", msgnull );
+		}
+		
 		//3. 응답처리 - json 안돼 - 새 jsp
 //		request.setAttribute("findootdBoardsById", findootdBoardsById);
 		
