@@ -9,6 +9,23 @@
 button:hover{
 	cursor: pointer;
 }
+/*-----------프로필 메뉴바--------------*/
+ul.dd-menu {
+    position: absolute;
+    text-align: left;
+    opacity: 0;
+    list-style:none;
+}
+ul.dd-menu li:hover{
+	box-shadow: 3px 3px bisque;;
+}
+#defaultimg:hover+ul.dd-menu{
+	opacity:1;
+}
+ul.dd-menu:hover{
+	opacity:1;
+}
+/*------------------------------------*/
 /* :root{
 font-family: 'Noto Sans KR', sans-serif;	
 } */
@@ -139,6 +156,8 @@ header {
 	background-color : #f9f4d2;
 
 }
+
+
 
 /* #title{
 	width : 400px;
