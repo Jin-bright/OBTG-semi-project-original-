@@ -72,8 +72,8 @@
 				</table> 
 			
 			<% } %>
-			<a href="<%=request.getContextPath()%>">
-				<h1 class="main-title">O B T G</h1>
+			<a href="<%=request.getContextPath()%>" >
+				<h1  class="main-title"  style="margin : 0 auto ">O B T G</h1>
 			</a>
 <br /> <br />
 <hr style="border: solid 1px black; margin:0;">
@@ -97,7 +97,6 @@
 window.addEventListener('load', () => {
 	<% if(msg != null){ %>
 		alert("<%= msg %>");
-
 	<%} %>
 });
 

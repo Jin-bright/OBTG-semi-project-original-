@@ -89,9 +89,9 @@ List<OotdBoard> findootdBoardsById = (List<OotdBoard> )request.getAttribute("fin
  <div id="search-container">
   		<img style="width:16px; height:16px; margin :0" src="<%=request.getContextPath()%>/uploadootds/o.png" alt="" />
         <label for="searchType">검색타입 :</label> 
-        <select id="searchType">
-            <option value="ootd_writer" <%= "ootd_writer".equals(searchType) ? "selected" : "" %>> 아이디</option>        
-            <option value="style_no" <%= "style_no".equals(searchType) ? "selected" : ""%>> 스타일</option>
+        <select id="searchType"  style="width:65px; margin-top:10px" >
+            <option value="ootd_writer" <%= "ootd_writer".equals(searchType) ? "selected" : "" %>  style="width:50px"> 아이디</option>        
+            <option value="style_no" <%= "style_no".equals(searchType) ? "selected" : ""%>  style="width:50px" > 스타일</option>
         </select>
         
         <div id="search-memberId" class="search-type">
@@ -100,7 +100,7 @@ List<OotdBoard> findootdBoardsById = (List<OotdBoard> )request.getAttribute("fin
 			   <div class="search">
                 <input type="hidden" name="searchType" value="ootd_writer"/>
                 <input type="text" name="searchKeyword"  size="25" placeholder=" 검색할 아이디를 입력하세요. ex)cathj " id="idfindinput" style=" border: 3px solid black; width : 500px
-                ; border-radius: 5px 0 0 5px;" value = "<%= "ootd_writer".equals(searchType) ? searchKeyword : "" %>"/>
+                ; border-radius: 5px 0 0 5px; font-size : 15px;" value = "<%= "ootd_writer".equals(searchType) ? searchKeyword : "" %>"/>
                 <button type="submit" class="searchButton"><i class="fa fa-search"></i></button><!-- //검색버튼  -->
                 </div>
              </div>   
@@ -113,7 +113,7 @@ List<OotdBoard> findootdBoardsById = (List<OotdBoard> )request.getAttribute("fin
 			   <div class="search">
                 <input type="hidden" name="searchType" value="style_no" />
                 <input type="text" name="searchKeyword" size="25" placeholder=" 스타일을 검색해보세요  ex)스트릿  " id="stylefindinput"  style=" border: 3px solid black; width : 500px;
-                border-radius: 5px 0 0 5px;" value="<%= "style_no".equals(searchType) ? searchKeyword : ""%>"/>
+                border-radius: 5px 0 0 5px;  font-size : 15px;" value="<%= "style_no".equals(searchType) ? searchKeyword : ""%>"/>
                	<button type="submit" class="searchButton"><i class="fa fa-search"></i></button><!-- //검색버튼  -->
               	<input type="hidden" id="btn-more" name="page" > 
                </div>
@@ -142,9 +142,9 @@ List<OotdBoard> findootdBoardsById = (List<OotdBoard> )request.getAttribute("fin
   <% for(int i=0; i<ootdAttachments.size(); i++){ %>
 
 	<% if(i<5) { %>
-     <td class="maketd" style= "height : 300px; width:190px">
+     <td class="maketd" style= "height : 300px; width:190px;">
      <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdAttachments.get(i).getBoardNo() %>">
-       <img  id="eachimg" style="display : inline-block;" src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>"/></a><br/>
+       <img  id="eachimg" style="display : inline-block; margin-left : 7px" src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>"/></a><br/>
 		<p class="non">NO <span style="color : black; font-weight : light"><%=ootdAttachments.get(i).getBoardNo()%></span></p>
 		<p class="non">N  <span style=" color : black; font-weight : light"><%=ootdAttachments.get(i).getRegDate()%></span></p>
      </td>
@@ -152,21 +152,21 @@ List<OotdBoard> findootdBoardsById = (List<OotdBoard> )request.getAttribute("fin
     </tr>
      <td class="maketd" style= "height : 300px; width:190px;">
      <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdAttachments.get(i).getBoardNo() %>">
-     <img src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>" ></a><br/>
+     <img style=" margin-left : 7px"  src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>" ></a><br/>
 		<p class="non">NO <span style="color : black; font-weight : light"><%=ootdAttachments.get(i).getAttachNo()%></span></p>
 		<p class="non">N  <span style=" color : black; font-weight : light"><%=ootdAttachments.get(i).getRegDate()%></span></p>
      </td>  
 	<% } else if(i<9){%> 
      <td class="maketd" style= "height : 300px; width:190px">
      <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdAttachments.get(i).getBoardNo() %>">
-     <img src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>" ></a><br/>
+     <img style=" margin-left : 7px"  src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>" ></a><br/>
 		<p class="non">NO <span style="color : black; font-weight : light"><%=ootdAttachments.get(i).getAttachNo()%></span></p>
 		<p class="non">N  <span style=" color : black; font-weight : light"><%=ootdAttachments.get(i).getRegDate()%></span></p>
     </td>	
 	<% } else if(i==9){ %>
     <td class="maketd" style= "height : 300px; width:190px;">
     <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdAttachments.get(i).getBoardNo() %>">
-    <img src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>" ></a><br/>	
+    <img style=" margin-left : 7px"  src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>" ></a><br/>	
 		<p class="non">NO <span style="color : black; font-weight : light"><%=ootdAttachments.get(i).getAttachNo()%></span></p>
 		<p class="non">N  <span style=" color : black; font-weight : light"><%=ootdAttachments.get(i).getRegDate()%></span></p>
  	</td>
@@ -174,21 +174,21 @@ List<OotdBoard> findootdBoardsById = (List<OotdBoard> )request.getAttribute("fin
    <tr>
    <td class="maketd" style= "height : 300px; width:190px;">
     <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdAttachments.get(i).getBoardNo() %>">
-    <img src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>" ></a><br/>	
+    <img style=" margin-left : 7px"  src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>" ></a><br/>	
 		<p class="non">NO <span style="color : black; font-weight : light"><%=ootdAttachments.get(i).getAttachNo()%></span></p>
 		<p class="non">N  <span style=" color : black; font-weight : light"><%=ootdAttachments.get(i).getRegDate()%></span></p>
  	</td>
 	<% } else if(i<14){%> 
      <td class="maketd" style= "height : 300px; width:190px">
      <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdAttachments.get(i).getBoardNo() %>">
-     <img src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>" ></a><br/>
+     <img style=" margin-left : 7px"  src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>" ></a><br/>
 		<p class="non">NO <span style="color : black; font-weight : light"><%=ootdAttachments.get(i).getAttachNo()%></span></p>
 		<p class="non">N  <span style=" color : black; font-weight : light"><%=ootdAttachments.get(i).getRegDate()%></span></p>
     </td>
  	<% } else if(i==14){%> 
      <td class="maketd" style= "height : 300px; width:190px">
      <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdAttachments.get(i).getBoardNo() %>">
-     <img src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>" ></a><br/>
+     <img style=" margin-left : 7px"  src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>" ></a><br/>
 		<p class="non">NO <span style="color : black; font-weight : light"><%=ootdAttachments.get(i).getAttachNo()%></span></p>
 		<p class="non">N  <span style=" color : black; font-weight : light"><%=ootdAttachments.get(i).getRegDate()%></span></p>
     </td>

@@ -36,14 +36,14 @@
    	 if(i%2==0){%>
 	<tr >
 	<%} %>
-  	<td class="maketd" >
+  	<td class="maketd" style="width:220px">
      <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/share/shareView?no=<%=shareAttachments.get(i).getBoardNo() %>">
-       <img id="eachimg"  style="display : inline-block; height : 200px; width:190px; margin-left:-140px" src="<%=request.getContextPath()%>/uploadshares/share/<%=shareAttachments.get(i).getRenamedFilename()%>"/></a><br/>
+       <img id="eachimg"  style="display : inline-block; height : 200px; width:190px;  margin-left:-3px" src="<%=request.getContextPath()%>/uploadshares/share/<%=shareAttachments.get(i).getRenamedFilename()%>"/></a><br/>
 		<p class="non">NO <span style="color : black; font-weight : light"><%=shareAttachments.get(i).getBoardNo()%></span></p>
 		<p class="non">N  <span style=" color : black; font-weight : light"><%=shareAttachments.get(i).getRegDate()%></span></p>
 	</td>
-	<td class ="detailtd" >
-		<img class="carrots"src="<%=request.getContextPath()%>/uploadshares/carrot.png" alt="carrot" style=" width:16px; height:16px" />
+	<td class ="detailtd" style="width:220px">
+		<img class="carrots"src="<%=request.getContextPath()%>/uploadshares/carrot.png" alt="carrot" style=" width:16px; height:16px;  margin-left:-5px" />
 		<p  id="buttonglow"><%=shareboards.get(i).getShareState()%></p>			
 		<div id="detaildiv">
 		<span class="datailtitle"  ><b>제목 </b></span>    <span class="boarddetails"><%= shareboards.get(i).getShareTitle()%></span><br/><br/>

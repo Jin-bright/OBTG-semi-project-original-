@@ -13,7 +13,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> --%>
 
 <%
-	//String msg  = (String)request.getAttribute("msg");
+	String msgnull  = (String)request.getAttribute("msgnull");
 	String searchType = request.getParameter("searchType");
 	String searchKeyword = request.getParameter("searchKeyword");
 	List<OotdBoardandAttachment> ootdboardAndAttachments = (List<OotdBoardandAttachment>)request.getAttribute("ootdboardAndAttachments");
@@ -22,6 +22,14 @@
 // List<OotdAttachment> ootdAttachments = (List<OotdAttachment>)request.getAttribute("ootdAttachments");
 // OotdBoard ootdboard = (OotdBoard) request.getAttribute("ootdboard");
 %>
+ <script>
+window.addEventListener('load', () => {	
+	<% if( msgnull != null) {%> 
+		alert("<%=msgnull%>"); 
+	// alert( 사이에 ""이거 없으면  )이렇게쓰면 alert( 아이디가 존재하지 않거나 비밀번호가 틀립니다) <-- 이뜻임 
+	<% } %>		
+});
+</script>
 
 <br /><br /><br />
 <section id="board-container">
@@ -68,6 +76,24 @@ td{
 #photo-wrapper{
 	height : 200px
 }
+
+#goback{
+	margin-top : -60px;
+	margin-left : 800px;
+	background-color : black;
+	width : 110px;
+	height : 30px;
+	color : white;
+}
+
+#goback:hover{
+
+	background-color : white;
+	height : 30px;
+	color : black;
+	transition-duration : 0.5s;
+	font-weight: bolder
+}
  
  </style>
  
@@ -79,8 +105,9 @@ td{
 	<hr />	<br /><br /><br />
 	
 	<div id='btn-more-container'>
-<%-- 		<button id="btn-more" value="" > 더보기( <span id="page"></span> / <span id="totalPage"><%=totalPage%></span> ) </button>
- --%>	</div>
+		<button id ="goback" onclick="history.go(-1)" > 목록으로 가기 </button>
+	</div>
+	<br /><br /><br /><br /><br />
 </section>
 
 
@@ -126,9 +153,9 @@ td{
 	if(i%2==0){%>
 	<tr>
 <% } %>
-	<td class="maketd" style= "height : 300px; width:190px">
+	<td class="maketd" style= "height : 300px; width:190px;">
 	  <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdboardAndAttachments.get(i).getOotdNo()%>">
-	  <img src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdboardAndAttachments.get(i).getRenamedFilename()%>" /></a>
+	  <img style="margin-left:7px" src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdboardAndAttachments.get(i).getRenamedFilename()%>" /></a>
 	  <p class="non">NO <span style="color : black; font-weight : light"><%=ootdboardAndAttachments.get(i).getOotdNo()%></span></p>
 	  <p class="non">N  <span style=" color : black; font-weight : light"><%=ootdboardAndAttachments.get(i).getOOTDRegDate()%></span></p>
 	</td>
@@ -138,6 +165,7 @@ td{
 <% }
 } %>
 </table>
+<br /><br /><br /><br /><br />
 </section>
 
 
