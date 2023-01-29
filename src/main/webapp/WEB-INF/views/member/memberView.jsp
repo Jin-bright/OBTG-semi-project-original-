@@ -77,13 +77,17 @@
           </div>
           
            <div class="field-wrap">
-            <label>
+            <label style="display: block;">
               Gender<span class="req"></span>
             </label>
-					<input type="radio" name="gender" id="gender0" value="M" <%= loginMember.getGender() == Gender.M ? "checked" : "" %>>
+            	<div id="gender-group">
 					<label for="gender0">남</label>
-					<input type="radio" name="gender" id="gender1" value="F" <%= loginMember.getGender() == Gender.F ? "checked" : "" %>>
+					<input type="radio" name="gender" id="gender0" value="M" <%= loginMember.getGender() == Gender.M ? "checked" : "" %>>
+					
 					<label for="gender1">여</label>
+					<input type="radio" name="gender" id="gender1" value="F" <%= loginMember.getGender() == Gender.F ? "checked" : "" %>>
+					
+					</div>
 			</div>	
 			
           <div class="field-wrap">
@@ -129,34 +133,34 @@
 	
 %>
           <fieldset class="checkbox-group">
-	<legend class="checkbox-group-legend">Choose your Style *</legend>
+	<legend class="checkbox-group-legend"style="text-align:center; font-size:x-large; margin-bottom:10px;">Choose your Style *</legend>
 	<tr id="check-box" required>
 		<td>
-			<input type="checkbox" name="style" id="S1" value="러블리"<%= styleList != null && styleList.contains("러블리") ? "checked" : "" %>><label for="S1">lovely</label>	
+			<input type="checkbox" class="style" name="style" id="S1" value="러블리"<%= styleList != null && styleList.contains("러블리") ? "checked" : "" %>><label class="stylelb" for="S1"><img src="<%=request.getContextPath()%>/image/love.png" alt="">&nbsp;lovely</label>	
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S2" value="댄디"<%= styleList != null && styleList.contains("댄디") ? "checked" : "" %>><label for="S2">Dandy</label>
+			<input type="checkbox" class="style" name="style" id="S2" value="댄디"<%= styleList != null && styleList.contains("댄디") ? "checked" : "" %>><label class="stylelb" for="S2"><img src="<%=request.getContextPath()%>/image/dandy.png" alt="">&nbsp;Dandy</label>
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S3" value="포멀"<%= styleList != null && styleList.contains("포멀") ? "checked" : "" %>><label for="S3">Formal</label>
+			<input type="checkbox" class="style" name="style" id="S3" value="포멀"<%= styleList != null && styleList.contains("포멀") ? "checked" : "" %>><label class="stylelb" for="S3"><img src="<%=request.getContextPath()%>/image/formal.png" alt="">&nbsp;Formal</label>
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S4" value="스트리트"<%= styleList != null && styleList.contains("스트리트") ? "checked" : "" %>><label for="S4">Street</label>
+			<input type="checkbox" class="style" name="style" id="S4" value="스트리트"<%= styleList != null && styleList.contains("스트리트") ? "checked" : "" %>><label class="stylelb" for="S4"><img src="<%=request.getContextPath()%>/image/street.png" alt="">&nbsp;Street</label>
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S5" value="걸리쉬"<%= styleList != null && styleList.contains("걸리쉬") ? "checked" : "" %>><label for="S5">Girlish</label>
+			<input type="checkbox" class="style" name="style" id="S5" value="걸리쉬"<%= styleList != null && styleList.contains("걸리쉬") ? "checked" : "" %>><label class="stylelb" for="S5"><img src="<%=request.getContextPath()%>/image/girl.png" alt="">&nbsp;Girlish</label>
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S6" value="레트로"<%= styleList != null && styleList.contains("레트로") ? "checked" : "" %>><label for="S6">Retro</label>
+			<input type="checkbox" class="style" name="style" id="S6" value="레트로"<%= styleList != null && styleList.contains("레트로") ? "checked" : "" %>><label class="stylelb" for="S6"><img src="<%=request.getContextPath()%>/image/retro.png" alt="">&nbsp;Retro</label>
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S7" value="로맨틱"<%= styleList != null && styleList.contains("로맨틱") ? "checked" : "" %>><label for="S7">Romantic</label>
+			<input type="checkbox" class="style" name="style" id="S7" value="로맨틱"<%= styleList != null && styleList.contains("로맨틱") ? "checked" : "" %>><label class="stylelb" for="S7"><img src="<%=request.getContextPath()%>/image/romantic.png" alt="">&nbsp;Romantic</label>
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S8" value="시크"<%= styleList != null && styleList.contains("시크") ? "checked" : "" %>><label for="S8">Chic</label>
+			<input type="checkbox" class="style" name="style" id="S8" value="시크"<%= styleList != null && styleList.contains("시크") ? "checked" : "" %>><label class="stylelb" for="S8"><img src="<%=request.getContextPath()%>/image/chic.png" alt="">&nbsp;Chic</label>
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S9" value="아메카지"<%= styleList != null && styleList.contains("아메카지") ? "checked" : "" %>><label for="S9">Amekaji</label>
+			<input type="checkbox" class="style" name="style" id="S9" value="아메카지"<%= styleList != null && styleList.contains("아메카지") ? "checked" : "" %>><label class="stylelb" for="S9"><img src="<%=request.getContextPath()%>/image/amekaji.png" alt="">&nbsp;Amekaji</label>
 		</td>
 	</tr>
 </fieldset>
