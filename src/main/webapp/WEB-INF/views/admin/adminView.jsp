@@ -19,7 +19,11 @@
   <body class="admin">
 
     <header class="admin__statusbar flex--center">
-      <a href="<%= request.getContextPath() %>/admin/adminView"><span class="home"><i class="fa fa-home"></i>Home</span></a>
+      <a href="<%= request.getContextPath() %>">
+      	<div class="home">
+      	<i class="fa fa-home">Home</i>
+      	</div>
+      </a>
       <span id="username"><i class="fa fa-user"></i>관리자</span>
     </header>
 
@@ -28,9 +32,6 @@
         <li>
           <%-- <a class="fa fa-file-text-o" href="<%= request.getContextPath() %>/admin/memberList">회원관리</a> --%>
          <a href="<%= request.getContextPath() %>/admin/memberList"><i class="fa fa-file-text-o"></i>회원관리</a>
-        </li>
-        <li>
-          <i class="fa fa-pencil-square-o"></i>게시글 목록 조회
         </li>
         <li>
           <i class="fa fa-times-circle-o"></i>문의 내역

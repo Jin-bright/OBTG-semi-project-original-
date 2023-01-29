@@ -12,7 +12,11 @@
                     |
                     <a class="footer_a">이용약관</a>
                     |
-                    <a class="footer_a">회사소개</a>
+                    <a class="footer_a" href="<%= request.getContextPath() %>/about/aboutList">회사소개</a>
+                    |
+                    <a class="footer_a" href="<%= request.getContextPath() %>/faq/faqAccordion">FAQ</a>
+                    |
+                    <a class="footer_a" href="<%= request.getContextPath() %>/faq/faqList">INFO</a>
                 </div>
                 <div id="footer_sns">
                     <img src="<%=request.getContextPath()%>/image/youtube.png" alt="" class="youtube">
