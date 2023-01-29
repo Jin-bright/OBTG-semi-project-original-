@@ -55,7 +55,7 @@ public class OotdLikeServlet extends HttpServlet {
 			System.out.println("좋아요 입력 취소 완료!");
 		}
 		
-		// 3. 응답처리 : Map<String, Object> 처리결과, insert된 celeb객체 반환
+		// 3. 응답처리
 		new Gson().toJson(like, response.getWriter());
 	}
 
