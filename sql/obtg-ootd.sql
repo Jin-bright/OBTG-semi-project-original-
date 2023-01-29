@@ -11,7 +11,7 @@ grant connect, resource to obtg;
 
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-
+ㅇㅇ
 select * from member;
 
 CREATE TABLE Member (
@@ -80,6 +80,9 @@ CREATE TABLE OOTD_board (
     CONSTRAINT FK_OOTD_board_writer FOREIGN KEY (ootd_writer) REFERENCES Member (member_id) on delete set null,
     CONSTRAINT FK_fashionstyle_TO_OOTD_board_1 FOREIGN KEY (style_no) REFERENCES fashionstyle (style_no) on delete set null
 );
+
+select * from ootd_board;
+
 
 create sequence seq_board_no;
 
@@ -431,7 +434,7 @@ create table faq_comment(
 
 create sequence seq_faq_comment_no;
 
-
+select * from faq;
 
 
 select * from member;

@@ -9,4 +9,14 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  
+  <filter>
+  	<filter-name>LogFilter</filter-name>
+  	<filter-class>com.sh.obtg.common.filter.LogFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>LogFilter</filter-name>
+  	<url-pattern>/*</url-pattern> <!-- 모든 url이 filter을 거치도록 해달라 -->
+  </filter-mapping>
+  
 </web-app>

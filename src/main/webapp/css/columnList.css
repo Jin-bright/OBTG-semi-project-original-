@@ -38,6 +38,16 @@
 .col_txt > h2:hover, .col_txt > p:hover {
 	color: indianred;
 }
+.col_title {
+	font-size: 1.8em;
+	font-family: swipercons;
+}
+.col_subtitle {
+	font-family: swipercons;
+	font-size: 1em;
+	padding-top: .5em;
+}
+
 .pen {
 	display: inline-block;
 	width: 40px;

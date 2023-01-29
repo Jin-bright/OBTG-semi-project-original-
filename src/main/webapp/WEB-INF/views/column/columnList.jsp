@@ -61,15 +61,17 @@ const getPage = (page) => {
 				div3.classList.add('col_txt');
 				
 				const h2 = document.createElement("h2");
+				h2.classList.add('col_title')
 				h2.append(column.title);
-				h2.style.fontSize = "2.3em";
-				h2.style.fontFamily = 'swipercons';
+				/* h2.style.fontSize = "2.3em";
+				h2.style.fontFamily = 'swipercons'; */
 				
 				const p1 = document.createElement("p");
+				p1.classList.add('col_subtitle')
 				p1.append(column.subtitle);
-				p1.style.fontFamily = 'swipercons';
+				/* p1.style.fontFamily = 'swipercons';
 				p1.style.fontSize = "1.2em";
-				p1.style.paddingTop = ".5em";
+				p1.style.paddingTop = ".5em"; */
 				
 				
 				div3.append(h2, p1);

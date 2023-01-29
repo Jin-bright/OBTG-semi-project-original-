@@ -6,23 +6,45 @@ ws.addEventListener('open', (e) => {
 });
 ws.addEventListener('message', (e) => {
 	console.log('message : ', e);
+	const bell = document.querySelector(".bell");
+	const reportWrap = document.querySelector("#report_wrap");
 	
 	const {message, messageType, datetime, sender, receiver} = JSON.parse(e.data);
 	console.log(message, messageType, datetime, sender, receiver);
 	
 	switch(messageType){
 		case "NOTIFICATION" : 
-			const i = document.createElement("i");
-			i.classList.add('fa-solid', 'fa-bell', 'bell');
-			i.addEventListener('click', () => {
-				alert(message);
-				i.remove();
+			bell.classList.remove('bell-hiden');
+			bell.classList.add('bell-twinkle');
+			bell.addEventListener('click', () => {
+				reportWrap.insertAdjacentHTML('beforeend', `<div class="report">${message}</div>`);
+				
+				const report = document.querySelectorAll(".report");
+				report.forEach((r) => {
+					r.addEventListener('click', () => {
+						r.remove();
+						$.ajax({
+							url : "/OBTG/notification/notificationUpdate",
+							dataType : "json",
+							method : "POST",
+							data : {receiver},
+							success(data){
+								if(data > 0){
+									const bell = document.querySelector(".bell");
+									bell.classList.remove('bell-twinkle');
+									bell.classList.add('bell-hiden');
+									// alert("읽음 처리 완료")
+								}
+								else
+									alert("읽음 처리 오류");
+							},
+							error : console.log
+						});	
+					});
+				});
 			});
-			notification.append(i);
 			break;
 	}
-	
-
 });
 ws.addEventListener('error', (e) => {
 	console.log('error : ', e);
