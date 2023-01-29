@@ -21,21 +21,26 @@ public class WebSocketConfigurator extends Configurator {
 		
 		HttpSession session = (HttpSession) request.getHttpSession();
 		Member loginMember = (Member) session.getAttribute("loginMember");
-		String memberId = loginMember.getMemberId();
+		String memberId = null;
 		
-		// 알림 메시지가 있는 경우
-		List<Notification> notiList = notificationService.selectNotiList(loginMember.getMemberId()); 
-		System.out.println("notiList = " + notiList);
-//		Notification noti = null;
-		
-		// 설정맵에 저장 
-		// userProperties에는 null이 들어 올 수 없으므로 꼭 if처리 해주자!
-		Map<String, Object> userProp = sec.getUserProperties();
-		userProp.put("memberId", memberId);
-		
-		if((!notiList.isEmpty()) && notiList != null) {
-			userProp.put("notiList", notiList);
+		if(loginMember != null) {
+			memberId = loginMember.getMemberId();
+			// 알림 메시지가 있는 경우
+			List<Notification> notiList = notificationService.selectNotiList(memberId); 
+			System.out.println("notiList = " + notiList);
+			
+			// 설정맵에 저장 
+			// userProperties에는 null이 들어 올 수 없으므로 꼭 if처리 해주자!
+			Map<String, Object> userProp = sec.getUserProperties();
+			userProp.put("memberId", memberId);
+			
+			if(!notiList.isEmpty()) {
+				System.out.println("설마 널인데 들어오는 건 아니지?" + notiList);
+				userProp.put("notiList", notiList);
+			}
 		}
+		
+		
 	}
 	
 }

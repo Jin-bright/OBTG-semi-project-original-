@@ -110,7 +110,7 @@ window.addEventListener('load', () => {
 const item = document.querySelectorAll(".menu__item");
 
 /* */
-window.addEventListener("load", mainFunc);
+// window.addEventListener("load", mainFunc);
 
 
 const icon = document.querySelectorAll(".menu__icon");
@@ -132,6 +132,7 @@ let getIcon = (event) =>{
         text[i].classList.remove("is-text-visible");
     }
 }
+
 
 
 </script>

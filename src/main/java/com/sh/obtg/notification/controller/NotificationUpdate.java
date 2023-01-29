@@ -1,6 +1,9 @@
 package com.sh.obtg.notification.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.sh.obtg.member.model.dto.Member;
 import com.sh.obtg.notification.model.service.NotificationService;
 
@@ -31,11 +35,15 @@ public class NotificationUpdate extends HttpServlet {
 			int result = notificationService.updateNoti(memberId);
 			System.out.println(result > 0 ? "알림 업뎃 성공" : "알림 업뎃 실패");
 		
-//			response.sendRedirect(request.getContextPath() + "/");
+			response.setContentType("application/json; charset=utf-8");
+			
+			Map<String, Object> map = new HashMap<>();
+			map.put("result", "알림 업뎃 성공");
+			
+			new Gson().toJson(map, response.getWriter());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			response.sendRedirect(request.getContextPath() + "/");
 		}
 		
 	}

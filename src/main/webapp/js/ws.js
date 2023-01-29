@@ -23,21 +23,38 @@ ws.addEventListener('message', (e) => {
 				report.forEach((r) => {
 					r.addEventListener('click', () => {
 						r.remove();
-						document.notiUpdateFrm.submit();
 					});
 				});
-				bell.classList.remove('bell-twinkle');
-				bell.classList.add('bell-hiden');
 				
 			});
+			document.notiUpdateFrm.submit();
 			break;
 	}
-	
-
 });
 ws.addEventListener('error', (e) => {
 	console.log('error : ', e);
 });
 ws.addEventListener('close', (e) => {
 	console.log('close : ', e);
+});
+
+document.notiUpdateFrm.addEventListener("submit", (e) => {
+	e.preventDefault(); // 폼제출 방지
+	
+	const frmData = new FormData(e.target);
+	console.log(frmData);
+	
+	$.ajax({
+		url : "<%= request.getContextPath() %>/notification/notificationUpdate",
+		dataType : "json",
+		method : "POST",
+		data : frmData,
+		success(data){
+			console.log(data);
+			const bell = document.querySelector(".bell");
+			bell.classList.remove('bell-twinkle');
+			bell.classList.add('bell-hiden');
+		},
+		error : console.log
+	});	
 });

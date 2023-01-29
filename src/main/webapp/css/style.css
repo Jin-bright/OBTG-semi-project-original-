@@ -211,6 +211,8 @@ footer {
 
 /* 알림 */
 .bell {
+	width: 35px;
+	height: 35px;
 	transform: translate(5px, 5px);
 	cursor: pointer;
 }
