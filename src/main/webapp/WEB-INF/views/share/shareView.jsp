@@ -294,8 +294,8 @@ const checkOnlyOne = (e) => {
 const reportEnroll = () => {
 	if(confirm("정말 신고하시겠습니까? ")){
 		document.reportEnrollFrm.submit();
-		alert("신고가 접수되었습니다.")
-	}	
+	} 
+	alert("신고가 접수되었습니다.")
 }
 </script>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
