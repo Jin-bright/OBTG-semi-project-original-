@@ -21,7 +21,7 @@ private Properties prop = new Properties();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Column 쿼리 로드 완료! - " + prop);
+		System.out.println("report 쿼리 로드 완료! - " + prop);
 	}
 
 	public int insertReport(Connection conn, Report report) {

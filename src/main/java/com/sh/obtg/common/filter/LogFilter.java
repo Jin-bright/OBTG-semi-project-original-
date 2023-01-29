@@ -46,15 +46,15 @@ public class LogFilter implements Filter {
 		String uri = httpReq.getRequestURI();
 		String method = httpReq.getMethod();
 		
-		System.out.println("===========================================");
+		System.out.println("═════════•°• ⚠ •°•═════════");
 		System.out.println(method + " " + uri);
-		System.out.println("-------------------------------------------");
+		System.out.println("____________________________");
 		
 		// FilterChain의 다음 Filter호출 또는 Servlet 호출
 		chain.doFilter(request, response); 
 		
 		// 후처리
-		System.out.println("___________________________________________");
+		System.out.println("───── ･ ｡ﾟ☆: *.☽ .* :☆ﾟ. ─────");
 		System.out.println();
 		System.out.println();
 		

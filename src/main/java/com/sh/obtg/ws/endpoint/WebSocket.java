@@ -3,6 +3,7 @@ package com.sh.obtg.ws.endpoint;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.websocket.EndpointConfig;
@@ -15,10 +16,12 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import com.google.gson.Gson;
+import com.sh.obtg.notification.model.dto.Notification;
 import com.sh.obtg.ws.MessageType;
+import com.sh.obtg.ws.config.WebSocketConfigurator;
 
 
-@ServerEndpoint(value = "/websocket")
+@ServerEndpoint(value = "/websocket", configurator = WebSocketConfigurator.class)
 public class WebSocket {
 
 	public static Map<String, Session> clientMap = Collections.synchronizedMap(new HashMap<>());
@@ -27,7 +30,7 @@ public class WebSocket {
 	public void onOpen(EndpointConfig config, Session session) {
 		Map<String, Object> userProp = config.getUserProperties();
 		String memberId = (String) userProp.get("memberId");
-		// List<Notification> noti = (List<Notification>)userProp.get("noti");
+		List<Notification> notiList = (List<Notification>)userProp.get("notiList");
 		
 		// 우리서버에 누가 접속하고 있는지 관리
 		clientMap.put(memberId, session);
@@ -36,13 +39,28 @@ public class WebSocket {
 		Map<String, Object> sessionUserProp = session.getUserProperties();
 		sessionUserProp.put("memberId", memberId);
 		
-//		if(noti != null) {
-//			sessionUserProp.put("noti", noti);
-//			getNoti(noti, session);
-//		}
+		// 이거 왜 자꾸 NullPointerException 이거뜨네,,,
+		if(notiList != null) {
+			sessionUserProp.put("notiList", notiList);
+			getNotiList(notiList, session);
+		}
 		
 	}
 	
+	// 알림 내역 꺼내기
+	private void getNotiList(List<Notification> notiList, Session session) {
+		for(Notification noti : notiList) {
+			Map<String, Object> data = new HashMap<>();
+			System.out.println("다시 돌아오니?");
+			data.put("receiver", noti.getReceiver());
+			data.put("messageType", MessageType.NOTIFICATION);
+			data.put("message", noti.getMessage());
+			data.put("datetime", noti.getDatetime());
+			System.out.println("데이타까지 왔니?" + data);
+			onMessage(new Gson().toJson(data), session);
+		}
+	}
+
 	@OnMessage
 	public void onMessage(String msg, Session session){
 		System.out.println("msg@onMessage = " + msg);

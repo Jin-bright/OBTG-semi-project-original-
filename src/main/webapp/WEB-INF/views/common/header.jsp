@@ -23,7 +23,9 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/index.css" />
 <script src="<%=request.getContextPath()%>/js/jquery-3.6.1.js"></script>
-
+<% if(loginMember != null){ %>
+<script src="<%= request.getContextPath() %>/js/ws.js"></script>
+<% } %>
 </head>
 <body>
 <header>
@@ -58,7 +60,8 @@
 	      						<li><a href="<%= request.getContextPath() %>/member/logout;">로그아웃</a></li>
 	    					</ul>
 							<%= loginMember.getNickname() %>님
-							<span id="notification"></span>
+							<i style="position: absolute;"><img src="<%= request.getContextPath() %>/image/notification.png" alt="알림" class="bell bell-hiden" /></i>
+							<div id="report_wrap"></div>
 						</td>
 					</tr>
 				<%-- 	<tr>
@@ -90,10 +93,6 @@
 </nav>
 <hr style="border: solid 1px black; margin:0;">
 </header>
-
-
-
-
 <script>
 window.addEventListener('load', () => {
 	<% if(msg != null){ %>
@@ -105,7 +104,7 @@ window.addEventListener('load', () => {
 const item = document.querySelectorAll(".menu__item");
 
 /* */
-window.addEventListener("load", mainFunc);
+// window.addEventListener("load", mainFunc);
 
 
 const icon = document.querySelectorAll(".menu__icon");
@@ -128,6 +127,6 @@ let getIcon = (event) =>{
     }
 }
 
-</script>
 
-</html>
+
+</script>
