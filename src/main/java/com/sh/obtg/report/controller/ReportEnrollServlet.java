@@ -28,9 +28,9 @@ public class ReportEnrollServlet extends HttpServlet {
 			String memberId = request.getParameter("reportedMemberId");
 			
 			// ootd게시판인지 share 게시판인지 구분용
-			int _no = Integer.parseInt(request.getParameter("boardNo"));
-			String n = String.valueOf(_no);
-			int no = Integer.parseInt(n.substring(3));
+			String no = request.getParameter("boardNo");
+//			String n = String.valueOf(_no);
+//			int no = Integer.parseInt(n.substring(3));
 			System.out.println("신고가 접수된 번호 = " + no);
 			
 			String _reason = request.getParameterValues("reason")[0];
@@ -51,10 +51,10 @@ public class ReportEnrollServlet extends HttpServlet {
 				reason = Reason.R3;
 				break;
 			case "R4":
-				reason = Reason.R3;
+				reason = Reason.R4;
 				break;
 			case "R5":
-				reason = Reason.R3;
+				reason = Reason.R5;
 				break;
 			}
 
@@ -67,15 +67,17 @@ public class ReportEnrollServlet extends HttpServlet {
 			int result = reportService.insertReport(report);
 			
 			// view단 처리
-			int board = Integer.parseInt(n.substring(0, 1));
-			System.out.println("어느 게시판일까?(8 - ootd, 9 - share) " + board);
+			String board = no.substring(0, 1);
+			System.out.println("어느 게시판일까?(O - ootd, S - share) " + board);
+			
+			int num = Integer.parseInt(no.substring(1));
 			
 			// 게시판에 따라 리다이렉트
-			if(board == 8) {
-				response.sendRedirect(request.getContextPath() + "/ootd/ootdView?no=" + no);				
+			if(board.equals("O")) {
+				response.sendRedirect(request.getContextPath() + "/ootd/ootdView?no=" + num);				
 			}
-			else if(board == 9) {
-				response.sendRedirect(request.getContextPath() + "/share/shareView?no=" + no);
+			else if(board.equals("S")) {
+				response.sendRedirect(request.getContextPath() + "/share/shareView?no=" + num);
 			}
 			
 		} catch (Exception e) {

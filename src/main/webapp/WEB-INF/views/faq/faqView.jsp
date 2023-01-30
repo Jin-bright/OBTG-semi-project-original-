@@ -98,7 +98,6 @@ table#tbl-comment tr:hover button.btn-delete{display:inline;}
 		%>
 	</table>
 	
-	<hr style="margin-top:30px;" />	
     
 	<div class="comment-container">
         <div class="comment-editor">
@@ -112,6 +111,7 @@ table#tbl-comment tr:hover button.btn-delete{display:inline;}
                 <button type="submit" id="btn-add3">등록</button>
             </form>
         </div>
+	<hr style="margin-top:30px;" />	
 		<!--table#tbl-comment-->
 		<%
 			if(!comments.isEmpty()){
@@ -183,8 +183,9 @@ table#tbl-comment tr:hover button.btn-delete{display:inline;}
 	action="<%= request.getContextPath() %>/faq/faqCommentDelete" 
 	name="faqCommentDelFrm"
 	method="POST">
-	<input type="hidden" name="no" />
-	<input type="hidden" name="no" value="<%= faq.getNo() %>"/>
+<!-- 	<input type="hidden" name="no" /> -->
+	<input type="hidden" name="no">
+	<input type="hidden" name="faqNo" value="<%= faq.getNo() %>"/>
 </form>
 
    <script>
@@ -277,6 +278,7 @@ const loginAlert = () => {
 <% if(canEdit){ %>
 <form action="<%= request.getContextPath() %>/faq/faqDelete" name="faqDeleteFrm" method="POST">
 	<input type="hidden" name="no" value="<%= faq.getNo() %>" />
+<%-- 	<input type="hidden" name="no" value="<%= f %>" /> --%>
 </form>
 <script>
 const updatefaq = () => {

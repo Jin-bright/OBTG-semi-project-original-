@@ -88,15 +88,17 @@ i {
 */
 
 .admin__sidepanel {
-  position: fixed;
-  top: 35px;
+  position: absolute;
+  top: 75px;
   left: 0;
   z-index: 999;
   width: 200px;
-  height: 40%;
+  height: 47.5vw;
   padding: 25px 0;
-  background: rgb(232, 239, 170);
+  background: #f9f4d2;
   margin-top: 235px;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
 }
 
 .admin__sidepanel ul li {
@@ -104,12 +106,12 @@ i {
   height: 70px;
   padding-left: 25px;
   font-size: 1em;
-  font-weight: lighter;
+  font-weight: 900;
   /* color: lightgrey; */
 }
 
 .admin__sidepanel ul li:hover {
-  background: #666;
+  background: rgb(253, 187, 51);
   cursor: pointer;
 }
 
