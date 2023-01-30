@@ -176,6 +176,7 @@ footer {
     position: relative;
     margin: 0 auto;
     padding: 30px;
+    border-top: 2px solid black;
     background-color: #f9f4d2;
 }
 #footer-wrap {

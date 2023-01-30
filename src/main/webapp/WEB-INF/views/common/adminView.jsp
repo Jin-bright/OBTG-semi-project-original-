@@ -25,10 +25,13 @@
     <nav class="admin__sidepanel">
       <ul>
         <li>
-          <i class="fa fa-file-text-o"></i>회원관리
+          <i class="fa fa-file-text-o"></i><a href="<%= request.getContextPath() %>/admin/memberList">회원 관리</a>
         </li>
         <li>
-          <i class="fa fa-plus-square-o"></i> 신고 내역
+          <i class="fa fa-plus-square-o"></i><a href="<%= request.getContextPath() %>/report/reportList">신고 내역</a> 
+        </li>
+        <li>
+          <i class="fa fa-plus-square-o"></i><a href="<%= request.getContextPath() %>/admin/blackList">블랙리스트</a> 
         </li>
       </ul>
     </nav>

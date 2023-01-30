@@ -14,7 +14,7 @@
 	 </a>
 	 </div>
 	 <div class="container-li">
-	 <a href="">
+	 <a href="<%= request.getContextPath() %>/member/memberOotdList">
 	 <img src="<%= request.getContextPath()%>/image/list.png" alt="" />
 	 	 <li>&nbsp;List</li>
 	 </a>
@@ -26,7 +26,7 @@
 	 </a>
 	 </div>
 	 <div class="container-li">
-	 <a href="">
+	 <a href="<%= request.getContextPath() %>/member/memberOotdLike">
 	 <img src="<%= request.getContextPath()%>/image/like.png" alt="" />
 	 	<li>&nbsp;Like</li>
 	 </a>
@@ -34,7 +34,6 @@
 	 </ul>
 </div>
 <hr />
-<script src = "<%=request.getContextPath()%>/js/ws.js"></script>
 <div class="form">
 <h2 style="text-align: center;">개인 정보</h2>
 <br />

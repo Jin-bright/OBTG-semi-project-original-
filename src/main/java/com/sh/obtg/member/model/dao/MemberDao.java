@@ -1,5 +1,7 @@
 package com.sh.obtg.member.model.dao;
 
+import static com.sh.obtg.common.JdbcTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -11,9 +13,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import com.sh.obtg.admin.model.exception.AdminException;
 import com.sh.obtg.member.model.dto.Gender;
+import com.sh.obtg.member.model.dto.Like;
 import com.sh.obtg.member.model.dto.Member;
 import com.sh.obtg.member.model.dto.MemberRole;
+import com.sh.obtg.member.model.dto.MyPost;
+import com.sh.obtg.member.model.dto.MyPosts;
 import com.sh.obtg.member.model.exception.MemberException;
 
 public class MemberDao {
@@ -245,4 +251,200 @@ public class MemberDao {
 		return result;
 	
 }
+	// 내가 쓴 ootd 게시글 수
+	public int selectMyOotdPostCnt(Connection conn, String memberId) {
+		// select count(*) from ootd_board where ootd_writer = ?
+		String sql = prop.getProperty("selectMyOotdPostCnt");
+		int count = 0;
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, memberId);
+			
+			try (ResultSet rset = pstmt.executeQuery()) {
+				while(rset.next())
+					count = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			throw new MemberException("👻내가 쓴 ootd 게시글 수 조회 오류👻", e);
+		}
+		
+		return count;
+	}
+	
+	// 내가 쓴 share 게시글 수
+	public int selectMySharePostCnt(Connection conn, String memberId) {
+		// select count(*) from share_board where member_id = ?
+		String sql = prop.getProperty("selectMySharePostCnt");
+		int count = 0;
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, memberId);
+			
+			try (ResultSet rset = pstmt.executeQuery()) {
+				while(rset.next())
+					count = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			throw new MemberException("👻내가 쓴 share 게시글 수 조회 오류👻", e);
+		}
+		
+		return count;
+	}
+	
+	// 내가 쓴 ootd글 조회
+	public List<MyPost> selectMyOotdPost(Connection conn, String memberId) {
+		// select ootd_no, ootd_title, ootd_read_count, ootd_reg_date, renamed_filename from ootd_board b left join ootd_attachment a on b.ootd_no = a.board_no where ootd_writer = ?
+		String sql = prop.getProperty("selectMyOotdPost");
+		List<MyPost> ootdBoardList = new ArrayList<>();
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, memberId);
+			
+			try (ResultSet rset = pstmt.executeQuery()) {
+				while(rset.next()) {
+					MyPost mp = new MyPost();
+					mp.setNo(rset.getInt("ootd_no"));
+					mp.setTitle(rset.getString("ootd_title"));
+					mp.setReadCount(rset.getInt("ootd_read_count"));
+					mp.setRegDate(rset.getDate("ootd_reg_date"));
+					mp.setRenamedFilename(rset.getString("renamed_filename"));
+					ootdBoardList.add(mp);
+				}
+			}
+			
+		} catch (SQLException e) {
+			throw new MemberException("👻내가 쓴 ootd 게시물 조회 오류👻", e);
+		}
+		
+		return ootdBoardList;
+	}
+	
+	// 내가 쓴 share글 조회
+	public List<MyPosts> selectMySharePost(Connection conn, String memberId) {
+		String sql = prop.getProperty("selectMySharePost");
+		List<MyPosts> shareBoardList = new ArrayList<>();
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, memberId);
+
+			try (ResultSet rset = pstmt.executeQuery()) {
+				while(rset.next()) {
+					MyPosts mp = new MyPosts();
+					mp.setNo(rset.getInt("SHARE_no"));
+					mp.setTitle(rset.getString("SAHRE_TITLE"));
+					mp.setRegDate(rset.getDate("SAHRE_REG_DATE"));
+					mp.setReadCount(rset.getInt("SAHRE_READ_COUNT"));
+					mp.setState(rset.getString("SHARE_STATE"));
+					mp.setRenamedFilename(rset.getString("renamed_filename"));
+					shareBoardList.add(mp);
+				}
+				
+			}
+			
+		} catch (SQLException e) {
+			throw new MemberException("👻내가 쓴 share 게시물 조회 오류👻", e);
+		}
+		
+		return shareBoardList;
+	}
+	
+	// 나의 ootd 좋아요 조회
+	public List<Like> selectOotdLike(Connection conn, String memberId) {
+		String sql = prop.getProperty("selectOotdLike");
+		List<Like> ootdLikes = new ArrayList<>();
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, memberId);
+			
+			try (ResultSet rset = pstmt.executeQuery()) {
+				while(rset.next()) {
+					Like like = new Like();
+					like.setNo(rset.getInt("ootd_no"));
+					like.setTitle(rset.getString("ootd_title"));
+					like.setRenamed_filename(rset.getString("renamed_filename"));
+					ootdLikes.add(like);
+				}
+				
+			}
+			
+		} catch (SQLException e) {
+			throw new MemberException("👻내가 좋아요한 ootd 조회 오류👻", e);
+		}
+		
+		return ootdLikes;
+	}
+	
+	// 나의 share 좋아요 조회
+	public List<Like> selectShareLike(Connection conn, String memberId) {
+		String sql = prop.getProperty("selectShareLike");
+		List<Like> shareLikes = new ArrayList<>();
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, memberId);
+			
+			try (ResultSet rset = pstmt.executeQuery()) {
+				while(rset.next()) {
+					Like like = new Like();
+					like.setNo(rset.getInt("share_no"));
+					like.setTitle(rset.getString("sahre_title"));
+					like.setRenamed_filename(rset.getString("renamed_filename"));
+					shareLikes.add(like);
+				}
+				
+			}
+			
+		} catch (SQLException e) {
+			throw new MemberException("👻내가 좋아요한 share 조회 오류👻", e);
+		}
+		
+		return shareLikes;
+	}
+	
+	public int selectEmail(Connection conn, String memberEmailId) {
+		int result =0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectEmail");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberEmailId);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				result=rset.getInt("count(*)");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new AdminException("블랙리스트 조회 실패",e);
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+	public int selectBlackList(Connection conn, String memberEmailId) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectBlackList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberEmailId);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				result=rset.getInt("count(*)");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new AdminException("블랙리스트 조회 실패",e);
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
 }

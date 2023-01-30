@@ -192,15 +192,14 @@ create sequence seq_OOTD_board_comment_no;
 CREATE TABLE Report (
     report_no    number        NOT NULL,
     reported_userId    varchar2(50)        NOT NULL,
-    board_no    number        NOT NULL,
+    board_no  varchar2(50)       NOT NULL,
     reg_date    date   default sysdate,
-    report_status    char(1) default 'x',
-    report_reason   char(5)     NOT NULL,
+    report_status    char(1) default 'X',
+    report_reason   char(2)     NOT NULL,
     CONSTRAINT PK_REPORT PRIMARY KEY (report_no),
     CONSTRAINT FK_Member_TO_Report_1 FOREIGN KEY (reported_userId) REFERENCES Member (member_id),
-    CONSTRAINT FK_OOTD_board_TO_Report_1 FOREIGN KEY (board_no) REFERENCES OOTD_board (OOTD_no),
     CONSTRAINT CK_report_reason check (report_reason in ('R1', 'R2', 'R3', 'R4', 'R5' )),
-    CONSTRAINT CK_report_status check (report_status in ('o', 'x'))
+    CONSTRAINT CK_report_status check (report_status in ('O', 'X'))
 );
 
 create sequence seq_report_no;
@@ -445,3 +444,24 @@ select * from faq;
 
 -- 제약조건 해제 / 대신 inline에 빡세게걸기 (by jin / id부분  ootd board comment share / 0129 ) 
 
+
+
+--블랙리스트 테이블
+create table blackList(
+    no number,
+    email varchar2(100)
+);
+create sequence seq_blackList;
+
+--블랙리스트 테이블에 insert시 자동으로 member테이블에서는 제외 될 수있도록
+create or replace trigger trig_blackList
+    after
+    insert on blackList
+    for each row
+begin
+    delete member where email= :new.email;
+end;
+/
+
+
+--select * from blackList;

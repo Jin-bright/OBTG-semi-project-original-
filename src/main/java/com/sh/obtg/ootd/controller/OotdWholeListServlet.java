@@ -56,7 +56,7 @@ public class OotdWholeListServlet extends HttpServlet {
 			System.out.println( "**토탈카운트 : " +  totalCount  );
 			String url = request.getRequestURI(); // /mvc/board/boardList
 			String pagebar = HelloMvcUtils.getPagebar(page, limit, totalCount, url);
-		//	System.out.println("pagebar : " + pagebar );
+			//System.out.println("pagebar : " + pagebar );
 			request.setAttribute("pagebar", pagebar);
 		
 		}
