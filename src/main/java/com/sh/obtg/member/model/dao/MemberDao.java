@@ -1,5 +1,7 @@
 package com.sh.obtg.member.model.dao;
 
+import static com.sh.obtg.common.JdbcTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -11,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import com.sh.obtg.admin.model.exception.AdminException;
 import com.sh.obtg.member.model.dto.Gender;
 import com.sh.obtg.member.model.dto.Like;
 import com.sh.obtg.member.model.dto.Member;
@@ -18,9 +21,6 @@ import com.sh.obtg.member.model.dto.MemberRole;
 import com.sh.obtg.member.model.dto.MyPost;
 import com.sh.obtg.member.model.dto.MyPosts;
 import com.sh.obtg.member.model.exception.MemberException;
-import com.sh.obtg.ootd.model.dto.OotdBoard;
-import com.sh.obtg.ootd.model.dto.Style;
-import com.sh.obtg.share.model.dto.ShareBoard;
 
 public class MemberDao {
 	private Properties prop = new Properties();
@@ -400,5 +400,51 @@ public class MemberDao {
 		}
 		
 		return shareLikes;
+	}
+	
+	public int selectEmail(Connection conn, String memberEmailId) {
+		int result =0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectEmail");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberEmailId);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				result=rset.getInt("count(*)");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new AdminException("블랙리스트 조회 실패",e);
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+	public int selectBlackList(Connection conn, String memberEmailId) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectBlackList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberEmailId);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				result=rset.getInt("count(*)");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new AdminException("블랙리스트 조회 실패",e);
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
 	}
 }

@@ -31,6 +31,15 @@ table#tbl-comment tr.level2 td:first-of-type{padding-left:100px;}
 table#tbl-comment tr.level2 sub.comment-writer {color:#8e8eff; font-size:14px}
 table#tbl-comment tr.level2 sub.comment-date {color:#ff9c8a; font-size:10px}
 
+table#tbl-comment tr td{
+	border-bottom:1px solid; 
+	border-top:1px solid; 
+	padding:5px; 
+	text-align:left; 
+	line-height:120%;
+	font-weight : 100;
+	}
+
 /*답글관련*/
 table#tbl-comment textarea{margin: 4px 0 0 0;}
 table#tbl-comment button.btn-comment-enroll2{width:60px; height:23px; color:white; background:#3300ff; position:relative; top:-5px; left:10px;}
@@ -38,6 +47,12 @@ table#tbl-comment button.btn-comment-enroll2{width:60px; height:23px; color:whit
 /* 삭제버튼관련 */
 table#tbl-comment button.btn-delete{background:red; color:white; display:none;}
 table#tbl-comment tr:hover button.btn-delete{display:inline;}
+
+.comment-container {
+	width: 1000px;
+	margin: auto;
+}
+
 
 
 
@@ -47,6 +62,8 @@ table#tbl-comment tr:hover button.btn-delete{display:inline;}
 
 <body>
     <div class="board_wrap">
+    
+    
         <div class="board_title">
             <strong>INFO</strong>
             <p>문의사항을 빠르고 정확하게 안내해드립니다.</p>
@@ -76,11 +93,8 @@ table#tbl-comment tr:hover button.btn-delete{display:inline;}
                 </div>
                 <div class="cont"> <%= faq.getContent() %>
                 </div>
-            </div>
-        </div>
-    </div>
-</body>
-		<% 
+                
+                <% 
 			boolean canEdit = loginMember != null && 
 								(loginMember.getMemberRole() == MemberRole.A ||
 									loginMember.getMemberId().equals(faq.getWriter()));
@@ -96,9 +110,15 @@ table#tbl-comment tr:hover button.btn-delete{display:inline;}
 		<% 
 			}
 		%>
+            </div>
+        </div>
+    </div>
+</body>
+		
 	</table>
 	
     
+
 	<div class="comment-container">
         <div class="comment-editor">
             <form

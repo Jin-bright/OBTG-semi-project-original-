@@ -14,12 +14,9 @@
 	} 
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/memberEnroll.css">
-<<<<<<< HEAD
 <%if(loginMember != null){ %>
 	<script src = "<%=request.getContextPath()%>/js/ws.js"></script>
 <% } %>
-=======
->>>>>>> branch 'master' of https://github.com/incheol789/OBTG-semi-project.git
 <div class="form">
 
       <ul class="tab-group">
@@ -244,6 +241,11 @@ document.memberEnrollFrm.onsubmit = (e) => {
 	if(!/^[가-힣]{2,}$/.test(memberName.value)){
 		alert("이름은 한글 2글자 이상이어야 합니다.");
 		memberName.select();
+		return false;
+	}
+	
+	if(email.value == "Ban"){
+		alert("가입이 제한된 이메일 입니다.");
 		return false;
 	}
 };
