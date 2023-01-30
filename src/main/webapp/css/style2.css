@@ -18,7 +18,7 @@ a {
 
 .board_wrap {
     width: 1000px;
-    margin: 100px auto;
+    margin :100px 0 0 100px;
 }
 
 .board_title {
