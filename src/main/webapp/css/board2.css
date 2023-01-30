@@ -27,6 +27,7 @@ section#board-container h2{
 #tbl-board th {
 	border: 0;
 	padding: 12px 4px;
+	background-color: #e0e0e0;
 }
 
 #tbl-board tr {
@@ -59,7 +60,7 @@ section#board-container h2{
 }
 
 /*글쓰기버튼*/
-#btn-add, .submit-button {
+#btn-add1, .submit-button {
 	font-size: 16px;
 	border: 0;
 	outline: 0;
@@ -72,6 +73,33 @@ section#board-container h2{
 	display: block;
 	margin-left: auto;
 	margin-bottom: 8px;
+}
+
+#btn-add2, .submit-button {
+	font-size: 14px;
+	border: 0;
+	outline: 0;
+	border-radius: 8px;
+	background-color: #525252;
+	color: white;
+	padding: 8px 16px;
+	font-weight: 500;
+	margin-left: auto;
+	margin-bottom: 8px;
+}
+
+#btn-add3, .submit-button {
+	font-size: 14px;
+	border: 0;
+	outline: 0;
+	border-radius: 8px;
+	background-color: #525252;
+	color: white;
+	padding: 8px 16px;
+	font-weight: 500;
+	margin-left: auto;
+	margin-bottom: 8px;
+	position:absolute;
 }
 
 /*페이지바*/
@@ -127,7 +155,7 @@ span#fname{
 #del_file+label{font-size:.8em; position:relative; top:-3px;}
 
 /*댓글등록버튼*/
-div.comment-container button#btn-comment-enroll1 {width:60px; height:50px; color:white; background:#3300ff; position:relative; top:-20px;}
+div.comment-container button#btn-comment-enroll1 { width:60px; height:50px; color:white; background:#3300ff; position:relative; top:-20px;}
 
 /*댓글테이블*/
 table#tbl-comment{width:580px; margin:0 auto; border-collapse:collapse;} 

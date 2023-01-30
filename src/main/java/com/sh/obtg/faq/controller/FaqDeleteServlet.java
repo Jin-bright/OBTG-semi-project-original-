@@ -19,11 +19,11 @@ public class FaqDeleteServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 사용자 입력값 
-		int FaqNo = Integer.parseInt(request.getParameter("no"));
+		int no = Integer.parseInt(request.getParameter("no"));
 		
 		// 업무 로직
 		int result = 0;
-		result = faqService.deleteFaq(FaqNo);
+		result = faqService.deleteFaq(no);
 		if(result > 0) {
 			System.out.println("게시글 삭제 처리 성공");
 		} else {
