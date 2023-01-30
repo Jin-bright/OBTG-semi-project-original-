@@ -12,7 +12,10 @@ import com.sh.obtg.member.model.exception.MemberException;
 import com.sh.obtg.ootd.model.dto.OotdBoard;
 import com.sh.obtg.share.model.dto.ShareBoard;
 import com.sh.obtg.member.model.dao.MemberDao;
+import com.sh.obtg.member.model.dto.Like;
 import com.sh.obtg.member.model.dto.Member;
+import com.sh.obtg.member.model.dto.MyPost;
+import com.sh.obtg.member.model.dto.MyPosts;
 
 public class MemberService {
 	
@@ -144,19 +147,51 @@ public class MemberService {
 	}
 	
 	// 내가 쓴 ootd글 조회
-	public List<OotdBoard> selectMyOotdPost(String memberId, Map<String, Object> param) {
+	public List<MyPost> selectMyOotdPost(String memberId) {
 		Connection conn = getConnection();
-		List<OotdBoard> ootdBoardList = memberDao.selectMyOotdPost(conn, memberId, param);
+		List<MyPost> ootdBoardList = memberDao.selectMyOotdPost(conn, memberId);
 		close(conn);
 		return ootdBoardList;
 	}
 	
 	// 내가 쓴 share글 조회
-	public List<ShareBoard> selectMySharePost(String memberId, Map<String, Object> param) {
+	public List<MyPosts> selectMySharePost(String memberId) {
 		Connection conn = getConnection();
-		List<ShareBoard> shareBoardList = memberDao.selectMySharePost(conn, memberId, param);
+		List<MyPosts> shareBoardList = memberDao.selectMySharePost(conn, memberId);
 		close(conn);
 		return shareBoardList;
+	}
+	
+	// 내가 쓴 share글 수 조회
+	public int getMySharePostCnt(String memberId) {
+		Connection conn = getConnection();
+		int shareCnt = memberDao.selectMySharePostCnt(conn, memberId);
+		close(conn);
+		return shareCnt;
+	}
+	
+	// 내가 쓴 ootd글 수 조회
+	public int getMyOotdPostCnt(String memberId) {
+		Connection conn = getConnection();
+		int ootdCnt = memberDao.selectMyOotdPostCnt(conn, memberId);
+		close(conn);
+		return ootdCnt;
+	}
+	
+	// 나의 ootd 좋아요 조회
+	public List<Like> selectOotdLike(String memberId) {
+		Connection conn = getConnection();
+		List<Like> ootdLikes = memberDao.selectOotdLike(conn, memberId);
+		close(conn);
+		return ootdLikes;
+	}
+	
+	// 나의 share 좋아요 조회
+	public List<Like> selectShareLike(String memberId) {
+		Connection conn = getConnection();
+		List<Like> ootdLikes = memberDao.selectShareLike(conn, memberId);
+		close(conn);
+		return ootdLikes;
 	}
 
 }

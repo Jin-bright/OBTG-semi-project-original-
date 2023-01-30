@@ -1,20 +1,47 @@
 @charset "UTF-8";
 #board-container {
 	max-width: 600px;
-	height: 550px;
+	height: auto;
 	margin: 0 auto;
 	margin-top: 100px;
+	transform: translate(-60px, 10px);
 }
-#boardList-wrap, #boardList-wrap tr{
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    border-collapse: collapse;
-    width: 600px;
+#nav-container {
+	font-size: 30px;
+	text-align: center;
+	margin-bottom: 25px;
+	padding-left: 160px;
 }
-#boardList-wrap th{
-	padding: 10px;
-	background: RGB(234, 234, 234);
+#nav-container a:hover {
+	color: #ffd688;
+}
+#boardList-wrap {
+	margin-bottom: 60px;
 }
 #boardList-wrap td {
-    text-align: center;
+	border: 1px solid orange;
+	padding: 25px;
+}
+#boardList-wrap td:hover{
+	background: #ffd688;
+}
+#boardList-wrap img {
+	width: 150px;
+	height: 250px;
+}
+#b_title {
+	text-align: center;
+	font-weight: 900;
+}
+#b_txt {
+	font-size: 13px;
+	text-align: center;
+	color: grey;
+}
+#sBtn {
+	border-style: none;
+	color: wheat;
+	background: black;
+	padding: 3px;
+	margin: 10px 52px 0;
 }

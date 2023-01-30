@@ -1,0 +1,36 @@
+@charset "UTF-8";
+#like-container {
+	max-width: 600px;
+	height: auto;
+	margin: 0 auto;
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+#like-nav {
+	font-size: 30px;
+	padding-left: 125px;
+	margin-bottom: 25px;
+}
+#like-nav a:hover {
+	color: #ffd688;
+}
+#like-wrap {
+	text-align: center;
+	transform: translate(-220px, 10px);
+}
+#like-wrap td {
+	border: 1px solid orange;
+	padding: 25px;
+}
+#like-wrap td:hover {
+	background: #ffd688;
+}
+#like-wrap img {
+	width: 187px;
+	height: 275px;
+}
+#like-wrap p {
+	padding-top: 12px;
+	font-size: 15px;
+	font-weight: 700;
+}

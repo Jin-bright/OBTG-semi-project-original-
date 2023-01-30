@@ -12,8 +12,11 @@ import java.util.Map;
 import java.util.Properties;
 
 import com.sh.obtg.member.model.dto.Gender;
+import com.sh.obtg.member.model.dto.Like;
 import com.sh.obtg.member.model.dto.Member;
 import com.sh.obtg.member.model.dto.MemberRole;
+import com.sh.obtg.member.model.dto.MyPost;
+import com.sh.obtg.member.model.dto.MyPosts;
 import com.sh.obtg.member.model.exception.MemberException;
 import com.sh.obtg.ootd.model.dto.OotdBoard;
 import com.sh.obtg.ootd.model.dto.Style;
@@ -291,26 +294,23 @@ public class MemberDao {
 	}
 	
 	// 내가 쓴 ootd글 조회
-	public List<OotdBoard> selectMyOotdPost(Connection conn, String memberId, Map<String, Object> param) {
-		// select * from ootd_board where ootd_writer = ?
+	public List<MyPost> selectMyOotdPost(Connection conn, String memberId) {
+		// select ootd_no, ootd_title, ootd_read_count, ootd_reg_date, renamed_filename from ootd_board b left join ootd_attachment a on b.ootd_no = a.board_no where ootd_writer = ?
 		String sql = prop.getProperty("selectMyOotdPost");
-		List<OotdBoard> ootdBoardList = new ArrayList<>();
-		int page = (int)param.get("page");
-		int limit = (int)param.get("limit");
+		List<MyPost> ootdBoardList = new ArrayList<>();
 		
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, memberId);
-			pstmt.setInt(2, page);
-			pstmt.setInt(3, limit);
 			
 			try (ResultSet rset = pstmt.executeQuery()) {
 				while(rset.next()) {
-					OotdBoard ob = new OotdBoard();
-					ob.setOotdNo( rset.getInt("OOTD_no"));
-					ob.setOOTDTitle(rset.getString("OOTD_title"));
-					ob.setOOTDReadCount( rset.getInt("OOTD_read_count"));
-					ob.setOOTDRegDate( rset.getDate("OOTD_reg_date") );
-					ootdBoardList.add(ob);
+					MyPost mp = new MyPost();
+					mp.setNo(rset.getInt("ootd_no"));
+					mp.setTitle(rset.getString("ootd_title"));
+					mp.setReadCount(rset.getInt("ootd_read_count"));
+					mp.setRegDate(rset.getDate("ootd_reg_date"));
+					mp.setRenamedFilename(rset.getString("renamed_filename"));
+					ootdBoardList.add(mp);
 				}
 			}
 			
@@ -322,27 +322,23 @@ public class MemberDao {
 	}
 	
 	// 내가 쓴 share글 조회
-	public List<ShareBoard> selectMySharePost(Connection conn, String memberId, Map<String, Object> param) {
-		// where member_id = ? and rnum between ? and ?
+	public List<MyPosts> selectMySharePost(Connection conn, String memberId) {
 		String sql = prop.getProperty("selectMySharePost");
-		List<ShareBoard> shareBoardList = new ArrayList<>();
-		int page = (int)param.get("page");
-		int limit = (int)param.get("limit");
+		List<MyPosts> shareBoardList = new ArrayList<>();
 		
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, memberId);
-			pstmt.setInt(2, page);
-			pstmt.setInt(3, limit);
 
 			try (ResultSet rset = pstmt.executeQuery()) {
 				while(rset.next()) {
-					ShareBoard sb = new ShareBoard();
-					sb.setShareNo(rset.getInt("SHARE_no"));
-					sb.setShareTitle(rset.getString("SAHRE_TITLE"));
-					sb.setShareReadCount(rset.getInt("SAHRE_READ_COUNT"));
-					sb.setShareRegDate(rset.getDate("SAHRE_REG_DATE"));
-					sb.setShareState(rset.getString("SHARE_STATE"));
-					shareBoardList.add(sb);
+					MyPosts mp = new MyPosts();
+					mp.setNo(rset.getInt("SHARE_no"));
+					mp.setTitle(rset.getString("SAHRE_TITLE"));
+					mp.setRegDate(rset.getDate("SAHRE_REG_DATE"));
+					mp.setReadCount(rset.getInt("SAHRE_READ_COUNT"));
+					mp.setState(rset.getString("SHARE_STATE"));
+					mp.setRenamedFilename(rset.getString("renamed_filename"));
+					shareBoardList.add(mp);
 				}
 				
 			}
@@ -352,5 +348,57 @@ public class MemberDao {
 		}
 		
 		return shareBoardList;
+	}
+	
+	// 나의 ootd 좋아요 조회
+	public List<Like> selectOotdLike(Connection conn, String memberId) {
+		String sql = prop.getProperty("selectOotdLike");
+		List<Like> ootdLikes = new ArrayList<>();
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, memberId);
+			
+			try (ResultSet rset = pstmt.executeQuery()) {
+				while(rset.next()) {
+					Like like = new Like();
+					like.setNo(rset.getInt("ootd_no"));
+					like.setTitle(rset.getString("ootd_title"));
+					like.setRenamed_filename(rset.getString("renamed_filename"));
+					ootdLikes.add(like);
+				}
+				
+			}
+			
+		} catch (SQLException e) {
+			throw new MemberException("👻내가 좋아요한 ootd 조회 오류👻", e);
+		}
+		
+		return ootdLikes;
+	}
+	
+	// 나의 share 좋아요 조회
+	public List<Like> selectShareLike(Connection conn, String memberId) {
+		String sql = prop.getProperty("selectShareLike");
+		List<Like> shareLikes = new ArrayList<>();
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, memberId);
+			
+			try (ResultSet rset = pstmt.executeQuery()) {
+				while(rset.next()) {
+					Like like = new Like();
+					like.setNo(rset.getInt("share_no"));
+					like.setTitle(rset.getString("sahre_title"));
+					like.setRenamed_filename(rset.getString("renamed_filename"));
+					shareLikes.add(like);
+				}
+				
+			}
+			
+		} catch (SQLException e) {
+			throw new MemberException("👻내가 좋아요한 share 조회 오류👻", e);
+		}
+		
+		return shareLikes;
 	}
 }

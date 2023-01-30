@@ -1,3 +1,4 @@
+<%@page import="com.sh.obtg.member.model.dto.MyPosts"%>
 <%@page import="com.sh.obtg.share.model.dto.ShareBoard"%>
 <%@page import="com.sh.obtg.ootd.model.dto.OotdBoard"%>
 <%@page import="java.util.Arrays"%>
@@ -5,8 +6,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%
-	List<OotdBoard> ootdBoardList = (List<OotdBoard>)request.getAttribute("ootdBoardList");
-	List<ShareBoard> shareBoardList = (List<ShareBoard>)request.getAttribute("shareBoardList");
+	List<MyPosts> shareBoardList = (List<MyPosts>)request.getAttribute("shareBoardList");
 %>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/memberView.css">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/memberBoardList.css" />
@@ -32,7 +32,7 @@
 				</a>
 			</div>
 			<div class="container-li">
-				<a href="">
+				<a href="<%= request.getContextPath() %>/member/memberOotdLike">
 					<img src="<%= request.getContextPath()%>/image/like.png" alt="" />
 					<li>&nbsp;Like</li>
 				</a>
@@ -41,45 +41,32 @@
 	</div>
 	<hr />
 	<section id="board-container">
-		 <table id="boardList-wrap">
-	        <thead>
-	            <tr>
-	                <th>No</th>
-	                <th>제목</th>
-	                <th>작성일</th>
-	                <th>조회수</th>
-	            </tr>
-	        </thead>
-	        <tbody>
-	        	<% 
-	        		for(OotdBoard ob : ootdBoardList){
-	        	%>
-	            <tr>
-	                <td style="padding: 10px;">OOTD<%= ob.getOotdNo() %></td>
-	                <td><%= ob.getOOTDTitle() %></td>
-	                <td><%= ob.getOOTDRegDate() %></td>
-	                <td><%= ob.getOOTDReadCount() %></td>
-	            </tr>
-	            <% 
-	        		} 
-	        	%>
-	        	<%
-	        		for(ShareBoard sb : shareBoardList){
-	        	%>
-	        	<tr>
-	        		<td style="padding: 10px;">Share<%= sb.getShareNo() %></td>
-	        		<td><%= sb.getShareTitle() %></td>
-	        		<td><%= sb.getShareRegDate() %></td>
-	        		<td><%= sb.getShareReadCount() %></td>
-	        	</tr>
-	        	<%
-	        		}
-	        	%>
-	        </tbody>
-	    </table>
-	    <div id='pagebar' style="text-align: center; padding-top: 10px;">
-			<%= request.getAttribute("pagebar") %>
+		<div id="nav-container"> 
+			<span><a href="<%= request.getContextPath() %>/member/memberOotdList">ootd</a></span>
+			<span style="font-weight: 900"><a href="<%= request.getContextPath() %>/member/memberShareList">share</a></span>
 		</div>
+		<table id="boardList-wrap">
+		<% 
+			for(int i = 0; i < shareBoardList.size(); i++) {
+				if(i % 4 == 0 ){
+		%>
+			<tr>
+			<% } %>
+				<td>
+					<a href="<%= request.getContextPath() %>/share/shareView?no=<%= shareBoardList.get(i).getNo() %>">
+						<img src="<%= request.getContextPath() %>/uploadshares/share/<%= shareBoardList.get(i).getRenamedFilename() %>" alt="" />
+						<p id="b_title"><%= shareBoardList.get(i).getTitle() %></p>
+						<p id="b_txt"><%= shareBoardList.get(i).getRegDate() %> | 조회수 : <%= shareBoardList.get(i).getReadCount() %></p>
+					</a>
+					<button id="sBtn"><%= shareBoardList.get(i).getState() %></button>
+				</td>
+			<% if(i % 4 == 3){%>
+			</tr>
+		<% 
+				}   	    
+			}
+		%> 
+		</table>
 	</section>
 </div>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
