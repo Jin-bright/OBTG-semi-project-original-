@@ -33,6 +33,7 @@ td {
 #tbl-admin th {
 	border: 0;
 	padding: 12px 4px;
+	background-color : darkgray;
 }
 
 #tbl-admin tr {

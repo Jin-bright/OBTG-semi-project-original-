@@ -17,7 +17,7 @@ public class AdminMemberDeleteServlet extends HttpServlet {
 	private MemberService memberService = new MemberService();
 
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 입력값
 		String memberId = request.getParameter("memberId");
 		System.out.println("memberId = " + memberId);
