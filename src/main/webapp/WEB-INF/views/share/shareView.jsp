@@ -29,7 +29,7 @@ function open_pop(<%=shareBoard.getMemberId()%> ){
      
 }
 </script>
-<script >
+<%-- <script >
 function open_chat(<%=shareBoard.getMemberId()%>){
     const frmPopCh= document.frmPopCh;
     const url = '<%=request.getContextPath()%>/chat/chatmain';
@@ -41,40 +41,68 @@ function open_chat(<%=shareBoard.getMemberId()%>){
     frmPopCh.submit();    
      
 }
-</script>
+</script> --%>
 
 <form name="frmPopup">
 	<input type="hidden" name="memberID" >
 </form>
-<form name="frmPopCh" ">
-	<input type="hidden" name="chatroomId" > <!-- 보드no  -->
-</form>
+
+<!-- <form name="frmPopCh">
+	<input type="hidden" name="chatroomId" > 보드no 
+</form> -->
 
 <section id="board-container" >
 <br /><br /><br /><br /><br /><br /><br />
-	<p id="informationsp" > INFORMATION  <span id="styleinfo" ">스타일 정보</span></p>
+<%-- 	<p id="informationsp" > INFORMATION  <span id="styleinfo">스타일 정보</span></p>
 <ul class="ootdnav">
 	<li class="button-dropdown">
-	   	<a id="firsta" href="javascript:void(0)" class="dropdown-toggle">
+	   	<a id="firsta" href="" class="dropdown-toggle">
 	    <img id="profileimg" style="margin-left:210px" src="<%=request.getContextPath()%>/uploadootds/ootd/profile.png" alt="profileimg" /> </a>
 	    
-	    <ul class="dropdown-menu" style="margin-left:230px">
+	    <ul class="dropdown-menu" style="margin-left:30px">
    	 	 <li><a onclick="open_pop('<%=shareBoard.getMemberId()%>');">프로필보기</a></li>  
 		 
-		<li>
+		<li> <li><a href="#">채팅걸기</a></li>
+<!--
 	 	<form id="test" action="<%=request.getContextPath()%>/chat/chatsecondtry" method="post">
 		 	<input type="hidden" name="chatroomId" value="S<%=shareBoard.getShareNo()%><%=shareBoard.getMemberId()%>+<%=loginMember.getMemberId()%>"/> <!--  chatid  -->
-		 	<input type="hidden" name="boardno" value="<%=shareBoard.getShareNo()%>" /> <!-- boardno  -->
-		 	<input type="hidden" name="memberID" value="<%=loginMember.getMemberId()%>" />
-		</form>
-			<a id= "submitli" type="submit" onclick="document.getElementById('test').submit();">채팅하기
-		 	<!-- <input id="submitli" type="submit"/> -->
-		 </a></li>
-		 
+		 	<input type="hidden" name="boardno" value="<%=shareBoard.getShareNo()%>"/> <!-- boardno  
+		 	<input type="hidden" name="memberID" value="" />
+		 	<input type="submit" value="제출"/>
+ 			<a id= "submitli" type="submit" onclick="document.getElementById('test').submit();"> 
+		</form>-->
+			채팅하기
+		 	<!-- <input id="submitli" type="submit"/> 
+		 </a></li>-->
 		</ul>
    </li>
 </ul>
+--%>
+<p id="informationsp" > INFORMATION  <span id="styleinfo" ">스타일 정보</span></p>
 
+
+<form name="testFrm" id="test" action="<%=request.getContextPath()%>/chat/chatsecondtry" method="post">
+	<input type="hidden" name="chatroomId" value="S<%=shareBoard.getShareNo()%><%=shareBoard.getMemberId()%>+<%=loginMember.getMemberId()%>"/> <!--  chatid  -->
+	<input type="hidden" name="boardno" value="<%=shareBoard.getShareNo()%>"/>  
+ 	<input type="hidden" name="memberID" value="" />
+ 	<input type="submit" value="채팅하기"/>
+</form>
+
+
+
+
+
+<ul class="ootdnav">
+	<li class="button-dropdown">
+	   	<a id="firsta" href="javascript:void(0)" class="dropdown-toggle">
+	    <img id="profileimg" src="<%=request.getContextPath()%>/uploadootds/ootd/profile.png" alt="profileimg" /> </a>
+	    
+	    <ul class="dropdown-menu">
+   	 	 <li><a onclick="open_pop('<%=shareBoard.getMemberId()%>');">프로필보기</a></li> 
+	      <li><a href="#">채팅걸기</a></li>
+	    </ul>
+   </li>
+</ul>
  
 <div class="imgNtableContainer">
  <div class="box">
@@ -97,7 +125,7 @@ function open_chat(<%=shareBoard.getMemberId()%>){
 	<table id="tblboardview">
 		<tr>
  			<th>아이디</th>
-			<td><%= shareBoard.getMemberId() %></td>
+			<td><%= shareBoard.getMemberId()%></td>
  
 <%-- 			<th>닉네임</th>
  <% if( shareBoard.getMemberId()!= null &&  shareBoard.getMemberId() == membmer.getMemberId() ){ %> 			
@@ -180,6 +208,9 @@ function open_chat(<%=shareBoard.getMemberId()%>){
 		
 		<% } %>
 	</div>
+</div>
+</div>
+</section>	
 	<br /><br /><br /><br /><br />
 <!-- 게시글 삭제하기 히든폼 ( 관리자 & 작성자에게만 노출 ) -->	
 <form action="<%=request.getContextPath()%>/share/shareDelete" name = "boardDeleteFrm" method="post">
@@ -206,19 +237,16 @@ function open_chat(<%=shareBoard.getMemberId()%>){
         <tbody>
             <tr>
                 <th><label for="">게시글 번호</label></th>
-                <td><input type="text" value="S<%= shareBoard.getShareNo() %>" name="boardNo" readonly="readonly"/></td>
+                <td><input type="text" value="999<%= shareBoard.getShareNo() %>" name="boardNo" readonly="readonly"/></td>
             </tr>
             <tr>
                 <td colspan="2"><hr style="width: 95%;" /></td>
             </tr>
         </tbody>
     </table>
-<!--     <span style="margin-left: 1em; font-weight: bold;">사유선택</span> -->
+    <span style="margin-left: 1em; font-weight: bold;">사유선택</span>
     <table id="reason_wrap">
         <tbody>
-        	<tr>
-        		<th colspan="2">사유선택</th>
-        	</tr>
             <tr>
                 <th><input type="checkbox" name="reason" value="R1" onclick="checkOnlyOne(this)"></th>
                 <td>스팸홍보/도배글입니다.</td>
@@ -343,5 +371,12 @@ const reportEnroll = () => {
 	} 
 	alert("신고가 접수되었습니다.")
 }
+</script>
+
+<script>
+document.testFrm.addEventListener("subit", (e) => {
+	e.preventDefault();
+}
+
 </script>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

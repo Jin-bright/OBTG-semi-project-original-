@@ -28,10 +28,10 @@ public class ChatSecondtryServlet extends HttpServlet {
 		      
 		     // 1. 사용자입력값 처리 - 우리채팅방은 int인디,, 아냐 string 으로 변경 
 				String chatroomId =  request.getParameter("chatroomId") ;
-				int boardno = Integer.parseInt( request.getParameter("boardno") );
+		//		int boardno = Integer.parseInt( request.getParameter("boardno") );
 				
 				System.out.println( chatroomId  );
-				System.out.println( "오류나니 ? " + boardno  );
+		//		System.out.println( "오류나니 ? " + boardno  );
 				
 				if( chatroomId == null || "".equals(chatroomId) ) {
 					throw new IllegalArgumentException("채팅방 아이디가 유효하지 않습니다!!!! ");  //runtime
@@ -42,13 +42,13 @@ public class ChatSecondtryServlet extends HttpServlet {
 				System.out.println("**chatroomId나와라좀  : " + chatroomId);
 				
 				
-				ShareBoard shareBoard = shareService.selectOneBoard(boardno);
-				request.getSession().setAttribute("chatreceiver", shareBoard.getMemberId()); 
+			//	ShareBoard shareBoard = shareService.selectOneBoard(boardno);
+				//request.getSession().setAttribute("chatreceiver", shareBoard.getMemberId()); 
 
 				
 			
 				// 4. 응답처리 - jsp 포워딩 
-				request.setAttribute("shareBoard", shareBoard);
+		//		request.setAttribute("shareBoard", shareBoard);
 				
 				request.getRequestDispatcher("/WEB-INF/views/chat/chatsecondtry.jsp")
 				.forward(request, response);
@@ -81,7 +81,7 @@ public class ChatSecondtryServlet extends HttpServlet {
 		chatRoom.setMemberId(memberID);
 		System.out.println( chatRoom   );
 		
-		int result = chatService.insertToChatRoom(chatRoom);
+	///	int result = chatService.insertToChatRoom(chatRoom);
 		
 		
 	//	System.out.println("shareBoard = " + shareBoard);
