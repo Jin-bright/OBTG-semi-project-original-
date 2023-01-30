@@ -89,7 +89,7 @@ i {
 
 .admin__sidepanel {
   position: absolute;
-  top: 50px;
+  top: 75px;
   left: 0;
   z-index: 999;
   width: 200px;

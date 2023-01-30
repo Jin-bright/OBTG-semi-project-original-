@@ -10,37 +10,7 @@
 %>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/adminView.jsp" %>
-<style>
-#report-container {
-	height: 810px;
-	text-align:center; 
-	padding-left: 200px; 
-	/* margin-bottom: 70px; */
-}
-#report_wrap, #report_wrap td, #report_wrap th {
-	border-collapse: collapse;
-}
-#report_wrap {
-	width: 85%;
-    margin: 0 0 10px 35px;
-    padding: 3px;
-}
-#report_wrap thead tr{
-    border-bottom: 1px solid #ECEEF1;
-}
-#report_wrap tbody tr{
-    border-bottom: 1px solid #ECEEF1;
-}
-
-#report_wrap th {
-	border: 0;
-	padding: 12px 4px;
-}
-
-#report_wrap td {
-	padding: 12px 4px;
-}
-</style>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/reportList.css" />
 <section id="report-container">
 	<br /><br /><br /><br />
 	<h1>신고관리</h1>
@@ -119,45 +89,6 @@
 		<%= request.getAttribute("pagebar") %>
 	</div>
 </section>
-<style>
-#reportUpdate {
-	position: fixed; 
-	top: 50%; left: 50%; 
-	transform: translate(-50%, -50%); 
-	width: 25em; 
-	height: 23em; 
-	padding: 10px;
-	border: 1px solid grey;
-	background: white;
-	border-radius: 1em;
- 	visibility: hidden;
-	z-index: 999;
-}
-#reportUpdate h2 {
-	text-align: center;
-}
-#report-wrap {
-	padding: 20px;
-}
-#report-wrap th {
-	padding: 10px;
-}
-#cBtn {
-	text-align: center;
-	float: right;
-	width: 24px;
-	background: darkgray;
-	border-radius: 6px;
-	cursor: pointer;
-}
-#rBtn {
-	border-style: none;
-	padding: 4px;
-	color: white;
-	background: black;
-	cursor: pointer;
-}
-</style>
 <div id="reportUpdate" >
 	<form action="<%= request.getContextPath() %>/report/reportUpdate"
 		name="reportUpdatFrm"
