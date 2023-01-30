@@ -46,12 +46,12 @@ public class FaqDao {
 		return result;
 	}
 
-	public int deleteFaq(Connection conn, int faqNo) {
+	public int deleteFaq(Connection conn, int no) {
 		String sql = prop.getProperty("deleteFaq");
 		int result = 0;
 		
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
-			pstmt.setInt(1, faqNo);
+			pstmt.setInt(1, no);
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -82,10 +82,10 @@ public class FaqDao {
 		faq faq = new faq();
 		faq.setNo(rset.getInt("no"));
 		faq.setWriter(rset.getString("writer"));
-		faq.setMember_id(rset.getString("member_id"));
 		faq.setTitle(rset.getString("title"));
-		faq.setContent(rset.getString("content"));
 		faq.setRegDate(rset.getDate("reg_date"));
+		faq.setReadCount(rset.getInt("read_count"));
+		faq.setContent(rset.getString("content"));
 		return faq;
 	}
 
@@ -133,6 +133,16 @@ public class FaqDao {
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
 			
+		
+			try(ResultSet rset = pstmt.executeQuery()){
+				
+				while(rset.next()) {
+					faq faq = handleFaqResultSet(rset);
+					faqList.add(faq);
+				}
+			}
+			
+			
 		} catch (Exception e) {
 			throw new FaqException("게시글 목록 조회 오류!", e);
 		}
@@ -158,15 +168,16 @@ public class FaqDao {
 	
 	
 	
-	public int insertFaqComment(Connection conn, faqComment bc) {
+	public int insertFaqComment(Connection conn, faqComment faqComment) {
 		String sql = prop.getProperty("insertFaqComment"); // insert into board_comment values(seq_board_comment_no.nextval, ?, ?, ?, ?, ?, default)
 		int result = 0;
+		
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
-			pstmt.setInt(1, bc.getCommentLevel());
-			pstmt.setString(2, bc.getWriter());
-			pstmt.setString(3, bc.getContent());
-			pstmt.setInt(4, bc.getFaqNo());
-			pstmt.setObject(5, bc.getCommentRef() == 0 ? null : bc.getCommentRef()); // 0
+			pstmt.setInt(1, faqComment.getCommentLevel());
+			pstmt.setString(2, faqComment.getWriter());
+			pstmt.setString(3, faqComment.getContent());
+			pstmt.setInt(4, faqComment.getFaqNo());
+			pstmt.setObject(5, faqComment.getCommentRef() == 0 ? null : faqComment.getCommentRef()); // 0
 			
 			result = pstmt.executeUpdate();
 		} catch(Exception e) {
@@ -179,12 +190,55 @@ public class FaqDao {
 		String sql = prop.getProperty("deleteFaqComment");
 		int result = 0;
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, no);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new FaqException("댓글 삭제 오류", e);
 		}
 		return result;
 	}
+
+	public List<faqComment> selectFaqCommentList(Connection conn, int faqNo) {
+		String sql = prop.getProperty("selectFaqCommentList");
+		List<faqComment> comments = new ArrayList<>();
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, faqNo);
+			
+			try(ResultSet rset = pstmt.executeQuery()){
+				while(rset.next()) {
+					faqComment fc = new faqComment();
+					fc.setNo(rset.getInt("no"));
+					fc.setCommentLevel(rset.getInt("comment_level"));
+					fc.setWriter(rset.getString("writer"));
+					fc.setContent(rset.getString("content"));
+					fc.setFaqNo(rset.getInt("faq_no"));
+					fc.setCommentRef(rset.getInt("comment_ref"));
+					fc.setRegDate(rset.getDate("reg_date"));
+					comments.add(fc);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return comments;
+	}
+
+//	public int selectLastFaqNo(Connection conn) {
+//		String sql = prop.getProperty("selectLastFaqNo");
+//		int faqNo = 0;
+//		try(
+//			PreparedStatement pstmt = conn.prepareStatement(sql);
+//			ResultSet rset = pstmt.executeQuery();
+//		){
+//			if(rset.next())
+//				faqNo = rset.getInt(1);
+//			
+//		} catch (SQLException e) {
+//			throw new FaqException("게시글번호 조회 오류!", e);
+//		}
+//		return faqNo;
+//	}
 
 	
 }

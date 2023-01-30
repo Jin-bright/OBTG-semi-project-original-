@@ -1,36 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>    
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board2.css" />
+<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board2.css" /> --%>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/css.css" />
 <section id="board-container">
 
 
 
-	<h2>FAQ 작성</h2>
 	<form
 		name="faqEnrollFrm"
 		action="<%=request.getContextPath() %>/faq/faqEnroll" 
 		method="post">
 		<table id="tbl-board">
-		<tr>
-			<th>제 목</th>
-			<td><input type="text" name="title" required></td>
-		</tr>
-		<tr>
-			<th>작성자</th>
-			<td>
-				<input type="text" name="writer" readonly/>
-			</td>
-		</tr>
-		<tr>
-			<th>내 용</th>
-			<td><textarea rows="5" cols="40" name="content"></textarea></td>
-		</tr>
-		<tr>
-			<th colspan="2">
-				<input type="submit" value="등록하기" class="submit-button">
-			</th>
-		</tr>
+		    <div class="board_wrap">
+        <div class="board_title">
+            <strong>INFO 작성</strong>
+            <p>문의사항을 빠르고 정확하게 안내해드립니다.</p>
+        </div>
+        <div class="board_write_wrap">
+            <div class="board_write">
+                <div class="title">
+                    <dl>
+                        <dt>제목</dt>
+                        <dd><input type="text" name="title"></dd>
+                    </dl>
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>작성자</dt>
+                        <dd><input type="text" name="writer" value="<%= loginMember.getMemberId() %>" readonly></dd>
+                    </dl>
+<!--                     <dl>
+                        <dt>비밀번호</dt>
+                        <dd><input type="password" placeholder="비밀번호 입력" value="1234"></dd>
+                    </dl> -->
+                </div>
+                <div class="cont">
+                    <textarea name="content" placeholder="문의사항을 입력해주세요. 최대한 빠르게 답변해드리겠습니다."></textarea>
+                </div>
+            </div>
+            <div class="bt_wrap">
+                <input id="btn-add" type ="submit" value ="등록" class="submit-button">
+                <input id="btn-add" type ="button" value ="취소" onclick="history.go(-1);">
+            </div>
+        </div>
+    </div>
 	</table>
 	</form>
 </section>

@@ -6,37 +6,49 @@
 	faq faq = (faq) request.getAttribute("faq");
 %>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>    
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board2.css" />
+<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board2.css" /> --%>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/css.css" />
 
 <section id="board-container">
-<h2>게시판 수정</h2>
+<!-- <h2>게시판 수정</h2> -->
 <form 
 	name="boardUpdateFrm" 
 	action="<%=request.getContextPath() %>/faq/faqUpdate" 
 	method="post">
-	<table id="tbl-board-view">
-		<tr>
-			<th>제 목</th>
-			<td><input type="text" name="title" value="<%= faq.getTitle() %>" required></td>
-		</tr>
-		<tr>
-			<th>작성자</th>
-			<td>
-				<input type="text" name="writer" value="<%= faq.getWriter() %>" readonly/>
-			</td>
-		</tr>
-		<tr>
-			<th>내 용</th>
-			<td>
-				<textarea rows="5" cols="40" name="content"><%= faq.getContent() %></textarea>
-			</td>
-		</tr>
-		<tr>
-			<th colspan="2">
-				<input type="submit" value="수정하기"/>
-				<input type="button" value="취소" onclick="history.go(-1);"/>
-			</th>
-		</tr>
+	<table id="tbl-board">
+		    <div class="board_wrap">
+        <div class="board_title">
+            <strong>INFO 수정</strong>
+<!--             <p></p> -->
+        </div>
+        <div class="board_write_wrap">
+            <div class="board_write">
+                <div class="title">
+                    <dl>
+                        <dt>제목</dt>
+                        <dd><input type="text" name="title" value="<%= faq.getTitle() %>" ></dd>
+                    </dl>
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>작성자</dt>
+                        <dd><input type="text" name="writer" value="<%= faq.getWriter() %>" readonly></dd>
+                    </dl>
+<!--                     <dl>
+                        <dt>비밀번호</dt>
+                        <dd><input type="password" placeholder="비밀번호 입력" value="1234"></dd>
+                    </dl> -->
+                </div>
+                <div class="cont">
+                    <textarea name="content" value="<%= faq.getContent()%>" ></textarea>
+                </div>
+            </div>
+            <div class="bt_wrap">
+                <input id="btn-add" type ="submit" value ="수정" class="submit-button">
+                <input id="btn-add" type ="submit" value ="취소" onclick="history.go(-1);">
+            </div>
+        </div>
+    </div>
 	</table>
 	<input type="hidden" name="no" value="<%= faq.getNo() %>" />
 </form>

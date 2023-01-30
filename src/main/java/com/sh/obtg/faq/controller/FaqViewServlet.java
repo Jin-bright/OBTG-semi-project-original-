@@ -1,6 +1,7 @@
 package com.sh.obtg.faq.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sh.obtg.common.HelloMvcUtils;
 import com.sh.obtg.faq.model.dto.faq;
+import com.sh.obtg.faq.model.dto.faqComment;
 import com.sh.obtg.faq.model.service.FaqService;
 
 
@@ -54,8 +57,20 @@ public class FaqViewServlet extends HttpServlet {
 		// 서비스단
 		faq faq = faqService.selectOneFaq(faqNo, hasRead);
 		
+		// 개행문자 변환처리
+				faq.setContent(
+						HelloMvcUtils.convertLineFeedToBr(
+							HelloMvcUtils.escapeHtml(faq.getContent()))
+					);
+				
+				// 댓글목록 조회
+				List<faqComment> comments = faqService.selectFaqCommentList(faqNo);
+				System.out.println("comments = " + comments);
+				
+		
 		request.setAttribute("faq", faq);
-		request.getRequestDispatcher("WEB-INF/views/faq/faqView.jsp")
+		request.setAttribute("comments", comments);
+		request.getRequestDispatcher("/WEB-INF/views/faq/faqView.jsp")
 		.forward(request, response);
 
 	}

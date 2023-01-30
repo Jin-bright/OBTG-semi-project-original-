@@ -20,18 +20,26 @@ public class FaqCommentEnrollServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 사용자 입력값처리 
-		int FaqNo = Integer.parseInt(request.getParameter("no"));
+		int no = Integer.parseInt(request.getParameter("faqNo"));
 		String writer = request.getParameter("writer");
 		String content = request.getParameter("content");
 		int commentLevel = Integer.parseInt(request.getParameter("commentLevel"));
 		int commentRef = Integer.parseInt(request.getParameter("commentRef"));
-		faqComment fc = new faqComment(0, commentLevel, writer, content, FaqNo, commentRef, null);
+//		faqComment fc = new faqComment(0, commentLevel, writer, content, FaqNo, commentRef, null);
+		
+		faqComment faqComment = new faqComment();
+		faqComment.setFaqNo(no);
+		faqComment.setCommentLevel(commentLevel);
+		faqComment.setWriter(writer);
+		faqComment.setContent(content);
+		faqComment.setCommentRef(commentRef);
+		
 		
 		// 2. 업무로직 - faq_comment 행추가
-		int result = faqService.insertFaqComment(fc);
+		int result = faqService.insertFaqComment(faqComment);
 		
 		// 3. 리다이렉트 /faq/faqView
-		response.sendRedirect(request.getContextPath() + "/faq/faqView?=" + FaqNo);
+		response.sendRedirect(request.getContextPath() + "/faq/faqView?no=" + faqComment.getFaqNo());
 	}
 
 
