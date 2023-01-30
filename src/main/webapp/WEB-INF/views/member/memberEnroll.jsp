@@ -14,6 +14,12 @@
 	} 
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/memberEnroll.css">
+<<<<<<< HEAD
+<%if(loginMember != null){ %>
+	<script src = "<%=request.getContextPath()%>/js/ws.js"></script>
+<% } %>
+=======
+>>>>>>> branch 'master' of https://github.com/incheol789/OBTG-semi-project.git
 <div class="form">
 
       <ul class="tab-group">
