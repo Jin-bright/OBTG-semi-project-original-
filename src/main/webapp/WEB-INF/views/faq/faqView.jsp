@@ -183,8 +183,9 @@ table#tbl-comment tr:hover button.btn-delete{display:inline;}
 	action="<%= request.getContextPath() %>/faq/faqCommentDelete" 
 	name="faqCommentDelFrm"
 	method="POST">
-	<input type="hidden" name="no" />
-	<input type="hidden" name="no" value="<%= faq.getNo() %>"/>
+<!-- 	<input type="hidden" name="no" /> -->
+	<input type="hidden" name="no">
+	<input type="hidden" name="faqNo" value="<%= faq.getNo() %>"/>
 </form>
 
    <script>
@@ -277,6 +278,7 @@ const loginAlert = () => {
 <% if(canEdit){ %>
 <form action="<%= request.getContextPath() %>/faq/faqDelete" name="faqDeleteFrm" method="POST">
 	<input type="hidden" name="no" value="<%= faq.getNo() %>" />
+<%-- 	<input type="hidden" name="no" value="<%= f %>" /> --%>
 </form>
 <script>
 const updatefaq = () => {

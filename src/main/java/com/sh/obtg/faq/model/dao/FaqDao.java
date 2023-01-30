@@ -169,6 +169,7 @@ public class FaqDao {
 	
 	
 	public int insertFaqComment(Connection conn, faqComment faqComment) {
+//		insert into faq_comment values(seq_faq_comment_no.nextval, ?, ?, ?, ?, default, ?)
 		String sql = prop.getProperty("insertFaqComment"); // insert into board_comment values(seq_board_comment_no.nextval, ?, ?, ?, ?, ?, default)
 		int result = 0;
 		
