@@ -1,10 +1,10 @@
 @charset "UTF-8";
 /* 메뉴바  */
-:root{
+/* :root{
 	width: 1975px;
 	height:260px;
 }
-
+ */
 .main-title {
 	width : 400px; font-size : 70px;	margin : auto; text-align : center; font-weight: bold;
 }

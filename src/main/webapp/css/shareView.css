@@ -27,6 +27,15 @@
     margin-left : -20px;
 }
 
+/* #submitli{
+    display: inline-block;
+    list-style: none;
+    font-family: 'Nanum Gothic Coding', monospace;	
+    font-size : 16px;
+    margin-left : -20px;
+	
+} */
+
 .ootdnav .button-dropdown {
     position: relative;
     left : -60px;

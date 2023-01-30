@@ -14,7 +14,9 @@
 	} 
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/memberEnroll.css">
-<script src = "<%=request.getContextPath()%>/js/ws.js"></script>
+<%if(loginMember != null){ %>
+	<script src = "<%=request.getContextPath()%>/js/ws.js"></script>
+<% } %>
 <div class="form">
 
       <ul class="tab-group">
