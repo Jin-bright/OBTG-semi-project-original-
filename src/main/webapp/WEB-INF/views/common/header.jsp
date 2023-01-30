@@ -37,14 +37,15 @@
  	<td><button id="loginSignup" value="로그인/회원가입" onclick="location.href = '<%= request.getContextPath() %>/member/memberEnroll';">LOGIN / SIGN UP</button></td>
  </tr>	
  
-
+<%} else if(loginMember.getMemberRole() == MemberRole.A) {%>
  
  <tr>
  	<td><button id="admin" value="관리자페이지" onclick="location.href = '<%= request.getContextPath() %>/admin/memberList';">관리자페이지</button></td>
+ 	<td><button id="admin" value="로그아웃" onclick="location.href = '<%= request.getContextPath() %>/member/logout';">로그아웃</button></td>
  </tr>
  
-</table>
 <% } else { %>
+</table>
 
 				 <table id="login" style="margin-left:80%; text-align:right;">
 					<tr>

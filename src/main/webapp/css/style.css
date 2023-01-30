@@ -1,9 +1,9 @@
 @charset "UTF-8";
 /* 메뉴바  */
-:root{
-	width: 1975px;
-	height:260px;
-}
+ :root{
+	width: 100%;
+	height:100%;
+}  
 
 .main-title {
 	width : 400px; font-size : 70px;	margin : auto; text-align : center; font-weight: bold;
@@ -19,6 +19,7 @@ ul.dd-menu {
     text-align: left;
     opacity: 0;
     list-style:none;
+    margin-left: -50px;
 }
 ul.dd-menu li{
 	width: 130px;
@@ -164,7 +165,6 @@ header {
 
 #headercolor{
 	background-color : #f9f4d2;
-
 }
 
 
