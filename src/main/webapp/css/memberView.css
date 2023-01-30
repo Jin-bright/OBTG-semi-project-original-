@@ -1,9 +1,6 @@
-
-@import "compass/css3";
+@charset "UTF-8";
+/*@import "compass/css3";*/
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap');
-
-
 *, *:before, *:after {
   box-sizing: border-box;
 }
@@ -33,12 +30,42 @@ html {
 }  
 */
 .form {
+  background: beige;
+  padding: 40px;
   max-width: 600px;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
   border-radius: 4px;
-  padding-top:40px;
-  margin-left: 300px;
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
 }
 
+/*-----------------------check box--------------------*/
+
+.style{
+	display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-left: 40px;	
+}
+.stylelb{
+	display: inline-block;
+	width:150px;
+	/* height:100px; */
+	font-size:x-large;
+	margin-left:15px
+}
+
+
+.stylelb img{
+	width : 40px;
+	height : 40px;
+}
+.checkbox-group{
+	padding-bottom: 20px;
+}
+
+/*-----------------------------------------------------*/
 .tab-group {
   list-style: none;
   padding: 0;
@@ -108,7 +135,6 @@ label.highlight {
 display: inline-block;
     margin-top: 50px;
 }  */
-
 input, textarea {
   font-size: 22px;
   display: block;
@@ -141,9 +167,23 @@ textarea {
   margin-bottom: 40px;
 }
 
-.mmve{
+.button{
 	background: lightpink;
 }
+/*---------------------gender--------------------------*/
+#gender-group{
+	border: 1px solid black;
+}
+#gender-group label{
+	margin-left:100px;
+	margin-right:40px
+}
+#gender-group input{
+	display:inline-block;
+	width:20px;
+}
+
+/*------------------------------------------------------*/
 /*-------------------container-menu----------------------*/
 .main{
 	display: flex;
@@ -181,15 +221,15 @@ hr{
 	border:1px solid black;
 }
 /*----------------------------------------------------*/
-/*-----------------------check box--------------------*/
-
-#checkbox td input{
-	display: inline-block;
-    text-align: left;
-    width: 20px;	
+#mmve{
+background: lightpink;
+    display: inline-block;
+    width: 150px;
+    margin-left: 15px;
+    margin-top: 15px;
+    cursor:pointer;
 }
-
-/*-----------------------------------------------------*/
+/*----------------------------------------------------*/
 /*
 .top-row {
   &:after {
@@ -210,17 +250,18 @@ hr{
 
 .button {
   border:0;
-  margin: 8px 77px;
-  font-weight: 400;
-  font-size: 20px;
+  margin: 8px 170px;
   outline:none;
   border-radius:0;
   padding:10px 10px;
+  font-size:2rem;
+  font-weight:bold;
   text-transform:uppercase;
   letter-spacing:.1em;
   background:main;
   color: black;
-  font-family: 'Noto Sans KR', sans-serif;
+  transition:all .5s ease;
+  -webkit-appearance: none;
 }
 /*
   .button:hover, :focus {
