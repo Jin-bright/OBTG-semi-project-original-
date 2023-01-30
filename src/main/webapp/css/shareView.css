@@ -304,7 +304,7 @@ div.comment-container button#btn-comment-enroll1 {
 	top: 50%; left: 50%; 
 	transform: translate(-50%, -50%); 
 	width: 25em; 
-	height: 20em; 
+	height: 25em; 
 	border: 1px solid grey;
 	background: white;
 	border-radius: 1em;
@@ -330,7 +330,7 @@ div.comment-container button#btn-comment-enroll1 {
 #reason_wrap {
     width: 24em;
     margin: 0 auto;
-    padding: 1em;
+    padding-top: 108px;
 }
 #reason_wrap tbody th {
     padding: .2em;

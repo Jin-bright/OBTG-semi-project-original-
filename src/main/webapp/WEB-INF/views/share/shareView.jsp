@@ -180,16 +180,19 @@ function open_pop(<%=shareBoard.getMemberId()%> ){
         <tbody>
             <tr>
                 <th><label for="">게시글 번호</label></th>
-                <td><input type="text" value="999<%= shareBoard.getShareNo() %>" name="boardNo" readonly="readonly"/></td>
+                <td><input type="text" value="S<%= shareBoard.getShareNo() %>" name="boardNo" readonly="readonly"/></td>
             </tr>
             <tr>
                 <td colspan="2"><hr style="width: 95%;" /></td>
             </tr>
         </tbody>
     </table>
-    <span style="margin-left: 1em; font-weight: bold;">사유선택</span>
+<!--     <span style="margin-left: 1em; font-weight: bold;">사유선택</span> -->
     <table id="reason_wrap">
         <tbody>
+        	<tr>
+        		<th colspan="2">사유선택</th>
+        	</tr>
             <tr>
                 <th><input type="checkbox" name="reason" value="R1" onclick="checkOnlyOne(this)"></th>
                 <td>스팸홍보/도배글입니다.</td>
