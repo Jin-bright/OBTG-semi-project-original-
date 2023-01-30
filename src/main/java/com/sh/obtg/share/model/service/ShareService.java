@@ -9,6 +9,7 @@ import java.util.Map;
 import com.sh.obtg.share.model.dao.ShareboardDao;
 import com.sh.obtg.share.model.dto.ShareAttachment;
 import com.sh.obtg.share.model.dto.ShareBoard;
+import com.sh.obtg.share.model.dto.ShareBoardAndAttachment;
 
 
 public class ShareService {
@@ -195,6 +196,15 @@ public class ShareService {
 		}
 		
 		return result;
+	}
+
+
+	// keyword로 검색 조인쿼리
+	public List<ShareBoardAndAttachment> searchShareBykeyWord(Map<String, String> param) {
+		Connection conn = getConnection();
+		List<ShareBoardAndAttachment> shareBoardAndAttachments = shareBoardDao.searchShareBykeyWord(conn, param);
+		close(conn);
+		return shareBoardAndAttachments;
 	}
 	
 }

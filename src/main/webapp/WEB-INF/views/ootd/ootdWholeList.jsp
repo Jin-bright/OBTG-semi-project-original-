@@ -39,7 +39,7 @@ List<OotdBoard> findootdBoardsById = (List<OotdBoard> )request.getAttribute("fin
  	background-color: white;
 	float : left;
 	margin-top : -60px;
-	margin-left : 70px;
+	margin-left : 470px;
 	font-family: 'Nanum Gothic Coding', monospace;		
 	font-size : 15px;
  }
@@ -121,7 +121,9 @@ List<OotdBoard> findootdBoardsById = (List<OotdBoard> )request.getAttribute("fin
             </form>    
         </div>
 </div>
-        
+<br />
+<br />
+<br />        
         
 <%---- <!-- <div class="wrap">
    <div class="search">
