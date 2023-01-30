@@ -12,24 +12,39 @@
 <%@ include file="/WEB-INF/views/common/adminView.jsp" %>
 <style>
 #report-container {
-	height: -webkit-fill-available;
+	height: 810px;
 	text-align:center; 
 	padding-left: 200px; 
-	margin-bottom: 70px;
+	/* margin-bottom: 70px; */
 }
 #report_wrap, #report_wrap td, #report_wrap th {
-	border: 1px solid black;
 	border-collapse: collapse;
 }
 #report_wrap {
-	width: 850px;
-	border-collapse: collapse;
-	margin-bottom: 24px;
+	width: 85%;
+    margin: 0 0 10px 35px;
+    padding: 3px;
+}
+#report_wrap thead tr{
+    border-bottom: 1px solid #ECEEF1;
+}
+#report_wrap tbody tr{
+    border-bottom: 1px solid #ECEEF1;
+}
+
+#report_wrap th {
+	border: 0;
+	padding: 12px 4px;
+}
+
+#report_wrap td {
+	padding: 12px 4px;
 }
 </style>
 <section id="report-container">
-	<br /><br /><br /><br /><br />
-	<h2>신고관리</h2>
+	<br /><br /><br /><br />
+	<h1>신고관리</h1>
+	<br /><br /><br />
 	<table id="report_wrap">
 		<thead>
 			<tr>

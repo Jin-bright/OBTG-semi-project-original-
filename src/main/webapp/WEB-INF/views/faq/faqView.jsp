@@ -98,7 +98,6 @@ table#tbl-comment tr:hover button.btn-delete{display:inline;}
 		%>
 	</table>
 	
-	<hr style="margin-top:30px;" />	
     
 	<div class="comment-container">
         <div class="comment-editor">
@@ -112,6 +111,7 @@ table#tbl-comment tr:hover button.btn-delete{display:inline;}
                 <button type="submit" id="btn-add3">등록</button>
             </form>
         </div>
+	<hr style="margin-top:30px;" />	
 		<!--table#tbl-comment-->
 		<%
 			if(!comments.isEmpty()){

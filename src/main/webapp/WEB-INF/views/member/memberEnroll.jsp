@@ -189,7 +189,7 @@ const checkIdDuplicate = () => {
 	}; 
 	// 폼의 액션 주소를 사용하기 때문에 open의 url은 비워둔다.
 	const title = "checkIdDuplicatePopup";
-	open("", title,"width=200px, heigth=200px, left=100px, top=100px");
+	open("", title,"width=300px, heigth=200px, left=100px, top=100px");
 	
 	const frm = document.checkIdDuplicateFrm
 	frm.target = title; // 폼을 팝업에 제출
