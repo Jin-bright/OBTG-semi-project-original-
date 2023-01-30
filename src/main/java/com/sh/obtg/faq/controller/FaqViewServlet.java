@@ -26,6 +26,7 @@ public class FaqViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 사용자 입력값
 		int faqNo = Integer.parseInt(request.getParameter("no"));
+		System.out.println("faqNo = " + faqNo);
 		
 		// 쿠키 처리
 		String faqCookieVal = "";
@@ -56,7 +57,7 @@ public class FaqViewServlet extends HttpServlet {
 		
 		// 서비스단
 		faq faq = faqService.selectOneFaq(faqNo, hasRead);
-		
+		System.out.println("faq = " + faq);
 		// 개행문자 변환처리
 				faq.setContent(
 						HelloMvcUtils.convertLineFeedToBr(

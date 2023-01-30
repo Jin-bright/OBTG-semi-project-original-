@@ -20,11 +20,11 @@ public class FaqCommentDeleteServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int faqNo = Integer.parseInt(request.getParameter("faqNo"));
+		int faqNo = Integer.parseInt(request.getParameter("faqNo")); // 게시글 pk
+		int no = Integer.parseInt(request.getParameter("no")); // 댓글 pk
 		
 		try {
 			// 1. 파라미터값 가져오기
-			int no = Integer.parseInt(request.getParameter("no"));
 //			System.out.println("faqNo=" + faqNo + ", no=" + no);
 			// 2. 비지니스로직 호출
 			int result = faqService.deleteFaqComment(no);
@@ -34,7 +34,7 @@ public class FaqCommentDeleteServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.getSession().setAttribute("msg", "댓글 삭제 실패!");
-			response.sendRedirect( request.getContextPath()+"/faq/faqView?no=" + faqNo );
+			response.sendRedirect( request.getContextPath()+"/faq/faqView?no=" +  faqNo);
 		}
 
 	}
