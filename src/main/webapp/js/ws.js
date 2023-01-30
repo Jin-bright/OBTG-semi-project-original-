@@ -4,6 +4,8 @@ const ws = new WebSocket(`ws://${location.host}/OBTG/websocket`);
 ws.addEventListener('open', (e) => {
 	console.log('open : ', e);
 });
+
+
 ws.addEventListener('message', (e) => {
 	console.log('message : ', e);
 	const bell = document.querySelector(".bell");
@@ -44,7 +46,11 @@ ws.addEventListener('message', (e) => {
 				});
 			});
 			break;
-	}
+	case "CHATROOM_ENTER"  : 
+			const wrapper = document.querySelector("#msg-container");
+			wrapper.insertAdjacentHTML('beforeend', `<li class="line">${sender}님이 입장했습니다.</li>`);		
+			break;
+	}//end-switch
 });
 ws.addEventListener('error', (e) => {
 	console.log('error : ', e);

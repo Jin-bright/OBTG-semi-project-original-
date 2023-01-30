@@ -29,10 +29,26 @@ function open_pop(<%=shareBoard.getMemberId()%> ){
      
 }
 </script>
+<script >
+function open_chat(<%=shareBoard.getMemberId()%>){
+    const frmPopCh= document.frmPopCh;
+    const url = '<%=request.getContextPath()%>/chat/chatmain';
+    window.open('','popupView','width=600, height=600');   
+     
+    frmPopCh.action = url; 
+    frmPopCh.target = 'popupView'; //window,open()의 두번째 인수와 같아야 하며 필수다.   
+    frmPopCh.chatroomId.value = <%=shareBoard.getShareNo()%>;
+    frmPopCh.submit();    
+     
+}
+</script>
+
 <form name="frmPopup">
 	<input type="hidden" name="memberID" >
 </form>
-
+<form name="frmPopCh" ">
+	<input type="hidden" name="chatroomId" > <!-- 보드no  -->
+</form>
 
 <section id="board-container" >
 <br /><br /><br /><br /><br /><br /><br />
@@ -43,9 +59,19 @@ function open_pop(<%=shareBoard.getMemberId()%> ){
 	    <img id="profileimg" style="margin-left:210px" src="<%=request.getContextPath()%>/uploadootds/ootd/profile.png" alt="profileimg" /> </a>
 	    
 	    <ul class="dropdown-menu" style="margin-left:230px">
-   	 	 <li><a onclick="open_pop('<%=shareBoard.getMemberId()%>');">프로필보기</a></li> 
-	      <li><a href="#">채팅걸기</a></li>
-	    </ul>
+   	 	 <li><a onclick="open_pop('<%=shareBoard.getMemberId()%>');">프로필보기</a></li>  
+		 
+		<li>
+	 	<form id="test" action="<%=request.getContextPath()%>/chat/chatsecondtry" method="post">
+		 	<input type="hidden" name="chatroomId" value="S<%=shareBoard.getShareNo()%><%=shareBoard.getMemberId()%>+<%=loginMember.getMemberId()%>"/> <!--  chatid  -->
+		 	<input type="hidden" name="boardno" value="<%=shareBoard.getShareNo()%>" /> <!-- boardno  -->
+		 	<input type="hidden" name="memberID" value="<%=loginMember.getMemberId()%>" />
+		</form>
+			<a id= "submitli" type="submit" onclick="document.getElementById('test').submit();">채팅하기
+		 	<!-- <input id="submitli" type="submit"/> -->
+		 </a></li>
+		 
+		</ul>
    </li>
 </ul>
 

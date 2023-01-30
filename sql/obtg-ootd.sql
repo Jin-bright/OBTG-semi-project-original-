@@ -217,7 +217,7 @@ create table noti (
     constraint ck_noti_checked check (checked in ('O', 'X'))
 );
 
-
+create sequence seq_noti_no;
 
 
 

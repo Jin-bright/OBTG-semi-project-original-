@@ -10,26 +10,11 @@
 %>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/adminView.jsp" %>
-<style>
-#report-container {
-	height: -webkit-fill-available;
-	text-align:center; 
-	padding-left: 200px; 
-	margin-bottom: 70px;
-}
-#report_wrap, #report_wrap td, #report_wrap th {
-	border: 1px solid black;
-	border-collapse: collapse;
-}
-#report_wrap {
-	width: 850px;
-	border-collapse: collapse;
-	margin-bottom: 24px;
-}
-</style>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/reportList.css" />
 <section id="report-container">
-	<br /><br /><br /><br /><br />
-	<h2>신고관리</h2>
+	<br /><br /><br /><br />
+	<h1>신고관리</h1>
+	<br /><br /><br />
 	<table id="report_wrap">
 		<thead>
 			<tr>
@@ -82,14 +67,21 @@
 				%>
 				<td><%= reason %></td>
 				<td><%= report.getRegDate() %></td>
-				<td><%= report.getReportStatus() %></td>
+				<td>
+					<button id="update" data-receiver = <%= report.getReportedUserId() %> 
+										data-reason = <%= reason %> 
+										data-board-no = <%= report.getBoardNo() %>
+										data-report-no = <%= report.getReportNo() %>>
+						<%= report.getReportStatus() %>
+					</button>
+				</td>
 			</tr>
 			<% 	} 
 			   }else{
 			%>
 			<tr>
 				<td colspan="6">조회된 신고내역이 없습니다.</td>
-			</tr>	
+			</tr>
 			<% } %>
 		</tbody>
 	</table>
@@ -97,4 +89,68 @@
 		<%= request.getAttribute("pagebar") %>
 	</div>
 </section>
+<div id="reportUpdate" >
+	<form action="<%= request.getContextPath() %>/report/reportUpdate"
+		name="reportUpdatFrm"
+		method="post">
+		<span class="close-button" id="cBtn" onclick="closeFrm()">&times;</span>
+		<h2>신고 처리</h2>
+		<table id="report-wrap">
+			<tr>
+				<th>수신자</th>
+				<td><input type="text" name="receiver" id="receiver" readonly="readonly"/></td>
+			</tr>
+			<tr>
+				<th>게시글번호</th>
+				<td><input type="text" name="boardNo" id="boardNo" readonly="readonly"/></td>
+			</tr>
+			<tr>
+				<th>신고번호</th>
+				<td><input type="text" name="reportNo" id="reportNo" readonly="readonly"/></td>
+			</tr>
+			<tr>
+				<th>신고사유</th>
+				<td><input type="text" name="reason" id="reason" readonly="readonly"/></td>
+			</tr>
+			<tr>
+				<th>처리내용</th>
+				<td><input type="text" name="content" required="required"/></td>
+			</tr>
+		</table>
+	</form>
+	 <div style="text-align: center;">
+        <input type="button" id="rBtn" value="처리하기" onclick="updateReportFrm();">
+    </div>
+</div>
+<script>
+document.querySelectorAll("#update").forEach((btn) =>{
+	btn.onclick = (e) => {
+		const div = document.querySelector("#reportUpdate");
+		const boardNo = document.querySelector("#boardNo");
+		const reportNo = document.querySelector("#reportNo");
+		const reason = document.querySelector("#reason");
+		const receiver = document.querySelector("#receiver");
+		
+		div.style.visibility = "visible";
+
+		boardNo.value = e.target.dataset.boardNo;
+		reportNo.value = e.target.dataset.reportNo;
+		reason.value = e.target.dataset.reason;
+		receiver.value = e.target.dataset.receiver;
+		
+	}
+});
+
+const closeFrm = () => {
+	const div = document.querySelector("#reportUpdate");
+	div.style.visibility = "hidden";
+}
+
+const updateReportFrm = () => {
+	if(confirm("해당 신고를 처리하시겠습니까?")){
+		document.reportUpdatFrm.submit();
+	}
+}
+</script>
+
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

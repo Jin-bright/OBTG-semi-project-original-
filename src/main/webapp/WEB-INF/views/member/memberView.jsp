@@ -14,6 +14,7 @@
 	 </a>
 	 </div>
 	 <div class="container-li">
+	 <a href="<%= request.getContextPath() %>/member/memberBoardList">
 	 <a href="<%= request.getContextPath() %>/member/memberOotdList">
 	 <img src="<%= request.getContextPath()%>/image/list.png" alt="" />
 	 	 <li>&nbsp;List</li>
@@ -178,9 +179,9 @@
 		}
 	};
 	
-<%-- 	const updatePassword = () => {
+	const updatePassword = () => {
 		location.href = "<%= request.getContextPath()%>/member/updatePassword";
-	}; --%>
+	};
 	
 	document.memberUpdateFrm.onsubmit = (e) => {
 		const memberName = document.querySelector("#memberName");
@@ -201,7 +202,7 @@
 			phone.select();
 			return false;
 		}
-	}
+	};
 </script>
 
 

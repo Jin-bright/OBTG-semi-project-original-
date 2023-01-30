@@ -117,21 +117,21 @@ table#tbl-comment tr:hover button.btn-delete{display:inline;}
 		
 	</table>
 	
-	<hr style="margin-top:30px;" />	
     
-<hr style="margin-top:30px; border :none" />    
-   <div class="comment-container">
-<!--  <div id="cmttitle" style = "font-weight:bolder; color:white"> COMMENT </div> -->
-	<div class="comment-editor">
-       <form action="<%=request.getContextPath()%>/faq/faqCommentEnroll" method="post" name="boardCommentFrm">  <!-- 댓글등록폼 -->
-         <input type="hidden" name="faqNo" value="<%= faq.getNo() %>" />
-    	 <input type="hidden" name="writer" value="<%= loginMember != null ? loginMember.getMemberId() : "" %>" />
-         <input type="hidden" name="commentLevel" value="1" />
-         <input type="hidden" name="commentRef" value="0" />    
-         <textarea id="cmtcontent" name="content" cols="60" rows="3"></textarea>
-         <button type="submit" id="btn-add3">등록</button>
-       </form>
-     </div>
+
+	<div class="comment-container">
+        <div class="comment-editor">
+            <form
+			action="<%=request.getContextPath()%>/faq/faqCommentEnroll" method="post" name="faqCommentFrm">
+                <input type="hidden" name="faqNo" value="<%= faq.getNo() %>" />
+                <input type="hidden" name="writer" value="<%= loginMember != null ? loginMember.getMemberId() : "" %>" />
+                <input type="hidden" name="commentLevel" value="1" />
+                <input type="hidden" name="commentRef" value="0" />    
+				<textarea name="content" cols="60" rows="3"></textarea>
+                <button type="submit" id="btn-add3">등록</button>
+            </form>
+        </div>
+	<hr style="margin-top:30px;" />	
 		<!--table#tbl-comment-->
 		<%
 			if(!comments.isEmpty()){
