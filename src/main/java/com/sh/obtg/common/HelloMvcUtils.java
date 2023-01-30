@@ -65,7 +65,7 @@ public class HelloMvcUtils {
 	 * @param url
 	 * @return
 	 */
-	public static String getPagebar(int page, int limit, int totalCount, String url) {
+	public static String  getPagebar(int page, int limit, int totalCount, String url) {
 		StringBuilder pagebar = new StringBuilder();
 		url += "?page="; // /mvc/admin/memberList?page=
 		

@@ -18,7 +18,8 @@
   overflow: hidden;
   margin: 10px;
   min-width: 230px;
-  max-width: 315px;
+  max-width: 700px;
+  height :700px;
   width: 100%;
   color: #ffffff;
   text-align: left;
@@ -32,7 +33,9 @@
   transition: all 0.25s ease;
 }
 .snip1336 img {
-  max-width: 100%;
+  <%--max-width: 100%;--%>
+  width: 700px;
+  height : 350px;
   vertical-align: top;
   opacity: 0.85;
 }
@@ -55,11 +58,11 @@
 }
 .snip1336 figcaption a {
   padding: 5px;
-  border: 1px solid #ffffff;
+  border: 2px solid #ffffff;
   color: #ffffff;
-  font-size: 0.7em;
+  font-size: 0.9em;
   text-transform: uppercase;
-  margin: 10px 0;
+  margin: 40px 0;
   display: inline-block;
   opacity: 0.65;
   width: 47%;
@@ -82,6 +85,7 @@
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 .snip1336 .follow {
+	margin-top : 10px;
   margin-right: 4%;
   border-color: #2980b9;
   color: #2980b9;
@@ -109,17 +113,19 @@
 
 
 <figure class="snip1336" style="margin-left : 20px">
-  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample69.jpg"  />
+<!--   <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample69.jpg"  />  -->
+  <img id="profileimg" src="<%=request.getContextPath()%>/image/profileback3.png" alt="profileimg" />
+  
   <figcaption>
     <img src="<%=request.getContextPath()%>/uploadootds/profile.png"  style= "width : 90px; height : 90px; z-index :12;"  class="profile" />
     <h2 style="font-size:33px; margin-top:-5px"><b><%=member.getNickname()%></b>
     		<span style="font-size:16px; padding-top:10px; padding-bottom:20px; padding-left:3px" ><%=member.getMemberId()%></span></h2>
     <p style="font-size:20px;"><b>COMMENT</b></p>
-    <p style="padding-bottom:10px;"  ><b><%=member.getIntroduce()%></b></p>
+    <p style="padding-bottom:0px; padding-top:20px"  ><b><%=member.getIntroduce()%></b></p>
      
     
     <p><%=member.getEmail()%></p>
-    <p>#<%=member.getStyle()%></p>
+    <p style="font-size:16px; font-weight:bolder; color:hotpink; padding-top:10px; margin-bottom:-10px">#<%=member.getStyle()%></p>
     <a href="#" class="follow"> 채팅하기 </a>
     <a href="#" class="info" onclick="open_pop.close()";> 닫기 </a>
   </figcaption>
