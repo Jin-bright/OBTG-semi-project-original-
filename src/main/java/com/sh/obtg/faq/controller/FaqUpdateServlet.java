@@ -25,7 +25,7 @@ public class FaqUpdateServlet extends HttpServlet {
 		faq faq = faqService.selectOneFaq(FaqNo);
 		
 		request.setAttribute("faq", faq);
-		request.getRequestDispatcher("WEB-INF/views/faq/faqUpdate.jsp")
+		request.getRequestDispatcher("/WEB-INF/views/faq/faqUpdate.jsp")
 		.forward(request, response);
 		
 		
