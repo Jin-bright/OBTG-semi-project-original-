@@ -12,7 +12,7 @@
 	
 	<%-- <% if(loginMember != null){ %> --%>
 	<a href="<%= request.getContextPath() %>/faq/faqEnroll">
-	<button id="btn-add">글쓰기</button>
+	<button id="btn-add1">글쓰기</button>
 	</a>
 	<%-- <% } %> --%>
 	<table id="tbl-board">

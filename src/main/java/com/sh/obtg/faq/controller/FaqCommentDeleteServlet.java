@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sh.obtg.faq.model.service.FaqService;
 
 
-@WebServlet("/FaqCommentDeleteServlet")
+@WebServlet("/faq/faqCommentDelete")
 public class FaqCommentDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private FaqService faqService = new FaqService();
@@ -20,12 +20,12 @@ public class FaqCommentDeleteServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int faqNo = Integer.parseInt(request.getParameter("no"));
+		int faqNo = Integer.parseInt(request.getParameter("faqNo"));
 		
 		try {
 			// 1. 파라미터값 가져오기
 			int no = Integer.parseInt(request.getParameter("no"));
-			System.out.println("faqNo=" + faqNo + ", no=" + no);
+//			System.out.println("faqNo=" + faqNo + ", no=" + no);
 			// 2. 비지니스로직 호출
 			int result = faqService.deleteFaqComment(no);
 			// 3. 리다이렉트
@@ -33,7 +33,8 @@ public class FaqCommentDeleteServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/faq/faqView?no=" + faqNo);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw e; // 톰캣에게 예외처리를 맡김.
+			request.getSession().setAttribute("msg", "댓글 삭제 실패!");
+			response.sendRedirect( request.getContextPath()+"/faq/faqView?no=" + faqNo );
 		}
 
 	}

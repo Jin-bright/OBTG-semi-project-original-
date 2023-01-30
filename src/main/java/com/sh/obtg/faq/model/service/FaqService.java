@@ -22,6 +22,11 @@ public class FaqService {
 		int result = 0;
 		try {
 			result = faqDao.insertFaq(conn, f);
+			
+//			// 방금 등록된 faq.no컬럼값을 조회
+//			int faqNo = faqDao.selectLastFaqNo(conn);
+//			
+//			f.setNo(faqNo);
 			commit(conn);
 		} catch (Exception e) {
 			rollback(conn);
@@ -32,11 +37,11 @@ public class FaqService {
 		return result;
 	}
 
-	public int deleteFaq(int faqNo) {
+	public int deleteFaq(int no) {
 		Connection conn = getConnection();
 		int result = 0;
 		try {
-			result = faqDao.deleteFaq(conn, faqNo);
+			result = faqDao.deleteFaq(conn, no);
 			commit(conn);
 		} catch (Exception e) {
 			rollback(conn);
@@ -98,11 +103,11 @@ public class FaqService {
 		return totalCount;
 	}
 	
-	public int insertFaqComment(faqComment bc) {
+	public int insertFaqComment(faqComment faqComment) {
 		Connection conn = getConnection();
 		int result = 0;
 		try {
-			result = faqDao.insertFaqComment(conn, bc);
+			result = faqDao.insertFaqComment(conn, faqComment);
 			commit(conn);
 		} catch (Exception e) {
 			rollback(conn);
@@ -124,5 +129,12 @@ public class FaqService {
 			throw e;
 		}
 		return result;
+	}
+
+	public List<faqComment> selectFaqCommentList(int faqNo) {
+		Connection conn = getConnection();
+		List<faqComment> comments = faqDao.selectFaqCommentList(conn, faqNo);
+		close(conn);
+		return comments;
 	}
 }
