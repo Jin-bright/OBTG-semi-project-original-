@@ -40,9 +40,9 @@ function open_pop(<%=shareBoard.getMemberId()%> ){
 <ul class="ootdnav">
 	<li class="button-dropdown">
 	   	<a id="firsta" href="javascript:void(0)" class="dropdown-toggle">
-	    <img id="profileimg" src="<%=request.getContextPath()%>/uploadootds/ootd/profile.png" alt="profileimg" /> </a>
+	    <img id="profileimg" style="margin-left:210px" src="<%=request.getContextPath()%>/uploadootds/ootd/profile.png" alt="profileimg" /> </a>
 	    
-	    <ul class="dropdown-menu">
+	    <ul class="dropdown-menu" style="margin-left:230px">
    	 	 <li><a onclick="open_pop('<%=shareBoard.getMemberId()%>');">프로필보기</a></li> 
 	      <li><a href="#">채팅걸기</a></li>
 	    </ul>

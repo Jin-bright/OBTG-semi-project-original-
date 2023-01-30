@@ -221,6 +221,7 @@ searchButton.addEventListener('click', () => {
 				
 				const table = document.querySelector("#tblBoard")
 				table.innerHTML = "";
+				pagebar.innerHTML = "";
 				
 				const tbody = document.createElement("tbody")
 				table.append(tbody);
@@ -280,6 +281,13 @@ searchButtoncate.addEventListener('click', () => {
 				
 				const table = document.querySelector("#tblBoard")
 				table.innerHTML = "";
+				pagebar.innerHTML = "";
+				
+				const tbody = document.createElement("tbody")
+				table.append(tbody);
+				
+				const tr = document.createElement("tr")
+				tbody.append(tr);
 				
 				//foreach
 				data.forEach( (e, index) => {
@@ -288,15 +296,18 @@ searchButtoncate.addEventListener('click', () => {
 					alert("검색결과가 없습니다 😣");
 					return;
 				}
-					
-				table.innerHTML	+= 
+				
+			
+			tr.innerHTML	+= 
 	`<td class="maketd" style="width:220px;">
        <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/share/shareView?no=\${e.ShareNo}">
        <img id="eachimg"  style="display : inline-block; height : 200px; width:190px;  margin-left:-3px" src="<%=request.getContextPath()%>/uploadshares/share/\${e.renamedFilename}"/></a><br/>
         <p class="non">NO <span style="color : black; font-weight : light">\${e.ShareNo}</span></p>
         <p class="non">N  <span style=" color : black; font-weight : light">\${e.ShareRegDate}</span></p>
-    </td>`
+    </td>`;
+    
 				});
+			//	table.innerHTML += data;
 			},
 			error : console.log,
 			complete(){
@@ -325,25 +336,35 @@ searchButtoncnt.addEventListener('click', () => {
 			success(data){
 				console.log ( data ); 
 				
+				const table = document.querySelector("#tblBoard")
+				table.innerHTML = "";
+				pagebar.innerHTML = "";
+				
+				const tbody = document.createElement("tbody")
+				table.append(tbody);
+				
+				const tr = document.createElement("tr")
+				tbody.append(tr);
+				
+				//foreach
+				data.forEach( (e, index) => {
+					
 				if(data==0){
 					alert("검색결과가 없습니다 😣");
 					return;
 				}
 				
-				const table = document.querySelector("#tblBoard")
-				table.innerHTML = "";
-				
-				//foreach
-				data.forEach( (e, index) => {
-					
-				table.innerHTML	+= 
-					`<td class="maketd" style="width:220px;">
-				       <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/share/shareView?no=\${e.ShareNo}">
-				       <img id="eachimg"  style="display : inline-block; height : 200px; width:190px;  margin-left:-3px" src="<%=request.getContextPath()%>/uploadshares/share/\${e.renamedFilename}"/></a><br/>
-				        <p class="non">NO <span style="color : black; font-weight : light">\${e.ShareNo}</span></p>
-				        <p class="non">N  <span style=" color : black; font-weight : light">\${e.ShareRegDate}</span></p>
-				    </td>`
+			
+			tr.innerHTML	+= 
+	`<td class="maketd" style="width:220px;">
+       <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/share/shareView?no=\${e.ShareNo}">
+       <img id="eachimg"  style="display : inline-block; height : 200px; width:190px;  margin-left:-3px" src="<%=request.getContextPath()%>/uploadshares/share/\${e.renamedFilename}"/></a><br/>
+        <p class="non">NO <span style="color : black; font-weight : light">\${e.ShareNo}</span></p>
+        <p class="non">N  <span style=" color : black; font-weight : light">\${e.ShareRegDate}</span></p>
+    </td>`;
+    
 				});
+			//	table.innerHTML += data;
 			},
 			error : console.log,
 			complete(){
