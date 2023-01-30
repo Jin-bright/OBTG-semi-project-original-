@@ -78,12 +78,6 @@ document.passwordUpdateFrm.onsubmit = function(){
 		return false;
 	}
 	
-	if(!/^[A-Za-z0-9!@#$%]{4,}$/.test(newPassword.value)){
-		alert("비밀번호는는 영문자/숫자/특수문자(!@#$%) 4글자이상이어야 합니다.");
-		newPassword.select();
-		return;
-	}
-	
 	if(oldPassword.value == newPassword.value){
 		alert("기존비밀번호와 신규비밀번호는 같을 수 없습니다.");
 		oldPassword.select();
@@ -91,6 +85,16 @@ document.passwordUpdateFrm.onsubmit = function(){
 	}
 	
 };
+document.body.addEventListener('submit', (e) => {
+
+	if(!/^[A-Za-z0-9!@#$%]{4,}$/.test(newPassword.value)){
+		alert("비밀번호는는 영문자/숫자/특수문자(!@#$%) 4글자이상이어야 합니다.");
+		newPassword.select();
+		return;
+	}	
+	}
+	
+});
 
 document.querySelector("#newPasswordCheck").onblur(passwordValidate);
 
