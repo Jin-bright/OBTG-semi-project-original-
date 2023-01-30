@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import com.sh.obtg.notification.model.dto.Notification;
 import com.sh.obtg.report.model.dto.Reason;
 import com.sh.obtg.report.model.dto.Report;
 import com.sh.obtg.report.model.dto.Status;
@@ -101,5 +102,41 @@ private Properties prop = new Properties();
 		}
 		
 		return totalCount;
+	}
+
+	// 알림 등록
+	public int insertNoti(Connection conn, Notification noti) {
+		// insert into noti(no, receiver, message) values (seq_noti_no.nextval, ?, ?)
+		String sql = prop.getProperty("insertNoti");
+		int result = 0;
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, noti.getReceiver());
+			pstmt.setString(2, noti.getMessage());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new ReportException("👻신고처리결과 알림 등록 오류👻", e);
+		}
+		
+		return result;
+	}
+
+	public int updateReport(Connection conn, int reportNo) {
+		// update report set report_status = 'O' where report_no = ?
+		String sql = prop.getProperty("updateReport");
+		int result = 0;
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, reportNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new ReportException("👻신고 업데이트 오류👻", e);
+		}
+		
+		return result;
 	}
 }
