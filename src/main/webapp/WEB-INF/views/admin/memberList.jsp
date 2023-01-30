@@ -144,7 +144,7 @@ window.addEventListener('load', () => {
 	</div>
 	
 </section>
-<form action="<%= request.getContextPath() %> /admin/updateMemberRole" name="memberRoleUpdateFrm" method="POST">
+<form action="<%= request.getContextPath() %>/admin/updateMemberRole" name="memberRoleUpdateFrm" method="POST">
 	<input type="hidden" name="memberId" />
 	<input type="hidden" name="memberRole" />
 </form>
