@@ -143,6 +143,14 @@ window.addEventListener('load', () => {
 		<%= request.getAttribute("pagebar") %>
 	</div>
 	
+	
+	<form 
+	action="<%= request.getContextPath() %>/admin/memberDelete"
+	name="admMemberDelFrm"
+	method="POST">
+	<input type="hidden" name="memberId"/>
+</form>
+	
 </section>
 <form action="<%= request.getContextPath() %>/admin/updateMemberRole" name="memberRoleUpdateFrm" method="POST">
 	<input type="hidden" name="memberId" />
@@ -176,7 +184,7 @@ document.querySelectorAll(".member-role").forEach((select) => {
 
 
 
-/* 블랙리스트 추가 
+//블랙리스트 추가 
 $(".delMember").click(function(){
 	const memberId = $(this).data("memberId");
 	if(confirm(memberId+"를 정말 추방시키겠습니까?")){
@@ -184,8 +192,10 @@ $(".delMember").click(function(){
 		$frm.find("[name=memberId]").val(memberId);
 		$(document.admMemberDelFrm).submit();
 	}
-}); */
+});
 
 </script>
+
+
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
