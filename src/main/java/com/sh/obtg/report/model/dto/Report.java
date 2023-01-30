@@ -7,14 +7,14 @@ public class Report {
 	// Filed
 	private int reportNo;
 	private String reportedUserId;
-	private int boardNo;
+	private String boardNo;
 	private Date regDate;
 	private Status reportStatus; 
 	private Reason reportReason;
 	
 	// constructor
 	public Report() {}
-	public Report(int reportNo, String reportedUserId, int boardNo, Date regDate, Status reportStatus,
+	public Report(int reportNo, String reportedUserId, String boardNo, Date regDate, Status reportStatus,
 			Reason reportReason) {
 		super();
 		this.reportNo = reportNo;
@@ -38,11 +38,11 @@ public class Report {
 	public void setReportedUserId(String reportedUserId) {
 		this.reportedUserId = reportedUserId;
 	}
-	public int getBoardNo() {
+	public String getBoardNo() {
 		return boardNo;
 	}
-	public void setBoardNo(int boardNo) {
-		this.boardNo = boardNo;
+	public void setBoardNo(String no) {
+		this.boardNo = no;
 	}
 	public Date getRegDate() {
 		return regDate;

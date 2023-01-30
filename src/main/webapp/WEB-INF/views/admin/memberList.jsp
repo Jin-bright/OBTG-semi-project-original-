@@ -50,11 +50,11 @@ window.addEventListener('load', () => {
 
 <section id="memberList-container">
 	
-	<br><br><br><br><br><br>
+	<br><br><br><br>
 
 	<h1>회원관리</h1>
 	
-	<br><br><br><br>
+	<br><br><br>
 	
 	<div id="search-container">
 	    <label for="searchType">검색타입 :</label> 
