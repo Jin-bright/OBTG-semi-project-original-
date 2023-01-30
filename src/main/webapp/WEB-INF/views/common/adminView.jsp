@@ -11,7 +11,7 @@
   </head>
   <body class="admin">
   
-    <a href="<%= request.getContextPath() %>">
+   <%--  <a href="<%= request.getContextPath() %>">
       home
     <i class="fa fa-home"><a href="<%= request.getContextPath() %>">
       home</a></i>
@@ -20,7 +20,7 @@
     <header class="admin__statusbar flex--center">
       <span class="home"><a> </a><i class="fa fa-home"></i>Home</span>
       <span id="username"><i class="fa fa-user"></i>관리자</span>
-    </header>
+    </header> --%>
 
     <nav class="admin__sidepanel">
       <ul>
