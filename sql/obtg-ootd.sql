@@ -11,7 +11,7 @@ grant connect, resource to obtg;
 
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-ㅇㅇ
+
 select * from member;
 
 CREATE TABLE Member (
@@ -434,16 +434,13 @@ create table faq_comment(
 
 create sequence seq_faq_comment_no;
 
+
+
 select * from faq;
 
 
-select * from member;
-
-insert into member values('admin', '시크', 'z인철짱z', 1234, 'j789@naver.com', 01099176917, '00/01/01', '23/01/27', 'A', '인철존잘', 'M', '방갑습니다', null, null);
-
---drop table faq;
---drop sequence seq_faq;
-
+-- faq 테이블 조회수 추가
+--alter table faq add read_count number default 0;
 
 
 -- 제약조건 해제 / 대신 inline에 빡세게걸기 (by jin / id부분  ootd board comment share / 0129 ) 

@@ -92,7 +92,7 @@ a{
 }
 
 .about-section .image-column .inner-column .image .overlay-box .year-box .number{
-	position:absolute;
+/* 	position:absolute;
 	left:0px;
 	top:0px;
 	width:110px;
@@ -103,7 +103,7 @@ a{
 	line-height:105px;
 	text-align:center;
 	background-color:#ffffff;
-	border:1px solid #000000;
+	border:1px solid #000000; */
 }
 .about-section .btn-style-three:before {
     position: absolute;

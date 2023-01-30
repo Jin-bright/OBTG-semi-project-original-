@@ -11,6 +11,8 @@
 	String searchKeyword = request.getParameter("searchKeyword");
 %>   
 <%@ include file="/WEB-INF/views/common/adminView.jsp" %>
+
+
 <!-- 관리자용 admin.css link -->
   <style type="text/css">
  a:link { color: unset; text-decoration: none;}
