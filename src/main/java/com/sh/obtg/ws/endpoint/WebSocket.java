@@ -64,7 +64,7 @@ public class WebSocket {
 		Map<String, Object> sessionUserProp = session.getUserProperties();
 		sessionUserProp.put("memberId", memberId);
 		
-		// 이거 왜 자꾸 NullPointerException 이거뜨네,,,
+		// 이거 왜 자꾸 NullPointerException 이거뜨네,,, (해결^^)
 		if(notiList != null) {
 			sessionUserProp.put("notiList", notiList);
 			getNotiList(notiList, session);
