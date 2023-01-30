@@ -16,6 +16,12 @@ ul.dd-menu {
     opacity: 0;
     list-style:none;
 }
+ul.dd-menu li{
+	width: 130px;
+    height: 30px;
+    text-align: center;
+    padding-top: 5px;
+}
 ul.dd-menu li:hover{
 	box-shadow: 3px 3px bisque;;
 }

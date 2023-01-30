@@ -51,7 +51,6 @@
 						<td>
 							<img id="defaultimg" src="<%=request.getContextPath()%>/image/default.png" alt="defaultimg" style="width:30px; height:30px; cursor: pointer;"/>
 							<ul class="dd-menu">
-	      						<li><a href="#">사진바꾸기</a></li>
 	      						<li><a href="<%= request.getContextPath() %>/member/memberView;">My Page</a></li>
 	      						<li><a href="<%= request.getContextPath() %>/member/logout;">로그아웃</a></li>
 	    					</ul>
