@@ -86,14 +86,16 @@
           </div>
           
            <div class="field-wrap">
-            <label>
+            <label style="display: block;">
               Gender<span class="req">*</span>
             </label>
-					<input type="radio" name="gender" id="gender0" value="M">
+            <div id="gender-group">
 					<label for="gender0">남</label>
-					<input type="radio" name="gender" id="gender1" value="F" checked>
+					<input type="radio" name="gender" id="gender0" value="M">
 					<label for="gender1">여</label>
+					<input type="radio" name="gender" id="gender1" value="F" checked>
 			</div>	
+			</div>
 			
           <div class="field-wrap">
             <label>
@@ -123,41 +125,41 @@
             <input type="text" name="introduce" id="introduce" autocomplete="off"/>
           </div>
           
-          <div class="field-wrap">
+          <!-- <div class="field-wrap">
             <label for="celeb-enroll-profile">Profile</label>
             <input type="file" name="profile" id="celeb-enroll-profile" />
             <button type="submit">등록</button>
           </div>
-          
+           -->
           <fieldset class="checkbox-group">
-	<legend class="checkbox-group-legend">Choose your Style</legend>
+	<legend class="checkbox-group-legend" style="text-align:center; font-size:x-large; margin-bottom:10px;">Choose your Style</legend>
 	<tr id="check-box">
-		<td>
-			<input type="checkbox" name="style" id="S1" value="러블리"><label for="S1">lovely</label>		
+		<td >
+			<input type="checkbox" class="style" name="style" id="S1" value="러블리"><label class="stylelb" for="S1"><img src="<%=request.getContextPath()%>/image/love.png" alt="">&nbsp;lovely</label>		
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S2" value="댄디"><label for="S2">Dandy</label>
+			<input type="checkbox" class="style" name="style" id="S2" value="댄디"><label class="stylelb" for="S2"><img src="<%=request.getContextPath() %>/image/dandy.png" alt=""/>&nbsp;Dandy</label>
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S3" value="포멀" checked><label for="S3">Formal</label>
+			<input type="checkbox" class="style" name="style" id="S3" value="포멀" checked><label class="stylelb" for="S3"><img src="<%=request.getContextPath()%>/image/formal.png" alt="">&nbsp;Formal</label>
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S4" value="스트리트"><label for="S4">Street</label>	
+			<input type="checkbox" class="style" name="style" id="S4" value="스트리트"><label class="stylelb" for="S4"><img src="<%=request.getContextPath()%>/image/street.png" alt="">&nbsp;Street</label>	
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S5" value="걸리쉬"><label for="S5">Girlish</label>
+			<input type="checkbox" class="style" name="style" id="S5" value="걸리쉬"><label class="stylelb" for="S5"><img src="<%=request.getContextPath()%>/image/girl.png" alt="">&nbsp;Girlish</label>
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S6" value="레트로" checked><label for="S6">Retro</label>
+			<input type="checkbox" class="style" name="style" id="S6" value="레트로" checked><label class="stylelb" for="S6"><img src="<%=request.getContextPath()%>/image/retro.png" alt="">&nbsp;Retro</label>
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S7" value="로맨틱"><label for="S7">Romantic</label>
+			<input type="checkbox" class="style" name="style" id="S7" value="로맨틱"><label class="stylelb" for="S7"><img src="<%=request.getContextPath()%>/image/romantic.png" alt="">&nbsp;Romantic</label>
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S8" value="시크"><label for="S8">Chic</label>	
+			<input type="checkbox" class="style" name="style" id="S8" value="시크"><label class="stylelb" for="S8"><img src="<%=request.getContextPath()%>/image/chic.png" alt="">&nbsp;Chic</label>	
 		</td>
 		<td>
-			<input type="checkbox" name="style" id="S9" value="아메카지"><label for="S9">Amekaji</label>		
+			<input type="checkbox" class="style" name="style" id="S9" value="아메카지"><label class="stylelb" for="S9"><img src="<%=request.getContextPath()%>/image/amekaji.png" alt="">&nbsp;Amekaji</label>		
 		</td>
 	</tr>
 </fieldset>

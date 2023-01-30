@@ -28,7 +28,7 @@
 <% } %>
 </head>
 <body>
-<header>
+<header style="hight:263.67px;">
 <!--   메뉴바 -->
 <br /> <br />
 <table id="tdloginSignup">
