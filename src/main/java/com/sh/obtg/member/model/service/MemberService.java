@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.sh.obtg.member.model.exception.MemberException;
+import com.sh.obtg.ootd.model.dto.OotdBoard;
+import com.sh.obtg.share.model.dto.ShareBoard;
 import com.sh.obtg.member.model.dao.MemberDao;
 import com.sh.obtg.member.model.dto.Member;
 
@@ -130,6 +132,31 @@ public class MemberService {
 			close(conn);
 		}
 		return result;
+	}
+	
+	// 내가 쓴 글이 몇개인가 조회(ootd + share)
+	public int getMyPostTotalCount(String memberId) {
+		Connection conn = getConnection();
+		int ootdCnt = memberDao.selectMyOotdPostCnt(conn, memberId);
+		int shareCnt = memberDao.selectMySharePostCnt(conn, memberId);
+		close(conn);
+		return ootdCnt + shareCnt;
+	}
+	
+	// 내가 쓴 ootd글 조회
+	public List<OotdBoard> selectMyOotdPost(String memberId, Map<String, Object> param) {
+		Connection conn = getConnection();
+		List<OotdBoard> ootdBoardList = memberDao.selectMyOotdPost(conn, memberId, param);
+		close(conn);
+		return ootdBoardList;
+	}
+	
+	// 내가 쓴 share글 조회
+	public List<ShareBoard> selectMySharePost(String memberId, Map<String, Object> param) {
+		Connection conn = getConnection();
+		List<ShareBoard> shareBoardList = memberDao.selectMySharePost(conn, memberId, param);
+		close(conn);
+		return shareBoardList;
 	}
 
 }

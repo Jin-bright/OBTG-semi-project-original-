@@ -1,0 +1,20 @@
+@charset "UTF-8";
+#board-container {
+	max-width: 600px;
+	height: 550px;
+	margin: 0 auto;
+	margin-top: 100px;
+}
+#boardList-wrap, #boardList-wrap tr{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-collapse: collapse;
+    width: 600px;
+}
+#boardList-wrap th{
+	padding: 10px;
+	background: RGB(234, 234, 234);
+}
+#boardList-wrap td {
+    text-align: center;
+}
