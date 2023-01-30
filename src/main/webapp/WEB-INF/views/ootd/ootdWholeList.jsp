@@ -39,7 +39,7 @@ List<OotdBoard> findootdBoardsById = (List<OotdBoard> )request.getAttribute("fin
  	background-color: white;
 	float : left;
 	margin-top : -60px;
-	margin-left : 470px;
+	margin-left : 380px;
 	font-family: 'Nanum Gothic Coding', monospace;		
 	font-size : 15px;
  }

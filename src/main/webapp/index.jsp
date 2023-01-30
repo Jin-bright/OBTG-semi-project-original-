@@ -158,15 +158,15 @@
     height: 100%;
     display: none;
     position: absolute;
-
-	  opacity: 0;
+	margin: 0 -80px;
+	opacity: 0;
     z-index: 9;
     cursor: pointer;
 
     transition: opacity .2s;
 
     color: #FFF;
-    font-size: 156pt;
+    font-size: 90px;
     text-align: center;
     line-height: 380px;
     font-family: "Varela Round", sans-serif;
@@ -223,7 +223,7 @@ input#img-3:checked ~ .nav-dots label#img-dot-3,
 }
  
  </style> 
-  <ul class="slides" style="margin-left: 740px; margin-top : 50px; bolor: 2px solid black">
+  <ul class="slides" style="margin-left: 500px; margin-top : 50px; bolor: 2px solid black">
   
     <input type="radio" name="radio-btn" id="img-1" checked />
     <li class="slide-container">
