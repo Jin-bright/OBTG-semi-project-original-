@@ -31,13 +31,13 @@
 	margin-top : 150px;
 	width:40px;
 }
-
+<%-- 쪽지 모달창 css 효과  --%>
 #frmPopCh {
-     position: fixed; 
+    position: fixed; 
     top: 50%; left: 50%;  
     transform: translate(-50%, -50%); 
     width: 25em; 
-    height: 21em; 
+    height: 23em; 
     padding: 10px;
     border: 1px solid grey;
     background: white;
@@ -80,7 +80,7 @@
 	<input type="hidden" name="memberID" >
 </form>
 
-<%-- 쪽지 모달창 css 효과  --%>
+
 
 
 

@@ -51,7 +51,6 @@ public class WebSocket {
 		String memberId = (String) userProp.get("memberId");
 		String chatroomId =  (String) userProp.get("chatroomId");
 		String chatreceiver =  (String) userProp.get("chatreceiver");
-		System.out.println("Chatservlet 먼저찍히고 이게 나와야된다는데 ");
 		////////////////////////////
 		
 		List<Notification> notiList = (List<Notification>)userProp.get("notiList");
@@ -72,19 +71,22 @@ public class WebSocket {
 		
 
 	 	/////////////////////////★★★혜진-chatroomid 꺼내 
-		System.out.println("chatroomid 뭔데 ( userProp.get 하면나와야댐 ) " +  chatroomId  );
+		//System.out.println("chatroomid 뭔데 ( userProp.get 하면나와야댐 ) " +  chatroomId  );
 		
-		
+
+/**		
 		if( chatroomId != null  ) {
 			sessionUserProp.put("chatroomId", chatroomId);
 			System.out.println("chatroomid 뭔데  put 해주라" +  chatroomId  );
 			addToChatroom(chatroomId, memberId, chatreceiver);
 			sendChatroomEnterMsg(chatroomId, memberId, chatreceiver, session); // 채팅방에 누가 입장햇다 
 		}
+**/
 		
 	}
 	
 	//★★★★ 혜진 1.채팅방들어간다 - 채팅방별 사용자 관리한다 
+/**	
 	private void addToChatroom(String chatroomId, String memberId, String chatreceiver) {
 
 		Set<String> participantSet = chatParticipantMap.get(chatroomId);  // 반환값 = 사람 멤버 id
@@ -124,7 +126,7 @@ public class WebSocket {
 		onMessage( new Gson().toJson(data), session );
 		// onMessage(new Gson().toJson(data), session);
 	}
-	
+**/	
 	
 	// 알림 내역 꺼내기
 	private void getNotiList(List<Notification> notiList, Session session) {
@@ -218,10 +220,10 @@ public class WebSocket {
 		
 		
 		//★★★혜진 - 관리맵에서 채팅방제거
-		if( chatroomId != null ) {
-			removeFromChatroom(chatroomId, memberId); //채팅방에서 채팅방id, memberid 제거 	
+	//	if( chatroomId != null ) {
+		//	removeFromChatroom(chatroomId, memberId); //채팅방에서 채팅방id, memberid 제거 	
 		//	sendChatroomLeaveMsg(chatroomId, memberId, session); // 떠나는거 알리는 메시지 
-		}
+	//	}
 		
 		System.out.println("==== 이제 클로즈 ==== ");
 		peoplechecklog();
