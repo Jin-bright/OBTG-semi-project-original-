@@ -90,7 +90,7 @@ public class ChatSecondtryServlet extends HttpServlet {
 		
 		int result = chatService.insertToChatRoom(chatRoom);
 		System.out.println(" 결과는 ? shareBoard = " + shareBoard);
-		//response.sendRedirect(request.getContextPath()+"/chat/chatsecondtry");
+		response.sendRedirect(request.getContextPath()+"/chat/chatsecondtry");
 	}
 
 }

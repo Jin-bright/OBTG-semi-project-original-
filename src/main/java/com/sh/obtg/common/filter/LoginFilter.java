@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.sh.obtg.member.model.dto.Member;
+
 
 
 /**
@@ -21,8 +23,9 @@ import javax.servlet.http.HttpSession;
  */
 @WebFilter({ 
 	"/member/memberView", "/member/memberUpdate", "/member/updatePassword", 
-	"/board/boardEnroll", "/board/boardUpdate", "/board/boardDelete",
-	"/chat/chat"
+	"/member/memberOotdLike", "/member/memberOotdList", "/member/memberShareLike",
+	"/member/memberShareList", "/ootd/ootdEnroll", "/ootd/ootdUpdate","/share/shareEnroll",
+	"/share/shareUpdate"
 })
 public class LoginFilter extends HttpFilter implements Filter {
 
@@ -33,17 +36,14 @@ public class LoginFilter extends HttpFilter implements Filter {
 		// TODO Auto-generated method stub
 	}
 
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpReq = (HttpServletRequest) request;
 		HttpServletResponse httpRes = (HttpServletResponse) response;
 		
 		HttpSession session = httpReq.getSession();
-	//	Member loginMember = (Member) session.getAttribute("loginMember");
+		Member loginMember = (Member) session.getAttribute("loginMember");
 		
-//		if(loginMember == null) {
+		if(loginMember == null) {
 			session.setAttribute("msg", "로그인 후 이용하실 수 있습니다.");
 			httpRes.sendRedirect(httpReq.getContextPath() + "/");
 			return; // 조기리턴. 하위코드 실행 안함.
@@ -53,11 +53,8 @@ public class LoginFilter extends HttpFilter implements Filter {
 		chain.doFilter(request, response);
 	}
 
-	/**
-	 * @see Filter#init(FilterConfig)
-	
 	public void init(FilterConfig fConfig) throws ServletException {
 		// TODO Auto-generated method stub
 	}
-	*/
+	
 }

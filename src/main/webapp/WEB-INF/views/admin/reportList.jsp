@@ -1,3 +1,4 @@
+<%@page import="com.sh.obtg.report.model.dto.Status"%>
 <%@page import="com.sh.obtg.report.model.dto.Report"%>
 <%@page import="java.util.List"%>
 <%@ page import="com.sh.obtg.member.model.dto.Member" %>
@@ -71,7 +72,8 @@
 					<button id="update" data-receiver = <%= report.getReportedUserId() %> 
 										data-reason = <%= reason %> 
 										data-board-no = <%= report.getBoardNo() %>
-										data-report-no = <%= report.getReportNo() %>>
+										data-report-no = <%= report.getReportNo() %>
+										value="<%= report.getReportStatus() %>">
 						<%= report.getReportStatus() %>
 					</button>
 				</td>
@@ -85,9 +87,10 @@
 			<% } %>
 		</tbody>
 	</table>
-	<div id="pagebar">
-		<%= request.getAttribute("pagebar") %>
-	</div>
+
+<div id="pagebar"  style="margin-top : 300px">
+	<%= request.getAttribute("pagebar") %>
+</div>
 </section>
 <div id="reportUpdate" >
 	<form action="<%= request.getContextPath() %>/report/reportUpdate"
@@ -114,24 +117,32 @@
 			</tr>
 			<tr>
 				<th>처리내용</th>
-				<td><input type="text" name="content" required="required"/></td>
+				<td><input type="text" name="content" id="content" required="required" style="border-bottom-style: solid;"/></td>
 			</tr>
 		</table>
 	</form>
-	 <div style="text-align: center;">
-        <input type="button" id="rBtn" value="처리하기" onclick="updateReportFrm();">
-    </div>
+	<div style="text-align: center;">
+		<input type="button" id="rBtn" value="처리하기" onclick="updateReportFrm();">
+	</div>
+	
 </div>
 <script>
 document.querySelectorAll("#update").forEach((btn) =>{
 	btn.onclick = (e) => {
+		if(e.target.value === "<%= Status.O %>"){
+			alert("이미 처리된 신고입니다.");
+			return;
+		}
+		
 		const div = document.querySelector("#reportUpdate");
 		const boardNo = document.querySelector("#boardNo");
 		const reportNo = document.querySelector("#reportNo");
 		const reason = document.querySelector("#reason");
 		const receiver = document.querySelector("#receiver");
+		const content = document.querySelector("#content");
 		
 		div.style.visibility = "visible";
+		content.select();
 
 		boardNo.value = e.target.dataset.boardNo;
 		reportNo.value = e.target.dataset.reportNo;

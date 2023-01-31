@@ -1,9 +1,10 @@
 @charset "UTF-8";
 #board-container {
+	min-height: 830px;
 	max-width: 600px;
 	height: auto;
 	margin: 0 auto;
-	margin-top: 100px;
+	margin-top: 50px;
 	transform: translate(-60px, 10px);
 }
 #nav-container {

@@ -357,3 +357,71 @@ table#tbl-comment tr:hover button.btn-delete{display:inline;}
       0 0 35px #ff00de,  0 0 40px #ff00de, 0 0 45px #ff00de;
   }
 }
+
+/* 신고 */
+#siren {
+	width: 30px;
+	transform: translate(200px, -261px);
+	cursor: pointer;
+}
+/* 신고폼 */
+#report {
+	color: white; 
+	background: red; 
+	border: 1px solid black; 
+	float: right;
+	cursor: pointer;
+}
+.report_container {
+	position: fixed; 
+	top: 50%; left: 50%; 
+	transform: translate(-50%, -50%); 
+	width: 25em; 
+	height: 21em; 
+	padding: 10px;
+	border: 1px solid grey;
+	background: white;
+	border-radius: 1em;
+	visibility: hidden;
+}
+.showPopup {
+	position: fixed; 
+	top: 50%; left: 50%; 
+	transform: translate(-50%, -50%); 
+	width: 25em; 
+	height: 25em; 
+	border: 1px solid grey;
+	background: white;
+	border-radius: 1em;
+	visibility: visible;
+	z-index: 999;
+}
+.close-button {
+    float: right;
+    width: 25px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.3rem;
+    background-color: lightgray;
+    margin: .5em;
+}
+.close-button:hover {
+    background-color: darkgray;
+}
+#report_wrap {
+    width: 25em;
+    margin: 0 auto;
+}
+#reason_wrap {
+    width: 24em;
+    margin: 0 auto;
+    padding-top: 108px;
+}
+#reason_wrap tbody th {
+    padding: .2em;
+}
+#reason_wrap tbody td {
+    border-bottom: 1px solid grey;
+}
+
+

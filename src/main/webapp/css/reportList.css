@@ -1,6 +1,6 @@
 @charset "UTF-8";
 #report-container {
-	height: 810px;
+	min-height: 890px;
 	text-align:center; 
 	padding-left: 200px; 
 	/* margin-bottom: 70px; */
@@ -50,13 +50,20 @@
 #report-wrap th {
 	padding: 10px;
 }
+#report-wrap input {
+	border-style: none;
+}
 #cBtn {
 	text-align: center;
 	float: right;
 	width: 24px;
-	background: darkgray;
+	background: none;
 	border-radius: 6px;
 	cursor: pointer;
+	font-size: 20px;
+}
+#cBtn:hover {
+	background: darkgray;
 }
 #rBtn {
 	border-style: none;
@@ -64,4 +71,11 @@
 	color: white;
 	background: black;
 	cursor: pointer;
+}
+#update {
+	border-style: none;
+	width: 20px;
+	height: 20px;
+	background: gainsboro;
+	color: white;;
 }

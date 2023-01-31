@@ -31,106 +31,105 @@
 	margin-top : 150px;
 	width:40px;
 }
+
+#frmPopCh {
+     position: fixed; 
+    top: 50%; left: 50%;  
+    transform: translate(-50%, -50%); 
+    width: 25em; 
+    height: 21em; 
+    padding: 10px;
+    border: 1px solid grey;
+    background: white;
+    border-radius: 1em;
+    visibility: hidden;
+    z-index : 999;
+}
+
+#msgTable{
+	width: 330px;
+	height: 300px;
+	
+	margin : 0 auto;
+	border:3px solid black; 
+	border-collapse:collapse;  
+}
+#msgContent{
+	width: 150px;
+	height: 150px;
+}
+
+.msgtg{
+	width: 100px;
+}
+
+
+.msgtg{
+	width: 150px;
+	padding:5px
+}
+
+#msgsubmit{
+	margin-top :100px;
+}
+
 </style>
 
-
-<script >
-function open_pop(<%=shareBoard.getMemberId()%> ){
-    const frmPop= document.frmPopup;
-    const url = '<%=request.getContextPath()%>/profile/profileView';
-    window.open('','popupView','width=600, height=600');   
-     
-    frmPop.action = url; 
-    frmPop.target = 'popupView'; //window,open()의 두번째 인수와 같아야 하며 필수다.   
-    frmPop.memberID.value = <%=shareBoard.getMemberId()%>;
-    frmPop.submit();    
-     
-}
-</script>
-<%-- <script >
-function open_chat(<%=shareBoard.getMemberId()%>){
-    const frmPopCh= document.frmPopCh;
-    const url = '<%=request.getContextPath()%>/chat/chatmain';
-    window.open('','popupView','width=600, height=600');   
-     
-    frmPopCh.action = url; 
-    frmPopCh.target = 'popupView'; //window,open()의 두번째 인수와 같아야 하며 필수다.   
-    frmPopCh.chatroomId.value = <%=shareBoard.getShareNo()%>;
-    frmPopCh.submit();    
-     
-}
-</script> --%>
 
 <form name="frmPopup">
 	<input type="hidden" name="memberID" >
 </form>
 
-<!-- <form name="frmPopCh">
-	<input type="hidden" name="chatroomId" > 보드no 
-</form> -->
+<%-- 쪽지 모달창 css 효과  --%>
+
+
 
 <section id="board-container" >
 <br /><br /><br /><br /><br /><br /><br />
-<p id="informationsp" > INFORMATION  <span id="styleinfo" ">스타일 정보</span></p>
+<p id="informationsp" > INFORMATION  <span id="styleinfo">스타일 정보</span></p>
 
  <ul class="ootdnav">
 	<li class="probutton-dropdown">
 	   	<a id="firsta" href="" class="prodropdown-toggle" >
-	    	<img id="profileimg" style="margin-left:140px; margin-top : 40px" src="<%=request.getContextPath()%>/uploadootds/ootd/profile.png" alt="profileimg" />
-	    </a>
+	    	<img id="profileimg" style="margin-left:140px; margin-top : 40px" src="<%=request.getContextPath()%>/uploadootds/ootd/profile.png" alt="profileimg" /></a>
 	    
 	    <ul class="prodown-menu" style="margin-left:30px">
-   	 	 <li><a onclick="open_pop('<%=shareBoard.getMemberId()%>');" style="margin-left:60px"> 프로필보기</a></li>  
-		 <li id="chatplz"><%-- <a href="<%=request.getContextPath()%>/chat/chatsecondtry"></a> --%>채팅걸기</li>
-
-	<form id="test" name="testFrm"  action="<%=request.getContextPath()%>/chat/chatsecondtry"  method="post">
-		<input type="hidden" name="chatroomId" id="chatroomId" value="S<%=shareBoard.getShareNo()%><%=shareBoard.getMemberId()%>+<%=loginMember.getMemberId()%>"/> <!--  chatid  -->
-		<input type="hidden" name="boardno"  id="boardno" value="<%=shareBoard.getShareNo()%>"/> 
-		<input type="hidden" name="memberID" id="memberID" value="<%=loginMember.getMemberId()%>" />
-	</form>	 
-		 	<!-- <input id="submitli" type="submit"/> 
-		 </a></li>
-		 
-		 	<input type="submit" value="제출"/>
- 			<a id= "submitli" type="submit" onclick="document.getElementById('test').submit();"> 
-		</form>-->
-		
-		-->
-		</ul>
+   	 		<li><a onclick="open_pop('<%=shareBoard.getMemberId()%>');" style="margin-left:60px"> 프로필보기</a></li>
+  
+ 
+	    <%-- 	<% if(loginMember.getMemberId() != null ) {%> --%>	 
+	 	 	<li id="chatplz"> 쪽지하기
+		  		<%--	<% } --%> 
+			 	<!--  쪽지 모달 창 "/>  -->
+			<form id="frmPopCh" name="frmPopCh" action="<%=request.getContextPath()%>/chat/MessageMain"  method="post">
+				<input type="hidden" name="no" value="<%=shareBoard.getShareNo()%>" />
+				<table id="msgTable" >
+				<tr>
+					<th class="msgtg"> 받는사람 </th>
+					<td class="msgtd" ><input type="text" id="receiver" name="receiver"  value="<%=shareBoard.getMemberId() %>" > <!--  받는 사람  --> 	</td>
+				</tr>
+				
+				<tr>
+					<th  class="msgtg" > 보내는 사람 </th>
+					<td class="msgtd" ><input type="text" id="sender" name="sender" value="<%=loginMember.getMemberId() %>" >  <!--  보내는 사람  --></td>
+				</tr>
+				
+				<tr>
+					<th  class="msgtg" > 제목 </th>
+					<td class="msgtd" ><input type="text" id="msgTitle" name="msgTitle" value="" ></td>
+				</tr>
+				
+				<tr>
+					<th  class="msgtg" > 내용 </th>
+					<td class="msgtd" ><textarea id="msgContent" name="msgContent" ></textarea></td>
+					<td><input id="msgsubmit" type="submit" value="전송" ></td>
+				</tr>
+				</table>
+			</form></li></ul>
    </li>
 </ul>
 
-<script>
-document.querySelector("#chatplz").addEventListener('click', () => {
 
-	const chatroomId = document.querySelector("#chatroomId").value;
-	const memberId = document.querySelector("#memberID").value;
-	const boardno = document.querySelector("#boardno").value;
-	 
-	
-	const frm = document.testFrm;
-	frm.chatroomId.value = chatroomId;
-	frm.memberID.value = memberId;
-	frm.boardno.value = boardno;
-	
-	frm.submit();
-
-});
-
-</script>
-
-
-
-<%-- <div id="profileView"  class="gogogo">
-	<span style="background:yellow"><a onclick="open_pop('<%=shareBoard.getMemberId()%>');">프로필보기</a></span>	
-	<span><a href="">채팅걸기</a></span>
-	<form name="testFrm" id="test" action="<%=request.getContextPath()%>/chat/chatsecondtry" method="post">
-	<input type="hidden" name="chatroomId" value="S<%=shareBoard.getShareNo()%><%=shareBoard.getMemberId()%>+<%=loginMember.getMemberId()%>"/> <!--  chatid  -->
-	<input type="hidden" name="boardno" value="<%=shareBoard.getShareNo()%>"/>  
- 	<input type="hidden" name="memberID" value="" />
- 	<input type="submit" value="채팅하기"/>
-</form>	
-</div> --%>
 
 
 <div class="imgNtableContainer">
@@ -243,7 +242,7 @@ document.querySelector("#chatplz").addEventListener('click', () => {
 	<br /><br /><br /><br /><br />
 <!-- 게시글 삭제하기 히든폼 ( 관리자 & 작성자에게만 노출 ) -->	
 <form action="<%=request.getContextPath()%>/share/shareDelete" name = "boardDeleteFrm" method="post">
-	<input type="hidden" name="no" value="<%= shareBoard.getShareNo() %>" />
+	<input type="hidden" name="no" value="<%= shareBoard.getShareNo()%>" />
 </form>
 
 <!-- 신고하기 폼(누르면 나타나용) -->
@@ -274,6 +273,7 @@ document.querySelector("#chatplz").addEventListener('click', () => {
         </tbody>
     </table>
     <span style="margin-left: 1em; font-weight: bold;">사유선택</span>
+
     <table id="reason_wrap">
         <tbody>
             <tr>
@@ -401,6 +401,29 @@ const reportEnroll = () => {
 	alert("신고가 접수되었습니다.")
 }
 </script>
+<%-- 혜진 추가  --%>
+<script >
+function open_pop(<%=shareBoard.getMemberId()%> ){
+    const frmPop= document.frmPopup;
+    const url = '<%=request.getContextPath()%>/profile/profileView';
+    window.open('','popupView','width=600, height=600');   
+     
+    frmPop.action = url; 
+    frmPop.target = 'popupView'; //window,open()의 두번째 인수와 같아야 하며 필수다.   
+    frmPop.memberID.value = <%=shareBoard.getMemberId()%>;
+    frmPop.submit();    
+     
+}
+</script>
 
+<script>
+const  msgbox = document.querySelector("#chatplz");
+
+msgbox.addEventListener('click', () => {
+	const frm = document.frmPopCh;
+	frm.style.visibility = "visible";
+});
+</script>
+ 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
