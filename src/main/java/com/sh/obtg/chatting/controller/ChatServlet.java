@@ -17,9 +17,9 @@ public class ChatServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		// 1. 사용자입력값 처리 - 우리채팅방은 int인디,, 
+	/**	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+ 		// 1. 사용자입력값 처리 - 우리채팅방은 int인디,, 
 		int chatroomId = Integer.parseInt(  request.getParameter("chatroomId") );
 		System.out.println( chatroomId  );
 		
@@ -32,17 +32,28 @@ public class ChatServlet extends HttpServlet {
 		System.out.println("**chatroomId나와라좀  : " + chatroomId);
 		
 		// 3. 응답처리 - jsp 포워딩 
+ 		
+ 
 
 		request.getRequestDispatcher("/WEB-INF/views/chat/chatmain.jsp")
 		.forward(request, response);
 	}
-
+*/
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		int fakechatroomId = Integer.parseInt(  request.getParameter("fakechatroomId") );
+		String fakereceiver =  request.getParameter("fakereceiver") ;
+		
+		if( ! (fakechatroomId > 0) ) {
+			throw new IllegalArgumentException("채팅방 아이디가 유효하지 않습니다!!!! ");  //runtime
+		}
+		
+		response.sendRedirect(request.getContextPath()  + "/chat/chatmain"  ); //클라이언트가 다시 요청할주소 
+
+		
 	}
 
 }

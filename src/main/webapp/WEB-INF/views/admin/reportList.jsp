@@ -87,9 +87,10 @@
 			<% } %>
 		</tbody>
 	</table>
-	<div id="pagebar">
-		<%= request.getAttribute("pagebar") %>
-	</div>
+
+<div id="pagebar"  style="margin-top : 300px">
+	<%= request.getAttribute("pagebar") %>
+</div>
 </section>
 <div id="reportUpdate" >
 	<form action="<%= request.getContextPath() %>/report/reportUpdate"
@@ -123,6 +124,7 @@
 	<div style="text-align: center;">
 		<input type="button" id="rBtn" value="처리하기" onclick="updateReportFrm();">
 	</div>
+	
 </div>
 <script>
 document.querySelectorAll("#update").forEach((btn) =>{
