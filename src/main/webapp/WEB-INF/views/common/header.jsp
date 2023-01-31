@@ -45,17 +45,18 @@
 						<td>
 							<img id="defaultimg" src="<%=request.getContextPath()%>/image/default.png" alt="defaultimg" style="width:30px; height:30px; cursor: pointer;"/>
  							<% if(loginMember.getMemberRole() == MemberRole.A) { %>
- 							<tr>
- 								<td><button id="admin" value="관리자페이지" onclick="location.href = '<%= request.getContextPath() %>/admin/memberList';">관리자페이지</button></td>
- 								<%= loginMember.getNickname() %>님
- 							</tr>
+ 							
+ 							<ul class="dd-menu">
+	      						<li><a href="<%= request.getContextPath() %>//admin/memberList;">관리자페이지</a></li>
+	      						<li><a href="<%= request.getContextPath() %>/member/logout;">로그아웃</a></li>
+	    					</ul>
  							<% } else{ %>
 							<ul class="dd-menu">
 	      						<li><a href="<%= request.getContextPath() %>/member/memberView;">My Page</a></li>
 	      						<li><a href="<%= request.getContextPath() %>/member/logout;">로그아웃</a></li>
 	    					</ul>
-							<%= loginMember.getNickname() %>님
 							<%} %>
+							<%= loginMember.getNickname() %>님
 							<i style="position: absolute;"><img src="<%= request.getContextPath() %>/image/notification.png" alt="알림" class="bell bell-hiden" /></i>
 							<div id="report_wrap"></div>
 						</td>
