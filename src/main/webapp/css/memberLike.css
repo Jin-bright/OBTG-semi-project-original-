@@ -1,15 +1,15 @@
 @charset "UTF-8";
 #like-container {
-	max-width: 600px;
+	min-height: 830px;
+	max-width: 470px;
 	height: auto;
 	margin: 0 auto;
 	margin-top: 60px;
 	margin-bottom: 100px;
+	text-align: center;
 }
-#like-nav {
+#like-nav span {
 	font-size: 30px;
-	padding-left: 125px;
-	margin-bottom: 25px;
 }
 #like-nav a:hover {
 	color: #ffd688;

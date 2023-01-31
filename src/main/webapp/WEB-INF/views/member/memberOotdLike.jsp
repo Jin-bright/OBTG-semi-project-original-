@@ -41,8 +41,8 @@
 	</div>
 	<hr />
 	<section id="like-container">
-	<h3 style="text-align: center; padding-left: 100px">나의 좋아요</h3>
 	<div id="like-nav">
+		<h3>나의 <span style="color: orange; font-weight: 900; font-size: 15px;">좋아요</span></h3>
 		<span style="font-weight: 900;"><a href="<%= request.getContextPath() %>/member/memberOotdLike">OOTD</a></span>
 		<span><a href="<%= request.getContextPath() %>/member/memberShareLike">SHARE</a></span>
 	</div>
