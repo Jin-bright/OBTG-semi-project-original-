@@ -15,15 +15,18 @@ div#tableArea {
 }
 
 #tbl-member th {
-	background-color: #fd9000;
-	color: white;
-	font-size: 15px;
+    background-color: lightgray;
+    color: black;
+    font-size: 20px;
 }
+
 
 #tbl-member td {
 	border-top: 2px solid gray;
 	border-bottom: 2px solid gray;
 	padding: 5px;
+	text-align: center;
+	padding: 12px;
 }
 
 #tbl-member th:nth-child(1) {
