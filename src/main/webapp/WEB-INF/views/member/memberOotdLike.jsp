@@ -41,14 +41,16 @@
 	</div>
 	<hr />
 	<section id="like-container">
+	<h3 style="text-align: center; padding-left: 100px">나의 좋아요</h3>
 	<div id="like-nav">
 		<span style="font-weight: 900;"><a href="<%= request.getContextPath() %>/member/memberOotdLike">OOTD</a></span>
 		<span><a href="<%= request.getContextPath() %>/member/memberShareLike">SHARE</a></span>
 	</div>
 	<table id="like-wrap">
 	<% 
-		for(int i = 0; i < ootdLikes.size(); i++) {
-			if(i % 4 == 0 ){
+		if(ootdLikes != null){
+			for(int i = 0; i < ootdLikes.size(); i++) {
+				if(i % 4 == 0 ){
 	%>
 		<tr>
 		<% } %>
@@ -58,12 +60,14 @@
 					<p><%= ootdLikes.get(i).getTitle() %></p>
 				</a>
 			</td>
-		<% if(i % 4 == 3){%>
+			<% if(i % 4 == 3){%>
   		</tr>
 	<% 
-  	 		}   	    
-  	 	}
-	%> 
+				}   	    
+  	 		}
+		} 
+	%>
+
 	</table>
 	</section>
 </div>
