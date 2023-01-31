@@ -58,9 +58,13 @@
 	text-align: center;
 	float: right;
 	width: 24px;
-	background: darkgray;
+	background: none;
 	border-radius: 6px;
 	cursor: pointer;
+	font-size: 20px;
+}
+#cBtn:hover {
+	background: darkgray;
 }
 #rBtn {
 	border-style: none;
