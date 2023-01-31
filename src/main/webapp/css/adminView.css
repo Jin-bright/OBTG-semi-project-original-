@@ -93,12 +93,11 @@ i {
   left: 0;
   z-index: 999;
   width: 200px;
-  height: 47.5vw;
+  height: 891px;
   padding: 25px 0;
   background: #f9f4d2;
   margin-top: 235px;
   border-right: 2px solid;
-  border-bottom: 2px solid;
 }
 
 .admin__sidepanel ul li {
