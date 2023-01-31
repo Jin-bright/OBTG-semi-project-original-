@@ -268,9 +268,10 @@ footer {
 	z-index: 999;
 }
 .report {
+	padding: 5px;
+	font-size: 12px;
 	text-align: center;
 	border: 1px solid RGB(17, 135, 254);
-	border-radius: 5px;
-	background: #d3d3d38c;
+	background: white;
 	cursor: pointer;
 }

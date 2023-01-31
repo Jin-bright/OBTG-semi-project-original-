@@ -7,15 +7,19 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.sh.obtg.member.model.dto.Member;
+import com.sh.obtg.member.model.dto.MemberRole;
 
 
 /**
  * Servlet Filter implementation class AdminFilter
  */
-//@WebFilter("/admin/*")
+@WebFilter({"/admin/*", "/report/reportList", "/report/reportUpdate"})
 public class AdminFilter implements Filter {
 
 	/**
@@ -27,16 +31,15 @@ public class AdminFilter implements Filter {
 		HttpServletResponse httpRes = (HttpServletResponse) response;
 		HttpSession session = httpReq.getSession();
 
-//		Member loginMember = ((Member) session.getAttribute("loginMember"));
+		Member loginMember = ((Member) session.getAttribute("loginMember"));
 		// System.out.println("[관리자 권한 페이지 요청 @AdminFilter]");
 
-//		if (loginMember == null || loginMember.getMemberRole() != MemberRole.A) {
+		if (loginMember == null || loginMember.getMemberRole() != MemberRole.U) {
 			session.setAttribute("msg", "관리자만 사용가능합니다.");
 			httpRes.sendRedirect(httpReq.getContextPath() + "/");
 			return;
 		}
-		// pass the request along the filter chain
-//		chain.doFilter(request, response);
+		chain.doFilter(request, response);
 	}
 
-//}
+}
