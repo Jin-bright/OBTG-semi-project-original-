@@ -25,9 +25,9 @@ public class FaqDeleteServlet extends HttpServlet {
 		int result = 0;
 		result = faqService.deleteFaq(no);
 		if(result > 0) {
-			System.out.println("게시글 삭제 처리 성공");
+			System.out.println("게시글 삭제 처리 성공!");
 		} else {
-			System.out.println("게시글 삭제 처리 실패");
+			System.out.println("게시글 삭제 처리 실패!");
 		}
 		
 		// view단 처리

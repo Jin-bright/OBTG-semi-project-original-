@@ -444,3 +444,24 @@ select * from faq;
 
 -- 제약조건 해제 / 대신 inline에 빡세게걸기 (by jin / id부분  ootd board comment share / 0129 ) 
 
+
+
+--블랙리스트 테이블
+create table blackList(
+    no number,
+    email varchar2(100)
+);
+create sequence seq_blackList;
+
+--블랙리스트 테이블에 insert시 자동으로 member테이블에서는 제외 될 수있도록
+create or replace trigger trig_blackList
+    after
+    insert on blackList
+    for each row
+begin
+    delete member where email= :new.email;
+end;
+/
+
+
+--select * from blackList;

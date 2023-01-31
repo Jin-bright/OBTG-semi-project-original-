@@ -243,6 +243,11 @@ document.memberEnrollFrm.onsubmit = (e) => {
 		memberName.select();
 		return false;
 	}
+	
+	if(email.value == "Ban"){
+		alert("가입이 제한된 이메일 입니다.");
+		return false;
+	}
 };
 
 document.celebEnrollFrm.addEventListener("submit", (e) => {

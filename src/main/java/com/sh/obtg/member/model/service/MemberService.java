@@ -1,16 +1,14 @@
 package com.sh.obtg.member.model.service;
 
-import static com.sh.obtg.common.JdbcTemplate.*;
+import static com.sh.obtg.common.JdbcTemplate.close;
+import static com.sh.obtg.common.JdbcTemplate.commit;
+import static com.sh.obtg.common.JdbcTemplate.getConnection;
+import static com.sh.obtg.common.JdbcTemplate.rollback;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-import com.sh.obtg.member.model.exception.MemberException;
-import com.sh.obtg.ootd.model.dto.OotdBoard;
-import com.sh.obtg.share.model.dto.ShareBoard;
 import com.sh.obtg.member.model.dao.MemberDao;
 import com.sh.obtg.member.model.dto.Like;
 import com.sh.obtg.member.model.dto.Member;
@@ -193,5 +191,30 @@ public class MemberService {
 		close(conn);
 		return ootdLikes;
 	}
-
+	
+	// 이메일 조회
+	public int selectEmail(String memberEmailId) {
+		int result = 0;
+		Connection conn = getConnection();
+		try {
+			result = memberDao.selectEmail(conn, memberEmailId);
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			close(conn);
+		}
+		return result;
+	}
+	public int selectBlackList(String memberEmailId) {
+		int result = 0;
+		Connection conn = getConnection();
+		try {
+			result = memberDao.selectBlackList(conn, memberEmailId);
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			close(conn);
+		}
+		return result;
+	}
 }
