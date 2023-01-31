@@ -11,12 +11,15 @@
 <%@ include file="/WEB-INF/views/common/adminView.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/black.css">
 <div id="memberList-container">
-<%-- 	<h2><a href="<%=request.getContextPath()%>/admin/memberList">회원관리</a> |  --%><span style="text-decoration:underline;">블랙리스트</span></h2>
+<%-- 	<h2><a href="<%=request.getContextPath()%>/admin/memberList">회원관리</a> |  --%><!-- <span style="text-decoration:underline;">블랙리스트</span></h2> -->
 	<!-- 회원조회 -->
 	<div id="tableArea">
 		<table id="tbl-member">
 			<thead>
 				<tr>
+				<br><br><br>
+				<h1 align="center" >블랙리스트</h1>
+				<br><br><br>
 					<th>no</th>
 					<th>이메일</th>
 					<th>관리</th>
