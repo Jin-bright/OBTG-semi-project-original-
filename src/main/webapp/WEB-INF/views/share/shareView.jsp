@@ -213,7 +213,6 @@ function open_chat(<%=shareBoard.getMemberId()%>){
             </tr>
         </tbody>
     </table>
-<!--     <span style="margin-left: 1em; font-weight: bold;">사유선택</span> -->
     <table id="reason_wrap">
         <tbody>
         	<tr>

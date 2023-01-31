@@ -47,7 +47,7 @@
  							<% if(loginMember.getMemberRole() == MemberRole.A) { %>
  							
  							<ul class="dd-menu">
-	      						<li><a href="<%= request.getContextPath() %>//admin/memberList;">관리자페이지</a></li>
+	      						<li><a href="<%= request.getContextPath() %>/admin/memberList;">관리자페이지</a></li>
 	      						<li><a href="<%= request.getContextPath() %>/member/logout;">로그아웃</a></li>
 	    					</ul>
  							<% } else{ %>

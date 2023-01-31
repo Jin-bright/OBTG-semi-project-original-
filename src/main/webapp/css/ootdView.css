@@ -361,7 +361,7 @@ table#tbl-comment tr:hover button.btn-delete{display:inline;}
 /* 신고 */
 #siren {
 	width: 30px;
-	transform: translate(-65px, -21px);
+	transform: translate(200px, -261px);
 	cursor: pointer;
 }
 /* 신고폼 */
