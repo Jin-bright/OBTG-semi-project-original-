@@ -42,7 +42,6 @@ function open_chat(<%=shareBoard.getMemberId()%>){
      
 }
 </script>
-
 <form name="frmPopup">
 	<input type="hidden" name="memberID" >
 </form>
@@ -192,9 +191,10 @@ function open_chat(<%=shareBoard.getMemberId()%>){
 	class="report_container"
 	name="reportEnrollFrm"
 	method="post"
-	action="<%= request.getContextPath() %>/report/reportEnroll">
+	action="<%= request.getContextPath() %>/report/reportEnroll"
+	id="report_container">
 	<span class="close-button" onclick="closeFrm()">&times;</span>
-    <h2 style="text-align: center; margin: 5px;" >신고하기</h2>
+    <h2 style="text-align: center; margin: 5px;" id="head">신고하기</h2>
     <hr />
     <table id="report_wrap">
         <thead>
@@ -316,6 +316,7 @@ const reportFrm = () => {
 	const frm = document.querySelector(".report_container");
 	<% if(loginMember != null){ %>
 	frm.classList.toggle("showPopup");
+	
 	<% } else { %>
 	loginAlert();
 	<% } %>
@@ -342,5 +343,7 @@ const reportEnroll = () => {
 	} 
 	alert("신고가 접수되었습니다.")
 }
+
+
 </script>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

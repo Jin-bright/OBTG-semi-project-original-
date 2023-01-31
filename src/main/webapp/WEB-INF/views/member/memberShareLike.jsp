@@ -42,27 +42,37 @@
 	<hr />
 	<section id="like-container">
 	<div id="like-nav">
+		<h3>나의 <span style="color: orange; font-weight: 900; font-size: 15px;">좋아요</span></h3>
 		<span><a href="<%= request.getContextPath() %>/member/memberOotdLike">OOTD</a></span>
 		<span style="font-weight: 900;"><a href="<%= request.getContextPath() %>/member/memberShareLike">SHARE</a></span>
 	</div>
 	<table id="like-wrap">
 	<% 
-		for(int i = 0; i < shareLikes.size(); i++) {
-			if(i % 4 == 0 ){
+		if(shareLikes.size() > 0) {
+			for(int i = 0; i < shareLikes.size(); i++) {
+				if(i % 4 == 0 ){
 	%>
 		<tr>
-		<% } %>
+			<% } %>
 			<td>
 				<a href="<%= request.getContextPath() %>/share/shareView?no=<%= shareLikes.get(i).getNo() %>">
 					<img src="<%= request.getContextPath() %>/uploadshares/share/<%= shareLikes.get(i).getRenamed_filename() %>" alt="" />
 					<p><%= shareLikes.get(i).getTitle() %></p>
 				</a>
 			</td>
-		<% if(i % 4 == 3){%>
+			<% if(i % 4 == 3){%>
   		</tr>
 	<% 
-  	 		}   	    
-  	 	}
+  	 			}   	    
+  	 		} 
+		} else if (shareLikes.size() == 0){
+	%>
+		<div id="empty-box">
+			<h2>앗 아직 <span style="color: purple;">share</span>게시판에 좋아요를 누르지 않았어요!🥲</h2>
+			<p><a href="<%=request.getContextPath()%>/share/shareWholeList">SHARE 게시판으로 이동</a></p>
+		</div>
+	<%		
+		}
 	%> 
 	</table>
 	</section>
