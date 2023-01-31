@@ -16,6 +16,24 @@
 	
 	int likeCnt = (int)request.getAttribute("likeCnt");
 %>
+<style>
+.gogogo{
+	display:inline;
+	margin-left: 1200px;
+	width : 280px;
+	height : 40px;
+	display : flex;
+	padding-right : 40px;
+	margin-top : 90px;
+}
+#profileimg{
+	margin-left: 1500px;
+	margin-top : 150px;
+	width:40px;
+}
+</style>
+
+
 <script >
 function open_pop(<%=shareBoard.getMemberId()%> ){
     const frmPop= document.frmPopup;
@@ -53,57 +71,68 @@ function open_chat(<%=shareBoard.getMemberId()%>){
 
 <section id="board-container" >
 <br /><br /><br /><br /><br /><br /><br />
-<%-- 	<p id="informationsp" > INFORMATION  <span id="styleinfo">스타일 정보</span></p>
-<ul class="ootdnav">
-	<li class="button-dropdown">
-	   	<a id="firsta" href="" class="dropdown-toggle">
-	    <img id="profileimg" style="margin-left:210px" src="<%=request.getContextPath()%>/uploadootds/ootd/profile.png" alt="profileimg" /> </a>
+<p id="informationsp" > INFORMATION  <span id="styleinfo" ">스타일 정보</span></p>
+
+ <ul class="ootdnav">
+	<li class="probutton-dropdown">
+	   	<a id="firsta" href="" class="prodropdown-toggle" >
+	    	<img id="profileimg" style="margin-left:140px; margin-top : 40px" src="<%=request.getContextPath()%>/uploadootds/ootd/profile.png" alt="profileimg" />
+	    </a>
 	    
-	    <ul class="dropdown-menu" style="margin-left:30px">
-   	 	 <li><a onclick="open_pop('<%=shareBoard.getMemberId()%>');">프로필보기</a></li>  
+	    <ul class="prodown-menu" style="margin-left:30px">
+   	 	 <li><a onclick="open_pop('<%=shareBoard.getMemberId()%>');" style="margin-left:60px"> 프로필보기</a></li>  
+		 <li id="chatplz"><%-- <a href="<%=request.getContextPath()%>/chat/chatsecondtry"></a> --%>채팅걸기</li>
+
+	<form id="test" name="testFrm"  action="<%=request.getContextPath()%>/chat/chatsecondtry"  method="post">
+		<input type="hidden" name="chatroomId" id="chatroomId" value="S<%=shareBoard.getShareNo()%><%=shareBoard.getMemberId()%>+<%=loginMember.getMemberId()%>"/> <!--  chatid  -->
+		<input type="hidden" name="boardno"  id="boardno" value="<%=shareBoard.getShareNo()%>"/> 
+		<input type="hidden" name="memberID" id="memberID" value="<%=loginMember.getMemberId()%>" />
+	</form>	 
+		 	<!-- <input id="submitli" type="submit"/> 
+		 </a></li>
 		 
-		<li> <li><a href="#">채팅걸기</a></li>
-<!--
-	 	<form id="test" action="<%=request.getContextPath()%>/chat/chatsecondtry" method="post">
-		 	<input type="hidden" name="chatroomId" value="S<%=shareBoard.getShareNo()%><%=shareBoard.getMemberId()%>+<%=loginMember.getMemberId()%>"/> <!--  chatid  -->
-		 	<input type="hidden" name="boardno" value="<%=shareBoard.getShareNo()%>"/> <!-- boardno  
-		 	<input type="hidden" name="memberID" value="" />
 		 	<input type="submit" value="제출"/>
  			<a id= "submitli" type="submit" onclick="document.getElementById('test').submit();"> 
 		</form>-->
-			채팅하기
-		 	<!-- <input id="submitli" type="submit"/> 
-		 </a></li>-->
+		
+		-->
 		</ul>
    </li>
 </ul>
---%>
-<p id="informationsp" > INFORMATION  <span id="styleinfo" ">스타일 정보</span></p>
+
+<script>
+document.querySelector("#chatplz").addEventListener('click', () => {
+
+	const chatroomId = document.querySelector("#chatroomId").value;
+	const memberId = document.querySelector("#memberID").value;
+	const boardno = document.querySelector("#boardno").value;
+	 
+	
+	const frm = document.testFrm;
+	frm.chatroomId.value = chatroomId;
+	frm.memberID.value = memberId;
+	frm.boardno.value = boardno;
+	
+	frm.submit();
+
+});
+
+</script>
 
 
-<form name="testFrm" id="test" action="<%=request.getContextPath()%>/chat/chatsecondtry" method="post">
+
+<%-- <div id="profileView"  class="gogogo">
+	<span style="background:yellow"><a onclick="open_pop('<%=shareBoard.getMemberId()%>');">프로필보기</a></span>	
+	<span><a href="">채팅걸기</a></span>
+	<form name="testFrm" id="test" action="<%=request.getContextPath()%>/chat/chatsecondtry" method="post">
 	<input type="hidden" name="chatroomId" value="S<%=shareBoard.getShareNo()%><%=shareBoard.getMemberId()%>+<%=loginMember.getMemberId()%>"/> <!--  chatid  -->
 	<input type="hidden" name="boardno" value="<%=shareBoard.getShareNo()%>"/>  
  	<input type="hidden" name="memberID" value="" />
  	<input type="submit" value="채팅하기"/>
-</form>
+</form>	
+</div> --%>
 
 
-
-
-
-<ul class="ootdnav">
-	<li class="button-dropdown">
-	   	<a id="firsta" href="javascript:void(0)" class="dropdown-toggle">
-	    <img id="profileimg" src="<%=request.getContextPath()%>/uploadootds/ootd/profile.png" alt="profileimg" /> </a>
-	    
-	    <ul class="dropdown-menu">
-   	 	 <li><a onclick="open_pop('<%=shareBoard.getMemberId()%>');">프로필보기</a></li> 
-	      <li><a href="#">채팅걸기</a></li>
-	    </ul>
-   </li>
-</ul>
- 
 <div class="imgNtableContainer">
  <div class="box">
 	<% 
@@ -302,21 +331,21 @@ jQuery(document).ready(function (e) {
             e(this).parent().fadeOut()
         })
     }
-    e(".dropdown-toggle").click(function () {
-        var t = e(this).parents(".button-dropdown").children(".dropdown-menu").is(":hidden");
-        e(".button-dropdown .dropdown-menu").hide();
-        e(".button-dropdown .dropdown-toggle").removeClass("active");
+    e(".prodropdown-toggle").click(function () {
+        var t = e(this).parents(".probutton-dropdown").children(".prodropdown-menu").is(":hidden");
+        e(".probutton-dropdown .prodropdown-menu").hide();
+        e(".probutton-dropdown .prodropdown-toggle").removeClass("active");
         if (t) {
-            e(this).parents(".button-dropdown").children(".dropdown-menu").toggle().parents(".button-dropdown").children(".dropdown-toggle").addClass("active")
+            e(this).parents(".probutton-dropdown").children(".prodropdown-menu").toggle().parents(".probutton-dropdown").children(".prodropdown-toggle").addClass("active")
         }
     });
     e(document).bind("click", function (t) {
-        var n = e(t.target);
-        if (!n.parents().hasClass("button-dropdown")) e(".button-dropdown .dropdown-menu").hide();
+        let n = e(t.target);
+        if (!n.parents().hasClass("probutton-dropdown")) e(".probutton-dropdown .prodropdown-menu").hide();
     });
     e(document).bind("click", function (t) {
-        var n = e(t.target);
-        if (!n.parents().hasClass("button-dropdown")) e(".button-dropdown .dropdown-toggle").removeClass("active");
+        let n = e(t.target);
+        if (!n.parents().hasClass("probutton-dropdown")) e(".probutton-dropdown .prodropdown-toggle").removeClass("active");
     })
 });
 </script>
@@ -373,10 +402,5 @@ const reportEnroll = () => {
 }
 </script>
 
-<script>
-document.testFrm.addEventListener("subit", (e) => {
-	e.preventDefault();
-}
 
-</script>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
