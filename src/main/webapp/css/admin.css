@@ -1,6 +1,6 @@
 ﻿@CHARSET "UTF-8";
 /*관리자 페이지 : 회원관리 */
-section#memberList-container { text-align:center; padding-left: 200px; margin-bottom: 70px;}
+section#memberList-container { text-align:center; padding-left: 200px; margin-bottom: 70px; min-height: 820px;}
 section#memberList-container table#tbl-member { width:100%; border:1px solid gray; border-collapse:collapse; }
 table#tbl-member th, table#tbl-member td { border:1px solid gray; padding:10px; }
 
@@ -33,6 +33,7 @@ td {
 #tbl-admin th {
 	border: 0;
 	padding: 12px 4px;
+	background-color : darkgray;
 }
 
 #tbl-admin tr {
