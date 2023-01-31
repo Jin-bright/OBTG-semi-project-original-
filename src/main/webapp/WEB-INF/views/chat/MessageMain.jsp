@@ -74,9 +74,11 @@
 </head>
 <body>
 
-<h1> 이것은 채팅방 </h1>
+<h1> 이것은 쪽지 </h1>
 	<section id="chat-container" style="width:500px">	
-		<h2>채팅</h2>
+		<h2> 쪽지  </h2>
+		<h2> post방식도 전송되니  </h2>
+		
 		<div id="msg-container">
 			<ul></ul>
 		</div>

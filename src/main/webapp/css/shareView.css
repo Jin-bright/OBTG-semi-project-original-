@@ -3,12 +3,6 @@
 
 /** p **/
 
-#profileimg{
-	width:40px;
-	float:right;	
-	margin-left : -500px;
-}
-
 .ootdnav {
     display: inline-block;
     font: 13px Helvetica, Tahoma, serif;
@@ -309,7 +303,7 @@ div.comment-container button#btn-comment-enroll1 {
 	visibility: hidden;
 }
 .showPopup {
-	position: fixed; 
+	/* position: fixed;  */
 	top: 50%; left: 50%; 
 	transform: translate(-50%, -50%); 
 	width: 25em; 

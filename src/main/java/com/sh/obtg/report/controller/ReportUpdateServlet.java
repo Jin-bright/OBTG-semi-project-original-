@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sh.obtg.notification.model.dto.Notification;
+import com.sh.obtg.notification.model.service.NotificationService;
 import com.sh.obtg.report.model.service.ReportService;
 
 /**
@@ -17,6 +18,7 @@ import com.sh.obtg.report.model.service.ReportService;
 public class ReportUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ReportService reportService = new ReportService();
+	private NotificationService notificationService = new NotificationService();
 	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -40,7 +42,7 @@ public class ReportUpdateServlet extends HttpServlet {
 			noti.setMessage(message);
 			System.out.println("noti 등록 됨?" + noti);
 			
-			int notiResult = reportService.insertNoti(noti);
+			int notiResult = notificationService.insertNoti(noti);
 			System.out.println(notiResult > 0 ? "알림 등록 성공" : "알림 등록 실패");
 			
 			int reportResult = reportService.updateReport(reportNo);
