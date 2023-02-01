@@ -259,7 +259,6 @@ function open_pop(<%=ootdboard.getOotdWriter()%> ){
             </tr>
         </tbody>
     </table>
-<!--     <span style="margin-left: 1em; font-weight: bold;">사유선택</span> -->
     <table id="reason_wrap">
         <tbody>
         	<tr>

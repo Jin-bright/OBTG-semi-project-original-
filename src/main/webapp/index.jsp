@@ -7,7 +7,7 @@
 <section class="swiper-container loading">
   <div class="swiper-wrapper">
     <div class="swiper-slide" >
-     	<video autoplay muted controls playsinline height = "310" width="100%" style="background: black;">
+     	<video autoplay muted controls playsinline height = "350" width="100%" style="background: black;">
         <source src="https://img.marieclairekorea.com/2021/09/mck_61359e7bc5073.mp4?_=1" >
     	</video>
       <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85" class="entity-img" />

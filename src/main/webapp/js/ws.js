@@ -35,7 +35,7 @@ ws.addEventListener('message', (e) => {
 									const bell = document.querySelector(".bell");
 									bell.classList.remove('bell-twinkle');
 									bell.classList.add('bell-hiden');
-									alert("읽음 처리 완료")
+									//alert("읽음 처리 완료")
 								}
 								else
 									alert("읽음 처리 오류");

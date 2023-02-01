@@ -34,7 +34,7 @@ public class ReportUpdateServlet extends HttpServlet {
 			String reason = request.getParameter("reason");
 			String content = request.getParameter("content");
 			
-			String message = "[" + reason + "]의 이유로 신고해 주신 [" + boardNo + "] 게시물에 대한 처리 결과를 알려드립니다.\n" + content;
+			String message = "[" + reason + "]의 이유로 신고한 [" + boardNo + "] 게시물 처리 결과.\n" + content;
 			System.out.println(message);
 			
 			Notification noti = new Notification();
