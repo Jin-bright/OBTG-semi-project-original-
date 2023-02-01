@@ -481,3 +481,6 @@ create table message (
 
 create sequence seq_message_no;
 
+select * from faq;
+
+commit;

@@ -40,16 +40,25 @@
 </table>
 <% } else { %>
 
-				 <table id="login" style="margin-left:80%; text-align:right;">
+				 <table id="login" style="margin-left:50%; text-align:right;">
 					<tr>
 						<td>
-							<img id="defaultimg" src="<%=request.getContextPath()%>/image/default.png" alt="defaultimg" style="width:30px; height:30px; cursor: pointer;"/>
+						<nav id="colorNav">
+    						<ul>
+       						 <li class="green">
+            					<a href="#" class="fa fa-windows"><img id="defaultimg" src="<%=request.getContextPath()%>/image/default.png" alt="defaultimg" style="width:30px; height:30px;"/></a>
  							<% if(loginMember.getMemberRole() == MemberRole.A) { %>
- 							
- 							<ul class="dd-menu">
+            						<ul>
+						                <li><a href="<%= request.getContextPath() %>/admin/memberList;">관리자페이지</a></li>
+						                <li><a href="<%= request.getContextPath() %>/member/logout;">로그아웃</a></li>
+							            </ul>
+							        </li>
+							    </ul>
+							</nav>
+ 							 <%--<ul class="dd-menu">
 	      						<li><a href="<%= request.getContextPath() %>/admin/memberList;">관리자페이지</a></li>
 	      						<li><a href="<%= request.getContextPath() %>/member/logout;">로그아웃</a></li>
-	    					</ul>
+	    					</ul>--%>
  							<% } else{ %>
 							<ul class="dd-menu">
 	      						<li><a href="<%= request.getContextPath() %>/member/memberView;">My Page</a></li>
@@ -125,28 +134,5 @@ let getIcon = (event) =>{
 
 </script>
 <script>
-jQuery(document).ready(function (e) {
-    function t(t) {
-        e(t).bind("click", function (t) {
-            t.preventDefault();
-            e(this).parent().fadeOut()
-        })
-    }
-    e(".dropdown-toggle").click(function () {
-        var t = e(this).parents(".button-dropdown").children(".dropdown-menu").is(":hidden");
-        e(".button-dropdown .dropdown-menu").hide();
-        e(".button-dropdown .dropdown-toggle").removeClass("active");
-        if (t) {
-            e(this).parents(".button-dropdown").children(".dropdown-menu").toggle().parents(".button-dropdown").children(".dropdown-toggle").addClass("active")
-        }
-    });
-    e(document).bind("click", function (t) {
-        var n = e(t.target);
-        if (!n.parents().hasClass("button-dropdown")) e(".button-dropdown .dropdown-menu").hide();
-    });
-    e(document).bind("click", function (t) {
-        var n = e(t.target);
-        if (!n.parents().hasClass("button-dropdown")) e(".button-dropdown .dropdown-toggle").removeClass("active");
-    })
-});
+$('.dropdown-toggle').dropdown()
 </script>
