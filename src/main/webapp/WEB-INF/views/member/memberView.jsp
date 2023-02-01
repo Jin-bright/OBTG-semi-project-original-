@@ -23,7 +23,7 @@
 	 <div class="container-li">
 	 <a href="">
 	 <img src="<%= request.getContextPath()%>/image/chat.png" alt="" />
-	 	<li>&nbsp;Chat</li>
+	 	<li>&nbsp;Message</li>
 	 </a>
 	 </div>
 	 <div class="container-li">
