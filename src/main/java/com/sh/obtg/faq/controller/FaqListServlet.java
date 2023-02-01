@@ -35,6 +35,7 @@ public class FaqListServlet extends HttpServlet {
 		
 		// 업무로직
 		List<faq> faqList = faqService.selectFaqList(param);
+		System.out.println("마 가져왔나!" + faqList);
 		
 		int totalCount = faqService.selectTotalCount();
 		
