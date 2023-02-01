@@ -50,3 +50,6 @@
 .category:hover {
 	border-bottom-style: solid;
 }
+#empty-box a:hover {
+	font-weight: 900;
+}

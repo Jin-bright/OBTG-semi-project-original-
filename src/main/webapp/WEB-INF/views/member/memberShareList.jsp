@@ -71,7 +71,7 @@
 		%> 
 			<div id="empty-box">
 				<h2>앗 아직 <span style="color: purple;">share</span>게시판에 글을 작성하지 않았어요!🥲</h2>
-				<p><a href="<%=request.getContextPath()%>/share/shareWholeList"><span class="category">SHARE</span> 게시판으로 이동</a></p>
+				<p><a href="<%=request.getContextPath()%>/share/shareWholeList">SHARE 게시판으로 이동</a></p>
 			</div>
 		<% } %>
 		</table>

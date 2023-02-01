@@ -30,7 +30,7 @@ public class MessageList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {			
-			final int limit = 8;
+			final int limit = 10;
 			int page = 1; // 기본값
 			try {
 				page = Integer.parseInt(request.getParameter("page"));
