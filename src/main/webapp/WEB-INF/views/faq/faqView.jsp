@@ -52,17 +52,46 @@ table#tbl-comment tr:hover button.btn-delete{display:inline;}
 	width: 1000px;
 	margin: auto;
 }
-
-
-
-
+div.board_title{
+text-align: center;
+}
+div.board_wrap{
+margin-left: 20vw;
+}
+div.info{
+text-align: right;
+}
+input#btn-add2{
+float: right;
+}
+textarea{
+margin-top: 30px;
+margin-left: 50px;
+    width: 45vw;
+    }
+form{
+text-align:center;
+}
+button#btn-add3{
+width: 50px;
+    height: 50px;
+    float: right;
+    margin-top: 30px;
+    }
+div.comment-container{
+text-align : center;
+    margin-bottom: 30px;
+}
+table#tbl-comment{
+    width: 46vw;
+    margin-left: 50px;
+    margin-top: 20px;
+    border-collapse: collapse;
+    }
 </style>
-
-
 
 <body>
     <div class="board_wrap">
-    
     
         <div class="board_title">
             <strong>INFO</strong>
@@ -131,7 +160,7 @@ table#tbl-comment tr:hover button.btn-delete{display:inline;}
                 <button type="submit" id="btn-add3">등록</button>
             </form>
         </div>
-	<hr style="margin-top:30px;" />	
+	<!-- <hr style="margin-top:15px; margin-bottom:15px;" /> -->	
 		<!--table#tbl-comment-->
 		<%
 			if(!comments.isEmpty()){
