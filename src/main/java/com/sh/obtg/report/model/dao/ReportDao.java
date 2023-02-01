@@ -68,9 +68,12 @@ private Properties prop = new Properties();
 		int page = (int)param.get("page");
 		int limit = (int)param.get("limit");
 		
+		int start = (page - 1) * limit + 1;
+		int end = page * limit;
+		
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setInt(1, page);
-			pstmt.setInt(2, limit);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			
 			try (ResultSet rset = pstmt.executeQuery()) {
 				while(rset.next()) {
