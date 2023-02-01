@@ -464,4 +464,6 @@ end;
 /
 
 
---select * from blackList;
+select * from faq;
+
+commit;
