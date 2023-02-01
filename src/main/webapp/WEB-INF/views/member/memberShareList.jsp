@@ -42,8 +42,9 @@
 	<hr />
 	<section id="board-container">
 		<div id="nav-container"> 
-			<span><a href="<%= request.getContextPath() %>/member/memberOotdList">ootd</a></span>
-			<span style="font-weight: 900"><a href="<%= request.getContextPath() %>/member/memberShareList">share</a></span>
+			<h6 style="font-size: 13px; color: darkgray;">내가 작성한 글을 확인해보세요!</h6>
+			<span><a href="<%= request.getContextPath() %>/member/memberOotdList">OOTD</a></span>
+			<span style="font-weight: 900"><a href="<%= request.getContextPath() %>/member/memberShareList">SHARE</a></span>
 		</div>
 		<table id="boardList-wrap">
 		<% 
@@ -70,7 +71,7 @@
 		%> 
 			<div id="empty-box">
 				<h2>앗 아직 <span style="color: purple;">share</span>게시판에 글을 작성하지 않았어요!🥲</h2>
-				<p><a href="<%=request.getContextPath()%>/share/shareWholeList">SHARE 게시판으로 이동</a></p>
+				<p><a href="<%=request.getContextPath()%>/share/shareWholeList"><span class="category">SHARE</span> 게시판으로 이동</a></p>
 			</div>
 		<% } %>
 		</table>
