@@ -70,7 +70,7 @@
 		%> 
 			<div id="empty-box">
 				<h2>앗 아직 <span style="color: purple;">ootd</span>게시판에 글을 작성하지 않았어요!🥲</h2>
-				<p><a href="<%=request.getContextPath()%>/ootd/ootdWholeList"><span class="category">OOTD</span> 게시판으로 이동</a></p>
+				<p><a href="<%=request.getContextPath()%>/ootd/ootdWholeList">OOTD 게시판으로 이동</a></p>
 			</div>
 		<% } %>
 		</table>
