@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sh.obtg.message.model.dto.Message;
 import com.sh.obtg.message.model.service.MessageService;
+import com.sh.obtg.notification.model.dto.Notification;
+import com.sh.obtg.notification.model.service.NotificationService;
 
 /**
  * Servlet implementation class MessageInputServlet
@@ -19,6 +21,7 @@ import com.sh.obtg.message.model.service.MessageService;
 public class MessageInputServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MessageService messageService = new MessageService();
+	private NotificationService notificationService = new NotificationService();
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -27,7 +30,9 @@ public class MessageInputServlet extends HttpServlet {
 	//1. 사용자입력값 처리 
 		int no = 0;
 		try {
-			no = Integer.parseInt(request.getParameter("no"));
+			try {
+				no = Integer.parseInt(request.getParameter("no"));
+			} catch (NumberFormatException e) {}
 			String receiver = request.getParameter("receiver");
 			String sender = request.getParameter("sender");
 			String msgContent = request.getParameter("msgContent");
@@ -46,12 +51,31 @@ public class MessageInputServlet extends HttpServlet {
 			int result = messageService.insertMessage(message);
 			System.out.println("메세지 input 성공여부 " + result );
 			
-			response.sendRedirect(request.getContextPath()+"/share/shareView?no="+no);
+			// 알림 내역 저장
+			Notification noti = new Notification();
+			String msg = sender + "(으)로부터 쪽지가 도착했습니다!🥰";
+			noti.setReceiver(receiver);
+			noti.setMessage(msg);
+			
+			int notiResult = notificationService.insertNoti(noti);
+			System.out.println(notiResult > 0 ? "알림 내역 저장 성공" : "알림 내역 저장 실패");
+			
+			if(no > 0) {
+				response.sendRedirect(request.getContextPath()+"/share/shareView?no="+no);
+			}
+			else {
+				response.sendRedirect(request.getContextPath()+"/message/messageList");
+			}
 
 		}catch (Exception e) {
 			request.getSession().setAttribute("msg", "게시글 등록중 오류가 발생했습니다." );
 			e.printStackTrace();
-	    	response.sendRedirect(request.getContextPath()+"/share/shareView?no="+no);
+			if(no > 0) {
+				response.sendRedirect(request.getContextPath()+"/share/shareView?no="+no);
+			}
+			else {
+				response.sendRedirect(request.getContextPath()+"/message/messageList");
+			}
 		}			
 	}//
 

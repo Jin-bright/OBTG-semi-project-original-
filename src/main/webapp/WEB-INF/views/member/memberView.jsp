@@ -21,7 +21,7 @@
 	 </a>
 	 </div>
 	 <div class="container-li">
-	 <a href="">
+	 <a href="<%= request.getContextPath() %>/message/messageList">
 	 <img src="<%= request.getContextPath()%>/image/chat.png" alt="" />
 	 	<li>&nbsp;Message</li>
 	 </a>

@@ -41,4 +41,22 @@ public class NotificationService {
 		
 		return result;
 	}
+	
+	/**
+	 * 알림 등록
+	 * @param noti
+	 * @return
+	 */
+	public int insertNoti(Notification noti) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = notificationDao.insertNoti(conn, noti);
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		}
+		return result;
+	}
 }
