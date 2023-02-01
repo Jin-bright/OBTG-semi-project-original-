@@ -15,6 +15,7 @@
 	color: #ffd688;
 }
 #like-wrap {
+	margin-top: 30px;
 	text-align: center;
 	transform: translate(-220px, 10px);
 }
@@ -26,11 +27,17 @@
 	background: #ffd688;
 }
 #like-wrap img {
-	width: 187px;
-	height: 275px;
+	width: 180px;
+	height: 230px;
 }
 #like-wrap p {
 	padding-top: 12px;
 	font-size: 15px;
 	font-weight: 700;
+}
+#empty-box {
+	margin: 50px;
+}
+#empty-box a:hover {
+	font-weight: 900;
 }

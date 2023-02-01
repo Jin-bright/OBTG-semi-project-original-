@@ -4,8 +4,8 @@
  	int totalPage = (int)request.getAttribute("totalPage");
 %>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/columnList.css" />
-  
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/columnList.css" />  
+
 	<% 
 		if(loginMember != null 
 			&& loginMember.getMemberRole() == MemberRole.A){ 
@@ -17,7 +17,7 @@
     <div id='btn-more-container' style="text-align:center; margin-bottom: 1em;">
 		<button id="btn-more" value="" >LOAD MORE POSTS(<span id="page"></span>/<span id="totalpage"><%= totalPage %></span>)</button>
 	</div>
-
+	
 <script>
 window.addEventListener('load', () => {
 	// 첫페이지 내용 로드
@@ -63,16 +63,10 @@ const getPage = (page) => {
 				const h2 = document.createElement("h2");
 				h2.classList.add('col_title')
 				h2.append(column.title);
-				/* h2.style.fontSize = "2.3em";
-				h2.style.fontFamily = 'swipercons'; */
 				
 				const p1 = document.createElement("p");
 				p1.classList.add('col_subtitle')
 				p1.append(column.subtitle);
-				/* p1.style.fontFamily = 'swipercons';
-				p1.style.fontSize = "1.2em";
-				p1.style.paddingTop = ".5em"; */
-				
 				
 				div3.append(h2, p1);
 				a.append(img, div3);
@@ -99,7 +93,6 @@ const getPage = (page) => {
 	});
 };
 </script>
-
 <% 
 	if(loginMember != null 
 		&& loginMember.getMemberRole() == MemberRole.A){ 

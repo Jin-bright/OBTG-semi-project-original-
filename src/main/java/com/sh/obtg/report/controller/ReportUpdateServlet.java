@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sh.obtg.notification.model.dto.Notification;
+import com.sh.obtg.notification.model.service.NotificationService;
 import com.sh.obtg.report.model.service.ReportService;
 
 /**
@@ -17,6 +18,7 @@ import com.sh.obtg.report.model.service.ReportService;
 public class ReportUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ReportService reportService = new ReportService();
+	private NotificationService notificationService = new NotificationService();
 	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -32,7 +34,7 @@ public class ReportUpdateServlet extends HttpServlet {
 			String reason = request.getParameter("reason");
 			String content = request.getParameter("content");
 			
-			String message = "[" + reason + "]의 이유로 신고해 주신 [" + boardNo + "] 게시물에 대한 처리 결과를 알려드립니다.\n" + content;
+			String message = "[" + reason + "]의 이유로 신고한 [" + boardNo + "] 게시물 처리 결과.\n" + content;
 			System.out.println(message);
 			
 			Notification noti = new Notification();
@@ -40,7 +42,7 @@ public class ReportUpdateServlet extends HttpServlet {
 			noti.setMessage(message);
 			System.out.println("noti 등록 됨?" + noti);
 			
-			int notiResult = reportService.insertNoti(noti);
+			int notiResult = notificationService.insertNoti(noti);
 			System.out.println(notiResult > 0 ? "알림 등록 성공" : "알림 등록 실패");
 			
 			int reportResult = reportService.updateReport(reportNo);

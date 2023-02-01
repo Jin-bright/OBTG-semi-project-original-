@@ -26,7 +26,7 @@
 				</a>
 			</div>
 			<div class="container-li">
-				<a href="">
+				<a href="<%= request.getContextPath() %>/message/messageList">
 					<img src="<%= request.getContextPath()%>/image/chat.png" alt="" />
 					<li>&nbsp;Message</li>
 				</a>
@@ -48,7 +48,7 @@
 	</div>
 	<table id="like-wrap">
 	<% 
-		if(ootdLikes != null){
+		if(ootdLikes.size() > 0){
 			for(int i = 0; i < ootdLikes.size(); i++) {
 				if(i % 4 == 0 ){
 	%>
@@ -65,8 +65,13 @@
 	<% 
 				}   	    
   	 		}
-		} 
+		} else if(ootdLikes.size() == 0) {
 	%>
+		<div id="empty-box">
+			<h2>앗 아직 <span style="color: purple;">ootd</span>게시판에 좋아요를 누르지 않았어요!🥲</h2>
+			<p><a href="<%=request.getContextPath()%>/ootd/ootdWholeList">OOTD 게시판으로 이동</a></p>
+		</div>
+	<% } %>
 
 	</table>
 	</section>

@@ -25,6 +25,21 @@ div#search-container  { width: 100%; margin:0 0 10px 0; padding:3px; }
 div#search-memberId	  { display: <%= searchType == null || "member_id".equals(searchType) ? "inline-block" : "none" %>; }
 div#search-memberName { display: <%= "name".equals(searchType) ? "inline-block" : "none" %>; }
 div#search-gender     { display: <%= "gender".equals(searchType) ? "inline-block" : "none" %>; }
+
+#btn-add1, .submit-button {
+	font-size: 16px;
+	border: 0;
+	outline: 0;
+	border-radius: 8px;
+	background-color: #525252;
+	color: white;
+	padding: 3px 16px;
+	font-weight: 500;
+
+    margin-right: 0;
+	margin-bottom: 8px;
+}
+
 </style>
 <script>
 window.addEventListener('load', () => {
@@ -103,7 +118,7 @@ window.addEventListener('load', () => {
 				<th>이메일</th>
 				<th>전화번호</th>
 				<th>회원권한</th>
-				<th>회원추방</th>
+				<th>블랙리스트</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -130,7 +145,7 @@ window.addEventListener('load', () => {
 							<option value="<%= MemberRole.A %>" <%= member.getMemberRole() == MemberRole.A ? "selected" : "" %>>관리자</option>
 						</select>
 					</td>
-					<td><input type="button" data-member-id="<%= member.getEmail() %>" class="delMember" value="강제추방" /></td>
+					<td><input id="btn-add1" type="button" data-member-id="<%= member.getEmail() %>" class="delMember" value="이동" /></td>
 					
 				</tr>
 		<%

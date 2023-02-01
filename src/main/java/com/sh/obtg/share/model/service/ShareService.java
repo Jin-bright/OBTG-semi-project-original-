@@ -206,5 +206,20 @@ public class ShareService {
 		close(conn);
 		return shareBoardAndAttachments;
 	}
+
+	// 거래 상태 변경
+	public int updateShareState(int boardNo) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = shareBoardDao.updateShareState(conn, boardNo);
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		}
+		
+		return result;
+	}
 	
 }

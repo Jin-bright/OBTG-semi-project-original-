@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Noto+Sans+KR:wght@900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/shareView.css" />
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 <%
 	ShareBoard shareBoard = (ShareBoard)request.getAttribute("shareBoard");
 	List<ShareAttachment> shareAttachments = (List<ShareAttachment>)request.getAttribute("shareAttachments");
@@ -31,7 +32,6 @@
 	margin-top : 150px;
 	width:40px;
 }
-
 #frmPopCh {
      position: fixed; 
     top: 50%; left: 50%;  
@@ -74,7 +74,6 @@
 }
 
 </style>
-
 
 <form name="frmPopup">
 	<input type="hidden" name="memberID" >
@@ -251,9 +250,10 @@
 	class="report_container"
 	name="reportEnrollFrm"
 	method="post"
-	action="<%= request.getContextPath() %>/report/reportEnroll">
+	action="<%= request.getContextPath() %>/report/reportEnroll"
+	id="report_container">
 	<span class="close-button" onclick="closeFrm()">&times;</span>
-    <h2 style="text-align: center; margin: 5px;" >신고하기</h2>
+    <h2 style="text-align: center; margin: 5px;" id="head">신고하기</h2>
     <hr />
     <table id="report_wrap">
         <thead>
@@ -374,10 +374,17 @@ const reportFrm = () => {
 	const frm = document.querySelector(".report_container");
 	<% if(loginMember != null){ %>
 	frm.classList.toggle("showPopup");
+	
 	<% } else { %>
 	loginAlert();
 	<% } %>
 }
+
+$(function(){
+
+	$('.report_container').draggable({'cancel':'#report_wrap'});
+
+	});
 
 const closeFrm = () => {
 	const frm = document.querySelector(".report_container");
@@ -400,6 +407,8 @@ const reportEnroll = () => {
 	} 
 	alert("신고가 접수되었습니다.")
 }
+
+
 </script>
 <%-- 혜진 추가  --%>
 <script >
