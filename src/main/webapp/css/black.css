@@ -30,6 +30,7 @@ div#tableArea {
 	padding: 5px;
 	text-align: center;
 	padding: 12px;
+	font-size: 20px;
 }
 
 #tbl-member th:nth-child(1) {
@@ -56,7 +57,7 @@ table#tbl-member {
 	width: 70px;
 	height: 25px;
 	background-color: whitegray;
-	color: black;
+	color: white;
 	border-radius: 10%;
 	border: 1px solid white;
 	outline: 0;

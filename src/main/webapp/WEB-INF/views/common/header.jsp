@@ -46,7 +46,7 @@
 						<nav id="colorNav">
     						<ul>
        						 <li class="green">
-            					<a href="#" class="fa fa-windows"><img id="defaultimg" src="<%=request.getContextPath()%>/image/default.png" alt="defaultimg" style="width:30px; height:30px;"/></a>
+            					<a href="#"><img id="defaultimg" src="<%=request.getContextPath()%>/image/default.png" alt="defaultimg" style="width:30px; height:30px;"/></a>
  							<% if(loginMember.getMemberRole() == MemberRole.A) { %>
             						<ul>
 						                <li><a href="<%= request.getContextPath() %>/admin/memberList;">관리자페이지</a></li>

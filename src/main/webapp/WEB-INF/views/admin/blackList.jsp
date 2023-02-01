@@ -10,6 +10,22 @@
 %>
 <%@ include file="/WEB-INF/views/common/adminView.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/black.css">
+
+<style>
+#btn-add1, .submit-button {
+	font-size: 16px;
+	border: 0;
+	outline: 0;
+	border-radius: 8px;
+	background-color: #525252;
+	color: white;
+	padding: 3px 16px;
+	font-weight: 500;
+
+    margin-right: 0;
+	margin-bottom: 8px;
+}
+</style>
 <div id="memberList-container">
 <%-- 	<h2><a href="<%=request.getContextPath()%>/admin/memberList">회원관리</a> |  --%><!-- <span style="text-decoration:underline;">블랙리스트</span></h2> -->
 	<!-- 회원조회 -->
@@ -30,7 +46,7 @@
 				<tr>
 					<td><%= (Page-1)*10+list.indexOf(s)+1 %></td>
 					<td><%= s %></td>
-					<td><input type="button" data-email="<%=s %>" class=unBan value="해제" /></td>
+					<td><input id="btn-add1" type="button" data-email="<%=s %>" class=unBan value="해제" /></td>
 				</tr>
 					<%} %>
 			</tbody>
