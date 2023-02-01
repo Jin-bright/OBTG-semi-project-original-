@@ -23,7 +23,7 @@
 <%----  검색상자  --%>
 <style>
  div#search-container {
-	margin-left : 400px;
+	margin-left : 300px;
 	margin-top : 35px;
  	width: 280px; 
  	padding:3px; 
@@ -125,9 +125,9 @@
             <div class="wrap">
 		   		<div class="search">
 	               <input type="hidden" name="searchType"  id="searchType" value="sahre_content" />
-	               <input type="text" name="searchKeywordID" size="25" placeholder=" 내용을 검색해보세요  ex)사이즈, 겨울, 등등   " id="searchKeywordID"  style=" border: 3px solid black; width : 500px;
+	               <input type="text" tabindex="1" name="searchKeywordID" size="25" placeholder=" 내용을 검색해보세요  ex)사이즈, 겨울, 등등   " id="searchKeywordID"  style=" border: 3px solid black; width : 500px;
 	               border-radius: 5px 0 0 5px;  font-size : 15px;" value="<%= "sahre_content".equals(searchType) ? searchKeyword : ""%>"/>
-	              <button type="submit" class="searchButton" id="searchButtoncnt" ><i class="fa fa-search"></i></button><!-- //검색버튼  -->
+	              <button tabindex="2"  type="submit" class="searchButton" id="searchButtoncnt" ><i class="fa fa-search"></i></button><!-- //검색버튼  -->
              	</div>
             </div>   
         </div>
@@ -203,7 +203,7 @@ function styleback(){
 
 
 <script>
-//검색을 비동기로 처리할려면 ? 
+// 1. id로 검색 
 const searchButton	= document.querySelector("#searchButton");
 searchButton.addEventListener('click', () => {
 		
@@ -260,7 +260,7 @@ searchButton.addEventListener('click', () => {
 
 </script>
 
-
+<!-- 카테고리로 검색  -->
 <script>
 const searchButtoncate = document.querySelector("#searchButtoncate");
 searchButtoncate.addEventListener('click', () => {
@@ -318,6 +318,8 @@ searchButtoncate.addEventListener('click', () => {
 });//
 </script>
 
+
+<!-- 3.내용에따라검색 
 <script>
 const searchButtoncnt = document.querySelector("#searchButtoncnt");
 searchButtoncnt.addEventListener('click', () => {
@@ -373,7 +375,84 @@ searchButtoncnt.addEventListener('click', () => {
 	});//ajax
 });//
 </script>
+-->
 
+<%-- 혜진 코드 실험 0201 -- 내용따라검색 --%>
+<script>
+const searchButtoncnt = document.querySelector("#searchButtoncnt");
+searchButtoncnt.addEventListener('click', () => {
+	
+	const keyword = document.getElementsByName("searchKeywordID");
+
+	$.ajax({
+			url : "<%=request.getContextPath()%>/share/shareWholeListFind",
+			method : "get",
+			data : {
+				searchType :  document.getElementById("searchType").value,
+				searchKeywordID : keyword[2].value
+			},
+			dataType : "json",
+		
+			success(data){
+			//	console.log ( data ); 
+				
+				const table = document.querySelector("#tblBoard")
+				table.innerHTML = "";
+				pagebar.innerHTML = "";
+				
+				const tbody = document.createElement("tbody")
+				table.append(tbody);
+				
+				const tr = document.createElement("tr");
+				
+			//	const tr = document.createElement("tr")
+			//  tbody.append(tr);
+				
+//////////////////////////////////////////////////////foreach
+				if(data==0){
+					alert("검색결과가 없습니다 😣");
+					return;
+				}
+				
+				else{
+				
+					for(let i=0; i<data.length; i++){
+						if(i%5==0){
+							console.log( i + "i%5인경우(나머지0)");
+						
+							tbody.append( tr ); ///////jkjkjjk
+						
+						}
+						/// if문에 해당하지않는다면 ///
+						console.log("일반에해당 "+ i)
+						
+					const tds  = 
+							`<td class="maketd" style="width:220px;">
+						       <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/share/shareView?no=\${data[i].ShareNo}">
+						       <img id="eachimg"  style="display : inline-block; height : 200px; width:190px;  margin-left:-3px" src="<%=request.getContextPath()%>/uploadshares/share/\${data[i].renamedFilename}"/></a><br/>
+						        <p class="non">NO <span style="color : black; font-weight : light">\${data[i].ShareNo}</span></p>
+						        <p class="non">N  <span style=" color : black; font-weight : light">\${data[i].ShareRegDate}</span></p>
+						    </td>`;
+						    tr.insertAdjacentHTML('beforebegin',tr);  ///////jkjkjjk
+					  ///////////////////////
+						if(i%5==4){
+							console.log( i + "나머지가4인경우");
+						//	tbody.innerHTML += `</tr>`;
+						//	console.log( tbody );
+							  tds.insertAdjacentHTML('afterend', tr);  ///////jkjkjjk 
+						}
+					//	console.log( data[i] );
+					}
+				}//end-els문	
+				console.log( tbody );
+			},	//	end - success
+			error : console.log,
+			complete(){
+				//const table =  document.querySelector("#tblBoard");				
+			}	
+	});//ajax
+});//
+</script>
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

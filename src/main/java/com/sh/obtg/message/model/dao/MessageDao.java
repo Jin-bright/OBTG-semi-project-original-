@@ -55,4 +55,5 @@ public class MessageDao {
 		}
 		return result;
 	}
+
 }

@@ -31,46 +31,124 @@
 	margin-top : 150px;
 	width:40px;
 }
-<%-- 쪽지 모달창 css 효과  --%>
+<%-- 쪽지 모달창 css 효과  
 #frmPopCh {
     position: fixed; 
     top: 50%; left: 50%;  
     transform: translate(-50%, -50%); 
     width: 25em; 
-    height: 23em; 
+    height: 24em; 
     padding: 10px;
     border: 1px solid grey;
     background: white;
     border-radius: 1em;
     visibility: hidden;
     z-index : 999;
+    border : 2px solid orange;
 }
-
-#msgTable{
+--%>
+#msgTable {
 	width: 330px;
 	height: 300px;
-	
+    background-color: F5F5DC;
 	margin : 0 auto;
-	border:3px solid black; 
+	border : 2px solid black; 
 	border-collapse:collapse;  
+	padding : 10px;
+	padding-top : 20px;
 }
-#msgContent{
+
+
+#msgContent {
 	width: 150px;
 	height: 150px;
 }
 
-.msgtg{
-	width: 100px;
+.msgtg {
+	width: 90px;
+	padding: 5px 5px 5px 10px;
+}
+
+.msgtd {
+	height: 30px;
 }
 
 
-.msgtg{
-	width: 150px;
-	padding:5px
+#msgsubmit{
+	margin-top : -3px;
+	margin-left : 10px;	
+	background-color  : black;
+	border : 3px solid black;
+	color: white;
+	font-size:16px;
+}
+
+#msgclose{
+	margin-left : 80px;
+	background-color  : black;
+	border : 3px solid black;
+	color: white;
+	font-size:16px;
+	margin-top : 3px;
+	text-align : center;
+	padding:10px; /* padding 20px */
+
+}
+
+
+#msgsubmit:hover {
+	background-color : orange;
+}
+
+
+#msgclose:hover {
+	background-color : red;
+}
+
+#frmwrapper{
+    position: fixed; 
+    top: 50%; left: 50%;  
+    transform: translate(-50%, -50%); 
+    width: 25em; 
+    height: 24em; 
+    padding: 10px;
+    border: 1px solid grey;
+    background: white;
+    border-radius: 1em;
+    visibility: hidden;
+    z-index : 999;
+    border : 2px solid orange;
 }
 
 #msgsubmit{
-	margin-top :100px;
+	width:100px;
+	margin-left : 80px;
+	margin-top : 4px;
+}
+
+#msgclose{
+	position : absolute;
+	top:345px;
+	left: 120px;
+	display: inline-block;
+	height :28px;
+	width:100px;
+	padding-top: 5px;
+
+}
+#chatplz{
+	margin-left:0px;
+	padding-top : 10px;
+	text-align : center;
+	width : 110px;
+	font-size : 15px;
+}
+
+#chatplz:hover{
+	cursor: pointer;
+	background-color : gray;
+	color:white;
+	height:33px;
 }
 
 </style>
@@ -79,7 +157,10 @@
 <form name="frmPopup">
 	<input type="hidden" name="memberID" >
 </form>
+<script>
 
+
+</script>
 
 
 
@@ -90,7 +171,7 @@
 
  <ul class="ootdnav">
 	<li class="probutton-dropdown">
-	   	<a id="firsta" href="" class="prodropdown-toggle" >
+	   	<a id="firsta" href="javascript:void(0)" class="prodropdown-toggle" >
 	    	<img id="profileimg" style="margin-left:140px; margin-top : 40px" src="<%=request.getContextPath()%>/uploadootds/ootd/profile.png" alt="profileimg" /></a>
 	    
 	    <ul class="prodown-menu" style="margin-left:30px">
@@ -98,34 +179,39 @@
   
  
 	    <%-- 	<% if(loginMember.getMemberId() != null ) {%> --%>	 
-	 	 	<li id="chatplz"> 쪽지하기
+	 	 	<li   id="chatplz"  > 쪽지하기 </li>
 		  		<%--	<% } --%> 
 			 	<!--  쪽지 모달 창 "/>  -->
+<div id="frmwrapper">			
 			<form id="frmPopCh" name="frmPopCh" action="<%=request.getContextPath()%>/chat/MessageMain"  method="post">
 				<input type="hidden" name="no" value="<%=shareBoard.getShareNo()%>" />
-				<table id="msgTable" >
+				<h1 style="font-weight:900; margin : 0 auto; text-align:center; padding-bottom:10px "> MESSAGE </h1>
+				<table id="msgTable" style= "margin-top : 0px;" >
 				<tr>
-					<th class="msgtg"> 받는사람 </th>
-					<td class="msgtd" ><input type="text" id="receiver" name="receiver"  value="<%=shareBoard.getMemberId() %>" > <!--  받는 사람  --> 	</td>
+					<th class="msgtg"> TO.🙆 </th>
+					<td class="msgtd" ><input type="text" id="receiver" name="receiver" style="width:220px; line-height:20px" value="<%=shareBoard.getMemberId() %>" readonly > <!--  받는 사람  --> 	</td>
 				</tr>
 				
 				<tr>
-					<th  class="msgtg" > 보내는 사람 </th>
-					<td class="msgtd" ><input type="text" id="sender" name="sender" value="<%=loginMember.getMemberId() %>" >  <!--  보내는 사람  --></td>
+					<th  class="msgtg" > FROM.🙋‍♀️ </th>
+					<td class="msgtd" ><input type="text" id="sender" name="sender"  style="width:220px;  line-height:20px" value="<%=loginMember.getMemberId() %>" readonly>  <!--  보내는 사람  --></td>
 				</tr>
 				
 				<tr>
 					<th  class="msgtg" > 제목 </th>
-					<td class="msgtd" ><input type="text" id="msgTitle" name="msgTitle" value="" ></td>
+					<td class="msgtd" ><input type="text" id="msgTitle" name="msgTitle"  style="width:220px;  line-height:20px" ></td>
 				</tr>
 				
 				<tr>
 					<th  class="msgtg" > 내용 </th>
-					<td class="msgtd" ><textarea id="msgContent" name="msgContent" ></textarea></td>
-					<td><input id="msgsubmit" type="submit" value="전송" ></td>
+					<td class="msgtd" ><textarea id="msgContent" name="msgContent" style="width:220px" required></textarea></td>
 				</tr>
 				</table>
-			</form></li></ul>
+				<input class="msgbt"  id="msgsubmit" type="submit" value="✔️보내기"   >
+			</form>
+			<span id="msgclose"> 취소 </span>			
+</div>			
+		<%--</li>--%></ul>
    </li>
 </ul>
 
@@ -141,7 +227,7 @@
 	<tr>
 		<td>
 			<%-- 첨부파일이 있을경우만, 이미지와 함께 original파일명 표시 --%>
-		<img src="<%=request.getContextPath()%>/uploadshares/share/<%=shareAttachment.getRenamedFilename()%>" style="width:400px; height : 400px" >
+		<img src="<%=request.getContextPath()%>/uploadshares/share/<%=shareAttachment.getRenamedFilename()%>" style= "width:400px; height :400px" >
 		</td>
 	</tr>	
 	<% 
@@ -372,7 +458,7 @@ document.querySelector(".shareLike").addEventListener("click", (e) => {
 /* 신고 */
 const reportFrm = () => {
 	const frm = document.querySelector(".report_container");
-	<% if(loginMember != null){ %>
+	<% if(loginMember.getMemberId() != null){ %>
 	frm.classList.toggle("showPopup");
 	<% } else { %>
 	loginAlert();
@@ -412,16 +498,35 @@ function open_pop(<%=shareBoard.getMemberId()%> ){
     frmPop.target = 'popupView'; //window,open()의 두번째 인수와 같아야 하며 필수다.   
     frmPop.memberID.value = <%=shareBoard.getMemberId()%>;
     frmPop.submit();    
-     
 }
+
+//쪽지제출 후 alert()
+$(document).ready(function() {
+    $("#msgsubmit").on('click', function(){
+    alert("쪽지가 성공적으로 발송되었습니다😊");
+    self.close();
+});
+});
 </script>
 
 <script>
 const  msgbox = document.querySelector("#chatplz");
 
 msgbox.addEventListener('click', () => {
-	const frm = document.frmPopCh;
-	frm.style.visibility = "visible";
+//	const frm = document.frmPopCh;
+	const  div = document.querySelector("#frmwrapper");
+	div.style.visibility = "visible";
+});
+</script>
+
+<script>
+//닫혀라 쪽지야
+const  msgclose = document.querySelector("#msgclose");
+
+msgclose.addEventListener('click', () => {
+//	const frm = document.frmPopCh;
+	const div = document.querySelector("#frmwrapper");
+	div.style.visibility = "hidden";
 });
 </script>
  
