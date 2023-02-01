@@ -111,8 +111,7 @@
 		
 		<div  id="msg-editor" class="editor">
 			<form name="chatMsgFrm">
-				<textarea name="msg" id="msg" cols="30" rows="2" pattern="(.|\n)+"
-					required></textarea>
+				<textarea name="msg" id="msg" cols="30" rows="2" pattern="(.|\n)+"	required></textarea>
 				<button type="submit" id="send">Send</button>
 			</form>
 		</div>
