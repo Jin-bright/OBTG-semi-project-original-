@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/reportList.css" />
 <section id="report-container">
 	<br /><br /><br /><br />
-	<h1>신고관리</h1>
+	<h1 style="font-size: 30px;">신고관리</h1>
 	<p style="font-size: 13px;">게시번호를 클릭하여 이동해 보세요!</p>
 	<br /><br /><br />
 	<table id="report_wrap">

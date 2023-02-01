@@ -1,9 +1,8 @@
 @charset "UTF-8";
 #report-container {
-	min-height: 890px;
+	min-height: 949px;
 	text-align:center; 
 	padding-left: 200px; 
-	/* margin-bottom: 70px; */
 }
 #report_wrap, #report_wrap td, #report_wrap th {
 	border-collapse: collapse;
