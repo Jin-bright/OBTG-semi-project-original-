@@ -25,7 +25,7 @@ import com.sh.obtg.member.model.dto.Member;
 	"/member/memberView", "/member/memberUpdate", "/member/updatePassword", 
 	"/member/memberOotdLike", "/member/memberOotdList", "/member/memberShareLike",
 	"/member/memberShareList", "/ootd/ootdEnroll", "/ootd/ootdUpdate","/share/shareEnroll",
-	"/share/shareUpdate"
+		"/share/shareUpdate",  "/share/shareView", "/ootd/ootdView"
 })
 public class LoginFilter extends HttpFilter implements Filter {
 
