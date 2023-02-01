@@ -5,6 +5,7 @@
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/faqArc.css"/>
 
+<br><br><br>
 <div class="faq-header">FAQ</div>
 
 
@@ -66,6 +67,8 @@
 	    <label for="q8" class="panel-title">(기타) 문의사항이 있어요 </label>
 	    <div class="panel-content"> 페이지 좌측 하단 INFO 게시판을 이용해주세요. 빠르게 답변해드리겠습니다.</div>
 	</div>
+	
+	<br><br><br><br>
 
 </div>
 
