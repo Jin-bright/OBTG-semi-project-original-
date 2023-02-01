@@ -44,8 +44,8 @@ public class FaqListServlet extends HttpServlet {
 		// view단 처리
 		request.setAttribute("faqList", faqList);
 		request.setAttribute("pagebar", pagebar);
-		request.getRequestDispatcher("/WEB-INF/views/faq/faqList.jsp")
-		.forward(request, response);
+//		request.getRequestDispatcher("/WEB-INF/views/faq/faqList.jsp")
+//		.forward(request, response);
 		
 		}
 	}
