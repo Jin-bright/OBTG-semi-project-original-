@@ -80,3 +80,6 @@
 	background: gainsboro;
 	color: white;;
 }
+.reportNo:hover {
+	color: orange;
+}

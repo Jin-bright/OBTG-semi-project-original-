@@ -15,6 +15,7 @@
 <section id="report-container">
 	<br /><br /><br /><br />
 	<h1>신고관리</h1>
+	<p style="font-size: 13px;">게시번호를 클릭하여 이동해 보세요!</p>
 	<br /><br /><br />
 	<table id="report_wrap">
 		<thead>
@@ -41,9 +42,9 @@
 				%>
 				<td>
 				<% if(board.equals("O")) { %>
-					<a href="<%= request.getContextPath() %>/ootd/ootdView?no=<%= num %>"><%= report.getBoardNo() %></a>
+					<a href="<%= request.getContextPath() %>/ootd/ootdView?no=<%= num %>"  class="reportNo"><%= report.getBoardNo() %></a>
 				<% } else { %>
-					<a href="<%= request.getContextPath() %>/share/shareView?no=<%= num %>"><%= report.getBoardNo() %></a>
+					<a href="<%= request.getContextPath() %>/share/shareView?no=<%= num %>" class="reportNo"><%= report.getBoardNo() %></a>
 				<% } %>
 				</td>
 				<%
@@ -88,7 +89,7 @@
 		</tbody>
 	</table>
 
-<div id="pagebar"  style="margin-top : 300px">
+<div id="pagebar"  style="margin-top : 390px; cursor: pointer;">
 	<%= request.getAttribute("pagebar") %>
 </div>
 </section>
@@ -117,7 +118,7 @@
 			</tr>
 			<tr>
 				<th>처리내용</th>
-				<td><input type="text" name="content" id="content" required="required" style="border-bottom-style: solid;"/></td>
+				<td><input type="text" name="content" id="content" required; style="border-bottom-style: solid;"/></td>
 			</tr>
 		</table>
 	</form>
