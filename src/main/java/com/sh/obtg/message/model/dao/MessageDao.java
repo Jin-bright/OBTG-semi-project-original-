@@ -73,10 +73,13 @@ public class MessageDao {
 		int limit = (int)param.get("limit");
 		String memberId = (String)param.get("memberId");
 		
+		int start = (page - 1) * limit + 1;
+		int end = page * limit;
+		
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, memberId);
-			pstmt.setInt(2, page);
-			pstmt.setInt(3, limit);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
 			
 			try (ResultSet rset = pstmt.executeQuery()) {
 				while(rset.next()) {

@@ -19,7 +19,11 @@ import com.sh.obtg.member.model.dto.MemberRole;
 /**
  * Servlet Filter implementation class AdminFilter
  */
-@WebFilter({"/admin/*", "/report/reportList", "/report/reportUpdate"})
+@WebFilter({
+	"/admin/*", "/column/columnEnroll", "/column/columnUpdate", "/column/columnDelete",
+	"/faq/faqCommentEnroll", "/faq/faqCommentDelete", "/report/reportUpdate",
+	"/report/reportList", "/report/reportUpdate"
+})
 public class AdminFilter implements Filter {
 
 	/**

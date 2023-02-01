@@ -1,5 +1,6 @@
 @charset "UTF-8";
 #board-container {
+	text-align: center;
 	min-height: 830px;
 	max-width: 600px;
 	height: auto;
@@ -11,7 +12,6 @@
 	font-size: 30px;
 	text-align: center;
 	margin-bottom: 25px;
-	padding-left: 160px;
 }
 #nav-container a:hover {
 	color: #ffd688;
@@ -46,4 +46,10 @@
 	background: black;
 	padding: 3px;
 	margin: 10px 52px 0;
+}
+.category:hover {
+	border-bottom-style: solid;
+}
+#empty-box a:hover {
+	font-weight: 900;
 }

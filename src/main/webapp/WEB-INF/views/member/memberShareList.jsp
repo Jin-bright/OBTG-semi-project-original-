@@ -42,8 +42,9 @@
 	<hr />
 	<section id="board-container">
 		<div id="nav-container"> 
-			<span><a href="<%= request.getContextPath() %>/member/memberOotdList">ootd</a></span>
-			<span style="font-weight: 900"><a href="<%= request.getContextPath() %>/member/memberShareList">share</a></span>
+			<h6 style="font-size: 13px; color: darkgray;">내가 작성한 글을 확인해보세요!</h6>
+			<span><a href="<%= request.getContextPath() %>/member/memberOotdList">OOTD</a></span>
+			<span style="font-weight: 900"><a href="<%= request.getContextPath() %>/member/memberShareList">SHARE</a></span>
 		</div>
 		<table id="boardList-wrap">
 		<% 

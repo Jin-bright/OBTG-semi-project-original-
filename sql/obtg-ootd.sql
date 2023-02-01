@@ -271,29 +271,29 @@ create sequence seq_share_find_no;
 
 
 
-CREATE TABLE chat_log (
-	no	number,
-	chatroom_id	number		NOT NULL,
-	message	varchar2(500)		NULL,
-	datetime	Date	default sysdate,
-    CONSTRAINT PK_CHAT_LOG PRIMARY KEY (no),
-    CONSTRAINT FK_chatroom_TO_chat_log_1 FOREIGN KEY (chatroom_id) REFERENCES chatroom (chatroom_id)
-);
-
-create sequence seq_chat_log_no;
-
-
-
-CREATE TABLE chatroom (
-	chatroom_id	number		NOT NULL,
-    board_id    varchar2(50) NOT NULL,
-	member_id	varchar2(50)		NOT NULL,
-    CONSTRAINT PK_CHATROOM PRIMARY KEY (chatroom_id),
-    CONSTRAINT FK_SHARE_board_TO_chatroom_1 FOREIGN KEY (board_id) REFERENCES SHARE_board (member_id),
-    CONSTRAINT FK_Member_TO_chatroom_1 FOREIGN KEY (member_id) REFERENCES Member (member_id)
-);
-
-create sequence seq_chatroom_no;
+--CREATE TABLE chat_log (
+--	no	number,
+--	chatroom_id	number		NOT NULL,
+--	message	varchar2(500)		NULL,
+--	datetime	Date	default sysdate,
+--    CONSTRAINT PK_CHAT_LOG PRIMARY KEY (no),
+--    CONSTRAINT FK_chatroom_TO_chat_log_1 FOREIGN KEY (chatroom_id) REFERENCES chatroom (chatroom_id)
+--);
+--
+--create sequence seq_chat_log_no;
+--
+--
+--
+--CREATE TABLE chatroom (
+--	chatroom_id	number		NOT NULL,
+--    board_id    varchar2(50) NOT NULL,
+--	member_id	varchar2(50)		NOT NULL,
+--    CONSTRAINT PK_CHATROOM PRIMARY KEY (chatroom_id),
+--    CONSTRAINT FK_SHARE_board_TO_chatroom_1 FOREIGN KEY (board_id) REFERENCES SHARE_board (member_id),
+--    CONSTRAINT FK_Member_TO_chatroom_1 FOREIGN KEY (member_id) REFERENCES Member (member_id)
+--);
+--
+--create sequence seq_chatroom_no;
 
 -- share table 제약조건 해제 0126 ->  ALTER TABLE chatroom drop CONSTRAINT  FK_SHARE_board_TO_chatroom_1;
 

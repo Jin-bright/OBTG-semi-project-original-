@@ -72,7 +72,7 @@ ul.dd-menu:hover{
 	width:180px;
 	left:50%;
 	margin-left:-90px;
-	top:70px;
+	top:15px;
 	font:bold 12px 'Open Sans Condensed', sans-serif;
 	
 	/* This is important for the show/hide CSS animation */
@@ -339,8 +339,8 @@ footer {
 
 /* 알림 */
 .bell {
-	width: 35px;
-	height: 35px;
+	width: 20px;
+	height: 20px;
 	transform: translate(5px, 5px);
 	cursor: pointer;
 }
@@ -366,7 +366,7 @@ footer {
 	z-index: 999;
 }
 .report {
-	padding: 5px;
+	padding: 10px;
 	font-size: 12px;
 	text-align: center;
 	border: 1px solid RGB(17, 135, 254);

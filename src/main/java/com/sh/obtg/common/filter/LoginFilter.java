@@ -22,10 +22,13 @@ import com.sh.obtg.member.model.dto.Member;
  * Servlet Filter implementation class LoginFilter
  */
 @WebFilter({ 
-	"/member/memberView", "/member/memberUpdate", "/member/updatePassword", 
-	"/member/memberOotdLike", "/member/memberOotdList", "/member/memberShareLike",
-	"/member/memberShareList", "/ootd/ootdEnroll", "/ootd/ootdUpdate","/share/shareEnroll",
-		"/share/shareUpdate",  "/share/shareView", "/ootd/ootdView"
+	"/member/memberDelete", "/member/memberOotdLike", "/member/memberOotdList", 
+	"/member/memberShareLike", "/member/memberShareList", "/member/updatePassword",
+	"/member/memberUpdate", "/member/memberView",
+	"/message/*", "/chat/MessageMain","/ootd/ootdDelete", "/ootd/ootdCommentEnroll",
+	"/ootd/ootdCommentDelete", "/ootd/OotdLike", "/ootd/ootdEnroll", "/ootd/ootdUpdate",
+	"/share/shareEnroll", "/share/shareUpdate", "/share/shareDelete", "/share/shareLike", "/share/shareStateUpdate",
+	"/faq/faqEnroll", "/faq/faqUpdate", "/faq/faqDelete", 
 })
 public class LoginFilter extends HttpFilter implements Filter {
 

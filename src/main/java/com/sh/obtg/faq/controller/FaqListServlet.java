@@ -52,12 +52,17 @@ public class FaqListServlet extends HttpServlet {
 		// view단 처리
 		request.setAttribute("faqList", faqList);
 		request.setAttribute("pagebar", pagebar);
+
 		
 		request.getRequestDispatcher("/WEB-INF/views/faq/faqList.jsp")
 		.forward(request, response);
 				
 		}  catch (Exception e) {
 			e.printStackTrace();		
+
+//		request.getRequestDispatcher("/WEB-INF/views/faq/faqList.jsp")
+//		.forward(request, response);
+
 		}
 
 	}
