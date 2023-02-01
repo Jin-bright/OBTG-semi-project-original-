@@ -44,6 +44,20 @@ public class MessageService {
 		close(conn);
 		return totalCount;
 	}
+
+	public int deleteMsg(int no) {
+		Connection conn = getConnection(); 
+		int result = 0;
+		try {
+			result = messageDao.deleteMsg(conn, no);
+			commit(conn);
+		}catch (Exception e) {
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		return result;
+	}
 	
 
 }

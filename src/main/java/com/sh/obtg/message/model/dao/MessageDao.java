@@ -14,6 +14,8 @@ import java.util.Properties;
 import com.sh.obtg.message.model.dto.Message;
 import com.sh.obtg.message.model.exception.MessageException;
 
+import oracle.net.aso.c;
+
 public class MessageDao {
 
 	//최초 설정 
@@ -115,5 +117,22 @@ public class MessageDao {
 		}
 		
 		return totalCount;
+	}
+
+	public int deleteMsg(Connection conn, int no) {
+		// delete message where no = ?
+		String sql = prop.getProperty("deleteMsg");
+		int result = 0;
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, no);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new MessageException("👻 쪽지 삭제 오류 👻", e);
+		}
+		
+		return result;
 	}
 }

@@ -30,7 +30,9 @@ public class MessageInputServlet extends HttpServlet {
 	//1. 사용자입력값 처리 
 		int no = 0;
 		try {
-			no = Integer.parseInt(request.getParameter("no"));
+			try {
+				no = Integer.parseInt(request.getParameter("no"));
+			} catch (NumberFormatException e) {}
 			String receiver = request.getParameter("receiver");
 			String sender = request.getParameter("sender");
 			String msgContent = request.getParameter("msgContent");
@@ -58,12 +60,22 @@ public class MessageInputServlet extends HttpServlet {
 			int notiResult = notificationService.insertNoti(noti);
 			System.out.println(notiResult > 0 ? "알림 내역 저장 성공" : "알림 내역 저장 실패");
 			
-			response.sendRedirect(request.getContextPath()+"/share/shareView?no="+no);
+			if(no > 0) {
+				response.sendRedirect(request.getContextPath()+"/share/shareView?no="+no);
+			}
+			else {
+				response.sendRedirect(request.getContextPath()+"/message/messageList");
+			}
 
 		}catch (Exception e) {
 			request.getSession().setAttribute("msg", "게시글 등록중 오류가 발생했습니다." );
 			e.printStackTrace();
-	    	response.sendRedirect(request.getContextPath()+"/share/shareView?no="+no);
+			if(no > 0) {
+				response.sendRedirect(request.getContextPath()+"/share/shareView?no="+no);
+			}
+			else {
+				response.sendRedirect(request.getContextPath()+"/message/messageList");
+			}
 		}			
 	}//
 

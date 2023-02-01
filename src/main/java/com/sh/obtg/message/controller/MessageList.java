@@ -57,7 +57,7 @@ public class MessageList extends HttpServlet {
 			request.setAttribute("msgList", msgList);
 			request.setAttribute("pagebar", pagebar);
 			request.getRequestDispatcher("/WEB-INF/views/member/msgList.jsp")
-				.forward(request, response);;
+				.forward(request, response);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
