@@ -12,7 +12,7 @@
                     |
                     <a class="footer_a">이용약관</a>
                     |
-                    <a class="footer_a" href="<%= request.getContextPath() %>/about/aboutList">회사소개</a>
+                    <a class="footer_a" <%-- href="<%= request.getContextPath() %>/about/aboutList" --%>>회사소개</a>
                     |
                     <a class="footer_a" href="<%= request.getContextPath() %>/faq/faqAccordion">FAQ</a>
                     |
@@ -27,7 +27,7 @@
                 <div id="footer_txt">
                     <span id="footer_span">
                         서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩 5F<br>
-                        사업자등록번호: 851-87-00622<br>
+                        사업자등록번호: 851-87-006222<br>
                         전화: 1544-9970 이메일 : obtg2023@gmail.com<br>
                         Copyright 2023 <strong></strong>. All rights reserved.
                     </span>
