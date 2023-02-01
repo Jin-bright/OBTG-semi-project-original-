@@ -66,7 +66,7 @@ window.addEventListener('load', () => {
 	/* width:800px;  
 	height : 1500px; */
 	padding : 0px;
-	margin-left : 390px;
+	margin-left : 430px;
 	
  }
  

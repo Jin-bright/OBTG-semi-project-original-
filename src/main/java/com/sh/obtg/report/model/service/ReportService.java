@@ -13,7 +13,11 @@ import com.sh.obtg.report.model.dto.Report;
 public class ReportService {
 	private ReportDao reportDao = new ReportDao();
 	
-	// 신고 접수
+	/**
+	 * 신고 접수
+	 * @param report
+	 * @return
+	 */
 	public int insertReport(Report report) {
 		Connection conn = getConnection();
 		int result = 0;
@@ -28,7 +32,11 @@ public class ReportService {
 		return result;
 	}
 
-	// 신고 내역 조회
+	/**
+	 * 신고 내역 조회
+	 * @param param
+	 * @return
+	 */
 	public List<Report> selectReportList(Map<String, Object> param) {
 		Connection conn = getConnection();
 		List<Report> reports = reportDao.selectReportList(conn, param);
@@ -36,7 +44,10 @@ public class ReportService {
 		return reports;
 	}
 
-	// 신고 내역 수 조회
+	/**
+	 * 신고 건수 조회
+	 * @return
+	 */
 	public int selectTotalCount() {
 		Connection conn = getConnection();
 		int totalCount = reportDao.selectTotalCount(conn);
@@ -45,20 +56,25 @@ public class ReportService {
 	}
 
 	// 알림 등록
-	public int insertNoti(Notification noti) {
-		Connection conn = getConnection();
-		int result = 0;
-		try {
-			result = reportDao.insertNoti(conn, noti);
-			commit(conn);
-		} catch (Exception e) {
-			rollback(conn);
-			throw e;
-		}
-		
-		return result;
-	}
+//	public int insertNoti(Notification noti) {
+//		Connection conn = getConnection();
+//		int result = 0;
+//		try {
+//			result = reportDao.insertNoti(conn, noti);
+//			commit(conn);
+//		} catch (Exception e) {
+//			rollback(conn);
+//			throw e;
+//		}
+//		
+//		return result;
+//	}
 
+	/**
+	 * 신고 처리
+	 * @param reportNo
+	 * @return
+	 */
 	public int updateReport(int reportNo) {
 		Connection conn = getConnection();
 		int result = 0;

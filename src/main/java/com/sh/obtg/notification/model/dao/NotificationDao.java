@@ -14,6 +14,8 @@ import com.sh.obtg.notification.model.dto.Checked;
 import com.sh.obtg.notification.model.dto.Notification;
 import com.sh.obtg.notification.model.exception.NotificationException;
 
+import oracle.net.aso.c;
+
 public class NotificationDao {
 
 	private Properties prop = new Properties();
@@ -71,6 +73,30 @@ public class NotificationDao {
 		}
 
 		/**
+		 * 알림 등록
+		 * @param conn
+		 * @param noti
+		 * @return
+		 */
+		public int insertNoti(Connection conn, Notification noti) {
+			// insert into noti(no, receiver, message) values (seq_noti_no.nextval, ?, ?)
+			String sql = prop.getProperty("insertNoti");
+			int result = 0;
+			
+			try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+				pstmt.setString(1, noti.getReceiver());
+				pstmt.setString(2, noti.getMessage());
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				throw new NotificationException("👻 알림 등록 오류👻", e);
+			}
+			
+			return result;
+		}
+
+		/**
 		 * 알림 읽음 처리
 		 * @param conn
 		 * @param memberId
@@ -87,7 +113,7 @@ public class NotificationDao {
 				result = pstmt.executeUpdate();
 				
 			} catch (SQLException e) {
-				throw new NotificationException("👻알림 읽음 처리 오류👻", e);
+				throw new NotificationException("👻 알림 읽음처리 오류 👻", e);
 			}
 			
 			return result;

@@ -47,7 +47,7 @@
 
 .maketd:hover  {
     transform: scale(1.1);
-    background-color: #ffd688;
+    background-color: orange;
     transition : 0.5s;
     text-decoration : white;
     border-radius: 10px 10px 10px 10px;
@@ -122,7 +122,7 @@ input#btnAdd{
 	color : white;
 	height : 32px;
 	width : 70px;
-	margin-left : 990px
+	margin-left : 950px
 }
 #btnAdd:hover{
 	font-weight : 900;
@@ -137,7 +137,7 @@ input#btnAdd{
 div#pagebar{
 	margin-top:10px; 
 	text-align:center; 
-	background-color: #ffc082;
+	background-color: #eeeeee;
 }
 
 div#pagebar span.cPage{
@@ -159,7 +159,7 @@ div#pagebar a{
 }
 
 p.non{
-	align : left;
+	text-align : left;
 	text-align:center;
 	font-family: 'Nanum Gothic Coding', monospace;	
 	color : orange;

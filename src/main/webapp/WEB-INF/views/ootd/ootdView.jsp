@@ -39,7 +39,7 @@ function open_pop(<%=ootdboard.getOotdWriter()%> ){
 </form>
 
 
-<section id="board-container" >
+<section id="board-container"  style="margin-left:-100px;" > <!-- 0201마진값추가 -->
 <br /><br /><br /><br /><br /><br /><br />
 	<p id="informationsp" > INFORMATION  <span id="styleinfo" ">스타일 정보</span></p>
 <ul class="ootdnav">
@@ -50,7 +50,6 @@ function open_pop(<%=ootdboard.getOotdWriter()%> ){
 	    <ul class="dropdown-menu">
 <%--	  <li><a onclick = "window.open('<%=request.getContextPath() %>/profile/profileView', '', 'width=530, height=500, location=no, status=no, scrollbars=yes');">프로필보기</a></li>  --%>
  			<li><a onclick="open_pop('<%=ootdboard.getOotdWriter()%>');">프로필보기</a></li>
-	      <li><a href="#">채팅걸기</a></li>
 	    </ul>
    </li>
 </ul>
@@ -293,6 +292,7 @@ function open_pop(<%=ootdboard.getOotdWriter()%> ){
 </form>
 <% } %>
 <br/><br /><br />
+<%-- 
 <script>
 jQuery(document).ready(function (e) {
     function t(t) {
@@ -319,7 +319,7 @@ jQuery(document).ready(function (e) {
     })
 });
 </script>
-
+--%>
 <script>
 // 댓글 
 // 이벤트 버블링을 통해 부모요소에서 이벤트핸들링 -- 이벤트전파 js에서 배운거,, 

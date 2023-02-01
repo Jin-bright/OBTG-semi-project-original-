@@ -38,8 +38,8 @@ List<OotdBoard> findootdBoardsById = (List<OotdBoard> )request.getAttribute("fin
  	padding:3px; 
  	background-color: white;
 	float : left;
-	margin-top : -60px;
-	margin-left : 300px;
+	margin-top : -90px;
+	margin-left : 330px;
 	font-family: 'Nanum Gothic Coding', monospace;		
 	font-size : 15px;
  }
@@ -140,70 +140,27 @@ List<OotdBoard> findootdBoardsById = (List<OotdBoard> )request.getAttribute("fin
 	onclick="location.href='<%=request.getContextPath()%>/ootd/ootdEnroll';"/> <%-- get&post다있는데/ 로그인한 상태에서만 노출 되게 수정해야됨 --%> 
 <% } %>
 <table id="tblBoard">
-  <tr> 
-  <% for(int i=0; i<ootdAttachments.size(); i++){ %>
 
-	<% if(i<5) { %>
+ <% for(int i=0; i<ootdAttachments.size(); i++){ 
+ 		if(i%5==0){%>
+ 		<tr>
+ 	<% } %>
      <td class="maketd" style= "height : 300px; width:190px;">
-     <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdAttachments.get(i).getBoardNo() %>">
-       <img  id="eachimg" style="display : inline-block; margin-left : 7px" src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>"/></a><br/>
-		<p class="non">NO <span style="color : black; font-weight : light"><%=ootdAttachments.get(i).getBoardNo()%></span></p>
-		<p class="non">N  <span style=" color : black; font-weight : light"><%=ootdAttachments.get(i).getRegDate()%></span></p>
-     </td>
-	<% } else if(i == 5){ %> 
-    </tr>
-     <td class="maketd" style= "height : 300px; width:190px;">
-     <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdAttachments.get(i).getBoardNo() %>">
-     <img style=" margin-left : 7px"  src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>" ></a><br/>
+     	<a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdAttachments.get(i).getBoardNo() %>">
+     	<img style=" margin-left : 7px"  src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>" ></a><br/>
 		<p class="non">NO <span style="color : black; font-weight : light"><%=ootdAttachments.get(i).getAttachNo()%></span></p>
 		<p class="non">N  <span style=" color : black; font-weight : light"><%=ootdAttachments.get(i).getRegDate()%></span></p>
      </td>  
-	<% } else if(i<9){%> 
-     <td class="maketd" style= "height : 300px; width:190px">
-     <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdAttachments.get(i).getBoardNo() %>">
-     <img style=" margin-left : 7px"  src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>" ></a><br/>
-		<p class="non">NO <span style="color : black; font-weight : light"><%=ootdAttachments.get(i).getAttachNo()%></span></p>
-		<p class="non">N  <span style=" color : black; font-weight : light"><%=ootdAttachments.get(i).getRegDate()%></span></p>
-    </td>	
-	<% } else if(i==9){ %>
-    <td class="maketd" style= "height : 300px; width:190px;">
-    <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdAttachments.get(i).getBoardNo() %>">
-    <img style=" margin-left : 7px"  src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>" ></a><br/>	
-		<p class="non">NO <span style="color : black; font-weight : light"><%=ootdAttachments.get(i).getAttachNo()%></span></p>
-		<p class="non">N  <span style=" color : black; font-weight : light"><%=ootdAttachments.get(i).getRegDate()%></span></p>
- 	</td>
-	<% } else if(i==10){ %>
-   <tr>
-   <td class="maketd" style= "height : 300px; width:190px;">
-    <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdAttachments.get(i).getBoardNo() %>">
-    <img style=" margin-left : 7px"  src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>" ></a><br/>	
-		<p class="non">NO <span style="color : black; font-weight : light"><%=ootdAttachments.get(i).getAttachNo()%></span></p>
-		<p class="non">N  <span style=" color : black; font-weight : light"><%=ootdAttachments.get(i).getRegDate()%></span></p>
- 	</td>
-	<% } else if(i<14){%> 
-     <td class="maketd" style= "height : 300px; width:190px">
-     <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdAttachments.get(i).getBoardNo() %>">
-     <img style=" margin-left : 7px"  src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>" ></a><br/>
-		<p class="non">NO <span style="color : black; font-weight : light"><%=ootdAttachments.get(i).getAttachNo()%></span></p>
-		<p class="non">N  <span style=" color : black; font-weight : light"><%=ootdAttachments.get(i).getRegDate()%></span></p>
-    </td>
- 	<% } else if(i==14){%> 
-     <td class="maketd" style= "height : 300px; width:190px">
-     <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/ootd/ootdView?no=<%=ootdAttachments.get(i).getBoardNo() %>">
-     <img style=" margin-left : 7px"  src="<%=request.getContextPath()%>/uploadootds/ootd/<%=ootdAttachments.get(i).getRenamedFilename()%>" ></a><br/>
-		<p class="non">NO <span style="color : black; font-weight : light"><%=ootdAttachments.get(i).getAttachNo()%></span></p>
-		<p class="non">N  <span style=" color : black; font-weight : light"><%=ootdAttachments.get(i).getRegDate()%></span></p>
-    </td>
-    </tr>
-	<% } %> 
-<% } %>
-
+     <% if(i%5==4){%>
+ 		</tr>
+ 	 <% }
+   }%>
 </table>
 <br /><br /><br /><br />
 </section>
 
 
-<div id='pagebar' style = "background-color: orange" > <%=request.getAttribute("pagebar")%>
+<div id='pagebar' style = "background-color: #eeeeee;" > <%=request.getAttribute("pagebar")%>
 </div>
 
 <script>

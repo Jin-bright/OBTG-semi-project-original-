@@ -31,6 +31,12 @@ private Properties prop = new Properties();
 		System.out.println("report 쿼리 로드 완료! - " + prop);
 	}
 
+	/**
+	 * 신고 접수
+	 * @param conn
+	 * @param report
+	 * @return
+	 */
 	public int insertReport(Connection conn, Report report) {
 		// insert into report(report_no, reported_userId, board_no, report_reason) values ((select max(no) + 1 from noti), ?, ?, ?)
 		String sql = prop.getProperty("insertReport");
@@ -50,7 +56,12 @@ private Properties prop = new Properties();
 		return result;
 	}
 
-	// 신고 내역 조회
+	/**
+	 * 신고 내역 조회
+	 * @param conn
+	 * @param param
+	 * @return
+	 */
 	public List<Report> selectReportList(Connection conn, Map<String, Object> param) {
 		String sql = prop.getProperty("selectReportList");
 		List<Report> reports = new ArrayList<>();
@@ -87,6 +98,11 @@ private Properties prop = new Properties();
 		return reports;
 	}
 
+	/**
+	 * 신고건수 조회
+	 * @param conn
+	 * @return
+	 */
 	public int selectTotalCount(Connection conn) {
 		String sql = prop.getProperty("selectTotalCount");
 		int totalCount = 0;
@@ -104,25 +120,31 @@ private Properties prop = new Properties();
 		return totalCount;
 	}
 
-	// 알림 등록
-	public int insertNoti(Connection conn, Notification noti) {
-		// insert into noti(no, receiver, message) values (seq_noti_no.nextval, ?, ?)
-		String sql = prop.getProperty("insertNoti");
-		int result = 0;
-		
-		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setString(1, noti.getReceiver());
-			pstmt.setString(2, noti.getMessage());
-			
-			result = pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			throw new ReportException("👻신고처리결과 알림 등록 오류👻", e);
-		}
-		
-		return result;
-	}
+//	// 알림 등록
+//	public int insertNoti(Connection conn, Notification noti) {
+//		// insert into noti(no, receiver, message) values (seq_noti_no.nextval, ?, ?)
+//		String sql = prop.getProperty("insertNoti");
+//		int result = 0;
+//		
+//		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+//			pstmt.setString(1, noti.getReceiver());
+//			pstmt.setString(2, noti.getMessage());
+//			
+//			result = pstmt.executeUpdate();
+//			
+//		} catch (SQLException e) {
+//			throw new ReportException("👻신고처리결과 알림 등록 오류👻", e);
+//		}
+//		
+//		return result;
+//	}
 
+	/**
+	 * 신고 처리
+	 * @param conn
+	 * @param reportNo
+	 * @return
+	 */
 	public int updateReport(Connection conn, int reportNo) {
 		// update report set report_status = 'O' where report_no = ?
 		String sql = prop.getProperty("updateReport");

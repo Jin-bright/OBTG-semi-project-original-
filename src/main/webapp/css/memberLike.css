@@ -34,3 +34,9 @@
 	font-size: 15px;
 	font-weight: 700;
 }
+#empty-box {
+	margin: 50px;
+}
+#empty-box a:hover {
+	font-weight: 900;
+}

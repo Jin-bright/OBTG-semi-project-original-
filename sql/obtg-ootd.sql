@@ -465,3 +465,22 @@ end;
 
 
 --select * from blackList;
+
+
+
+create table message (
+    no number,
+    title varchar2(50),
+    sender varchar2(50),
+    receiver varchar2(50) not null,
+    content varchar2(1000) not null,
+    reg_date date default sysdate,
+    constraint pk_message_no primary key(no),
+    constraint fk_message_sender foreign key(sender) references member (member_id) on delete set null
+);
+
+create sequence seq_message_no;
+
+select * from faq;
+
+commit;

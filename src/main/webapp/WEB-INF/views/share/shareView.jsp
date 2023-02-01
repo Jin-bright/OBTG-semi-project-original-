@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Noto+Sans+KR:wght@900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/shareView.css" />
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 <%
 	ShareBoard shareBoard = (ShareBoard)request.getAttribute("shareBoard");
 	List<ShareAttachment> shareAttachments = (List<ShareAttachment>)request.getAttribute("shareAttachments");
@@ -27,11 +28,14 @@
 	margin-top : 90px;
 }
 #profileimg{
-	margin-left: 1500px;
-	margin-top : 150px;
+	display:inline-block;
+	margin-left: 100px;
+	margin-top : 500px;
 	width:40px;
 }
+
 <%-- 쪽지 모달창 css 효과  
+
 #frmPopCh {
     position: fixed; 
     top: 50%; left: 50%;  
@@ -83,17 +87,6 @@
 	font-size:16px;
 }
 
-#msgclose{
-	margin-left : 80px;
-	background-color  : black;
-	border : 3px solid black;
-	color: white;
-	font-size:16px;
-	margin-top : 3px;
-	text-align : center;
-	padding:10px; /* padding 20px */
-
-}
 
 
 #msgsubmit:hover {
@@ -109,8 +102,8 @@
     position: fixed; 
     top: 50%; left: 50%;  
     transform: translate(-50%, -50%); 
-    width: 25em; 
-    height: 24em; 
+    width: 26em; 
+    height: 27.5em; 
     padding: 10px;
     border: 1px solid grey;
     background: white;
@@ -127,21 +120,49 @@
 }
 
 #msgclose{
+ display:table-cell;
 	position : absolute;
 	top:345px;
-	left: 120px;
+	left: 210px;
 	display: inline-block;
-	height :28px;
+	height :29px;
 	width:100px;
 	padding-top: 5px;
+	text-align : center;
+	background-color  : black;
+	border : 3px solid black;
+	color: white;
+	padding-bottom: 5px;
+	font-size : 16px;
+}
+
+/**
+#msgclose{
+	margin-left : 80px;
+	background-color  : black;
+	border : 3px solid black;
+	color: white;
+	font-size:16px;
+	margin-top : 3px;
+	text-align : center;
+	padding:10px; /* padding 20px */
 
 }
+**/
+
 #chatplz{
-	margin-left:0px;
+	position : absolute;
+	top:400px;
+	left:900px;
+/**	margin-left: 20px; **/
 	padding-top : 10px;
 	text-align : center;
 	width : 110px;
-	font-size : 15px;
+	font-size : 14px;
+}
+.prodown-menu{
+	padding-left : 40px;
+	
 }
 
 #chatplz:hover{
@@ -152,7 +173,6 @@
 }
 
 </style>
-
 
 <form name="frmPopup">
 	<input type="hidden" name="memberID" >
@@ -165,14 +185,14 @@
 
 
 
-<section id="board-container" >
-<br /><br /><br /><br /><br /><br /><br />
-<p id="informationsp" > INFORMATION  <span id="styleinfo">스타일 정보</span></p>
+<section id="board-container" style="margin-top:-300px" >
 
- <ul class="ootdnav">
-	<li class="probutton-dropdown">
-	   	<a id="firsta" href="javascript:void(0)" class="prodropdown-toggle" >
-	    	<img id="profileimg" style="margin-left:140px; margin-top : 40px" src="<%=request.getContextPath()%>/uploadootds/ootd/profile.png" alt="profileimg" /></a>
+<p id="informationsp" > INFORMATION  <span id="styleinfo" style="width:200px">스타일 정보</span></p>
+
+ <ul class="ootdnav" style=" display:inline; height:50px">
+	<li class="probutton-dropdown" style=" display:inline; height:50px" >
+	   	<a id="firsta" href="javascript:void(0)" class="prodropdown-toggle"  style=" display:inline; height:50px">
+	    	<img id="profileimg"  src="<%=request.getContextPath()%>/uploadootds/ootd/profile.png" alt="profileimg" /></a>
 	    
 	    <ul class="prodown-menu" style="margin-left:30px">
    	 		<li><a onclick="open_pop('<%=shareBoard.getMemberId()%>');" style="margin-left:60px"> 프로필보기</a></li>
@@ -337,9 +357,10 @@
 	class="report_container"
 	name="reportEnrollFrm"
 	method="post"
-	action="<%= request.getContextPath() %>/report/reportEnroll">
+	action="<%= request.getContextPath() %>/report/reportEnroll"
+	id="report_container">
 	<span class="close-button" onclick="closeFrm()">&times;</span>
-    <h2 style="text-align: center; margin: 5px;" >신고하기</h2>
+    <h2 style="text-align: center; margin: 5px;" id="head">신고하기</h2>
     <hr />
     <table id="report_wrap">
         <thead>
@@ -460,10 +481,17 @@ const reportFrm = () => {
 	const frm = document.querySelector(".report_container");
 	<% if(loginMember.getMemberId() != null){ %>
 	frm.classList.toggle("showPopup");
+	
 	<% } else { %>
 	loginAlert();
 	<% } %>
 }
+
+$(function(){
+
+	$('.report_container').draggable({'cancel':'#report_wrap'});
+
+	});
 
 const closeFrm = () => {
 	const frm = document.querySelector(".report_container");
@@ -486,6 +514,8 @@ const reportEnroll = () => {
 	} 
 	alert("신고가 접수되었습니다.")
 }
+
+
 </script>
 <%-- 혜진 추가  --%>
 <script >

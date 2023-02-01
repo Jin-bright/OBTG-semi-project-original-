@@ -19,7 +19,7 @@
 <section id="board-container">
 <h2 id = "shareboardlist" > SHARE  </h2>
 <h3 id="shareboardlist2"> 더이상 입지 않는 아이템을 다른 회원들에게 무료로 양도해보세요 </h3>
-
+<br /><br /><br /><br />
 <%----  검색상자  --%>
 <style>
  div#search-container {
@@ -180,7 +180,7 @@
   	
 </table>
 </section>
-<div id='pagebar' style = "background-color: orange" > <%=request.getAttribute("pagebar")%></div>
+<div id='pagebar' style = "background-color: #f5f5f5;" > <%=request.getAttribute("pagebar")%></div>
 
 <script>
 
@@ -319,7 +319,7 @@ searchButtoncate.addEventListener('click', () => {
 </script>
 
 
-<!-- 3.내용에따라검색 
+<!-- 3.내용에따라검색 -->
 <script>
 const searchButtoncnt = document.querySelector("#searchButtoncnt");
 searchButtoncnt.addEventListener('click', () => {
@@ -375,9 +375,9 @@ searchButtoncnt.addEventListener('click', () => {
 	});//ajax
 });//
 </script>
--->
 
-<%-- 혜진 코드 실험 0201 -- 내용따라검색 --%>
+
+<%-- 혜진 코드 실험 0201 -- 내용따라검색 
 <script>
 const searchButtoncnt = document.querySelector("#searchButtoncnt");
 searchButtoncnt.addEventListener('click', () => {
@@ -453,6 +453,6 @@ searchButtoncnt.addEventListener('click', () => {
 	});//ajax
 });//
 </script>
-
+--%>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

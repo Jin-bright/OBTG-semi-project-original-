@@ -37,7 +37,7 @@ table#tbl-comment tr td{
 	padding:5px; 
 	text-align:left; 
 	line-height:120%;
-	font-weight : 100;
+/* 	font-weight : 100; */
 	}
 
 /*답글관련*/
@@ -51,6 +51,37 @@ table#tbl-comment tr:hover button.btn-delete{display:inline;}
 .comment-container {
 	width: 1000px;
 	margin: auto;
+	
+	
+}
+
+#btn-add, .submit-button {
+	font-size: 16px;
+	border: 0;
+	outline: 0;
+	border-radius: 8px;
+	background-color: #525252;
+	color: white;
+	padding: 8px 16px;
+	font-weight: 500;
+	
+/* 	display: block; */
+/* 	margin-left: auto; */
+	margin-bottom: 8px;
+}
+
+#btn-add1, .submit-button {
+	font-size: 16px;
+	border: 0;
+	outline: 0;
+	border-radius: 8px;
+	background-color: #525252;
+	color: white;
+	padding: 8px 16px;
+	font-weight: 500;
+
+    margin-right: 0;
+	margin-bottom: 8px;
 }
 div.board_title{
 text-align: center;
@@ -132,8 +163,8 @@ table#tbl-comment{
 		<tr>
 			<%-- 작성자와 관리자만 마지막행 수정/삭제버튼이 보일수 있게 할 것 --%>
 			<th colspan="2">
-				<input id="btn-add2" type="button" value="수정하기" onclick="updatefaq()">
-				<input id="btn-add2" type="button" value="삭제하기" onclick="deletefaq()">
+				<input id="btn-add1" type="button" value="수정하기" onclick="updatefaq()">
+				<input id="btn-add1" type="button" value="삭제하기" onclick="deletefaq()">
 			</th>
 		</tr>
 		<% 
@@ -157,7 +188,7 @@ table#tbl-comment{
                 <input type="hidden" name="commentLevel" value="1" />
                 <input type="hidden" name="commentRef" value="0" />    
 				<textarea name="content" cols="60" rows="3"></textarea>
-                <button type="submit" id="btn-add3">등록</button>
+                <button type="submit" id="btn-add">등록</button>
             </form>
         </div>
 	<!-- <hr style="margin-top:15px; margin-bottom:15px;" /> -->	

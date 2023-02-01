@@ -154,7 +154,7 @@ table tr{
 }
 
 #buttonglow:hover{
-	background-color: #ff8000;
+	background-color: rgb(192, 192, 192);
     color: #ffffff;
 }
 
@@ -251,7 +251,7 @@ input#btnAdd{
 div#pagebar{
 	margin-top:10px; 
 	text-align:center; 
-	background-color: #ffc082;
+	background-color : #eeeeee;
 }
 
 div#pagebar span.cPage{
@@ -269,7 +269,7 @@ div#pagebar a{
 	width:10px;	
 }
 div#pagebar a:hover{
-	background-color: #f98220;
+	background-color: #808080;
 	font-size:24px;
 	font-weight: 900;
 	text-decoration : underline

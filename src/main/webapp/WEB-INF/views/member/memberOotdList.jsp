@@ -26,7 +26,7 @@
 				</a>
 			</div>
 			<div class="container-li">
-				<a href="">
+				<a href="<%= request.getContextPath() %>/message/messageList">
 					<img src="<%= request.getContextPath()%>/image/chat.png" alt="" />
 					<li>&nbsp;Message</li>
 				</a>
@@ -47,11 +47,12 @@
 		</div>
 		<table id="boardList-wrap">
 		<% 
-			for(int i = 0; i < ootdBoardList.size(); i++) {
-				if(i % 4 == 0 ){
+			if(ootdBoardList.size() > 0 ){
+				for(int i = 0; i < ootdBoardList.size(); i++) {
+					if(i % 4 == 0 ){
 		%>
 			<tr>
-			<% } %>
+				<% } %>
 				<td>
 					<a href="<%= request.getContextPath() %>/ootd/ootdView?no=<%= ootdBoardList.get(i).getNo() %>">
 						<img src="<%= request.getContextPath() %>/uploadootds/ootd/<%= ootdBoardList.get(i).getRenamedFilename() %>" alt="" />
@@ -59,12 +60,18 @@
 						<p id="b_txt"><%= ootdBoardList.get(i).getRegDate() %> | 조회수 : <%= ootdBoardList.get(i).getReadCount() %></p>
 					</a>
 				</td>
-			<% if(i % 4 == 3){%>
+				<% if(i % 4 == 3){%>
 			</tr>
 		<% 
-				}   	    
-			}
+					}   	    
+				}
+			} else {
 		%> 
+			<div id="empty-box">
+				<h2>앗 아직 <span style="color: purple;">ootd</span>게시판에 글을 작성하지 않았어요!🥲</h2>
+				<p><a href="<%=request.getContextPath()%>/ootd/ootdWholeList">OOTD 게시판으로 이동</a></p>
+			</div>
+		<% } %>
 		</table>
 	</section>
 </div>

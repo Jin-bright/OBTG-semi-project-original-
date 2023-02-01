@@ -442,6 +442,25 @@ public class ShareboardDao {
 			}
 				
 			return shareBoardAndAttachments;
+		}
+
+		// 거래 상태 변경
+		public int updateShareState(Connection conn, int boardNo) {
+			// update share_board set share_state = ? where share_no = ?
+			String sql = prop.getProperty("updateShareState");
+			int result = 0;
+			
+			try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+				pstmt.setString(1, "거래완료");
+				pstmt.setInt(2, boardNo);
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				throw new ShareBoardException("👻거래 상태 변경 오류👻", e);
+			}
+			
+			return result;
 		}	
 		
 }
