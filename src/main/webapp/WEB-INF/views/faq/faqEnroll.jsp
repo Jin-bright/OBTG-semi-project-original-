@@ -5,7 +5,24 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/css.css" />
 <section id="board-container">
 
+<style>
 
+#btn-add, .submit-button {
+	font-size: 16px;
+	border: 0;
+	outline: 0;
+	border-radius: 8px;
+	background-color: #525252;
+	color: white;
+	padding: 8px 16px;
+	font-weight: 500;
+
+    margin-right: 0;
+	margin-bottom: 8px;
+}
+
+
+</style>
 
 	<form
 		name="faqEnrollFrm"

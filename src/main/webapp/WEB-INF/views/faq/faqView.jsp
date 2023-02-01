@@ -37,7 +37,7 @@ table#tbl-comment tr td{
 	padding:5px; 
 	text-align:left; 
 	line-height:120%;
-	font-weight : 100;
+/* 	font-weight : 100; */
 	}
 
 /*답글관련*/

@@ -19,7 +19,7 @@
                     		<div class="title">About Us</div>
                         	<h2>더 나은 패션 문화를 위해<br> OBTG가 앞장서겠습니다. </h2>
                         </div>
-                        <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</div>
+                        <div class="text"> 자신의 개성을 존중 받는 시대가 도래하면서 많은 사람들이 패션에 관심을 갖게 되었습니다. 저희 OBTG가</div>
                         <div class="email"><span class="theme_color">OBTG</span></div>
 <!--                         <a href="about.html" class="theme-btn btn-style-three">Read More</a> -->
                     </div>
