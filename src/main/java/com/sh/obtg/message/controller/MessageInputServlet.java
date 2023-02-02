@@ -36,11 +36,14 @@ public class MessageInputServlet extends HttpServlet {
 			String receiver = request.getParameter("receiver");
 			String sender = request.getParameter("sender");
 			String msgContent = request.getParameter("msgContent");
-			String msgTitle = request.getParameter("msgTitle");
 		
-			
+		
+			String msgTitle = "제목없음";
+			if(request.getParameter("msgTitle") != null) {
+				msgTitle = request.getParameter("msgTitle");
+			}; //default title 설정
 			//2업무로직 
-	// insert into message values(se ,?,?,?,?,default)
+			// insert into message values(se ,?,?,?,?,default)
 			
 			Message message = new Message();
 			message.setMessageReceiver(receiver);

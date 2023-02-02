@@ -43,7 +43,7 @@ public class WebSocketConfigurator extends Configurator {
 		}
 		
 
-		
+/**		
 		//★★★채팅방에 접속하는 경우 
 			memberId = loginMember.getMemberId();	
 			System.out.println( memberId  );
@@ -60,6 +60,7 @@ public class WebSocketConfigurator extends Configurator {
 			if( chatroomId != null ) {
 				userPropchat.put("chatroomId", chatroomId);	
 			}
+**/			
 		}//
 	
 	

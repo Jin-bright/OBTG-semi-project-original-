@@ -66,7 +66,7 @@ window.addEventListener('load', () => {
 	/* width:800px;  
 	height : 1500px; */
 	padding : 0px;
-	margin-left : 90px;
+	margin-left : 430px;
 	
  }
  
@@ -89,7 +89,6 @@ td{
 }
 
 #goback:hover{
-
 	background-color : white;
 	height : 30px;
 	color : black;
@@ -97,7 +96,7 @@ td{
 	font-weight: bolder
 }
  
- </style>
+</style>
  
 <br /><br /><br /> 
  <section id="photo-wrapper">
@@ -189,52 +188,4 @@ window.addEventListener('load', () => {
 
 
 
-<%-- <script>
-//비동기로 뭘한다.. ?
-window.addEventListener('load', () => {
-	//첫페이지 내용 로드 
-	getPage(1);
-	
-});
-
-document.querySelector("#btn-more").addEventListener('click', () => {
-	const page = document.querySelector("#page");
-	getPage(Number(page.innerText) + 1); //Number("1") + 1  -> 2 
-});
-
-
-	const getPage = (page) => {
-		$.ajax({
-			url : "<%=request.getContextPath()%>/ootd/ootdFinderbyid",
-			method : "get",
-			data : {page}, //page : 1 이런식으로.. ?
-			dataType : "json",
-		
-			success(data){
-				console.log( data );
-				const divContainer =  document.querySelector("#photo-container");
-				
-				data.forEach( (list, index) => {
-				
-					list.ootd_writer
-				})
-				
-		
-
-				
-			}, //success 
-			error : console.log, 
-			complete(){
-				document.querySelector("#page").innerHTML = page;
-				//마지막 페이지인 경우 더보기 버튼 비활성화 처리 ★
-				if( page === <%=totalPage%>){
-					const button = document.querySelector("#btn-more");
-					button.disabled = true; // 리턴값이 boolean 값 
-					button.style.cursor = "not-allowed";
-				}
-			}
-		});	//ajax
-	}
-		
-</script> --%>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

@@ -27,6 +27,8 @@ public class ShareViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	try {	
 		//1.사용자입력값 처리 
 		int no = Integer.parseInt(request.getParameter("no"));
 		System.out.println(" 게시판 no = " + no);
@@ -88,7 +90,16 @@ public class ShareViewServlet extends HttpServlet {
 		request.setAttribute("likeCnt", count);
 		request.getRequestDispatcher("/WEB-INF/views/share/shareView.jsp")
 		.forward(request, response);
+		
+	}catch (Exception e) {
+		
+		request.getSession().setAttribute("msg", " 홈페이지 오류가 발생했습니다. 로그인 후 재시도 바랍니다.");
+		e.printStackTrace();
+		throw e;
+		
+
+	}	
+		
 	}
 
-	
 }

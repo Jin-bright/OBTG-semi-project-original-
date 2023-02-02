@@ -15,6 +15,7 @@
 	<button id="btn-add1">글쓰기</button>
 	</a>
 	<%-- <% } %> --%>
+
 	<table id="tbl-board">
 		<thead>
 			<tr>
@@ -51,8 +52,8 @@
 		</tbody>
 	</table>
 
-	<div id='pagebar'>
-		<%= request.getAttribute("pagebar") %>
-	</div>
+ 	<div id='pagebar'>
+		<%=(String)request.getAttribute("pagebar") %>
+	</div> 
 </section>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
