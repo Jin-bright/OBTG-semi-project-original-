@@ -43,7 +43,7 @@
 		<table id="msg-wrap">
 			<thead>
 				<tr>
-					<td colspan="4" style="border-style: none; float: left;"><button onclick="msgDelete();">삭제</button></th>
+					<td colspan="4" style="border-style: none; float: left;"><button onclick="msgDelete();">삭제</button></td>
 				</tr>
 				<tr>
 					<th id="check">
@@ -60,7 +60,7 @@
 				%>
 				<tr id="msg-content">
 					<td>
-						<input type="checkbox" name="selectMsg" id="selectMsg" value = <%= message.getMessageNO() %> />
+						<input type="checkbox" name="selectMsg" id="selectMsg" value = <%= message.getMessageNO() %> onclick="checkOnlyOne(this)"/>
 					</td>
 					<td class="msg"><%= message.getMessageSender() %></td>
 					<td class="msg">
@@ -214,19 +214,29 @@ function fnCheckAll(){
     }
 }
 
+
 const msgDelete = () => {
-	if(confirm("해당 쪽지를 삭제하셌습니까?")){
-		const msgs = document.querySelectorAll("#selectMsg");
+	if(confirm("해당 쪽지를 삭제하시겠습니까?")){
+ 		const msgs = document.querySelectorAll("#selectMsg");
 		for(let i = 0; i < msgs.length; i++){
-	        const msg = msgs[i];
-	       	if(msg.checked){
+	       	if(msgs[i].checked){
 	       		const delNo = document.querySelector("#delNo");
-	       		delNo.value = msg.value;
+	       		delNo.value = msgs[i].value;
 				document.msgDeleteFrm.submit();
 	       	}
-	    }
+	    } 
 	}
 };
+
+const checkOnlyOne = (e) => {
+    const checkbox = document.getElementsByName("selectMsg");
+
+    checkbox.forEach((cb) => {
+        cb.checked = false;
+    })
+
+    e.checked = true;
+} 
 
 </script>
 <form action="<%= request.getContextPath() %>/message/messageDelete" method="post" name="msgDeleteFrm">
