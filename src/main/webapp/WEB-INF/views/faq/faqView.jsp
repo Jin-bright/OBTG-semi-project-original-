@@ -115,7 +115,7 @@ text-align : center;
 }
 table#tbl-comment{
     width: 46vw;
-    margin-left: 50px;
+/*     margin-left: 50px; */
     margin-top: 20px;
     border-collapse: collapse;
     }
