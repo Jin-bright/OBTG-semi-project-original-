@@ -52,9 +52,9 @@
 			</tbody>
 		</table>
 		<!-- 페이지바 -->
-		<div id="pagebar">
-			<%=request.getAttribute("pagebar") != null ? request.getAttribute("pagebar") : ""%>
-		</div>
+		<div id='pagebar'>
+		<%=(String)request.getAttribute("pagebar") %>
+	</div> 
 	</div>
 </div>
 

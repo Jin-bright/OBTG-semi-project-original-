@@ -19,7 +19,7 @@ public class AdminBlackListServlet extends HttpServlet {
 	private AdminService adminService = new AdminService();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		final int numPerPage = 10;
+		final int numPerPage = 5;
 		int Page = 1;
 		try {
 			Page = Integer.parseInt(request.getParameter("cPage"));
@@ -40,10 +40,12 @@ public class AdminBlackListServlet extends HttpServlet {
 		
 		//jsp에 html응답메세지 작성 위임
 		request.setAttribute("Page", Page);
-		request.setAttribute("pageBar", pageBar);
+		request.setAttribute("pagebar", pageBar);
 		System.out.println("pageBar"+ pageBar);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/WEB-INF/views/admin/blackList.jsp").forward(request, response);
+		
+		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
