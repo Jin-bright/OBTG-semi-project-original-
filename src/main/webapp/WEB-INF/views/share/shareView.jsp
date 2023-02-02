@@ -29,7 +29,7 @@
 }
 #profileimg{
 	display:inline-block;
-	margin-left: 100px;
+	margin-left: 130px;
 	margin-top : 500px;
 	width:40px;
 }
@@ -110,7 +110,7 @@
     background: white;
     border-radius: 1em;
     visibility: hidden;
-	z-index: 11px;
+	z-index: 999;
     border : 2px solid orange;
 }
 
@@ -182,8 +182,7 @@
 
  <ul class="ootdnav" style=" display:inline; height:50px">
 	<li class="probutton-dropdown" style=" display:inline; height:50px" >
-	   	<a id="firsta" href="javascript:void(0)" class="prodropdown-toggle"  style=" display:inline; height:50px">
-	    	<img id="profileimg"  src="<%=request.getContextPath()%>/uploadootds/ootd/profile.png" alt="profileimg" /></a>
+    	<img id="profileimg"  src="<%=request.getContextPath()%>/uploadootds/ootd/profile.png" alt="profileimg" /></a>
 	    
 	    <ul class="prodown-menu" style="margin-left:30px">
    	 		<li class="plz"><a onclick="open_pop('<%=shareBoard.getMemberId()%>');" style="margin-left:1220px"> 프로필보기</a></li>

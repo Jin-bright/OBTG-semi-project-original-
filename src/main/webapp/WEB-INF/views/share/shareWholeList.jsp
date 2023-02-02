@@ -95,7 +95,9 @@
 	background-color: white ;
  }
  
- 
+ #goback{
+	visibility : hidden;
+ }
  </style>
  
  <script> 
@@ -182,7 +184,7 @@
         </div>
 </div>
         
-
+ <span id="goback" ><a style="margin-left : -20px; margin-top:47px; display:inline-block; text-align:center; border:3px solid black; width : 90px; height:30px" href="<%=request.getContextPath()%>/share/shareWholeList">목록보기</a></span>
  
 <% if(loginMember != null){ %>
 <input type="button" value="글쓰기" id="btnAdd"  style="margin-left : -600px"
@@ -249,62 +251,6 @@ function styleback(){
 </script>
 
 
-<%-- <script>
-// 1. id로 검색 
-const searchButton	= document.querySelector("#searchButton");
-searchButton.addEventListener('click', () => {
-		
-	$.ajax({
-			url : "<%=request.getContextPath()%>/share/shareWholeListFind",
-			method : "get",
-			data : {
-				searchType :  document.getElementById("searchType").value,
-				searchKeywordID : document.getElementById("searchKeywordID").value
-			},
-			dataType : "json",
-		
-			success(data){
-				console.log ( data ); 
-				
-				const table = document.querySelector("#tblBoard")
-				table.innerHTML = "";
-				pagebar.innerHTML = "";
-				
-				const tbody = document.createElement("tbody")
-				table.append(tbody);
-				
-				const tr = document.createElement("tr")
-				tbody.append(tr);
-				
-				//foreach
-				data.forEach( (e, index) => {
-					
-				if(data==0){
-					alert("검색결과가 없습니다 😣");
-					return;
-				}
-				
-			
-			tr.innerHTML	+= 
-	`<td class="maketd" style="width:220px;">
-       <a class="atags" style="display :inline;" href="<%=request.getContextPath()%>/share/shareView?no=\${e.ShareNo}">
-       <img id="eachimg"  style="display : inline-block; height : 200px; width:190px;  margin-left:-3px" src="<%=request.getContextPath()%>/uploadshares/share/\${e.renamedFilename}"/></a><br/>
-        <p class="non">NO <span style="color : black; font-weight : light">\${e.ShareNo}</span></p>
-        <p class="non">N  <span style=" color : black; font-weight : light">\${e.ShareRegDate}</span></p>
-    </td>`;
-    
-				});
-			//	table.innerHTML += data;
-			},
-			error : console.log,
-			complete(){
-	
-			}
-			
-	});//ajax
-});//
-
-</script> --%>
 <!-- 1. id로 검색  -->
 <script>
 const searchButton	= document.querySelector("#searchButton");
@@ -337,6 +283,9 @@ const getPageID = (page) => {
 					btnmorecontainer.style.visibility = "hidden";
 					const buttonmoreId = document.querySelector("#btn-more-id");
 					buttonmoreId.style.visibility = "hidden";
+					
+					const goback = document.querySelector("#goback");
+					goback.style.visibility = "visible"; //목록보기가생김
 					return; //현재창에 남아있도록함
 				}
 
@@ -380,11 +329,6 @@ const getPageID = (page) => {
 						btnmorecontainer.innerHTML = "";
 						pagebar.innerHTML = "";
 						
-					}
-					else if ( data.length <5 ){
-						const buttonmoreId = document.querySelector("#btn-more-id");
-						buttonmoreId.disabled = true; // 리턴값이 boolean 값 
-						buttonmoreId.style.cursor = "not-allowed";
 					}
 				});//////end foreach
 			},
@@ -437,6 +381,10 @@ const getPageCate = (page) => {
 					btnmorecontainer.style.visibility = "hidden";
 					const buttonmoreCate = document.querySelector("#btn-more-cate");
 					buttonmoreCate.style.visibility = "hidden";
+					
+					const goback = document.querySelector("#goback");
+					goback.style.visibility = "visible";
+					
 					return; //현재창에 남아있도록함
 				}
 
@@ -540,6 +488,9 @@ const getPage = (page) => {
 					btnmorecontainer.style.visibility = "hidden";
 					const buttonmor = document.querySelector("#btn-more");
 					buttonmor.style.visibility = "hidden";
+					
+					const goback = document.querySelector("#goback");
+					goback.style.visibility = "visible";
 					return;
 				}
 				
