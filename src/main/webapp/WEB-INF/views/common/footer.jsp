@@ -8,11 +8,9 @@
 			 <div id="footer-container">
             <div id="footer-wrap">
                 <div id="footer_info">
-                    <a class="footer_a">개인정보취급방안</a>
+                    <a class="footer_a" href="<%=request.getContextPath()%>/common/personalInformation">개인정보취급방안</a>
                     |
-                    <a class="footer_a">이용약관</a>
-                    |
-                    <a class="footer_a" <%-- href="<%= request.getContextPath() %>/about/aboutList" --%>>회사소개</a>
+                    <a class="footer_a" href="<%=request.getContextPath()%>/common/usepolicy"  >이용약관</a>
                     |
                     <a class="footer_a" href="<%= request.getContextPath() %>/faq/faqAccordion">FAQ</a>
                     |

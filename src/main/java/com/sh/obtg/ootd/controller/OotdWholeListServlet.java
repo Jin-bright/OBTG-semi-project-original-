@@ -44,6 +44,8 @@ public class OotdWholeListServlet extends HttpServlet {
 			param.put("page", page);
 			param.put("limit", limit);
 			
+		 	System.out.println( page );
+		 	System.out.println( limit );
 		 	
 			// 1.  인코딩 x 사용자입력값 x  전체게시글출력 (처음 매개변수x -> 매개변수 param)
 			List<OotdAttachment> ootdAttachments;

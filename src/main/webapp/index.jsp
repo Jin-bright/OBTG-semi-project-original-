@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="swiper-slide" style="background-image:url(https://cdn.dribbble.com/users/388811/screenshots/5698969/media/e20cf82a36e8c055bec99620aad3c450.jpg?compress=1&resize=800x600&vertical=top)">
-      <img src="<%=request.getContextPath()%>/image/indexpic.png" class="entity-img" />
+      <img src="<%=request.getContextPath()%>/image/indexpic.jpg" class="entity-img" />
       <div class="content">
         <p class="title" data-swiper-parallax="-30%" data-swiper-parallax-scale=".7"> JOIN THE OBTG </p>
       </div>
@@ -31,7 +31,7 @@
       <img src="https://images.unsplash.com/photo-1538329972958-465d6d2144ed?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTkzNg&ixlib=rb-1.2.1&q=85" class="entity-img" />
       <div class="content">
         <p class="title" data-swiper-parallax="-30%" data-swiper-parallax-scale=".7"> MAKE EACH DAY COLORFUL </p>
-        <span class="caption" data-swiper-parallax="-20%">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
+        <span class="caption" data-swiper-parallax="-20%"> OBTG는 패션을 다양한 사람들과 소통이 가능한 공간입니다.</span>
       </div>
     </div>
     <div class="swiper-slide" style="background-image:url(https://images.unsplash.com/photo-1583292650898-7d22cd27ca6f?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTk1OQ&ixlib=rb-1.2.1&q=85)">
@@ -70,7 +70,7 @@
                     		<div class="title" style="color:black; font-size:20px; font-weight:900; " >About <span style="color:RED"> OBTG</span> </div>
                         	<h2 style="color:black; font-size:26px; "> OBTG는 패션을 매개로 <br> 다양한 사람들과 소통할 수 있는 공간입니다.</h2>
                         </div>
-                        <div class="text">패션을 통해 자신을 드러내는 세상. <br/>쇼핑몰 사이트는 넘쳐나는데 오늘 입온 옷을 공유하고 나의 소소한 생각을 공유하는 사이트는 다소 부족합니다. <br />
+                        <div class="text">패션을 통해 자신을 드러내는 세상. <br/>쇼핑몰 사이트는 넘쳐나는데 오늘 입은 옷을 공유하고 나의 소소한 생각을 공유하는 사이트는 다소 부족합니다. <br />
                         	저희 OBTG는 이러한 생각에 착안하여 누구나 쉽게 관심가지고 즐길 수 있는 패션을 다양한 사람들과 공유할 수 있는 사이트를 개발하였습니다. </div>
                         <div class="email"><span class="theme_color" style="font-size:20px; color:orange"><a style = "color:orange" href="<%=request.getContextPath()%>/ootd/ootdWholeList"><b>OOTD</b></a></span>로 이동</div>
 <!--                         <a href="about.html" class="theme-btn btn-style-three">Read More</a> -->

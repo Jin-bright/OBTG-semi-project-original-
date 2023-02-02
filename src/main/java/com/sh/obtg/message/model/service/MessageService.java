@@ -28,6 +28,8 @@ public class MessageService {
 		}
 		return result;
 	}
+
+	
 	
 	// 내게 온 쪽지 확인
 	public List<Message> selectMsgList(Map<String, Object> param) {

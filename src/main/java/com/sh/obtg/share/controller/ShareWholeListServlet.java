@@ -68,7 +68,34 @@ public class ShareWholeListServlet extends HttpServlet {
 			String pagebar = HelloMvcUtils.getPagebar(page, limit, totalCount, url);
 		//	System.out.println("pagebar : " + pagebar );
 			request.setAttribute("pagebar", pagebar);
-		
+			
+			////////////////////////////////////////
+			String searchType = request.getParameter("searchType"); // searchType = member_id
+			String searchKeyword = request.getParameter("searchKeywordID"); //searchKeyword =  tiger  
+			// find 페이지구하기
+			//검색어/검색타입
+
+			int totalfindPage = 1;
+			
+			if(  searchType != null && searchKeyword != null ) {
+				Map<String, String> paramSearch = new HashMap<>();
+				paramSearch.put("searchType", searchType);
+				paramSearch.put("searchKeyword", searchKeyword);
+			
+				int FindtotalCount = shareService.getFindTotalCount( paramSearch ); //전체 find 한 게시물수
+				System.out.println( "**totalCount(전체 검색 아이템 갯수) = " + FindtotalCount   );
+			
+				
+				try{
+					totalfindPage = (int)Math.ceil( (double)FindtotalCount/ limit ); //limit으로 나눠준다 전체아이템갯수를
+				}catch (NumberFormatException e) {}
+				
+				System.out.println("★★★totalfindPage - wholelist에셋팅 = " + totalfindPage );						
+			}
+			
+			
+			request.setAttribute("totalfindPage", totalfindPage);
+		//	request.setAttribute("shareBoardAndAttachments", shareBoardAndAttachments);
 		}
 		
 		catch (Exception e) {
