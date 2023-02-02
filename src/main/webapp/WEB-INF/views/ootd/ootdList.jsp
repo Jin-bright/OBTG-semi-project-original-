@@ -34,7 +34,7 @@
 	  </tr>
 	 
 	</table>
-<div id="pagebar" style="background-color: orange;">
+<div id="pagebar" style="background-color: gray;">
 		<%=(String)request.getAttribute("pagebar")%>
 </div>
 

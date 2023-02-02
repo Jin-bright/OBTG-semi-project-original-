@@ -324,7 +324,7 @@ create sequence seq_column_no;
 -- ootd
 --create or replace trigger trig_table_ootd_find -- 괄호 안씀 
   after 
-	insert or update or delete on OOTD_board   --   이 테이블에 변화가 생기면  begin절에 쓴대로 trigger 가 작동되는거임 
+	insert   or update or delete on OOTD_board   --   이 테이블에 변화가 생기면  begin절에 쓴대로 trigger 가 작동되는거임 
 	for each row 
 begin
 	if inserting then   insert into ootd_find  (no, style_no, OOTD_no )
@@ -464,7 +464,8 @@ end;
 /
 
 
---select * from blackList;
+--select * from blackList;   
+ol
 
 
 
@@ -482,5 +483,3 @@ create table message (
 create sequence seq_message_no;
 
 select * from faq;
-
-commit;
