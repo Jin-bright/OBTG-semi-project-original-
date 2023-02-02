@@ -160,29 +160,11 @@ List<OotdBoard> findootdBoardsById = (List<OotdBoard> )request.getAttribute("fin
 </section>
 
 
-<div id='pagebar' style = "background-color: #eeeeee;" > <%=request.getAttribute("pagebar")%>
+<!-- 페이지바 -->
+<div id='pagebar' style = " background-color: #eeeeee;	" > <%=request.getAttribute("pagebar")%>
 </div>
 
-<script>
-const atag = document.querySelectorAll(".atags");
-const div  = document.querySelectorAll("td");
 
-
-// Q.태그 하나하나에 어떻게 하지 ?
-/* $('a').on('mouseenter', function(){
-	$(div).css("background-color","gray");
-})
-
-atag.forEach( (a, index) => {
-	a.addEventListener('mouseover', (e) => {
-		div.forEach( (d, index) => {
-			d.style.backgroundColor = "yellow";	
-		})
-		
-	});		
-}) */
-
-</script>
 
 
 

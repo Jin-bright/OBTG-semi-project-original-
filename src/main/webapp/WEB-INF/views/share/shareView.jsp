@@ -34,26 +34,26 @@
 	width:40px;
 }
 
-<%-- 쪽지 모달창 css 효과  
+<%-- 쪽지 모달창 css 효과  --%>
 
 #frmPopCh {
     position: fixed; 
     top: 50%; left: 50%;  
     transform: translate(-50%, -50%); 
-    width: 25em; 
-    height: 24em; 
+     width: 24em; 
+    height: 25em; 
     padding: 10px;
-    border: 1px solid grey;
+    border: none;
     background: white;
     border-radius: 1em;
-    visibility: hidden;
     z-index : 999;
-    border : 2px solid orange;
+
+
 }
---%>
+
 #msgTable {
 	width: 330px;
-	height: 300px;
+	height: 320px;
     background-color: F5F5DC;
 	margin : 0 auto;
 	border : 2px solid black; 
@@ -100,7 +100,8 @@
 
 #frmwrapper{
     position: fixed; 
-    top: 50%; left: 50%;  
+    top: 50%; 
+    left: 50%;  
     transform: translate(-50%, -50%); 
     width: 26em; 
     height: 27.5em; 
@@ -109,7 +110,7 @@
     background: white;
     border-radius: 1em;
     visibility: hidden;
-    z-index : 999;
+	z-index: 11px;
     border : 2px solid orange;
 }
 
@@ -120,9 +121,9 @@
 }
 
 #msgclose{
- display:table-cell;
+ 	display:table-cell;
 	position : absolute;
-	top:345px;
+	top:370px;
 	left: 210px;
 	display: inline-block;
 	height :29px;
@@ -134,32 +135,22 @@
 	color: white;
 	padding-bottom: 5px;
 	font-size : 16px;
+	z-index:1
 }
 
-/**
-#msgclose{
-	margin-left : 80px;
-	background-color  : black;
-	border : 3px solid black;
-	color: white;
-	font-size:16px;
-	margin-top : 3px;
-	text-align : center;
-	padding:10px; /* padding 20px */
 
-}
-**/
 
 #chatplz{
 	position : absolute;
-	top:400px;
-	left:900px;
-/**	margin-left: 20px; **/
+	top:550px;
+	left:1300px;
+	padding-right:30px;
 	padding-top : 10px;
 	text-align : center;
 	width : 110px;
 	font-size : 14px;
 }
+
 .prodown-menu{
 	padding-left : 40px;
 	
@@ -195,12 +186,11 @@
 	    	<img id="profileimg"  src="<%=request.getContextPath()%>/uploadootds/ootd/profile.png" alt="profileimg" /></a>
 	    
 	    <ul class="prodown-menu" style="margin-left:30px">
-   	 		<li><a onclick="open_pop('<%=shareBoard.getMemberId()%>');" style="margin-left:60px"> 프로필보기</a></li>
+   	 		<li class="plz"><a onclick="open_pop('<%=shareBoard.getMemberId()%>');" style="margin-left:1220px"> 프로필보기</a></li>
   
  
 	    <%-- 	<% if(loginMember.getMemberId() != null ) {%> --%>	 
-	 	 	<li   id="chatplz"  > 쪽지하기 </li>
-		  		<%--	<% } --%> 
+	 	 	<li class="plz"   id="chatplz"  > 쪽지하기 </li>
 			 	<!--  쪽지 모달 창 "/>  -->
 <div id="frmwrapper">			
 			<form id="frmPopCh" name="frmPopCh" action="<%=request.getContextPath()%>/chat/MessageMain"  method="post">
@@ -228,10 +218,12 @@
 				</tr>
 				</table>
 				<input class="msgbt"  id="msgsubmit" type="submit" value="✔️보내기"   >
-			</form>
-			<span id="msgclose"> 취소 </span>			
-</div>			
-		<%--</li>--%></ul>
+				<span id="msgclose" class="msgclose"> 취소 </span>		
+			</form>	
+					
+</div>
+			
+		</ul>
    </li>
 </ul>
 

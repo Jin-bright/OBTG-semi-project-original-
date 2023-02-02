@@ -92,9 +92,12 @@ public class ShareViewServlet extends HttpServlet {
 		.forward(request, response);
 		
 	}catch (Exception e) {
+		
 		request.getSession().setAttribute("msg", " 홈페이지 오류가 발생했습니다. 로그인 후 재시도 바랍니다.");
 		e.printStackTrace();
 		throw e;
+		
+
 	}	
 		
 	}
