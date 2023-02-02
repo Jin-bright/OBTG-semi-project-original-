@@ -47,7 +47,7 @@
 				</tr>
 				<tr>
 					<th id="check">
-						<input type="checkbox" name="checkAll" id="checkAll" onchange="fnCheckAll()"/>
+						<!-- <input type="checkbox" name="checkAll" id="checkAll" onchange="fnCheckAll()"/> -->
 					</th>
 					<th id="sen">보낸사람</th>
 					<th id="tit">제목</th>
