@@ -72,7 +72,7 @@ ul.dd-menu:hover{
 	width:180px;
 	left:50%;
 	margin-left:-90px;
-	top:70px;
+	top:15px;
 	font:bold 12px 'Open Sans Condensed', sans-serif;
 	
 	/* This is important for the show/hide CSS animation */

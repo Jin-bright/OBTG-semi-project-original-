@@ -23,20 +23,28 @@ public class FaqListServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 사용자 입력값 
+	
+	try {
 		final int limit = 5;
 		int page = 1;
 		try {
 			page = Integer.parseInt(request.getParameter("page"));
+
 		} catch (NumberFormatException e) {
 			
+		}
+
 		Map<String, Object> param = new HashMap<>();
 		param.put("page", page);
 		param.put("limit", limit);
 		
+		System.out.println( param );
 		// 업무로직
 		List<faq> faqList = faqService.selectFaqList(param);
+		System.out.println( faqList ); //
 		
 		int totalCount = faqService.selectTotalCount();
+		System.out.println( "** faq : " + totalCount   ); //
 		
 		String url = request.getRequestURI();
 		String pagebar = HelloMvcUtils.getPagebar(page, limit, totalCount, url);
@@ -44,9 +52,19 @@ public class FaqListServlet extends HttpServlet {
 		// view단 처리
 		request.setAttribute("faqList", faqList);
 		request.setAttribute("pagebar", pagebar);
+
+
+		
 		request.getRequestDispatcher("/WEB-INF/views/faq/faqList.jsp")
 		.forward(request, response);
-		
+				
+		}  catch (Exception e) {
+			e.printStackTrace();		
+
+//		request.getRequestDispatcher("/WEB-INF/views/faq/faqList.jsp")
+//		.forward(request, response);
+
 		}
+
 	}
 }

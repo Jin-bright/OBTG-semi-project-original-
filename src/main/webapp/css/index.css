@@ -22,10 +22,12 @@
   padding-top: 2%;
 }
 
+/**
 .swiper-container.loading {
   opacity: 0;
   visibility: hidden;
 }
+**/
 
 .swiper-container:hover .swiper-button-prev,
 .swiper-container:hover .swiper-button-next {
