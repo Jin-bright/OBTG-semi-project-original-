@@ -17,16 +17,17 @@
 
 	int	totalfindPage = (int)request.getAttribute("totalfindPage");		
 %>
-<br /><br /><br />
+
 <section id="board-container">
+<br /><br /><br /><br />
 <h2 id = "shareboardlist" > SHARE  </h2>
 <h3 id="shareboardlist2"> 더이상 입지 않는 아이템을 다른 회원들에게 무료로 양도해보세요 </h3>
-<br /><br /><br /><br /><br />
+<br />
 <%----  검색상자  --%>
 <style>
  div#search-container {
 	margin-left : 300px;
-	margin-top : 35px;
+	margin-top : 53px;
  	width: 280px; 
  	padding:3px; 
  	background-color: white;
@@ -49,6 +50,7 @@
  }
  
  #btn-more-container{
+
     visibility: hidden;
  	color : white;
 	width: 100px;
@@ -183,8 +185,8 @@
             </div>   
         </div>
 </div>
-        
- <span id="goback" ><a style="margin-left : -60px; font-size:15px; margin-top:47px; display:inline-block; text-align:center; border:3px solid black; width : 90px; height:30px" href="<%=request.getContextPath()%>/share/shareWholeList">목록보기</a></span>
+     
+ <span id="goback" ><a style="margin-left : -160px; font-size:15px; margin-top:100px; display:inline-block; text-align:center; border:3px solid black; width : 90px; height:30px" href="<%=request.getContextPath()%>/share/shareWholeList">목록보기</a></span>
  
 <% if(loginMember != null){ %>
 <input type="button" value="글쓰기" id="btnAdd"  style="margin-left : -600px"
@@ -222,15 +224,13 @@
   	
 </table>
 </section>
-<div id='pagebar' style = "background-color: #f5f5f5;" > <%=request.getAttribute("pagebar")%></div>
-
-<!-- /** 시험중 ** -->
+ <!-- /** 시험중 ** -->
 <div id='btn-more-container' >
 	<button id="btn-more-id" value="" > 더보기(현재<span id="pageId"></span>페이지)</button>  <!-- 1 id 검색용 -->
 	<button id="btn-more-cate" value="" > 더보기(현재<span id="pageCate"></span>페이지)</button> <!-- 2카테고리검색용 -->
 	<button id="btn-more" value="" > 더보기(현재<span id="pageCnt"></span>페이지)</button>  <!-- 3 내용 검색용 -->
-</div>
-
+</div>  
+<div id='pagebar' style = "background-color: #f5f5f5;" > <%=request.getAttribute("pagebar")%></div>
 <script>
 
 //const img  = document.querySelectorAll("#eachimg");
@@ -281,6 +281,7 @@ const getPageID = (page) => {
 					alert("검색 결과가 없습니다 ❌");
 					const btnmorecontainer = document.querySelector("#btn-more-container");
 					btnmorecontainer.style.visibility = "hidden";
+
 					const buttonmoreId = document.querySelector("#btn-more-id");
 					buttonmoreId.style.visibility = "hidden";
 					

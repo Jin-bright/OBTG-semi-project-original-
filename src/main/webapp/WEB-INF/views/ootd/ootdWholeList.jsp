@@ -154,12 +154,13 @@ List<OotdBoard> findootdBoardsById = (List<OotdBoard> )request.getAttribute("fin
    }%>
 </table>
 <br /><br /><br /><br />
-</section>
-
-
 <!-- 페이지바 -->
 <div id='pagebar' style = " background-color: #eeeeee;	" > <%=request.getAttribute("pagebar")%>
 </div>
+</section>
+
+
+
 
 
 
