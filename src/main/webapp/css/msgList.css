@@ -51,6 +51,7 @@ hr{
 }
 #msg-wrap td {
 	border-bottom: 1px solid dimgrey;
+	padding: 12px 0;
 }
 #check {
 	width: 35px;
