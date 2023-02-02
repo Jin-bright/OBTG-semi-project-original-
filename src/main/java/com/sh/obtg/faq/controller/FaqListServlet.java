@@ -53,6 +53,7 @@ public class FaqListServlet extends HttpServlet {
 		request.setAttribute("faqList", faqList);
 		request.setAttribute("pagebar", pagebar);
 
+
 		
 		request.getRequestDispatcher("/WEB-INF/views/faq/faqList.jsp")
 		.forward(request, response);
