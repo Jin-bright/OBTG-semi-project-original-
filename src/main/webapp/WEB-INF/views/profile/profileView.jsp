@@ -126,13 +126,15 @@
     
     <p><%=member.getEmail()%></p>
     <p style="font-size:16px; font-weight:bolder; color:hotpink; padding-top:10px; margin-bottom:-10px">#<%=member.getStyle()%></p>
-    <a href="#" class="follow"> 채팅하기 </a>
-    <a href="#" class="info" onclick="open_pop.close()";> 닫기 </a>
+    <a href="#" class="info" style="margin-left: 120px" onclick="closepop()";> 닫기 </a>
   </figcaption>
 </figure>
 
 
 <script>
+const closepop = () => {
+	window.close();
+}
 
 $(".hover").mouseleave(
 		  function () {

@@ -21,6 +21,17 @@
  List<OotdBoardComment> comments  = (List<OotdBoardComment>)request.getAttribute("comments");
  int likeCnt = (int)request.getAttribute("likeCnt");
 %>
+<style>
+
+#profileimg{
+	display:inline-block;
+	position:absolute;
+	left: 1120px;
+	top : 400px;
+	width:40px;
+}
+</style>
+
 <script >
 function open_pop(<%=ootdboard.getOotdWriter()%> ){
     const frmPop= document.frmPopup;
@@ -42,18 +53,29 @@ function open_pop(<%=ootdboard.getOotdWriter()%> ){
 <section id="board-container"  style="margin-left:-100px;" > <!-- 0201마진값추가 -->
 <br /><br /><br /><br /><br /><br /><br />
 	<p id="informationsp" > INFORMATION  <span id="styleinfo" ">스타일 정보</span></p>
-<ul class="ootdnav">
+<%-- <ul class="ootdnav">
 	<li class="button-dropdown">
 	   	<a id="firsta" href="javascript:void(0)" class="dropdown-toggle">
 	    <img id="profileimg" src="<%=request.getContextPath()%>/uploadootds/ootd/profile.png" alt="profileimg" /> </a>
 	    
 	    <ul class="dropdown-menu">
-<%--	  <li><a onclick = "window.open('<%=request.getContextPath() %>/profile/profileView', '', 'width=530, height=500, location=no, status=no, scrollbars=yes');">프로필보기</a></li>  --%>
- 			<li><a onclick="open_pop('<%=ootdboard.getOotdWriter()%>');">프로필보기</a></li>
+	  <li><a onclick = "window.open('<%=request.getContextPath() %>/profile/profileView', '', 'width=530, height=500, location=no, status=no, scrollbars=yes');">프로필보기</a></li> 
+ 			<li margin-left:20px><a onclick="open_pop('<%=ootdboard.getOotdWriter()%>');">프로필보기</a></li>
 	    </ul>
    </li>
+</ul> --%>
+
+ <ul class="ootdnav" style=" display:inline; height:50px">
+	<li class="probutton-dropdown" style=" display:inline; height:50px" >
+	   	<a id="firsta" href="javascript:void(0)" class="prodropdown-toggle"  style=" display:inline; height:50px">
+	    	<img id="profileimg"  src="<%=request.getContextPath()%>/uploadootds/ootd/profile.png" alt="profileimg  /></a>
+	    
+	    <ul class="prodown-menu" style="margin-left:30px">
+   	 		<li class="plz"><a onclick="open_pop('<%=ootdboard.getOotdWriter()%>');" style="margin-left:1220px"> 프로필보기</a></li>
+  		</ul>
+   </li>
 </ul>
-  
+
 <div class="imgNtableContainer">
  <div class="box">
 	<% 
