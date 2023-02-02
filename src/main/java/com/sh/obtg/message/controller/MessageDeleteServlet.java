@@ -31,7 +31,7 @@ public class MessageDeleteServlet extends HttpServlet {
 			
 			response.sendRedirect(request.getContextPath()+"/message/messageList");
 			
-		} catch (NumberFormatException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			request.getSession().setAttribute("msg", "쪽지 삭제 오류");
 			response.sendRedirect(request.getContextPath()+"/message/messageList");

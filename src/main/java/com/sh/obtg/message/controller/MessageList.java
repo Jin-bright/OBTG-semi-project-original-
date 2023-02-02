@@ -34,7 +34,7 @@ public class MessageList extends HttpServlet {
 			int page = 1; // 기본값
 			try {
 				page = Integer.parseInt(request.getParameter("page"));
-			} catch (NumberFormatException e) {}
+			} catch (NumberFormatException e) {} 
 			
 			HttpSession session = request.getSession();
 			Member member = (Member)session.getAttribute("loginMember");
