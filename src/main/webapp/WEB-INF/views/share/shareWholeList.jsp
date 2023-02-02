@@ -21,7 +21,7 @@
 <section id="board-container">
 <h2 id = "shareboardlist" > SHARE  </h2>
 <h3 id="shareboardlist2"> 더이상 입지 않는 아이템을 다른 회원들에게 무료로 양도해보세요 </h3>
-<br /><br /><br /><br />
+<br /><br /><br /><br /><br />
 <%----  검색상자  --%>
 <style>
  div#search-container {
@@ -154,8 +154,8 @@
 			   <div class="search">
                 <input type="hidden" name="searchType" id="searchType" value="member_id"/>
                 <input type="text" name="searchKeywordID"  size="25" placeholder=" 검색할 아이디를 입력하세요. ex)cathj " id="searchKeywordID" style=" border: 3px solid black; width : 500px
-                ; border-radius: 5px 0 0 5px; font-size : 15px;" required value = "<%= "member_id".equals(searchType) ? searchKeyword : "" %>"/>
-                <button type="submit" class="searchButton" id="searchButton"><i class="fa fa-search"></i></button><!-- //검색버튼  -->
+                ; border-radius: 5px 0 0 5px; font-size : 15px; margin-top : 40px; height:33px;" required value = "<%= "member_id".equals(searchType) ? searchKeyword : "" %>"/>
+                <button type="submit" class="searchButton" id="searchButton" style="margin-top : 40px; height:33px;"><i class="fa fa-search"></i></button><!-- //검색버튼  -->
                 </div>
              </div>   
 <!--             </form>    -->
@@ -166,8 +166,8 @@
 		   		<div class="search">
 	               <input type="hidden" name="searchType"  id="searchType" value="share_category" />
 	               <input type="text" name="searchKeywordID" size="25" placeholder=" 카테고리를 검색해보세요  ex)상의, 하의, 악세서리   " id="searchKeywordID"  style=" border: 3px solid black; width : 500px;
-	               border-radius: 5px 0 0 5px;  font-size : 15px;" required value="<%= "share_category".equals(searchType) ? searchKeyword : ""%>"/>
-	              <button type="submit" class="searchButton" id="searchButtoncate" ><i class="fa fa-search"></i></button><!-- //검색버튼  -->
+	               border-radius: 5px 0 0 5px; margin-top : 40px; height:33px; font-size : 15px;" required value="<%= "share_category".equals(searchType) ? searchKeyword : ""%>"/>
+	              <button type="submit" class="searchButton" id="searchButtoncate" style="margin-top : 40px; height:33px;" ><i class="fa fa-search"></i></button><!-- //검색버튼  -->
              	</div>
             </div>   
         </div>
@@ -177,14 +177,14 @@
 		   		<div class="search">
 	               <input type="hidden" name="searchType"  id="searchType" value="sahre_content" />
 	               <input type="text" tabindex="1" name="searchKeywordID" size="25" placeholder=" 내용을 검색해보세요  ex)사이즈, 겨울, 등등   " id="searchKeywordID"  style=" border: 3px solid black; width : 500px;
-	               border-radius: 5px 0 0 5px;  font-size : 15px;" required value="<%= "sahre_content".equals(searchType) ? searchKeyword : ""%>"/>
-	              <button tabindex="2"  type="submit" class="searchButton" id="searchButtoncnt" ><i class="fa fa-search"></i></button><!-- //검색버튼  -->
+	               border-radius: 5px 0 0 5px; margin-top : 40px; height:33px; font-size : 15px;" required value="<%= "sahre_content".equals(searchType) ? searchKeyword : ""%>"/>
+	              <button tabindex="2"  type="submit" class="searchButton" id="searchButtoncnt" style="margin-top : 40px; height:33px;"><i class="fa fa-search"></i></button><!-- //검색버튼  -->
              	</div>
             </div>   
         </div>
 </div>
         
- <span id="goback" ><a style="margin-left : -20px; margin-top:47px; display:inline-block; text-align:center; border:3px solid black; width : 90px; height:30px" href="<%=request.getContextPath()%>/share/shareWholeList">목록보기</a></span>
+ <span id="goback" ><a style="margin-left : -60px; font-size:15px; margin-top:47px; display:inline-block; text-align:center; border:3px solid black; width : 90px; height:30px" href="<%=request.getContextPath()%>/share/shareWholeList">목록보기</a></span>
  
 <% if(loginMember != null){ %>
 <input type="button" value="글쓰기" id="btnAdd"  style="margin-left : -600px"

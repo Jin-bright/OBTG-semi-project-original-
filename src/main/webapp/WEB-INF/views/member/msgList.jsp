@@ -217,9 +217,11 @@ function fnCheckAll(){
 const msgDelete = () => {
 	if(confirm("해당 쪽지를 삭제하셌습니까?")){
 		const msgs = document.querySelectorAll("#selectMsg");
+		console.log( msgs )
 		for(let i = 0; i < msgs.length; i++){
 	        const msg = msgs[i];
 	       	if(msg.checked){
+	       		console.log( msg )
 	       		const delNo = document.querySelector("#delNo");
 	       		delNo.value = msg.value;
 				document.msgDeleteFrm.submit();
