@@ -133,6 +133,3 @@ let getIcon = (event) =>{
 }
 
 </script>
-<script>
-$('.dropdown-toggle').dropdown()
-</script>
