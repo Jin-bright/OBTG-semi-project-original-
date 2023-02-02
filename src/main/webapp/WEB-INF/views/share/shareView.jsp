@@ -363,7 +363,7 @@
         <tbody>
             <tr>
                 <th><label for="">게시글 번호</label></th>
-                <td><input type="text" value="999<%= shareBoard.getShareNo() %>" name="boardNo" readonly="readonly"/></td>
+                <td><input type="text" value="S<%= shareBoard.getShareNo() %>" name="boardNo" readonly="readonly"/></td>
             </tr>
             <tr>
                 <td colspan="2"><hr style="width: 95%;" /></td>
