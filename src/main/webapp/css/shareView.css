@@ -148,8 +148,8 @@
 	width : 30px;
 	display : inline;
 	position : absolute;
-	left : 800px;
-	top : 900px; 
+	left : 805px;
+	top : 925px; 
 }
 
 #tblboardview {
@@ -274,6 +274,11 @@ div.comment-container button#btn-comment-enroll1 {
 	width : 67px;
 	background-color : black;
 	color : white; 	
+}
+
+.sharemodidel:hover{
+	background-color : white;
+	color : black; 	
 }
 
 /* 신고버튼*/

@@ -142,12 +142,13 @@
 
 #chatplz{
 	position : absolute;
-	top:550px;
-	left:1300px;
-	padding-right:30px;
+	top:560px;
+	left:1290px;
+	padding-right:20px;
+	padding-left:20px;
 	padding-top : 10px;
 	text-align : center;
-	width : 110px;
+	width : 105px;
 	font-size : 14px;
 }
 
@@ -513,7 +514,7 @@ const reportEnroll = () => {
 function open_pop(<%=shareBoard.getMemberId()%> ){
     const frmPop= document.frmPopup;
     const url = '<%=request.getContextPath()%>/profile/profileView';
-    window.open('','popupView','width=600, height=600');   
+    window.open('','popupView','width=610, height=640');   
      
     frmPop.action = url; 
     frmPop.target = 'popupView'; //window,open()의 두번째 인수와 같아야 하며 필수다.   

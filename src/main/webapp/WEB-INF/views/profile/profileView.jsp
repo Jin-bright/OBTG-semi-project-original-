@@ -18,8 +18,8 @@
   overflow: hidden;
   margin: 10px;
   min-width: 230px;
-  max-width: 700px;
-  height :700px;
+  max-width: 600px;
+  height :650px;
   width: 100%;
   color: #ffffff;
   text-align: left;
@@ -35,7 +35,7 @@
 .snip1336 img {
   <%--max-width: 100%;--%>
   width: 700px;
-  height : 350px;
+  height : 300px;
   vertical-align: top;
   opacity: 0.85;
 }
@@ -106,6 +106,10 @@
   opacity: 0.8;
 }
 
+#commentDiv{
+	border : 1px solid white; 
+}
+
 </style>
 </head>
 <body>
@@ -120,11 +124,12 @@
     <img src="<%=request.getContextPath()%>/uploadootds/profile.png"  style= "width : 90px; height : 90px; z-index :12;"  class="profile" />
     <h2 style="font-size:33px; margin-top:-5px"><b><%=member.getNickname()%></b>
     		<span style="font-size:16px; padding-top:10px; padding-bottom:20px; padding-left:3px" ><%=member.getMemberId()%></span></h2>
-    <p style="font-size:20px;"><b>COMMENT</b></p>
-    <p style="padding-bottom:0px; padding-top:20px"  ><b><%=member.getIntroduce()%></b></p>
-     
+    <p style="font-size:20px;"><b> COMMENT </b></p>
+    <div id="commentDiv">
+    	<p style="padding-bottom:0px; padding-top:20px"  ><b><%=member.getIntroduce()%></b></p>
+    </div> 
     
-    <p><%=member.getEmail()%></p>
+    <p>■ E-MAIL : <%=member.getEmail()%></p>
     <p style="font-size:16px; font-weight:bolder; color:hotpink; padding-top:10px; margin-bottom:-10px">#<%=member.getStyle()%></p>
     <a href="#" class="info" style="margin-left: 120px" onclick="closepop()";> 닫기 </a>
   </figcaption>
@@ -140,7 +145,7 @@ $(".hover").mouseleave(
 		  function () {
 		    $(this).removeClass("hover");
 		  }
-		);
+);
 </script>
 
 </body>
