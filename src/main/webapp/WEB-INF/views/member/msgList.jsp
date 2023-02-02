@@ -216,16 +216,16 @@ function fnCheckAll(){
 
 
 const msgDelete = () => {
-	if(confirm("해당 쪽지를 삭제하시겠습니까?")){
- 		const msgs = document.querySelectorAll("#selectMsg");
-		for(let i = 0; i < msgs.length; i++){
-	       	if(msgs[i].checked){
-	       		const delNo = document.querySelector("#delNo");
-	       		delNo.value = msgs[i].value;
-				document.msgDeleteFrm.submit();
-	       	}
-	    } 
-	}
+    if(confirm("해당 쪽지를 삭제하시겠습니까?")){
+         const msgs = document.querySelectorAll("#selectMsg");
+        for(let i = 0; i < msgs.length; i++){
+               if(msgs[i].checked){
+                   const delNo = document.querySelector("#delNo");
+                   delNo.value = msgs[i].value;
+                document.msgDeleteFrm.submit();
+               }
+        } 
+    }
 };
 
 const checkOnlyOne = (e) => {
