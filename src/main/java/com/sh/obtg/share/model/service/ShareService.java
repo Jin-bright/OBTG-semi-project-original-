@@ -221,5 +221,21 @@ public class ShareService {
 		
 		return result;
 	}
+
+//페이지넣고시도
+	public List<ShareBoardAndAttachment> searchShareBykeyWord(Map<String, String> param, Map<String, Integer> paramPage) {
+		Connection conn = getConnection();
+		List<ShareBoardAndAttachment> shareBoardAndAttachmentsSecond = shareBoardDao.searchShareBykeyWord(conn, param, paramPage);
+		close(conn);
+		return shareBoardAndAttachmentsSecond;
+	}
+
+//전체 find 게시물수를 구한다 
+	public int getFindTotalCount( Map<String, String> param ) {
+		Connection conn = getConnection();
+		int FindtotalCount = shareBoardDao.getFindTotalCount(conn, param);
+		close(conn);
+		return FindtotalCount;
+	}
 	
 }

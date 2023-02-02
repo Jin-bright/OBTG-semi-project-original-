@@ -62,6 +62,7 @@ public class MessageDao {
 		return result;
 	}
 
+
 	// 내게 온 쪽지 목록 조회
 	public List<Message> selectMsgList(Connection conn, Map<String, Object> param) {
 		// select * from ( select row_number() over(order by reg_date desc) rnum, m.* from message m where receiver = ?) 
@@ -138,4 +139,5 @@ public class MessageDao {
 		
 		return result;
 	}
+
 }

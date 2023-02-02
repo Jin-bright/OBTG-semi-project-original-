@@ -45,7 +45,9 @@ window.addEventListener('load', () => {
 	font-size : 15px;
  }
  
-
+h5{
+	margin-left : 420px;	
+}
  
  #searchTable{
  	margin : 0 auto;
@@ -59,7 +61,7 @@ window.addEventListener('load', () => {
 	/* width:800px;  
 	height : 1500px; */
 	padding : 0px;
-	margin-left : 90px;	
+	margin-left : 390px;	
  }
  
 td{
@@ -93,7 +95,7 @@ td{
 <section id="board-container">
 <h2 id = "ootdboardlist"  style="margin : 0 auto;"> Outfit Of The Day </h2>
 <%--  <h3 id="ootdboardlist2"> 오늘 입은 옷을 공유해보세요! </h3> --%> 
-<br /><br />
+<br /><br /><br /><br />
 <%----  검색상자  --%>
 
  
@@ -101,6 +103,7 @@ td{
  <section id="photo-wrapper">
 	<h2> 검색결과 </h2> <br/>
 	<h4> 스타일 &nbsp; <span style="color : orange; font-size:18px"><%=searchKeyword%>&nbsp; </span> (으)로 검색한 결과입니다 😊 </h4> <br/><!-- <br/><br/> --> 
+	<br /><br /><br /><br />
 	<h5 style="float:left"> ※ 스타일 종류  "러블리, 댄디, 포멀, 스트릿, 걸리쉬, 레트로, 로맨틱, 시크, 아메카지"  </h5>
 	<br />
 	<h5 style="float:left"> ※ 유사한 단어로 검색 시 가장 비슷한 스타일로 노출됩니다.</h5>

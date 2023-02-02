@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import com.sh.obtg.ootd.model.dto.OotdBoardandAttachment;
+
 import com.sh.obtg.share.model.dto.ShareAttachment;
 import com.sh.obtg.share.model.dto.ShareBoard;
 import com.sh.obtg.share.model.dto.ShareBoardAndAttachment;
@@ -463,4 +463,81 @@ public class ShareboardDao {
 			return result;
 		}	
 		
+		
+	//////////
+		public List<ShareBoardAndAttachment> searchShareBykeyWord(Connection conn, Map<String, String> param,
+				Map<String, Integer> paramPage) {
+			
+			String sql = prop.getProperty("searchShareBykeyWordSecond");
+			
+			String searchType = param.get("searchType"); // member_id | member_name | gender
+			String searchKeyword = param.get("searchKeyword"); // #
+			
+			List<ShareBoardAndAttachment> shareBoardAndAttachmentsSecond = new ArrayList<>();
+			sql = sql.replace("#", searchType);
+			
+			try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+				pstmt.setString(1, "%"+searchKeyword+"%");
+				pstmt.setInt(2, paramPage.get("start"));
+				pstmt.setInt(3, paramPage.get("end"));
+				
+				
+				try(ResultSet rset = pstmt.executeQuery() ){
+					while(rset.next()) {
+						
+						ShareBoardAndAttachment shareBoardAndAttachmentsSecondeach = new ShareBoardAndAttachment();
+						
+						shareBoardAndAttachmentsSecondeach.setShareNo(rset.getInt("share_no"));
+						shareBoardAndAttachmentsSecondeach.setMemberId(rset.getString("member_id"));
+						shareBoardAndAttachmentsSecondeach.setShareTitle(rset.getString("sahre_title"));
+						shareBoardAndAttachmentsSecondeach.setShareContent(rset.getString("sahre_content"));
+						shareBoardAndAttachmentsSecondeach.setShareRegDate(rset.getDate("sahre_reg_date"));
+						shareBoardAndAttachmentsSecondeach.setShareProductStatus(rset.getString("share_product_status"));
+						shareBoardAndAttachmentsSecondeach.setShareCategory(rset.getString("share_category"));
+						shareBoardAndAttachmentsSecondeach.setShareState(rset.getString("share_state"));
+						shareBoardAndAttachmentsSecondeach.setStyleNo( Style.valueOf( rset.getString("style")));
+						
+						shareBoardAndAttachmentsSecondeach.setAttachNo( rset.getInt("attach_no"));
+						shareBoardAndAttachmentsSecondeach.setOriginalFilename( rset.getString("original_filename"));
+						shareBoardAndAttachmentsSecondeach.setRenamedFilename( rset.getString("renamed_filename"));
+						
+						shareBoardAndAttachmentsSecond.add(shareBoardAndAttachmentsSecondeach);
+						
+					}
+				}	
+			}catch (SQLException e) {
+				throw new ShareBoardException("비동기+page 게시글찾기 실패^^", e);
+			}
+				
+			return shareBoardAndAttachmentsSecond;
+		}
+
+		
+		//전체find 게시물수를 구한다 - select 
+		public int getFindTotalCount(Connection conn, Map<String, String> param) {
+			String sql = prop.getProperty("getFindTotalCount");
+			int FindtotalCount = 0;
+			
+			String searchType = param.get("searchType"); // member_id | member_name | gender
+			String searchKeyword = param.get("searchKeyword"); // #
+			
+			sql = sql.replace("#", searchType);
+			
+			
+			try( PreparedStatement pstmt = conn.prepareStatement(sql)){
+					pstmt.setString(1, "%"+searchKeyword+"%");
+					
+				
+				 try(ResultSet rset = pstmt.executeQuery()){
+				 
+					 if(rset.next()) {
+						 FindtotalCount = rset.getInt(1);
+					 }
+				 }
+			} catch (SQLException e) {
+				throw new ShareBoardException("전체 find item count 실패^^", e);
+			}
+			
+			return FindtotalCount;
+		}//
 }
