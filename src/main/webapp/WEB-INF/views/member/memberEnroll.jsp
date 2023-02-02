@@ -30,7 +30,7 @@
             <label>
               ID<span class="req"></span>
             </label>
-            <td><input type="text" name="memberId" id="memberId" value="<%= saveId != null ? saveId : "" %>" required></td>
+            <td><input type="text" name="memberId" id="memberId"  value="<%= saveId != null ? saveId : "" %>" required></td>
           </div>
           <div class="field-wrap">
             <label>
@@ -54,7 +54,7 @@
               <label class="top">
                 ID<span class="req">*</span>
               </label>              
-              <input type="text"  name="memberId" id="_memberId" required autocomplete="off" required />
+              <input type="text"  name="memberId" id="_memberId" placeholder="영문자/숫자 4글자이상" required autocomplete="off" required />
               <input type="button" value="ID 중복검사" onclick = "checkIdDuplicate();" style="margin-top: 5px; background-color: lightpink; border: 0px; cursor: pointer;"/>
 			  <input type = "hidden" id = "idValid" name="idValid" value= "0"/>
 			  
@@ -64,7 +64,7 @@
               <label>
                 Password<span class="req">*</span>
               </label>
-              <input type="password" name="password" id="_password" required autocomplete="off"/>
+              <input type="password" name="password" id="_password" placeholder="영문자/숫자/특수문자 !@#$% 4글자이상" required autocomplete="off"/>
             </div>
           <div class="field-wrap">
             <label>
@@ -134,7 +134,7 @@
           </div>
            -->
           <fieldset class="checkbox-group">
-	<legend class="checkbox-group-legend" style="text-align:center; font-size:x-large; margin-bottom:10px;">Choose your Style</legend>
+	<legend class="checkbox-group-legend" style="text-align:center; font-size:x-large; margin-bottom:10px;">Choose your Style*</legend>
 	<tr id="check-box">
 		<td >
 			<input type="checkbox" class="style" name="style" id="S1" value="러블리"><label class="stylelb" for="S1"><img src="<%=request.getContextPath()%>/image/love.png" alt="">&nbsp;lovely</label>		
