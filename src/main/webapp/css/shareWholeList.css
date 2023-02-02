@@ -139,14 +139,14 @@ table tr{
 
 /*  거래중 표시  */
 #buttonglow{
-	width : 65px;
+	width : 70px;
 	height : 28px;
 	font-weight : 800;
 	text-align : center;
 	vertical-align: middle;
 	position : relative; 
 	top :  -32px;
-	left : 160px;
+	left : 152px;
 	background-color: #000;
     color: #ffe100;
     animation: glowing 5000ms infinite;
