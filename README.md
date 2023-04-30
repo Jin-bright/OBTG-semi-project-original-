@@ -1,4 +1,4 @@
-# Semi-Project revision_세미프로젝트 (기존 버전)</br></br>
+# Semi-Project 세미프로젝트 (기존 버전)</br></br>
 
 <h3>■ 프로젝트명 : OBTG </h3>
 <h3>■ 프로젝트 기간: 2022.01.02 ~ 02.03 </h3>
@@ -73,5 +73,5 @@
 <hr>
 <b> 4.설계</b>
  <h5> ◆ ER 다이어그램  </h5>
- <img src="" width="700"/>
+ <img src="https://user-images.githubusercontent.com/77500290/235352171-c7f38cc2-4d0f-4e85-b23f-66c59f5140ac.png" width="700"/>
 
